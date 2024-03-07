@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "8d845570-3a9d-4393-a545-8cdb11adaffd",
+		"name": "User Login Controller- Kamalika",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "test",
+			"id": "d38c56b2-3846-4ef6-9014-b16e095768f8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0b3JnYW5pemVyc0BnbWFpbC5jb20iLCJpYXQiOjE3MDk2OTcyNzcsImV4cCI6MTcwOTcyNjA3N30.Kl4I_NIXdzu-Rcouni8WZjvQJdUWI7GpFiglMPK1XD57dHjN1ZxeLMooRRWhHcxSpd3zIZlu_gHn8xVQrFP4cw"
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"programDescription\": \"Testing-team22\",\n  \"programName\": \"team22API\",\n  \"programStatus\": \"Inactive\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://lms-marchapi-hackathon-a258d2bbd43b.herokuapp.com/lms/saveprogram",
+					"protocol": "https",
+					"host": [
+						"lms-marchapi-hackathon-a258d2bbd43b",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"lms",
+						"saveprogram"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"description": "application/json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
