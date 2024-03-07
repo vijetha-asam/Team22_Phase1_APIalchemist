@@ -454,12 +454,12 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "{{token}}"
+						"token": "{{Usermodule_token}}"
 					}
 				},
 				"method": "GET",
 				"header": [],
-				"url": "https://lms-marchapi-hackathon-a258d2bbd43b.herokuapp.com/lms/users\n"
+				"url": "{{BaseURL}}/users"
 			},
 			"response": []
 		}
