@@ -6,7 +6,19 @@
 	},
 	"item": [
 		{
-			"name": "test",
+			"name": "New Request",
+			"id": "32cfffa9-e944-4f44-ade9-17508362d2ce",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Get Assigned Program/Batch(es) of All Users",
 			"id": "d38c56b2-3846-4ef6-9014-b16e095768f8",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -18,7 +30,7 @@
 						"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0b3JnYW5pemVyc0BnbWFpbC5jb20iLCJpYXQiOjE3MDk2OTcyNzcsImV4cCI6MTcwOTcyNjA3N30.Kl4I_NIXdzu-Rcouni8WZjvQJdUWI7GpFiglMPK1XD57dHjN1ZxeLMooRRWhHcxSpd3zIZlu_gHn8xVQrFP4cw"
 					}
 				},
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -30,16 +42,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://lms-marchapi-hackathon-a258d2bbd43b.herokuapp.com/lms/saveprogram",
-					"protocol": "https",
+					"raw": "{{BaseURL}}/userRoleProgramBatchMap",
 					"host": [
-						"lms-marchapi-hackathon-a258d2bbd43b",
-						"herokuapp",
-						"com"
+						"{{BaseURL}}"
 					],
 					"path": [
-						"lms",
-						"saveprogram"
+						"userRoleProgramBatchMap"
 					],
 					"query": [
 						{
