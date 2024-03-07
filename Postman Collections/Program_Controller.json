@@ -56,8 +56,8 @@
 					"response": []
 				},
 				{
-					"name": "Get program by programId-invalid endpoint",
-					"id": "5351b941-d9c9-483c-87ed-20e204eaf2c5",
+					"name": "Get program by non existing programId",
+					"id": "2686a9ba-d4bc-4e4a-8d38-9aaf3ee4cbb9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -70,7 +70,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{BaseURL}}/program/{{programId}}"
+						"url": "{{BaseURL}}/programs/{{programId}}"
 					},
 					"response": []
 				},
@@ -90,44 +90,6 @@
 						"method": "GET",
 						"header": [],
 						"url": "{{BaseURL}}/allProgramsWithUsers"
-					},
-					"response": []
-				},
-				{
-					"name": "Get All Programs-invalid endpoint",
-					"id": "3c156e9c-6807-4f12-87bd-4f23492ee0c7",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"url": "{{BaseURL}}/allProgram"
-					},
-					"response": []
-				},
-				{
-					"name": "Get All Programs-Unauthorized request",
-					"id": "43a01347-10bb-4e90-9e0f-449b29172ca4",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "token"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"url": "{{BaseURL}}/allPrograms"
 					},
 					"response": []
 				}
@@ -447,6 +409,113 @@
 				}
 			],
 			"id": "99ce9be3-5f88-480a-85d4-c7eaa4664f32"
+		},
+		{
+			"name": "UnAuthorized Requests",
+			"item": [
+				{
+					"name": "Get program by programId-Unauthorized request",
+					"id": "fafeeba8-1419-45d4-a680-3f8dfdd4c6de",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "token"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/programs/{{programId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Programs-Unauthorized request",
+					"id": "43a01347-10bb-4e90-9e0f-449b29172ca4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "token"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/allPrograms"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all programs with Users-UnauthorizedRequest",
+					"id": "ed0fdb94-2a2b-4692-82ab-c602b7ba520c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "token"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/allProgramsWithUsers"
+					},
+					"response": []
+				}
+			],
+			"id": "9ce61a7d-e8c3-4817-bf54-ca617f9881eb"
+		},
+		{
+			"name": "ErrorHandling-InvalidEndpoints",
+			"item": [
+				{
+					"name": "Get program by programId-invalid endpoint",
+					"id": "5351b941-d9c9-483c-87ed-20e204eaf2c5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/program{{programId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Programs-invalid endpoint",
+					"id": "3c156e9c-6807-4f12-87bd-4f23492ee0c7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/allProgram"
+					},
+					"response": []
+				}
+			],
+			"id": "6cc80cf3-6836-4ce9-8b08-c473d2271c81"
 		},
 		{
 			"name": "Login-Valid User",
