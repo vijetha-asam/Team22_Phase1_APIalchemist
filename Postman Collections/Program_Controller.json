@@ -51,7 +51,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{BaseURL}}/programs/{{programModule_programID}}"
+						"url": "{{BaseURL}}/programs/{{programId}}"
 					},
 					"response": []
 				},
@@ -78,7 +78,7 @@
 			"id": "c1526b18-b41e-4a4b-8bc0-8804741b2701"
 		},
 		{
-			"name": "New Folder",
+			"name": "Post Program",
 			"item": [
 				{
 					"name": "Create new program",
@@ -111,7 +111,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"String\",\n  \"programName\": \"String\",\n  \"programStatus\": \"String\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"Marchhackathon\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
