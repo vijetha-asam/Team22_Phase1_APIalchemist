@@ -161,6 +161,48 @@
 					"response": []
 				},
 				{
+					"name": "MissingProgramName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
+								"exec": [
+									"var resp = pm.response.json();",
+									"var programID = resp.programId;",
+									"pm.environment.set(\"programModule_programID\",token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "3171e6cf-c1af-43d4-a7ae-c93268375a8e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"programDescription\": \"Marchhackathon\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Active\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
 					"name": "ProgramNameWithoutAlphabets",
 					"event": [
 						{
