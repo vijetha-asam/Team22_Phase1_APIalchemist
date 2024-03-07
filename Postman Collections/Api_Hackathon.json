@@ -85,14 +85,21 @@
 			"name": "UserModule",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "GetAllUsers",
 					"id": "cec05095-44d9-4f42-b5f1-96b458383fec",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": "{{BaseURL}}/users"
 					},
 					"response": []
 				},
@@ -134,6 +141,25 @@
 							}
 						},
 						"url": "{{BaseURL}}/login"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllRoles",
+					"id": "6883fa43-abb1-41bf-826d-b08cbba540e4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/users/roles"
 					},
 					"response": []
 				}
@@ -454,25 +480,6 @@
 					}
 				},
 				"url": "{{BaseURL}}/saveprogram"
-			},
-			"response": []
-		},
-		{
-			"name": "https://lms-marchapi-hackathon-a258d2bbd43b.herokuapp.com/lms/users\n",
-			"id": "77b7731f-0e4b-4aef-ab16-202ff49835cb",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Usermodule_token}}"
-					}
-				},
-				"method": "GET",
-				"header": [],
-				"url": "{{BaseURL}}/users"
 			},
 			"response": []
 		}
