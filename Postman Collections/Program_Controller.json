@@ -523,7 +523,7 @@
 								}
 							}
 						},
-						"url": "{{BaseURL}}/deletebyprogid/16375"
+						"url": "{{BaseURL}}/deletebyprogid/454545678"
 					},
 					"response": []
 				},
@@ -615,6 +615,74 @@
 						"method": "GET",
 						"header": [],
 						"url": "{{BaseURL}}/allProgramsWithUsers"
+					},
+					"response": []
+				},
+				{
+					"name": "Create new program-unauthorized request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "8a0c306e-7c9f-4a3c-8d4b-c074e6548255",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "token"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"programDescription\": \"Marchhackathon\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Active\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProgram By ProgramId-Unauthorized request",
+					"id": "2fc0c73d-b9b6-45e6-a798-e9dd074d8844",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "token"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/deletebyprogid/16375"
 					},
 					"response": []
 				}
@@ -720,6 +788,34 @@
 							}
 						},
 						"url": "{{BaseURL}}/savprogram"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProgram-invalid endpoint",
+					"id": "a4dc840a-cea6-4c13-80e2-61a21d827758",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/deletebyproid/16375"
 					},
 					"response": []
 				}
