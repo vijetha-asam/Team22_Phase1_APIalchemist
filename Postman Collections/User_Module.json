@@ -517,6 +517,7 @@
 									"});\r",
 									"pm.test(\"validate data\"),()=>{\r",
 									"pm.response.to.have.userPhoneNumber(\"{{usermodule_randomNumber}}\");\r",
+									"pm.response.to.have.userPhoneNumber(\"{{usermodule_email_env}}\")\r",
 									"}"
 								],
 								"type": "text/javascript"
@@ -887,6 +888,19 @@
 						"method": "GET",
 						"header": [],
 						"url": "{{BaseURL}}/users/activeUsers"
+					},
+					"response": []
+				},
+				{
+					"name": "users-programBatchBy-batchId",
+					"id": "e32abc0a-0f52-4183-85a8-b1a0585f9fa3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/users/programBatch/{batchId}"
 					},
 					"response": []
 				}
