@@ -607,7 +607,7 @@
 									"script": {
 										"id": "8f957547-f37d-42f1-a576-48b0cbfc7eba",
 										"exec": [
-											"pm.variables.set(\"Nonexisting_programID_programModule\",\"454545678\");"
+											""
 										],
 										"type": "text/javascript"
 									}
