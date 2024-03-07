@@ -246,6 +246,25 @@
 						"url": "{{BaseURL}}/users/roleStatus"
 					},
 					"response": []
+				},
+				{
+					"name": "AllUsers_roles",
+					"id": "35360f4d-dc0e-4672-bfb7-9a6e30e4a079",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/roles"
+					},
+					"response": []
 				}
 			],
 			"id": "29c3dcc5-c6e6-4672-8f5a-62b080051a6e"
