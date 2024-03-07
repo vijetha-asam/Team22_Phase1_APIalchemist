@@ -200,7 +200,7 @@
 								"id": "d3a7bf57-0c0f-4d3f-9422-d77865b3d21b",
 								"exec": [
 									"var jsonData=JSON.parse(responseBody);\r",
-									"pm.environment(\"user-id-env\",jsonData.userId);\r",
+									"pm.environment.set(\"user-id-env\",jsonData.userId);\r",
 									"console.log(\"userId : \"+jsonData.userId);\r",
 									"\r",
 									"pm.environment.set(\"contact_env\",jsonData.user_contact_number);\r",
@@ -308,7 +308,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userComments\": \"Alchemist\",\r\n  \"userEduPg\": \"Dgree\",\r\n  \"userEduUg\": \"Pg\",\r\n  \"userFirstName\": \"TeamAlchemist\",\r\n  \"userId\": \"U009\",\r\n  \"userLastName\": \"Team\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/Steve Job/\",\r\n  \"userLocation\": \"USA\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"active\",\r\n    \"password\": \"string\",\r\n    \"roleIds\": [\r\n      \"R03\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"alchemist@gmail.com\"\r\n  },\r\n  \"userMiddleName\": \"team\",\r\n  \"userPhoneNumber\": 9865192011,\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R03\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4-EAD\"\r\n}",
+							"raw": "{\r\n  \"userComments\": \"Alchemist\",\r\n  \"userEduPg\": \"Dgree\",\r\n  \"userEduUg\": \"Pg\",\r\n  \"userFirstName\": \"TeamAlchemist\",\r\n  \"userId\": \"U009\",\r\n  \"userLastName\": \"Team\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/Steve Job/\",\r\n  \"userLocation\": \"USA\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"active\",\r\n    \"password\": \"string\",\r\n    \"roleIds\": [\r\n      \"R03\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"alchmist@gmail.com\"\r\n  },\r\n  \"userMiddleName\": \"team\",\r\n  \"userPhoneNumber\": 2865192011,\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R03\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4-EAD\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -405,6 +405,41 @@
 						"method": "GET",
 						"header": [],
 						"url": "{{BaseURL}}/roles"
+					},
+					"response": []
+				},
+				{
+					"name": "{{BaseURL}}/users/:userid",
+					"id": "bfbccf0b-e379-4d5a-9a41-7473207726f9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/users/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								":userid"
+							],
+							"variable": [
+								{
+									"id": "fe3ce04c-7cba-4b93-b9ba-1bd1fcf1aba1",
+									"key": "userid",
+									"value": "U688"
+								}
+							]
+						}
 					},
 					"response": []
 				}
