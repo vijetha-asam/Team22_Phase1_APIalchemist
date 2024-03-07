@@ -56,6 +56,25 @@
 					"response": []
 				},
 				{
+					"name": "Get program by deleted programId",
+					"id": "85885faa-abbb-443f-bdc8-7d09028b0724",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/programs/{{programId}}"
+					},
+					"response": []
+				},
+				{
 					"name": "Get program by non existing programId",
 					"id": "2686a9ba-d4bc-4e4a-8d38-9aaf3ee4cbb9",
 					"protocolProfileBehavior": {
@@ -70,7 +89,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{BaseURL}}/programs/{{programId}}"
+						"url": "{{BaseURL}}/programs/{{nonexistingprogramId}}"
 					},
 					"response": []
 				},
@@ -511,6 +530,25 @@
 						"method": "GET",
 						"header": [],
 						"url": "{{BaseURL}}/allProgram"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all programs with Users-invalid endpoint",
+					"id": "2addf292-2d1b-47e7-b824-f9951f4fb6cc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/allProgramsWithUser"
 					},
 					"response": []
 				}
