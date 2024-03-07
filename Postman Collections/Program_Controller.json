@@ -411,6 +411,74 @@
 					"response": []
 				},
 				{
+					"name": "OnlyNumbersProgramDescription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "69190835-98a1-4aa1-9525-70101cc24c4f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"programDescription\": \"000000000000000\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Inactive\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
+					"name": "SpecialCharactersInDescription",
+					"id": "c8ec1673-2e3f-457a-b099-e78569f20475",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"programDescription\": \"&&&&&&********&&&&&&&&&\",\n  \"programName\": \"March24-API-DAAAS-010\",\n  \"programStatus\": \"Inactive\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
 					"name": "InvalidCombinationInProgramDescription",
 					"event": [
 						{
@@ -440,34 +508,6 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n  \"programDescription\": \"A^^^^^^^^^^^^^^^^\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Inactive\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/saveprogram"
-					},
-					"response": []
-				},
-				{
-					"name": "SpecialCharactersInDescription",
-					"id": "c8ec1673-2e3f-457a-b099-e78569f20475",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"&&&&&&********&&&&&&&&&\",\n  \"programName\": \"March24-API-DAAAS-010\",\n  \"programStatus\": \"Inactive\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
