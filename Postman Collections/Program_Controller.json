@@ -84,7 +84,7 @@
 								"auth": {
 									"type": "bearer",
 									"bearer": {
-										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0b3JnYW5pemVyc0BnbWFpbC5jb20iLCJpYXQiOjE3MDk3NDU4MzQsImV4cCI6MTcwOTc3NDYzNH0.amYSqDiKjBL_Xm37VBpthZGxTJ6Gt4n3BW0gArSwToPf-QmT7X0qHOvRizgTPZXrvYjeOwd4CTBQa7pV2ueVow"
+										"token": "{{programModuleToken}}"
 									}
 								},
 								"method": "GET",
