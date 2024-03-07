@@ -589,7 +589,35 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"A%%^$#%%%%&&&&&&*******\",\n    \"programDescription\": \"MarchHackathonUpdatedToMarch2024Hackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Inactive\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/putprogram/16341"
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProgramStatusByProgramID",
+							"id": "4fb3da9a-3f2b-431d-b609-ad8eeeeee985",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -605,7 +633,20 @@
 				},
 				{
 					"name": "Update by programName",
-					"item": [],
+					"item": [
+						{
+							"name": "New Request",
+							"id": "23bd2bd2-f28a-46f8-a4c4-dcd9e4fc7a8d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
 					"id": "b32a06f5-b23a-4736-90ba-0d54dd329a00"
 				}
 			],
