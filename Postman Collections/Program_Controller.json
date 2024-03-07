@@ -594,12 +594,12 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/deletebyprogid/16375"
+								"url": "{{BaseURL}}/deletebyprogid/{Bug_programModule_programID}"
 							},
 							"response": []
 						},
 						{
-							"name": "Delete Nonexisting program",
+							"name": "Delete Nonexisting program by programId",
 							"id": "284a1db0-7b2f-456d-8f9e-1cbe2ba44fa8",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -627,7 +627,7 @@
 							"response": []
 						},
 						{
-							"name": "Delete already deleted program",
+							"name": "Delete already deleted program by programId",
 							"id": "3f2d668e-e5f6-43d5-8098-0f3d43fe8512",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -650,7 +650,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/deletebyprogid/16375"
+								"url": "{{BaseURL}}/deletebyprogid/{Bug_programModule_programID}"
 							},
 							"response": []
 						}
@@ -659,7 +659,20 @@
 				},
 				{
 					"name": "Delete by programName",
-					"item": [],
+					"item": [
+						{
+							"name": "New Request",
+							"id": "f51a7eb7-2df0-4e76-b88f-e1f6f554f082",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
 					"id": "ee9e8ba4-d008-4893-a46a-debac9624d5c"
 				}
 			],
