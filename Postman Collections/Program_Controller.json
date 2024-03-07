@@ -545,14 +545,58 @@
 					"name": "Update by programId",
 					"item": [
 						{
-							"name": "New Request",
+							"name": "UpdateProgramNameByProgramID",
 							"id": "191b8027-55a9-4710-bd20-33632c5e0769",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
-								"header": []
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programName\": \"A%%^$#%%%%&&&&&&*******\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/putprogram/16341"
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProgramDescriptionByProgramID",
+							"id": "176fa377-3a99-4fdd-91ee-117d89eeb23b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programName\": \"A%%^$#%%%%&&&&&&*******\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/putprogram/16341"
 							},
 							"response": []
 						}
