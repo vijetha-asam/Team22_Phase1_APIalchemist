@@ -83,7 +83,61 @@
 		},
 		{
 			"name": "UserModule",
-			"item": [],
+			"item": [
+				{
+					"name": "New Request",
+					"id": "cec05095-44d9-4f42-b5f1-96b458383fec",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Usermodule_login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "23199d6a-ea53-4459-80ef-4efe21905c47",
+								"exec": [
+									"var resp = pm.response.json();",
+									"var token = resp.token;",
+									"pm.environment.set(\"Usermodule_token\",token);",
+									"//pm.globals.set(\"validUserID\",userID);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "99841369-45b1-4659-8d0a-517aebe449aa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"password\": \"Numpyninja@1\",\n  \"userLoginEmailId\": \"sdetorganizers@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/login"
+					},
+					"response": []
+				}
+			],
 			"id": "29c3dcc5-c6e6-4672-8f5a-62b080051a6e"
 		},
 		{
@@ -104,47 +158,6 @@
 				}
 			],
 			"id": "3559b2f2-1d27-4ea5-a12b-7a91571fb120",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {}
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"password\": \"Numpyninja@1\",\n  \"userLoginEmailId\": \"sdetorganizers@gmail.com\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": "{{BaseURL}}/login"
-			},
-			"response": []
-		},
-		{
-			"name": "Usermodule_login",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "23199d6a-ea53-4459-80ef-4efe21905c47",
-						"exec": [
-							"var resp = pm.response.json();",
-							"var token = resp.token;",
-							"pm.environment.set(\"Usermodule_token\",token);",
-							"//pm.globals.set(\"validUserID\",userID);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "99841369-45b1-4659-8d0a-517aebe449aa",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
