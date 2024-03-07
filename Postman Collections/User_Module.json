@@ -200,7 +200,15 @@
 								"id": "f3745dca-b9de-4027-ab61-eead90a92c02",
 								"exec": [
 									"const randomNumber = _.random(1000000000,9999999999)\r",
-									"pm.environment.set(\"usermodule_randomNumber\",randomNumber);"
+									"pm.environment.set(\"usermodule_randomNumber\",randomNumber);\r",
+									"\r",
+									"var random = Math.random().toString(36).substring(2);\r",
+									"\r",
+									"var userLoginEmail= \"abc\"+random+\"@gmail.com\";\r",
+									"//var userLastName=\"abc\"+random;\r",
+									"//var userLastName=\"abc\"+random;\r",
+									"\r",
+									"pm.environment.set(\"usermodule_email_env\",userLoginEmail);"
 								],
 								"type": "text/javascript"
 							}
@@ -361,7 +369,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userComments\": \"Alchemist\",\r\n  \"userEduPg\": \"Dgree\",\r\n  \"userEduUg\": \"Pg\",\r\n  \"userFirstName\": \"TeamAlchemist\",\r\n  \"userId\": \"U009\",\r\n  \"userLastName\": \"Team\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/Steve Job/\",\r\n  \"userLocation\": \"USA\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"active\",\r\n    \"password\": \"string\",\r\n    \"roleIds\": [\r\n      \"R03\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"alchemst@gmail.com\"\r\n  },\r\n  \"userMiddleName\": \"team\",\r\n  \"userPhoneNumber\": {{usermodule_randomNumber}},\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R03\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4-EAD\"\r\n}",
+							"raw": "{\r\n  \"userComments\": \"Alchemist\",\r\n  \"userEduPg\": \"Dgree\",\r\n  \"userEduUg\": \"Pg\",\r\n  \"c\": \"TeamAlchemist\",\r\n  \"userId\": \"U009\",\r\n  \"userLastName\": \"Team\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/Steve Job/\",\r\n  \"userLocation\": \"USA\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"active\",\r\n    \"password\": \"string\",\r\n    \"roleIds\": [\r\n      \"R03\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"{{usermodule_email_env}}\"\r\n  },\r\n  \"userMiddleName\": \"team\",\r\n  \"userPhoneNumber\": {{usermodule_randomNumber}},\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R03\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4-EAD\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
