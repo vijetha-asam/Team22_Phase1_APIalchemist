@@ -872,5 +872,11 @@
 			},
 			"response": []
 		}
+	],
+	"variable": [
+		{
+			"key": "programModuleToken",
+			"value": ""
+		}
 	]
 }
