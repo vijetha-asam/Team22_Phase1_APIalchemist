@@ -688,7 +688,7 @@
 								},
 								"method": "DELETE",
 								"header": [],
-								"url": "{{BaseURL}}/deletebyprogname/{Delete_programName_programModule}"
+								"url": "{{BaseURL}}/deletebyprogname/{{Delete_programName_programModule}}"
 							},
 							"response": []
 						},
@@ -707,7 +707,7 @@
 								},
 								"method": "DELETE",
 								"header": [],
-								"url": "{{BaseURL}}/deletebyprogname/{Delete_programName_programModule}"
+								"url": "{{BaseURL}}/deletebyprogname/{{Delete_programName_programModule}}"
 							},
 							"response": []
 						},
