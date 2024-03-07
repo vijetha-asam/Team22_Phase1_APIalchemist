@@ -146,7 +146,8 @@
 								"exec": [
 									"var resp = pm.response.json();",
 									"var programID = resp.programId;",
-									"pm.collectionVariables.set(\"programModule_programID\",programID);"
+									"pm.collectionVariables.set(\"programModule_programID\",programID);",
+									"//pm.environment.set(\"UserModule_ProgramId\",resp.programId)"
 								],
 								"type": "text/javascript"
 							}
@@ -167,7 +168,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"Marchhackathon\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"MarchAPIHackathon\",\n  \"programName\": \"March24_APIAlchemist_SDET_137\",\n  \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
