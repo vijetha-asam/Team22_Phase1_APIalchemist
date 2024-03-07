@@ -674,14 +674,59 @@
 					"name": "Delete by programName",
 					"item": [
 						{
-							"name": "New Request",
+							"name": "DeleteExistingProgramByProgramName",
 							"id": "f51a7eb7-2df0-4e76-b88f-e1f6f554f082",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
 							"request": {
-								"method": "GET",
-								"header": []
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "{{BaseURL}}/deletebyprogname/{Delete_programName_programModule}"
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteAlreadyDeletedProgramName",
+							"id": "2e91c1c7-b39e-4158-aa43-16500dd27ca5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "{{BaseURL}}/deletebyprogname/{Delete_programName_programModule}"
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteNonexistingProgramName",
+							"id": "ad967d3a-812d-4392-9b4b-5c3ec61639cf",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": "{{BaseURL}}/deletebyprogname/{Delete_NonexistingProgramName_programModule}"
 							},
 							"response": []
 						}
