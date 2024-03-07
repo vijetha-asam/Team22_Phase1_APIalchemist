@@ -470,7 +470,64 @@
 		},
 		{
 			"name": "Delete Programs",
-			"item": [],
+			"item": [
+				{
+					"name": "DeleteProgram By ProgramId",
+					"id": "7b5a2db7-2f51-47cf-a7a2-caccc9fca45c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/deletebyprogid/16375"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProgram By ProgramId Copy",
+					"id": "3f2d668e-e5f6-43d5-8098-0f3d43fe8512",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/deletebyprogid/16375"
+					},
+					"response": []
+				}
+			],
 			"id": "2e0c6dd7-c751-4727-a19c-0488e51cc42e"
 		},
 		{
