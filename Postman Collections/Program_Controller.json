@@ -393,7 +393,7 @@
 					"response": []
 				},
 				{
-					"name": "MissingProgramStatus Copy",
+					"name": "InvalidCombinationInProgramDescription",
 					"event": [
 						{
 							"listen": "test",
@@ -421,7 +421,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"Marchhackathon\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"A^^^^^^^^^^^^^^^^\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Inactive\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
