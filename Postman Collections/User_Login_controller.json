@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "POST REQUEST -  User Sign In",
+			"name": "POST REQUEST -  User Sign In (200)",
 			"event": [
 				{
 					"listen": "test",
@@ -40,7 +40,7 @@
 			"response": []
 		},
 		{
-			"name": "POST REQUEST -  User Sign In 400",
+			"name": "POST REQUEST -  User Sign In (400)",
 			"event": [
 				{
 					"listen": "test",
@@ -75,6 +75,78 @@
 		},
 		{
 			"name": "GET REQUEST - User log out",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa7a1fd8-eba7-42f4-a11e-2e45a1cb864a",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//Check Response Time",
+							"pm.test(\"Response Time is less than 500ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"//Header validation",
+							"pm.test(\"Content-Type Header is present\", () => {",
+							"  pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"",
+							"//Header Type Validation",
+							"pm.test(\"Content-Type Header is application-json\", () => {",
+							"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"//Validating JSON Schema",
+							"",
+							"var schema = {",
+							"    properties: {",
+							"    programId: {",
+							"      type: \"number\",",
+							"    },",
+							"    programName: {",
+							"      type: \"string\",",
+							"    },",
+							"    programDescription: {",
+							"      type: \"string\",",
+							"    },",
+							"    programStatus: {",
+							"      type: \"string\",",
+							"    },",
+							"     creationTime: {",
+							"      type: \"string\",",
+							"    },",
+							"     lastModTime: {",
+							"      type: \"string\",",
+							"    },",
+							"  },",
+							"  required: [",
+							"    \"programId\",",
+							"    \"programName\",",
+							"    \"programDescription\",",
+							"    \"programStatus\",",
+							"    \"creationTime\",",
+							"    \"lastModTime\"",
+							"  ],",
+							"};",
+							"",
+							"",
+							"pm.test(\"Schema is valid\", () => {",
+							"  pm.response.to.have.jsonSchema(schema);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"id": "c13ee58f-bfef-4523-991f-9d539eb5567f",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -83,14 +155,14 @@
 				"auth": {
 					"type": "bearer",
 					"bearer": {
-						"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0b3JnYW5pemVyc0BnbWFpbC5jb20iLCJpYXQiOjE3MDk2OTcyNzcsImV4cCI6MTcwOTcyNjA3N30.Kl4I_NIXdzu-Rcouni8WZjvQJdUWI7GpFiglMPK1XD57dHjN1ZxeLMooRRWhHcxSpd3zIZlu_gHn8xVQrFP4cw"
+						"token": "{{Bearertoken2}}"
 					}
 				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"programDescription\": \"Testing-team22\",\n  \"programName\": \"team22API\",\n  \"programStatus\": \"Inactive\"\n}\n",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -98,16 +170,12 @@
 					}
 				},
 				"url": {
-					"raw": "https://lms-marchapi-hackathon-a258d2bbd43b.herokuapp.com/lms/saveprogram",
-					"protocol": "https",
+					"raw": "{{BaseURL}}/logoutlms",
 					"host": [
-						"lms-marchapi-hackathon-a258d2bbd43b",
-						"herokuapp",
-						"com"
+						"{{BaseURL}}"
 					],
 					"path": [
-						"lms",
-						"saveprogram"
+						"logoutlms"
 					],
 					"query": [
 						{
