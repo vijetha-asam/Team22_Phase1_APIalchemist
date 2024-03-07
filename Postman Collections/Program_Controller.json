@@ -9,108 +9,126 @@
 			"name": "Get Programs",
 			"item": [
 				{
-					"name": "Get All Programs",
-					"id": "5b6b630c-f99f-40e7-af28-f62b132903d0",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0b3JnYW5pemVyc0BnbWFpbC5jb20iLCJpYXQiOjE3MDk3NDU4MzQsImV4cCI6MTcwOTc3NDYzNH0.amYSqDiKjBL_Xm37VBpthZGxTJ6Gt4n3BW0gArSwToPf-QmT7X0qHOvRizgTPZXrvYjeOwd4CTBQa7pV2ueVow"
-							}
+					"name": "Get by programId",
+					"item": [
+						{
+							"name": "Get program by programId",
+							"id": "36a16b16-d733-4518-9e4e-c5f8a3fdf065",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURL}}/programs/{{programId}}"
+							},
+							"response": []
 						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+						{
+							"name": "Get program by deleted programId",
+							"id": "85885faa-abbb-443f-bdc8-7d09028b0724",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURL}}/programs/{{deletedProgramId}}"
+							},
+							"response": []
 						},
-						"url": "{{BaseURL}}/allPrograms"
-					},
-					"response": []
+						{
+							"name": "Get program by non existing programId",
+							"id": "2686a9ba-d4bc-4e4a-8d38-9aaf3ee4cbb9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURL}}/programs/{{nonexistingprogramId}}"
+							},
+							"response": []
+						}
+					],
+					"id": "a221793c-394e-4d68-8457-cf31d312f49d"
 				},
 				{
-					"name": "Get program by programId",
-					"id": "36a16b16-d733-4518-9e4e-c5f8a3fdf065",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"url": "{{BaseURL}}/programs/{{programId}}"
-					},
-					"response": []
-				},
-				{
-					"name": "Get program by deleted programId",
-					"id": "85885faa-abbb-443f-bdc8-7d09028b0724",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"url": "{{BaseURL}}/programs/{{deletedProgramId}}"
-					},
-					"response": []
-				},
-				{
-					"name": "Get program by non existing programId",
-					"id": "2686a9ba-d4bc-4e4a-8d38-9aaf3ee4cbb9",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"url": "{{BaseURL}}/programs/{{nonexistingprogramId}}"
-					},
-					"response": []
+					"name": "Get all programs",
+					"item": [
+						{
+							"name": "Get All Programs",
+							"id": "5b6b630c-f99f-40e7-af28-f62b132903d0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0b3JnYW5pemVyc0BnbWFpbC5jb20iLCJpYXQiOjE3MDk3NDU4MzQsImV4cCI6MTcwOTc3NDYzNH0.amYSqDiKjBL_Xm37VBpthZGxTJ6Gt4n3BW0gArSwToPf-QmT7X0qHOvRizgTPZXrvYjeOwd4CTBQa7pV2ueVow"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/allPrograms"
+							},
+							"response": []
+						}
+					],
+					"id": "f706ddff-46bc-463f-bdbc-a2e0001186f8"
 				},
 				{
 					"name": "Get all programs with Users",
-					"id": "45a01115-149d-4dc8-bf4e-ec2f88830329",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"url": "{{BaseURL}}/allProgramsWithUsers"
-					},
-					"response": []
+					"item": [
+						{
+							"name": "Get all programs with Users",
+							"id": "45a01115-149d-4dc8-bf4e-ec2f88830329",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURL}}/allProgramsWithUsers"
+							},
+							"response": []
+						}
+					],
+					"id": "f662d5b1-378d-42da-8b34-b8acdaa57ae1"
 				}
 			],
 			"id": "c1526b18-b41e-4a4b-8bc0-8804741b2701"
@@ -465,95 +483,117 @@
 		},
 		{
 			"name": "Update Programs",
-			"item": [],
+			"item": [
+				{
+					"name": "Update by programId",
+					"item": [],
+					"id": "db789302-362f-41f8-9ef8-ae1edcca4a24"
+				},
+				{
+					"name": "Update by programName",
+					"item": [],
+					"id": "b32a06f5-b23a-4736-90ba-0d54dd329a00"
+				}
+			],
 			"id": "39d7f45d-8ffa-43cb-9dd7-dc82b386faa6"
 		},
 		{
 			"name": "Delete Programs",
 			"item": [
 				{
-					"name": "DeleteProgram By ProgramId",
-					"id": "7b5a2db7-2f51-47cf-a7a2-caccc9fca45c",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
+					"name": "Delete by programID",
+					"item": [
+						{
+							"name": "DeleteProgram By ProgramId",
+							"id": "7b5a2db7-2f51-47cf-a7a2-caccc9fca45c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/deletebyprogid/16375"
+							},
+							"response": []
 						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
+						{
+							"name": "Delete Nonexisting program",
+							"id": "284a1db0-7b2f-456d-8f9e-1cbe2ba44fa8",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/deletebyprogid/454545678"
+							},
+							"response": []
 						},
-						"url": "{{BaseURL}}/deletebyprogid/16375"
-					},
-					"response": []
+						{
+							"name": "Delete already deleted program",
+							"id": "3f2d668e-e5f6-43d5-8098-0f3d43fe8512",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/deletebyprogid/16375"
+							},
+							"response": []
+						}
+					],
+					"id": "9779f885-7de0-433d-9926-3d697e6a7298"
 				},
 				{
-					"name": "Delete Nonexisting program",
-					"id": "284a1db0-7b2f-456d-8f9e-1cbe2ba44fa8",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/deletebyprogid/454545678"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete already deleted program",
-					"id": "3f2d668e-e5f6-43d5-8098-0f3d43fe8512",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/deletebyprogid/16375"
-					},
-					"response": []
+					"name": "Delete by programName",
+					"item": [],
+					"id": "ee9e8ba4-d008-4893-a46a-debac9624d5c"
 				}
 			],
 			"id": "2e0c6dd7-c751-4727-a19c-0488e51cc42e"
