@@ -180,7 +180,35 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userComments\": \"Alchemist\",\r\n  \"userEduPg\": \"Dgree\",\r\n  \"userEduUg\": \"Pg\",\r\n  \"userFirstName\": \"TeamAlchemist_137\",\r\n  \"userId\": \"U009\",\r\n  \"userLastName\": \"Team\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/Steve Job/\",\r\n  \"userLocation\": \"USA\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"active\",\r\n    \"password\": \"string\",\r\n    \"roleIds\": [\r\n      \"R03\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"alchemist@gmail.com\"\r\n  },\r\n  \"userMiddleName\": \"team\",\r\n  \"userPhoneNumber\": 9865192012,\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R137\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4-EAD\"\r\n}",
+							"raw": "{\r\n  \"userComments\": \"Alchemist\",\r\n  \"userEduPg\": \"Dgree\",\r\n  \"userEduUg\": \"Pg\",\r\n  \"userFirstName\": \"TeamAlchemist\",\r\n  \"userId\": \"U009\",\r\n  \"userLastName\": \"Team\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/Steve Job/\",\r\n  \"userLocation\": \"USA\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"active\",\r\n    \"password\": \"string\",\r\n    \"roleIds\": [\r\n      \"R03\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"alchemist@gmail.com\"\r\n  },\r\n  \"userMiddleName\": \"team\",\r\n  \"userPhoneNumber\": 9865192012,\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R03\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4-EAD\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/roleStatus"
+					},
+					"response": []
+				},
+				{
+					"name": "Create_staff Copy",
+					"id": "dc14e946-5a10-4126-910d-2629072de28f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userComments\": \"Alchemist\",\r\n  \"userEduPg\": \"Dgree\",\r\n  \"userEduUg\": \"Pg\",\r\n  \"userFirstName\": \"TeamAlchemist\",\r\n  \"userId\": \"U009\",\r\n  \"userLastName\": \"Team\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/Steve Job/\",\r\n  \"userLocation\": \"USA\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"active\",\r\n    \"password\": \"string\",\r\n    \"roleIds\": [\r\n      \"R03\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"alchemist@gmail.com\"\r\n  },\r\n  \"userMiddleName\": \"team\",\r\n  \"userPhoneNumber\": 9865192012,\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R03\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4-EAD\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
