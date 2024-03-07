@@ -596,7 +596,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/deletebyprogid/{Bug_programModule_programID}"
+								"url": "{{BaseURL}}/deletebyprogid/{{Bug_programModule_programID}}"
 							},
 							"response": []
 						},
