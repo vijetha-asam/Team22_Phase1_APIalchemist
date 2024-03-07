@@ -146,7 +146,7 @@
 								"exec": [
 									"var resp = pm.response.json();",
 									"var programID = resp.programId;",
-									"pm.environment.set(\"programModule_programID\",token);"
+									"pm.collectionVariables.set(\"programModule_programID\",programID);"
 								],
 								"type": "text/javascript"
 							}
@@ -260,6 +260,20 @@
 				},
 				{
 					"name": "ProgramName with invalid Combination",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "850fa9d6-4abe-4739-8e2c-74851edf428f",
+								"exec": [
+									"var resp = pm.response.json();",
+									"var programID = resp.programId;",
+									"pm.collectionVariables.set(\"Bug_programModule_programID\",programID);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "11b61a23-a224-4850-803e-69e579c7b275",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -526,7 +540,20 @@
 			"item": [
 				{
 					"name": "Update by programId",
-					"item": [],
+					"item": [
+						{
+							"name": "New Request",
+							"id": "191b8027-55a9-4710-bd20-33632c5e0769",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": []
+						}
+					],
 					"id": "db789302-362f-41f8-9ef8-ae1edcca4a24"
 				},
 				{
@@ -921,7 +948,7 @@
 						"exec": [
 							"var resp = pm.response.json();",
 							"var token = resp.token;",
-							"pm.environment.set(\"programModuleToken\",token);",
+							"pm.collectionVariables.set(\"programModuleToken\",token);",
 							"//pm.globals.set(\"validUserID\",userID);"
 						],
 						"type": "text/javascript"
