@@ -393,6 +393,46 @@
 					"response": []
 				},
 				{
+					"name": "MissingProgramStatus Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "c4caa146-75b4-42f1-8b52-e69057a89719",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"programDescription\": \"Marchhackathon\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
 					"name": "SpecialCharactersInDescription",
 					"id": "c8ec1673-2e3f-457a-b099-e78569f20475",
 					"protocolProfileBehavior": {
@@ -432,82 +472,6 @@
 			"name": "Delete Programs",
 			"item": [],
 			"id": "2e0c6dd7-c751-4727-a19c-0488e51cc42e"
-		},
-		{
-			"name": "Negative-ErrorHandling",
-			"item": [
-				{
-					"name": "Get All Programs with invalid endpoint",
-					"id": "aecc2fd8-cf78-44bd-ab9e-0637e59ddbe1",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0b3JnYW5pemVyc0BnbWFpbC5jb20iLCJpYXQiOjE3MDk3NDU4MzQsImV4cCI6MTcwOTc3NDYzNH0.amYSqDiKjBL_Xm37VBpthZGxTJ6Gt4n3BW0gArSwToPf-QmT7X0qHOvRizgTPZXrvYjeOwd4CTBQa7pV2ueVow"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/allProgram"
-					},
-					"response": []
-				},
-				{
-					"name": "Create new program with invalid endpoint",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
-								"exec": [
-									"var resp = pm.response.json();",
-									"var programID = resp.programId;",
-									"pm.environment.set(\"programModule_programID\",token);"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "d8adb871-1d0e-4538-bda6-3662e064ff95",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"String\",\n  \"programName\": \"String\",\n  \"programStatus\": \"String\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/savprogram"
-					},
-					"response": []
-				}
-			],
-			"id": "99ce9be3-5f88-480a-85d4-c7eaa4664f32"
 		},
 		{
 			"name": "UnAuthorized Requests",
@@ -629,6 +593,48 @@
 						"method": "GET",
 						"header": [],
 						"url": "{{BaseURL}}/allProgramsWithUser"
+					},
+					"response": []
+				},
+				{
+					"name": "Create new program with invalid endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
+								"exec": [
+									"var resp = pm.response.json();",
+									"var programID = resp.programId;",
+									"pm.environment.set(\"programModule_programID\",token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "d8adb871-1d0e-4538-bda6-3662e064ff95",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"programDescription\": \"String\",\n  \"programName\": \"String\",\n  \"programStatus\": \"String\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/savprogram"
 					},
 					"response": []
 				}
