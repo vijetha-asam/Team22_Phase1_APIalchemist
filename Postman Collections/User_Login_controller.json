@@ -62,7 +62,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \n  \"useremail\": \"sdetorganizers@gmail.com\",\n  \"passwd\": \"Numpyninja@1\"\n}\n\n",
+					"raw": "{\n  \n  \"userLoginEmailId\": \"sdetorganizers@gmail.com\",\n  \"password\": \"Numpyninja@12\",\n  \"domain\": \"LMS\"\n}\n\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -74,7 +74,7 @@
 			"response": []
 		},
 		{
-			"name": "test Copy",
+			"name": "GET REQUEST - User log out",
 			"id": "c13ee58f-bfef-4523-991f-9d539eb5567f",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
