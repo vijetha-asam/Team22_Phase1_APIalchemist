@@ -147,6 +147,7 @@
 									"var resp = pm.response.json();",
 									"var programID = resp.programId;",
 									"pm.environment.set(\"programModule_programID\",programID);",
+									"//pm.environment.set(\"UserModule_ProgramId\",programID);",
 									"pm.environment.set(\"Delete_programName_programModule\",resp.programId)"
 								],
 								"type": "text/javascript"
@@ -168,7 +169,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"March24APIHackathon\",\n  \"programName\": \"March24_APIALCHEMIST_SDET_132\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"March24_APIHackathon\",\n  \"programName\": \"March24_APIALCHEMIST_SDET_132\",\n  \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
