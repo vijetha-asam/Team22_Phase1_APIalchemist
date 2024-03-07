@@ -515,7 +515,9 @@
 									"pm.test(\"response time is less than 200ms\", ()=>{\r",
 									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
 									"});\r",
-									""
+									"pm.test(\"validate data\"),()=>{\r",
+									"pm.response.to.have.userPhoneNumber(\"{{usermodule_randomNumber}}\");\r",
+									"}"
 								],
 								"type": "text/javascript"
 							}
