@@ -70,7 +70,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{BaseURL}}/programs/{{programId}}"
+						"url": "{{BaseURL}}/programs/{{deletedProgramId}}"
 					},
 					"response": []
 				},
@@ -500,7 +500,35 @@
 					"response": []
 				},
 				{
-					"name": "DeleteProgram By ProgramId Copy",
+					"name": "Delete Nonexisting program",
+					"id": "284a1db0-7b2f-456d-8f9e-1cbe2ba44fa8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/deletebyprogid/16375"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete already deleted program",
 					"id": "3f2d668e-e5f6-43d5-8098-0f3d43fe8512",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
