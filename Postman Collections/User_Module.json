@@ -86,6 +86,20 @@
 			"item": [
 				{
 					"name": "GetAllUsers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc1c6403-09f4-4353-9462-7aa46b6923d1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "cec05095-44d9-4f42-b5f1-96b458383fec",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -146,6 +160,20 @@
 				},
 				{
 					"name": "GetAllRoles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e3e87c89-c965-427f-aa8a-cc4c16359ad9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "6883fa43-abb1-41bf-826d-b08cbba540e4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -249,6 +277,20 @@
 				},
 				{
 					"name": "AllUsers_roles",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "07d71ee4-a830-44f4-a884-39cad3140b05",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "35360f4d-dc0e-4672-bfb7-9a6e30e4a079",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
