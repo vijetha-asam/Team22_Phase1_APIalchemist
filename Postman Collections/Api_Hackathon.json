@@ -402,6 +402,25 @@
 				"url": "{{BaseURL}}/saveprogram"
 			},
 			"response": []
+		},
+		{
+			"name": "https://lms-marchapi-hackathon-a258d2bbd43b.herokuapp.com/lms/users\n",
+			"id": "77b7731f-0e4b-4aef-ab16-202ff49835cb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{token}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": "https://lms-marchapi-hackathon-a258d2bbd43b.herokuapp.com/lms/users\n"
+			},
+			"response": []
 		}
 	]
 }
