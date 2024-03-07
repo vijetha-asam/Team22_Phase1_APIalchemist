@@ -158,7 +158,7 @@
 						"token": "{{Bearertoken2}}"
 					}
 				},
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
