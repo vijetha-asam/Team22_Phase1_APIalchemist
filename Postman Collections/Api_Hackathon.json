@@ -82,6 +82,11 @@
 			"id": "98ade07d-b720-4c60-bf4d-7ad442d2be30"
 		},
 		{
+			"name": "UserModule",
+			"item": [],
+			"id": "29c3dcc5-c6e6-4672-8f5a-62b080051a6e"
+		},
+		{
 			"name": "Login-Valid User",
 			"event": [
 				{
