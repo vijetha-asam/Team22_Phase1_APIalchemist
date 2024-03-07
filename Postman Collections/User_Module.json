@@ -762,6 +762,54 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "users-by-programid",
+					"id": "aa7dde92-841e-45de-8bf4-e0e4d5d82f16",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/users/programs/:programid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"programs",
+								":programid"
+							],
+							"variable": [
+								{
+									"key": "programid",
+									"value": "{{UserModule_ProgramId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Active User",
+					"id": "74ef00d9-6cc0-4a38-a391-c8496331e0a6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/users/activeUsersGet Active User"
+					},
+					"response": []
 				}
 			],
 			"id": "29c3dcc5-c6e6-4672-8f5a-62b080051a6e"
