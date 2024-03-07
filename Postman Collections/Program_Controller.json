@@ -56,6 +56,25 @@
 					"response": []
 				},
 				{
+					"name": "Get program by programId-invalid endpoint",
+					"id": "5351b941-d9c9-483c-87ed-20e204eaf2c5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/program/{{programId}}"
+					},
+					"response": []
+				},
+				{
 					"name": "Get all programs with Users",
 					"id": "45a01115-149d-4dc8-bf4e-ec2f88830329",
 					"protocolProfileBehavior": {
@@ -71,6 +90,44 @@
 						"method": "GET",
 						"header": [],
 						"url": "{{BaseURL}}/allProgramsWithUsers"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Programs-invalid endpoint",
+					"id": "3c156e9c-6807-4f12-87bd-4f23492ee0c7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/allProgram"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Programs-Unauthorized request",
+					"id": "43a01347-10bb-4e90-9e0f-449b29172ca4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "token"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/allPrograms"
 					},
 					"response": []
 				}
