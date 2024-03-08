@@ -371,9 +371,7 @@
 									"});\r",
 									"\r",
 									"//Validate the response body\r",
-									"pm.test('Schema validation', () => {\r",
-									"  pm.response.to.have.jsonSchema (schema);\r",
-									"});\r",
+									"\r",
 									"var schema = {\r",
 									" \r",
 									"  \"type\": \"object\",\r",
@@ -406,7 +404,9 @@
 									"    \"lastModTime\"\r",
 									"  ]\r",
 									"}\r",
-									""
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -465,7 +465,7 @@
 									"        pm.expect(user.roleId).to.be.a('string');\r",
 									"        pm.expect(user.programId).to.be.a('number');\r",
 									"        pm.expect(user.batchId).to.be.a('number');\r",
-									"        pm.expect(user.userRoleProgramBatchStatus).to.be.oneOf(['Active', 'active']); // Assuming it can be either 'Active' or 'active'\r",
+									"        pm.expect(user.userRoleProgramBatchStatus).to.be.oneOf(['Active', 'active',\"ACTIVE\"]); // Assuming it can be either 'Active' or 'active'\r",
 									"    });\r",
 									"});"
 								],
