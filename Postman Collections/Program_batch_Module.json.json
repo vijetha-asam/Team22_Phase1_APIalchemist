@@ -626,6 +626,9 @@
 									"    }\r",
 									"}\r",
 									"    pm.response.to.have.jsonSchema(schema);\r",
+									"    pm.test(\"batchDescription is not null\", function() {\r",
+									"    pm.expect(responseBody.batchDescription).to.not.equal(null);\r",
+									"});\r",
 									"});"
 								],
 								"type": "text/javascript"
