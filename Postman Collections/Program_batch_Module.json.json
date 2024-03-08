@@ -203,7 +203,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-038\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-039\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -230,6 +230,26 @@
 									"var limit = 500;\r",
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
+									"pm.test('Check Status Text', () => {\r",
+									"    pm.response.to.have.status('Created');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"\r",
+									"pm.test('programDescription  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programDescription).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('programName  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programName).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('programStatus  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programStatus).to.not.be.empty;\r",
+									"})\r",
 									"// Parse the response body as JSON\r",
 									"var responseBody = pm.response.json();\r",
 									"\r",
@@ -269,6 +289,7 @@
 									"    pm.response.to.have.jsonSchema(schema);\r",
 									"})\r",
 									"\r",
+									"\r",
 									""
 								],
 								"type": "text/javascript"
@@ -290,7 +311,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-024\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-001\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
