@@ -6,6 +6,50 @@
 	},
 	"item": [
 		{
+			"name": "Get Assigned Program/Batch(es) of All Users (200) Positive scenario",
+			"id": "d38c56b2-3846-4ef6-9014-b16e095768f8",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearertoken2}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/userRoleProgramBatchMap",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"userRoleProgramBatchMap"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"description": "application/json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "test",
 			"id": "a9ecef79-1b26-44bb-92d4-af1316dc1b48",
 			"protocolProfileBehavior": {
