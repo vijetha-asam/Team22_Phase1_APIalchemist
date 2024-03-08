@@ -1159,7 +1159,39 @@
 					"name": "Update by programName",
 					"item": [
 						{
-							"name": "UpdateProgramStatusByProgramName Copy",
+							"name": "UpdateProgramStatusByProgramName",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "711c6b19-ac38-4d94-8e66-7aede753ef67",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "fa59fbeb-dd1d-431b-a322-6cbac42cee10",
+										"exec": [
+											"// Get the base URL from the request",
+											"const baseUrl = pm.request.url.getBaseURL();",
+											"// Log the base URL",
+											"console.log(\"Base URL:\", baseUrl);",
+											"// Define the path parameter value",
+											"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "a1732573-0ec6-46f8-9605-ee6085f343d7",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1182,7 +1214,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/program/March24_APIAlchemist_API_001"
+								"url": "{{BaseURL}}/program"
 							},
 							"response": []
 						},
