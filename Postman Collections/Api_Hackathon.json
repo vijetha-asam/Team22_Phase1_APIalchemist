@@ -42,6 +42,124 @@
 					"response": []
 				},
 				{
+					"name": "create program to user module",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Status code is 201', () => {\r",
+									"    pm.response.to.have.status(201);\r",
+									"})\r",
+									"\r",
+									"pm.test('Check Status Text', () => {\r",
+									"    pm.response.to.have.status('Created');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"\r",
+									"pm.test('programDescription  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programDescription).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('programName  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programName).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('programStatus  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programStatus).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"var programId = responseBody.programId;\r",
+									"\r",
+									"pm.environment.set('user_programbatch_programId', programId)\r",
+									"\r",
+									"console.log('programId:', programId)\r",
+									"\r",
+									"pm.test(\"validate response body datatype\",()=> {\r",
+									"    pm.expect(responseBody).to.be.an(\"object\");\r",
+									"    pm.expect(responseBody.programId).to.be.a('number');\r",
+									"    pm.expect(responseBody.programName).to.be.a('string');\r",
+									"    pm.expect(responseBody.programDescription).to.be.a('string');\r",
+									"    pm.expect(responseBody.programStatus).to.be.a('string');\r",
+									"    pm.expect(responseBody.creationTime).to.be.a('string');\r",
+									"    pm.expect(responseBody.lastModTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    'type': 'object',\r",
+									"    'properties': {\r",
+									"        'programDescription': { 'type': 'string' },\r",
+									"        'programName': { 'type': 'string' },\r",
+									"        'programStatus': {\r",
+									"            'type': 'string',\r",
+									"            'enum': [\r",
+									"                'active',\r",
+									"                'inactive'\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    'required': [\r",
+									"        'programDescription',\r",
+									"        'programName',\r",
+									"        'programStatus'\r",
+									"    ]\r",
+									"};\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"})\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "2e75685d-862f-4b0e-b51a-95d2e4f41099",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programDescription\": \"To learn about postman _user module\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-014\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
 					"name": "GetAllUsers invalidAuth",
 					"event": [
 						{
