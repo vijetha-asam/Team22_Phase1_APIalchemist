@@ -305,7 +305,7 @@
 									"pm.test(\"Validate Data Types\", function() {",
 									"    const response = pm.response.json();",
 									"",
-									"    pm.expect(response.programId).to.be.a(\"number\");",
+									"    pm.expect(response.programId).to.be.a(\"integer\");",
 									"    pm.expect(response.programName).to.be.a(\"string\");",
 									"    pm.expect(response.programDescription).to.be.a(\"string\");",
 									"    pm.expect(response.programStatus).to.be.a(\"string\");",
@@ -332,7 +332,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"March24_APIHackathon\",\n  \"programName\": \"March24_APIALCHEMIST_SDET_132\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"APIBootCamp\",\n  \"programName\": \"March24_APIBootCamp_SDET_006\",\n  \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
