@@ -1491,7 +1491,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-039\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-040\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1615,7 +1615,131 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"&New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"&$%&()\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Batch Module with special character as  first letter in Batch description Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 400 Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"pm.test('Check Status Text', () => {\r",
+									"    pm.response.to.have.status('Bad Request');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"\r",
+									"/*pm.test('batchDescription  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchDescription).to.be.a('string').and.to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('batchName  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchName).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('batchStatus  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchStatus).to.be.a('string').and.to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"batchNoOfClasses is not empty\", function() {\r",
+									"    pm.expect(pm.response.json().batchNoOfClasses).to.be.a('number').and.to.not.be.null;\r",
+									"});*/\r",
+									"\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
+									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
+									"console.log(\"batch Name:\", batchName);\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"if (pm.response.code === 201) {\r",
+									"pm.test(\"validate response body properties\", () => {\r",
+									"    // Check the expected properties exist\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
+									"  \r",
+									"});\r",
+									"if (pm.response.code === 201){\r",
+									"const schema ={\r",
+									"\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"batchDescription\": { \"type\": \"string\" },\r",
+									"    \"batchName\": { \"type\": \"string\" },\r",
+									"    \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
+									"    \"batchStatus\":{\r",
+									"            'type': 'string',\r",
+									"            'enum': [\r",
+									"                'active',\r",
+									"                'inactive'\r",
+									"            ]},\r",
+									"    \"programId\": { \"type\": \"integer\"}\r",
+									"  },\r",
+									"  \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
+									"};\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"}\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "84f5e272-21af-4992-994b-66871cc2b84c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": null,\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1751,7 +1875,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Batch Module_invalid Batch description Copy",
+					"name": "Create Batch Module_with empty batch desription",
 					"event": [
 						{
 							"listen": "test",
