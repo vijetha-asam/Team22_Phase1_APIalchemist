@@ -12,7 +12,7 @@
 					"name": "Get by programId",
 					"item": [
 						{
-							"name": "Get program by programId",
+							"name": "Get Program by ProgramId",
 							"event": [
 								{
 									"listen": "test",
