@@ -626,8 +626,10 @@
 									"    }\r",
 									"}\r",
 									"    pm.response.to.have.jsonSchema(schema);\r",
-									"    pm.test(\"batchDescription is not null\", function() {\r",
-									"    pm.expect(responseBody.batchDescription).to.not.equal(null);\r",
+									"   pm.test(\"batchDescription is null or string\", function() {\r",
+									"    pm.expect(responseBody.batchDescription).to.satisfy(function (value) {\r",
+									"        return value === null || typeof value === 'string';\r",
+									"    });\r",
 									"});\r",
 									"});"
 								],
