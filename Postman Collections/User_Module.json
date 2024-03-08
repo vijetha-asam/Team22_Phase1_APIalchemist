@@ -225,7 +225,7 @@
 					"response": []
 				},
 				{
-					"name": "GetAllRoles Copy",
+					"name": "GetAllRoles invalidAuth",
 					"event": [
 						{
 							"listen": "test",
@@ -248,7 +248,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "{{Usermodule_token}}"
+								"token": ""
 							}
 						},
 						"method": "GET",
