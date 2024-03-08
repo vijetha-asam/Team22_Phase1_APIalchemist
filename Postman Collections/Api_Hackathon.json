@@ -1236,6 +1236,41 @@
 					"response": []
 				},
 				{
+					"name": "users-by-invalidprogramid",
+					"id": "4b538d1d-cb79-4e81-8d8f-1b07e5c70384",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/users/programs/:programId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"programs",
+								":programId"
+							],
+							"variable": [
+								{
+									"key": "programId",
+									"value": "{{User_Module_InvalidProgramid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get Active User",
 					"event": [
 						{
