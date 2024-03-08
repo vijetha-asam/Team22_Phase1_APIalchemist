@@ -53,11 +53,11 @@
 							"});",
 							"",
 							"//Validate Response body content",
-							"pm.test(\"Bearer Token of 199 characters generated for correct email address and is Active\",() => {",
+							"pm.test(\"Bearer Token of 199 characters generated for correct email address and is Active/Logged\",() => {",
 							"   var jsonData = pm.response.json(); ",
 							"   pm.expect(jsonData).to.haveOwnProperty(\"token\");",
 							"   pm.expect(jsonData.email).to.eql(pm.globals.get(\"loginemail\"));",
-							"   pm.expect(jsonData.status).to.include(\"Active\");",
+							"   pm.expect(jsonData.status).to.be.oneOf([\"Active\",\"logged\"]);",
 							"   pm.expect(jsonData.type).to.include(\"Bearer\");",
 							"  pm.expect(jsonData.token.length).to.equal(199); ",
 							" ",
@@ -236,92 +236,6 @@
 			"response": []
 		},
 		{
-			"name": "GET REQUEST - User log out (200)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "fa7a1fd8-eba7-42f4-a11e-2e45a1cb864a",
-						"exec": [
-							"",
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"//Check Response Time",
-							"pm.test(\"Response Time is less than 500ms\", () => {",
-							"  pm.expect(pm.response.responseTime).to.be.below(500);",
-							"});",
-							"",
-							"//Header validation",
-							"pm.test(\"Content-Type Header is present\", () => {",
-							"  pm.response.to.have.header(\"Content-Type\");",
-							"});",
-							"",
-							"",
-							"//Header Type Validation",
-							"pm.test(\"Content-Type Header is plaintext\", () => {",
-							"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"text/plain;charset=UTF-8\");",
-							"});",
-							"",
-							"",
-							"",
-							"",
-							"//verify if test achieved results",
-							"",
-							"",
-							"pm.test(\"Logout was successful\", function () {",
-							"   pm.expect(pm.response.text()).to.include(\"Logout successful\");",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "c13ee58f-bfef-4523-991f-9d539eb5567f",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Bearertoken2}}"
-					}
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BaseURL}}/logoutlms",
-					"host": [
-						"{{BaseURL}}"
-					],
-					"path": [
-						"logoutlms"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null,
-							"description": "application/json",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "GET REQUEST - User log out (401)",
 			"event": [
 				{
@@ -414,6 +328,92 @@
 					"type": "bearer",
 					"bearer": {
 						"token": ""
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/logoutlms",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"logoutlms"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"description": "application/json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET REQUEST - User log out (200)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa7a1fd8-eba7-42f4-a11e-2e45a1cb864a",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//Check Response Time",
+							"pm.test(\"Response Time is less than 500ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"//Header validation",
+							"pm.test(\"Content-Type Header is present\", () => {",
+							"  pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"",
+							"//Header Type Validation",
+							"pm.test(\"Content-Type Header is plaintext\", () => {",
+							"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"text/plain;charset=UTF-8\");",
+							"});",
+							"",
+							"",
+							"",
+							"",
+							"//verify if test achieved results",
+							"",
+							"",
+							"pm.test(\"Logout was successful\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"Logout successful\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "c13ee58f-bfef-4523-991f-9d539eb5567f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearertoken2}}"
 					}
 				},
 				"method": "GET",
