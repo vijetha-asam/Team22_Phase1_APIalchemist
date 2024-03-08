@@ -118,6 +118,39 @@
 					"response": []
 				},
 				{
+					"name": "GetAllUsers invalidAuth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bc1c6403-09f4-4353-9462-7aa46b6923d1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "32f80beb-eb17-4b5a-b759-312220ea0e7e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/users"
+					},
+					"response": []
+				},
+				{
 					"name": "Usermodule_login",
 					"event": [
 						{
@@ -175,6 +208,39 @@
 						}
 					],
 					"id": "6883fa43-abb1-41bf-826d-b08cbba540e4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/users/roles"
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllRoles Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e3e87c89-c965-427f-aa8a-cc4c16359ad9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "05c9684d-b16f-4e08-b4fd-a41f2ad4c002",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
