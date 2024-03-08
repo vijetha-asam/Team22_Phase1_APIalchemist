@@ -1110,7 +1110,7 @@
 							"variable": [
 								{
 									"key": "programid",
-									"value": ""
+									"value": "{{user_programbatch_programId}}"
 								}
 							]
 						}
