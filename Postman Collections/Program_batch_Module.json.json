@@ -324,9 +324,6 @@
 									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
 									"})\r",
 									"\r",
-									"pm.test('Status code is 200', () => {\r",
-									"    pm.response.to.have.status(200);\r",
-									"})\r",
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
@@ -379,10 +376,6 @@
 									"\r",
 									"pm.test('Content-Type header is application/json', () => {\r",
 									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"})\r",
-									"\r",
-									"pm.test('Status code is 200', () => {\r",
-									"    pm.response.to.have.status(200);\r",
 									"})\r",
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
@@ -444,7 +437,6 @@
 									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
 									"})\r",
 									"\r",
-									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
 									"})"
@@ -481,6 +473,31 @@
 				},
 				{
 					"name": "Get all Batches by batch Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "96a1d597-2a84-4a35-a8c1-84612ecb0f84",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "8156a5f8-b08a-49d0-822e-42aeac074361",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -525,6 +542,31 @@
 				},
 				{
 					"name": "Get all Batches by Batch Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97341be8-f7a4-4ff8-93d4-689adfaa02be",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "e5d52b5c-78a6-4b47-afea-3d30de3bae16",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -569,6 +611,35 @@
 				},
 				{
 					"name": "Get all Batches by Program Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e6a50dd4-9f47-47ba-8a25-84938a4e0f5e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Status code is 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "f5ac41eb-6ce8-4629-bf09-bac524599baf",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -619,9 +690,7 @@
 							"script": {
 								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
 								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
+									"\r",
 									"// Parse the response body as JSON\r",
 									"var responseBody = pm.response.json();\r",
 									"\r",
@@ -634,7 +703,21 @@
 									"// Store the programId in an environment or global variable for later use (optional)\r",
 									"pm.collectionVariables.set(\"batchId\", batchId);\r",
 									"pm.collectionVariables.set(\"batchName\", batchName);\r",
-									""
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
 								],
 								"type": "text/javascript"
 							}
@@ -668,6 +751,31 @@
 				},
 				{
 					"name": "Delete by program Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "42f5d782-fea1-44fe-a194-e95ad9f572d5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "3b83879f-e5c2-4d15-a720-6287fe4e761a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -686,7 +794,150 @@
 					"response": []
 				},
 				{
+					"name": "create program Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Status code is 201', () => {\r",
+									"    pm.response.to.have.status(201);\r",
+									"})\r",
+									"\r",
+									"pm.test('Check Status Text', () => {\r",
+									"    pm.response.to.have.status('Created');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"\r",
+									"pm.test('programDescription  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programDescription).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('programName  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programName).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('programStatus  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programStatus).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"var programId = responseBody.programId;\r",
+									"\r",
+									"pm.environment.set('programbatch_programId', programId)\r",
+									"\r",
+									"console.log('programId:', programId)\r",
+									"\r",
+									"pm.test(\"validate response body datatype\",()=> {\r",
+									"    pm.expect(responseBody).to.be.an(\"object\");\r",
+									"    pm.expect(responseBody.programId).to.be.a('number');\r",
+									"    pm.expect(responseBody.programName).to.be.a('string');\r",
+									"    pm.expect(responseBody.programDescription).to.be.a('string');\r",
+									"    pm.expect(responseBody.programStatus).to.be.a('string');\r",
+									"    pm.expect(responseBody.creationTime).to.be.a('string');\r",
+									"    pm.expect(responseBody.lastModTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    'type': 'object',\r",
+									"    'properties': {\r",
+									"        'programDescription': { 'type': 'string' },\r",
+									"        'programName': { 'type': 'string' },\r",
+									"        'programStatus': {\r",
+									"            'type': 'string',\r",
+									"            'enum': [\r",
+									"                'active',\r",
+									"                'inactive'\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    'required': [\r",
+									"        'programDescription',\r",
+									"        'programName',\r",
+									"        'programStatus'\r",
+									"    ]\r",
+									"};\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"})\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "d7fe30e7-9c0c-4cd9-9e46-64399fa962a1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-023\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
 					"name": "Delete by program name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ab00110c-d515-4998-bf68-595abe1bf7ab",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "f545f688-f2ec-451f-b9f9-b60ac6eb8b36",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -715,7 +966,18 @@
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
-									""
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
 								],
 								"type": "text/javascript"
 							}
