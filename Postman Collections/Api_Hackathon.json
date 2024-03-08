@@ -1296,7 +1296,7 @@
 							"variable": [
 								{
 									"key": "batchId",
-									"value": "8739"
+									"value": "{{User_Module_MyBatchID}}"
 								}
 							]
 						}
