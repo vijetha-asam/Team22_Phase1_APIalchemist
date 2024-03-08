@@ -246,7 +246,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-003\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"Active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-011\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"Active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
