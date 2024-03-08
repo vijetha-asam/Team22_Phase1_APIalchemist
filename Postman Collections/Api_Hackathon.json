@@ -1048,6 +1048,39 @@
 					"response": []
 				},
 				{
+					"name": "AllUsers_roles_invalidAuth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "07d71ee4-a830-44f4-a884-39cad3140b05",
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "02f5a550-c93c-49a4-a6c0-1315fea5ac3d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": ""
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/roles"
+					},
+					"response": []
+				},
+				{
 					"name": "{{BaseURL}}/users/:userid",
 					"id": "bfbccf0b-e379-4d5a-9a41-7473207726f9",
 					"protocolProfileBehavior": {
