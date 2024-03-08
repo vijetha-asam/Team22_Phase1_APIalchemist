@@ -2463,15 +2463,15 @@
 					"response": []
 				},
 				{
-					"name": "Create Batch Module_ with Special characters batch Name Copy",
+					"name": "Create Batch Module_ with batch name as null",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
 								"exec": [
-									"pm.test(\"Status code is 400 Bad request\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Status code is 500 internal server error\", function () {\r",
+									"    pm.response.to.have.status(500);\r",
 									"});\r",
 									"//Validate response time\r",
 									"pm.test(\"Response time is less than limit\", function() {\r",
@@ -2479,7 +2479,7 @@
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
 									"pm.test('Check Status Text', () => {\r",
-									"    pm.response.to.have.status('Bad Request');\r",
+									"    pm.response.to.have.status('Internal Server Error');\r",
 									"})\r",
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
@@ -2512,10 +2512,10 @@
 									"\r",
 									"// Store the programId in an environment or global variable for later use (optional)\r",
 									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
-									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
-									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
-									"console.log(\"batch Name:\", batchName);\r",
-									"console.log(\"batchId:\", batchId);\r",
+									"//pm.environment.set(\"programbatch_batchName\", batchName);\r",
+									"//pm.environment.set(\"programbatch_batchid\",batchId);\r",
+									"//console.log(\"batch Name:\", batchName);\r",
+									"//console.log(\"batchId:\", batchId);\r",
 									"if (pm.response.code === 201) {\r",
 									"pm.test(\"validate response body properties\", () => {\r",
 									"    // Check the expected properties exist\r",
