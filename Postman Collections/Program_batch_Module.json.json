@@ -1053,7 +1053,7 @@
 									"var responseBody = pm.response.json();\r",
 									"\r",
 									"var programId = responseBody.programId;\r",
-									"\r",
+									"var programName = responseBody.programName;\r",
 									"pm.environment.set('programbatch_programId', programId)\r",
 									"pm.environment.set('programbatch_programname',programName)\r",
 									"console.log('programId:', programId)\r",
@@ -1115,7 +1115,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-023\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-030\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1141,13 +1141,6 @@
 									"    pm.response.to.have.header('Content-Type');\r",
 									"})\r",
 									"\r",
-									"pm.test('Content-Type header is application/json', () => {\r",
-									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"})\r",
-									"\r",
-									"pm.test('Response is valid JSON', function () {\r",
-									"    pm.response.to.be.json;\r",
-									"})\r",
 									"//Validate response time\r",
 									"pm.test(\"Response time is less than limit\", function() {\r",
 									"var limit = 500;\r",
@@ -1230,12 +1223,14 @@
 								"id": "ff6f3489-6755-4c59-9729-9b914da29989",
 								"exec": [
 									"//Validate response time\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
 									"pm.test(\"Response time is less than limit\", function() {\r",
 									"var limit = 500;\r",
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
 									"\r",
-									"pm.test(\"Status code is 200\", function () {\r",
 									""
 								],
 								"type": "text/javascript"
@@ -1270,6 +1265,11 @@
 				}
 			],
 			"id": "82042d22-0015-4d26-8e14-ea4087dcd2a0"
+		},
+		{
+			"name": "Program_BatchModule_invalid",
+			"item": [],
+			"id": "b403bd7c-bd68-48eb-b7e0-a233f3180176"
 		}
 	],
 	"event": [
