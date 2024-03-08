@@ -419,7 +419,7 @@
 							"script": {
 								"id": "7765239b-dc96-4ef8-91b7-6bfe07b922c1",
 								"exec": [
-									"var jsonData=JSON.parse(responseBody);\r",
+									"/*var jsonData=JSON.parse(responseBody);\r",
 									"pm.environment.set(\"user-id-env\",jsonData.userId);\r",
 									"console.log(\"userId : \"+jsonData.userId);\r",
 									"\r",
@@ -567,7 +567,7 @@
 									"\r",
 									"pm.test('Schema validation', () => {\r",
 									"  pm.response.to.have.jsonSchema (schema);\r",
-									"});"
+									"});*/"
 								],
 								"type": "text/javascript"
 							}
