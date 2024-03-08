@@ -1186,7 +1186,7 @@
 					"name": "Update by programName",
 					"item": [
 						{
-							"name": "{     \"programName\": \"March24_APIAlchemist_API_001\",     \"programDescription\": \"March2024Hackathon_API_Phase1\",     \"programStatus\": \"Inactive\" }",
+							"name": "UpdateProgramStatus ByProgramName",
 							"event": [
 								{
 									"listen": "test",
