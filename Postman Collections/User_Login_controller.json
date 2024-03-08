@@ -454,7 +454,135 @@
 			"response": []
 		},
 		{
-			"name": "GET REQUEST - User log out (200)",
+			"name": "GET REQUEST - User log out (405) wrong endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa7a1fd8-eba7-42f4-a11e-2e45a1cb864a",
+						"exec": [
+							"",
+							"pm.test(\"Status code is 405\", function () {",
+							"    pm.response.to.have.status(405);",
+							"});",
+							"",
+							"//Check Response Time",
+							"pm.test(\"Response Time is less than 500ms\", () => {",
+							"  pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"//Header validation",
+							"pm.test(\"Content-Type Header is present\", () => {",
+							"  pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"//Header Type Validation",
+							"",
+							"pm.test(\"Content-Type Header is application-json\", () => {",
+							"  pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql(\"application/json\");",
+							"});",
+							"",
+							"// Data type validation",
+							"",
+							"let dateFormat = /([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))/;",
+							"",
+							"pm.test(\"All Data types are correct\",()=>{",
+							"    var jsondata = pm.response.json();",
+							"    pm.expect(jsondata.timestamp).to.match(dateFormat);",
+							"    pm.expect(jsondata.status).to.be.an(\"number\");",
+							"    pm.expect(jsondata.error).to.be.a(\"string\");",
+							"    pm.expect(jsondata.path).to.be.a(\"string\");",
+							"});",
+							"",
+							"//Validate Response body content",
+							"pm.test(\"Request body contains 405 method not allowed confirmation \",() => {",
+							"   var jsonData = pm.response.json(); ",
+							"   pm.expect(jsonData).to.haveOwnProperty(\"status\");",
+							"   pm.expect(jsonData.status).to.eql(405);",
+							"   pm.expect(jsonData.error).to.include(\"Method Not Allowed\");",
+							" ",
+							" ",
+							"});",
+							"",
+							"//Validating JSON Schema test",
+							"",
+							"var schema = {",
+							"    properties: {",
+							"    timestamp: {",
+							"      type: \"string\",",
+							"    },",
+							"    status: {",
+							"      type: \"number\",",
+							"    },",
+							"    error: {",
+							"      type: \"string\",",
+							"    },",
+							"    path: {",
+							"      type: \"string\",",
+							"    },",
+							"",
+							"  },",
+							"  required: [",
+							"    \"timestamp\",",
+							"    \"status\",",
+							"    \"error\",",
+							"    \"path\"",
+							"  ],",
+							"};",
+							"",
+							"",
+							"pm.test(\"Schema is valid\", () => {",
+							"  pm.response.to.have.jsonSchema(schema);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "825b67cf-9fd2-498e-bd58-34bb92bec4c6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearertoken2}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/logout",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"logout"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"description": "application/json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET REQUEST - User log out (200) Positive scenario",
 			"event": [
 				{
 					"listen": "test",
