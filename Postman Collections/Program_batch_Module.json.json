@@ -1,0 +1,730 @@
+{
+	"info": {
+		"_postman_id": "d9751842-9895-4204-a9f3-bd9e6747e340",
+		"name": "Program_batch_Module",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Program Batch Module without data driven",
+			"item": [
+				{
+					"name": "user login controller",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "60010461-21c5-4863-bb87-c979b5bb8029",
+								"exec": [
+									"pm.test('Body matches string', function () {",
+									"    pm.expect(pm.response.text()).to.include('ROLE_ADMIN');",
+									"})",
+									"",
+									"pm.test('Content-Type header is present', () => {",
+									"    pm.response.to.have.header('Content-Type');",
+									"})",
+									"",
+									"pm.test('Content-Type header is application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"})",
+									"",
+									"pm.test('Status code is 200', () => {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Response is valid JSON', function () {",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									"/*pm.test(\"User Login emailid is not empty\", function () {",
+									"    pm.expect(pm.request.json().userLoginEmailId).to.not.be.empty;",
+									"});",
+									"",
+									"pm.test('password  is not empty', function () {",
+									"    pm.expect(pm.request.json().password).to.not.be.empty;",
+									"})*/",
+									"",
+									"const jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set('programbatchmodule_tokenaccessToken', jsonData.token)",
+									"",
+									"console.log(jsonData.token)",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "558e7fe8-09e2-4509-a3f5-850deb57129f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"Numpyninja@1\",\r\n  \"userLoginEmailId\": \"sdetorganizers@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/login"
+					},
+					"response": []
+				},
+				{
+					"name": "create program",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Status code is 201', () => {\r",
+									"    pm.response.to.have.status(201);\r",
+									"})\r",
+									"\r",
+									"pm.test('Check Status Text', () => {\r",
+									"    pm.response.to.have.status('Created');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"\r",
+									"pm.test('programDescription  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programDescription).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('programName  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programName).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('programStatus  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programStatus).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"var programId = responseBody.programId;\r",
+									"\r",
+									"pm.environment.set('programbatch_programId', programId)\r",
+									"\r",
+									"console.log('programId:', programId)\r",
+									"\r",
+									"pm.test(\"validate response body datatype\",()=> {\r",
+									"    pm.expect(responseBody).to.be.an(\"object\");\r",
+									"    pm.expect(responseBody.programId).to.be.a('number');\r",
+									"    pm.expect(responseBody.programName).to.be.a('string');\r",
+									"    pm.expect(responseBody.programDescription).to.be.a('string');\r",
+									"    pm.expect(responseBody.programStatus).to.be.a('string');\r",
+									"    pm.expect(responseBody.creationTime).to.be.a('string');\r",
+									"    pm.expect(responseBody.lastModTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    'type': 'object',\r",
+									"    'properties': {\r",
+									"        'programDescription': { 'type': 'string' },\r",
+									"        'programName': { 'type': 'string' },\r",
+									"        'programStatus': {\r",
+									"            'type': 'string',\r",
+									"            'enum': [\r",
+									"                'active',\r",
+									"                'inactive'\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    'required': [\r",
+									"        'programDescription',\r",
+									"        'programName',\r",
+									"        'programStatus'\r",
+									"    ]\r",
+									"};\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"})\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "b7a51e41-a04e-4919-a2d1-40a8d93ba94c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-013\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Batch Module",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"// Log the programId to the console (optional)\r",
+									"\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
+									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
+									"console.log(\"batch Name:\", batchName);\r",
+									"console.log(\"batchId:\", batchId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "814e6a0d-1216-4909-b977-b5580c141992",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-003\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"Active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all programs",
+					"id": "3f9c2fdc-1d09-4987-a8f5-a07515b00d6f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/allPrograms"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all programs with users",
+					"id": "97ac9bdf-6ea2-40fd-8893-c220a839ea82",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/allProgramsWithUsers"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all programs with programId",
+					"id": "ba9bb90b-4a6c-42a4-9a10-6dcef2e5a95f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/programs/:programId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"programs",
+								":programId"
+							],
+							"variable": [
+								{
+									"key": "programId",
+									"value": "{{programbatch_programId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Batches",
+					"id": "8d95b815-479e-4c85-86ab-832966f642f8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Batches by batch Id",
+					"id": "8156a5f8-b08a-49d0-822e-42aeac074361",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/batches/batchId/:batchId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"batches",
+								"batchId",
+								":batchId"
+							],
+							"variable": [
+								{
+									"key": "batchId",
+									"value": "{{programbatch_batchid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Batches by Batch Name",
+					"id": "e5d52b5c-78a6-4b47-afea-3d30de3bae16",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/batches/batchName/:batchName",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"batches",
+								"batchName",
+								":batchName"
+							],
+							"variable": [
+								{
+									"key": "batchName",
+									"value": "{{programbatch_batchName}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Batches by Program Id",
+					"id": "f5ac41eb-6ce8-4629-bf09-bac524599baf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/batches/program/:programId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"batches",
+								"program",
+								":programId"
+							],
+							"variable": [
+								{
+									"key": "programId",
+									"value": "{{programbatch_programId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Batch with batch Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"// Log the programId to the console (optional)\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.collectionVariables.set(\"batchName\", batchName);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "fd925bc3-6725-40cd-bd68-028f28c7cc59",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{programbatch_batchName}}\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by program Id",
+					"id": "3b83879f-e5c2-4d15-a720-6287fe4e761a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/deletebyprogid/{{programbatch_programId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by program name",
+					"id": "f545f688-f2ec-451f-b9f9-b60ac6eb8b36",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/deletebyprogname/{{programbatch_batchName}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Batch with batch Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "6d79f764-d7fd-4d1b-b981-0f0e9aee77dc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
+					},
+					"response": []
+				},
+				{
+					"name": "User logout",
+					"id": "d7fced60-c4a0-4e35-9c64-c9a96b9a2cb2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/logoutlms"
+					},
+					"response": []
+				}
+			],
+			"id": "82042d22-0015-4d26-8e14-ea4087dcd2a0"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7e4612a2-a725-4951-a1e3-e4eac7dcc070",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "ddc5b2c5-5d90-4bcf-9477-150b070f9d7e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "accessToken",
+			"value": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzZGV0b3JnYW5pemVyc0BnbWFpbC5jb20iLCJpYXQiOjE3MDk3NzU3MjIsImV4cCI6MTcwOTgwNDUyMn0.Yd6LE_-FOX7b92D-ao-5DfMbDEq2QaiOQxbtHyt6ssYFURvkK9NITwfKqR3xSdKfrXiSXrIzN2Wx2TH84RmEZA",
+			"disabled": true
+		},
+		{
+			"key": "programId",
+			"value": "16387",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "programId",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "batchId",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "batchName",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "batchId",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "batchName",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "batchId",
+			"value": ""
+		},
+		{
+			"key": "batchName",
+			"value": ""
+		}
+	]
+}
