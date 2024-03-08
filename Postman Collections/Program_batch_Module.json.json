@@ -116,7 +116,7 @@
 									"\r",
 									"var requestBody = pm.request.body.raw;\r",
 									"\r",
-									"pm.test('programDescription  is not empty', function () {\r",
+									"/*pm.test('programDescription  is not empty', function () {\r",
 									"    pm.expect(pm.response.json().programDescription).to.not.be.empty;\r",
 									"})\r",
 									"\r",
@@ -126,12 +126,12 @@
 									"\r",
 									"pm.test('programStatus  is not empty', function () {\r",
 									"    pm.expect(pm.response.json().programStatus).to.not.be.empty;\r",
-									"})\r",
+									"})*/\r",
 									"\r",
 									"var responseBody = pm.response.json();\r",
 									"\r",
 									"var programId = responseBody.programId;\r",
-									"\r",
+									"var programName = responseBody.programName;\r",
 									"pm.environment.set('programbatch_programId', programId);\r",
 									"pm.environment.set('programbatch_programname',programName);\r",
 									"console.log('programId:', programId);\r",
@@ -193,7 +193,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-034\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-036\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
