@@ -951,7 +951,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{programbatch_batchName}}\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{programbatch_batchName}}\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"active\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"March24-APIAlchemist-SDET-API09-029\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
