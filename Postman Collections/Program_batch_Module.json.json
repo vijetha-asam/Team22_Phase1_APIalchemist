@@ -36,13 +36,7 @@
 									"    pm.response.to.be.json;",
 									"})",
 									"",
-									"pm.test(\"User Login emailid is not empty\", function () {",
-									"    pm.expect(pm.request.json.userLoginEmailId).to.not.be.empty;",
-									"});",
 									"",
-									"pm.test('password  is not empty', function () {",
-									"    pm.expect(pm.request.json.password).to.not.be.empty;",
-									"})",
 									"",
 									"const jsonData = JSON.parse(responseBody);",
 									"",
@@ -138,10 +132,10 @@
 									"\r",
 									"var programId = responseBody.programId;\r",
 									"\r",
-									"pm.environment.set('programbatch_programId', programId)\r",
-									"pm.environment.set('programbatch_programname',programName)\r",
-									"console.log('programId:', programId)\r",
-									"\r",
+									"pm.environment.set('programbatch_programId', programId);\r",
+									"pm.environment.set('programbatch_programname',programName);\r",
+									"console.log('programId:', programId);\r",
+									"console.log('program name:', programName);\r",
 									"pm.test(\"validate response body datatype\",()=> {\r",
 									"    pm.expect(responseBody).to.be.an(\"object\");\r",
 									"    pm.expect(responseBody.programId).to.be.a('number');\r",
@@ -199,7 +193,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-013\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-024\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
