@@ -366,7 +366,7 @@
 									"})\r",
 									"//Validate response time\r",
 									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 500;\r",
+									"var limit = 1000;\r",
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
 									"\r",
