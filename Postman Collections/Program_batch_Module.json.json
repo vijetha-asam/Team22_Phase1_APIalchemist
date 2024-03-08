@@ -3423,7 +3423,7 @@
 					"response": []
 				},
 				{
-					"name": "Update Batch with batch Id Copy",
+					"name": "Update Batch with batch Id",
 					"event": [
 						{
 							"listen": "test",
