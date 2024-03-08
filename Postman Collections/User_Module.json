@@ -1321,6 +1321,25 @@
 						"url": "{{BaseURL}}/users/U877"
 					},
 					"response": []
+				},
+				{
+					"name": "{{BaseURL}}userRoleProgramBatchMap",
+					"id": "6ac5341a-a9fe-44a5-813f-84acf57e7e20",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}userRoleProgramBatchMap"
+					},
+					"response": []
 				}
 			],
 			"id": "29c3dcc5-c6e6-4672-8f5a-62b080051a6e"
