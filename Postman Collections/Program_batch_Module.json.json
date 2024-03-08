@@ -252,7 +252,7 @@
 									"})\r",
 									"\r",
 									"pm.test(\"batchNoOfClasses is not empty\", function() {\r",
-									"    pm.expect(responseBody.batchNoOfClasses).to.be.a('number').and.to.not.be.null;\r",
+									"    pm.expect(pm.response.json().batchNoOfClasses).to.be.a('number').and.to.not.be.null;\r",
 									"});\r",
 									"\r",
 									"// Parse the response body as JSON\r",
@@ -327,7 +327,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-008\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -417,7 +417,18 @@
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
-									"})"
+									"})\r",
+									"pm.test('Data Type Validation', function () {\r",
+									"    // Iterate through each object in the array\r",
+									"    responseData.forEach(function (user) {\r",
+									"        // Check data types for each property in the user object\r",
+									"        pm.expect(user.userId).to.be.a('string');\r",
+									"        pm.expect(user.roleId).to.be.a('string');\r",
+									"        pm.expect(user.programId).to.be.a('number');\r",
+									"        pm.expect(user.batchId).to.be.a('number');\r",
+									"        pm.expect(user.userRoleProgramBatchStatus).to.be.oneOf(['Active', 'active']); // Assuming it can be either 'Active' or 'active'\r",
+									"    });\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
