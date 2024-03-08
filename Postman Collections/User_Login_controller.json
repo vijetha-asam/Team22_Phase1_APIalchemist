@@ -348,7 +348,7 @@
 			"response": []
 		},
 		{
-			"name": "GET REQUEST - User log out (401)",
+			"name": "GET REQUEST - User log out (401) remove bearer token",
 			"event": [
 				{
 					"listen": "test",
