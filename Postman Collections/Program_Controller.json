@@ -1076,10 +1076,15 @@
 									"script": {
 										"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
 										"exec": [
-											"// Get the base URL from the request",
-											"const baseUrl = pm.request.url.getBaseURL();",
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
 											"// Log the base URL",
-											"console.log(\"Base URL:\", baseUrl);",
+											"//console.log(\"Base URL:\", baseUrl);",
+											"",
 											"// Define the path parameter value",
 											"const pathParamValue = \"16341\";",
 											"// Construct the complete URL with the path parameter",
