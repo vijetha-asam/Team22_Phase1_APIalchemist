@@ -1337,7 +1337,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{BaseURL}}userRoleProgramBatchMap"
+						"url": "{{BaseURL}}/userRoleProgramBatchMap"
 					},
 					"response": []
 				}
