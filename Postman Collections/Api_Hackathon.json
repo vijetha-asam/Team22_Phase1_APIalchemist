@@ -1428,6 +1428,34 @@
 						"url": "{{BaseURL}}/userRoleProgramBatchMap"
 					},
 					"response": []
+				},
+				{
+					"name": "{{BaseURL}}/users/roleStatus",
+					"id": "974e5925-c39b-4c9c-bbc5-dfefe654b8c3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userComments\": \"dhasha\",\r\n    \"userEduPg\": \"dg\",\r\n    \"userEduUg\": \"pg\",\r\n    \"userFirstName\": \"sdet\",\r\n    \"userId\": \"U89\",\r\n    \"userLastName\": \"dfss\",\r\n    \"userLinkedinUrl\": \"https://www.linkedin.com/in/Steve\",\r\n    \"userLocation\": \"usa\",\r\n    \"userLogin\": {\r\n        \"loginStatus\": \"active\",\r\n        \"password\": \"adsa\",\r\n        \"roleIds\": [\r\n            \"R01\"\r\n        ],\r\n        \"status\": \"active\",\r\n        \"userLoginEmail\": \"abcyht7ipmzncp@gmail.com\"\r\n    },\r\n    \"userMiddleName\": \"dfsd\",\r\n    \"userPhoneNumber\": 7933795571,\r\n    \"userRoleMaps\": [\r\n        {\r\n            \"roleId\": \"R01\",\r\n            \"userRoleStatus\": \"active\"\r\n        }\r\n    ],\r\n    \"userTimeZone\": \"pst\",\r\n    \"userVisaStatus\": \"H4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/roleStatus"
+					},
+					"response": []
 				}
 			],
 			"id": "29c3dcc5-c6e6-4672-8f5a-62b080051a6e"
