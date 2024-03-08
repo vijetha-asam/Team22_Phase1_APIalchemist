@@ -1081,7 +1081,21 @@
 					"response": []
 				},
 				{
-					"name": "{{BaseURL}}/users/:userid",
+					"name": "User_ByUserID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4931a4b5-32fb-4b68-bde7-12c67a5f2a5b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "bfbccf0b-e379-4d5a-9a41-7473207726f9",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -1116,6 +1130,20 @@
 				},
 				{
 					"name": "User_By_InvalidUserid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "60119e14-aee9-45b2-a9eb-672101d5b085",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "2307a141-4601-4660-b741-b6784ea10cde",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
