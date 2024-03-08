@@ -1267,7 +1267,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"Newbatch\",\r\n    \"batchName\": \"SDET45\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"Active\",\r\n    \"programId\":\"{{programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \" \",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1352,7 +1352,7 @@
 					"response": []
 				},
 				{
-					"name": "user login controller Copy",
+					"name": "user login controller",
 					"event": [
 						{
 							"listen": "test",
