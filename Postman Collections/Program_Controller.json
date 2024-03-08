@@ -126,6 +126,35 @@
 					"item": [
 						{
 							"name": "Get All Programs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7225bca6-f2df-4234-968b-c8d23ebded6e",
+										"exec": [
+											"pm.test(\"Validate Response Schema\", function() {",
+											"const schema ={",
+											"    \"type\": \"array\",",
+											"    \"items\": {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"            \"programId\": {\"type\": \"number\"},",
+											"            \"programName\": {\"type\": \"string\"},",
+											"            \"programDescription\": {\"type\": \"string\"},",
+											"            \"programStatus\": {\"type\": \"string\"},",
+											"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},",
+											"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}",
+											"        },",
+											"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]",
+											"    }",
+											"}",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "5b6b630c-f99f-40e7-af28-f62b132903d0",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
