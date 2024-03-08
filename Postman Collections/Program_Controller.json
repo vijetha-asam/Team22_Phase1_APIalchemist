@@ -13,6 +13,54 @@
 					"item": [
 						{
 							"name": "Get program by programId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "24dafda5-4c06-408b-ac81-124cb36d69c6",
+										"exec": [
+											"var resp = pm.response.json();",
+											"",
+											"//Validate the response body",
+											"pm.test('Schema validation', () => {",
+											"  pm.response.to.have.jsonSchema (schema);",
+											"});",
+											"var schema = {",
+											"  \"type\": \"object\",",
+											"  \"properties\": {",
+											"    \"programId\": {",
+											"      \"type\": \"integer\"",
+											"    },",
+											"    \"programName\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"programDescription\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"programStatus\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"creationTime\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"lastModTime\": {",
+											"      \"type\": \"string\"",
+											"    }",
+											"  },",
+											"  \"required\": [",
+											"    \"programId\",",
+											"    \"programName\",",
+											"    \"programDescription\",",
+											"    \"programStatus\",",
+											"    \"creationTime\",",
+											"    \"lastModTime\"",
+											"  ]",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "36a16b16-d733-4518-9e4e-c5f8a3fdf065",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -26,7 +74,7 @@
 								},
 								"method": "GET",
 								"header": [],
-								"url": "{{BaseURL}}/programs/{{programId}}"
+								"url": "{{BaseURL}}/programs/{{ProgramModule_Get_ProgramID}}"
 							},
 							"response": []
 						},
