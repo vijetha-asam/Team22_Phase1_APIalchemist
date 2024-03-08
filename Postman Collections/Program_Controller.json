@@ -1070,6 +1070,28 @@
 					"item": [
 						{
 							"name": "UpdateProgramNameByProgramID",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
+										"exec": [
+											"// Get the base URL from the request",
+											"const baseUrl = pm.request.url.getBaseURL();",
+											"// Log the base URL",
+											"console.log(\"Base URL:\", baseUrl);",
+											"// Define the path parameter value",
+											"const pathParamValue = \"16341\";",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "191b8027-55a9-4710-bd20-33632c5e0769",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1092,7 +1114,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/putprogram/16341"
+								"url": "{{BaseURL}}/putprogram"
 							},
 							"response": []
 						},
