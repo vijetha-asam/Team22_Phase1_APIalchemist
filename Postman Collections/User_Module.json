@@ -1106,9 +1106,42 @@
 							],
 							"variable": [
 								{
-									"id": "fe3ce04c-7cba-4b93-b9ba-1bd1fcf1aba1",
 									"key": "userid",
-									"value": "U688"
+									"value": "{{user-id-env}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User_By_InvalidUserid",
+					"id": "2307a141-4601-4660-b741-b6784ea10cde",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/users/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "{{user-invalidid}}"
 								}
 							]
 						}
