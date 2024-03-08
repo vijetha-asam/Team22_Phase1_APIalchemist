@@ -1177,9 +1177,31 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
 						"method": "GET",
 						"header": [],
-						"url": "{{BaseURL}}/users/programBatch/{batchId}"
+						"url": {
+							"raw": "{{BaseURL}}/users/programBatch/:batchId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"programBatch",
+								":batchId"
+							],
+							"variable": [
+								{
+									"key": "batchId",
+									"value": "8714"
+								}
+							]
+						}
 					},
 					"response": []
 				}
