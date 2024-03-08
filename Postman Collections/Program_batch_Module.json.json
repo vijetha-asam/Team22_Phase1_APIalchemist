@@ -139,7 +139,7 @@
 									"var programId = responseBody.programId;\r",
 									"\r",
 									"pm.environment.set('programbatch_programId', programId)\r",
-									"\r",
+									"pm.environment.set('programbatch_programname',programName)\r",
 									"console.log('programId:', programId)\r",
 									"\r",
 									"pm.test(\"validate response body datatype\",()=> {\r",
@@ -1035,7 +1035,12 @@
 									"pm.test('Content-Type header is application/json', () => {\r",
 									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
 									"})\r",
-									""
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1060,6 +1065,25 @@
 				},
 				{
 					"name": "User logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ff6f3489-6755-4c59-9729-9b914da29989",
+								"exec": [
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "d7fced60-c4a0-4e35-9c64-c9a96b9a2cb2",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
