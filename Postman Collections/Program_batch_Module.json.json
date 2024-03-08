@@ -3654,7 +3654,7 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "{{BaseURL}}/deletebyprogid/{{programbatch_programId}}"
+						"url": "{{BaseURL}}/deletebyprogid/16375"
 					},
 					"response": []
 				},
