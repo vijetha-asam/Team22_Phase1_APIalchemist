@@ -123,7 +123,6 @@
 											"  pm.response.to.have.jsonSchema (schema);",
 											"});",
 											"var schema = {",
-											"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
 											"  \"type\": \"array\",",
 											"  \"items\": [",
 											"    {",
@@ -159,7 +158,7 @@
 											"                \"userEduPg\": { \"type\": \"string\" },",
 											"                \"userComments\": {  \"type\": \"string\" },",
 											"                \"userVisaStatus\": { \"type\": \"string\"  },",
-											"                \"userLoginEmail\": { \"type\": \"null\"  }   ",
+											"                \"userLoginEmail\": { \"type\": \"string\"  }   ",
 											"              },",
 											"              \"required\": [ \"userId\", \"userFirstName\", \"userLastName\", \"userMiddleName\", \"userPhoneNumber\",  \"userLocation\",",
 											"                \"userTimeZone\",\"userLinkedinUrl\",\"userEduUg\", \"userEduPg\",\"userComments\",\"userVisaStatus\",\"userLoginEmail\"",
@@ -1250,7 +1249,7 @@
 						"exec": [
 							"var resp = pm.response.json();",
 							"var token = resp.token;",
-							"pm.collectionVariables.set(\"programModuleToken\",token);",
+							"pm.environment.set(\"programModuleToken\",token);",
 							"//pm.globals.set(\"validUserID\",userID);"
 						],
 						"type": "text/javascript"
