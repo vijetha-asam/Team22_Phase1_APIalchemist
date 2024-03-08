@@ -609,7 +609,7 @@
 									"// Perform schema validation\r",
 									"pm.test(\"Validate Response Schema\", function() {\r",
 									"    // Define the JSON schema\r",
-									"const schema ={\r",
+									"var schema ={\r",
 									"    \"type\": \"array\",\r",
 									"    \"items\": {\r",
 									"        \"type\": \"object\",\r",
