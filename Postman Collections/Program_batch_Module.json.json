@@ -50,6 +50,11 @@
 									"",
 									"console.log(jsonData.token)",
 									"",
+									"//Validate response time",
+									"pm.test(\"Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  ",
+									"});",
 									""
 								],
 								"type": "text/javascript"
@@ -97,6 +102,11 @@
 									"pm.test('Content-Type header is application/json', () => {\r",
 									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
 									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
 									"\r",
 									"pm.test('Status code is 201', () => {\r",
 									"    pm.response.to.have.status(201);\r",
@@ -211,6 +221,11 @@
 									"pm.test(\"Status code is 201\", function () {\r",
 									"    pm.response.to.have.status(201);\r",
 									"});\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
 									"// Parse the response body as JSON\r",
 									"var responseBody = pm.response.json();\r",
 									"\r",
@@ -282,7 +297,12 @@
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
-									"})"
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -323,7 +343,11 @@
 									"pm.test('Content-Type header is application/json', () => {\r",
 									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
 									"})\r",
-									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
@@ -380,7 +404,12 @@
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
-									"})"
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -439,7 +468,12 @@
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
-									"})"
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -492,7 +526,17 @@
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
-									"})"
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -561,7 +605,12 @@
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
-									"})"
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -634,7 +683,12 @@
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
-									"})"
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
