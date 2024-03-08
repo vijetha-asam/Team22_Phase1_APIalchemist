@@ -963,90 +963,6 @@
 					"response": []
 				},
 				{
-					"name": "Delete by program name",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ab00110c-d515-4998-bf68-595abe1bf7ab",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"pm.test('Content-Type header is present', () => {\r",
-									"    pm.response.to.have.header('Content-Type');\r",
-									"})\r",
-									"\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 500;\r",
-									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "f545f688-f2ec-451f-b9f9-b60ac6eb8b36",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": "{{BaseURL}}/deletebyprogname/{{programbatch_programname}}"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete by program name Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "ab00110c-d515-4998-bf68-595abe1bf7ab",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"pm.test('Content-Type header is present', () => {\r",
-									"    pm.response.to.have.header('Content-Type');\r",
-									"})\r",
-									"\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 500;\r",
-									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "29c51e8f-c60e-4921-b65a-0d1100220162",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": "{{BaseURL}}/deletebyprogname/{{programbatch_programname}}"
-					},
-					"response": []
-				},
-				{
 					"name": "Delete by program Id",
 					"event": [
 						{
@@ -1211,22 +1127,18 @@
 					"response": []
 				},
 				{
-					"name": "Delete Batch with batch Id",
+					"name": "Delete by program name",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"id": "ab00110c-d515-4998-bf68-595abe1bf7ab",
 								"exec": [
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
-									"})\r",
-									"\r",
-									"pm.test('Content-Type header is application/json', () => {\r",
-									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
 									"})\r",
 									"\r",
 									"//Validate response time\r",
@@ -1239,7 +1151,7 @@
 							}
 						}
 					],
-					"id": "6d79f764-d7fd-4d1b-b981-0f0e9aee77dc",
+					"id": "f545f688-f2ec-451f-b9f9-b60ac6eb8b36",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1252,7 +1164,7 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
+						"url": "{{BaseURL}}/deletebyprogname/{{programbatch_programname}}"
 					},
 					"response": []
 				},
@@ -1311,6 +1223,79 @@
 		{
 			"name": "Program_BatchModule_invalid",
 			"item": [
+				{
+					"name": "user login controller Invalid credentials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "60010461-21c5-4863-bb87-c979b5bb8029",
+								"exec": [
+									"pm.test('Body matches string', function () {",
+									"    pm.expect(pm.response.text()).to.include('ROLE_ADMIN');",
+									"})",
+									"",
+									"pm.test('Content-Type header is present', () => {",
+									"    pm.response.to.have.header('Content-Type');",
+									"})",
+									"",
+									"pm.test('Content-Type header is application/json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"})",
+									"",
+									"pm.test('Status code is 200', () => {",
+									"    pm.response.to.have.status(200);",
+									"})",
+									"",
+									"pm.test('Response is valid JSON', function () {",
+									"    pm.response.to.be.json;",
+									"})",
+									"",
+									"",
+									"",
+									"const jsonData = JSON.parse(responseBody);",
+									"",
+									"pm.environment.set('programbatchmodule_tokenaccessToken', jsonData.token)",
+									"",
+									"console.log(jsonData.token)",
+									"",
+									"//Validate response time",
+									"pm.test(\"Response time is less than limit\", function() {",
+									"var limit = 500;",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  ",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "d4beceb0-15e4-4f78-a4e2-04519d8e31ed",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{invalidcredentials}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"Numpyninja@1\",\r\n  \"userLoginEmailId\": \"sdetorganizers@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/login"
+					},
+					"response": []
+				},
 				{
 					"name": "user login controller Copy",
 					"event": [
@@ -1385,7 +1370,7 @@
 					"response": []
 				},
 				{
-					"name": "create program Copy",
+					"name": "create program",
 					"event": [
 						{
 							"listen": "test",
@@ -1630,7 +1615,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"&New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2099,6 +2084,216 @@
 								}
 							}
 						},
+						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
+					},
+					"response": []
+				},
+				{
+					"name": "create program Copy 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Status code is 201', () => {\r",
+									"    pm.response.to.have.status(201);\r",
+									"})\r",
+									"\r",
+									"pm.test('Check Status Text', () => {\r",
+									"    pm.response.to.have.status('Created');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"\r",
+									"pm.test('programDescription  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programDescription).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('programName  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programName).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('programStatus  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().programStatus).to.not.be.empty;\r",
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"var programId = responseBody.programId;\r",
+									"var programName = responseBody.programName;\r",
+									"pm.environment.set('programbatch_programId', programId)\r",
+									"pm.environment.set('programbatch_programname',programName)\r",
+									"console.log('programId:', programId)\r",
+									"\r",
+									"pm.test(\"validate response body datatype\",()=> {\r",
+									"    pm.expect(responseBody).to.be.an(\"object\");\r",
+									"    pm.expect(responseBody.programId).to.be.a('number');\r",
+									"    pm.expect(responseBody.programName).to.be.a('string');\r",
+									"    pm.expect(responseBody.programDescription).to.be.a('string');\r",
+									"    pm.expect(responseBody.programStatus).to.be.a('string');\r",
+									"    pm.expect(responseBody.creationTime).to.be.a('string');\r",
+									"    pm.expect(responseBody.lastModTime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    'type': 'object',\r",
+									"    'properties': {\r",
+									"        'programDescription': { 'type': 'string' },\r",
+									"        'programName': { 'type': 'string' },\r",
+									"        'programStatus': {\r",
+									"            'type': 'string',\r",
+									"            'enum': [\r",
+									"                'active',\r",
+									"                'inactive'\r",
+									"            ]\r",
+									"        }\r",
+									"    },\r",
+									"    'required': [\r",
+									"        'programDescription',\r",
+									"        'programName',\r",
+									"        'programStatus'\r",
+									"    ]\r",
+									"};\r",
+									"\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"})\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "35ae1850-9117-400f-8c92-875aec552fc4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-030\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete by program Id Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "42f5d782-fea1-44fe-a194-e95ad9f572d5",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "ff6f93bd-56ef-44f8-ad04-616884cc828a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/deletebyprogid/{{programbatch_programId}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Batch with batch Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "6d79f764-d7fd-4d1b-b981-0f0e9aee77dc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
 						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
 					},
 					"response": []
