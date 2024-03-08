@@ -1098,18 +1098,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{BaseURL}}/users/programs/:programid",
+							"raw": "{{BaseURL}}/users/programs/:programId",
 							"host": [
 								"{{BaseURL}}"
 							],
 							"path": [
 								"users",
 								"programs",
-								":programid"
+								":programId"
 							],
 							"variable": [
 								{
-									"key": "programid",
+									"key": "programId",
 									"value": "{{user_programbatch_programId}}"
 								}
 							]
