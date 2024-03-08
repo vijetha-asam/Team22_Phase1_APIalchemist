@@ -736,6 +736,42 @@
 				},
 				{
 					"name": "InvalidProgramStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa7a42ac-6cdf-4f23-9032-721c962db3ae",
+								"exec": [
+									"pm.test(\"Response is valid JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 400\",()=>{",
+									"pm.response.to.have.status(400);",
+									"});",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Bad Request\",()=>{",
+									"pm.response.to.have.status('Bad Request')",
+									"});",
+									"//Define expected Data",
+									"const expectedData = {",
+									"    \"message\": \"Invalid Status: must be Active or Inactive\",",
+									"    \"success\": false",
+									"};",
+									"// Validate the response body",
+									"pm.test(\"Response body contains expected error message and success flag\", function() {",
+									"    pm.expect(resp.message).to.equal(expectedData.message);",
+									"    pm.expect(resp.success).to.equal(expectedData.success);",
+									"});",
+									"// Perform response time validation",
+									"pm.test(\"response time is less than 700ms\", ()=>{",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "9ee5a74c-6da6-44b4-a8e2-8e6899c40ed4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
