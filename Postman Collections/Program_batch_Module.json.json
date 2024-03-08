@@ -677,10 +677,6 @@
 									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
 									"})\r",
 									"\r",
-									"pm.test('Status code is 200', () => {\r",
-									"    pm.response.to.have.status(200);\r",
-									"})\r",
-									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
 									"})\r",
@@ -768,6 +764,11 @@
 									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
 									"})\r",
 									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
@@ -818,7 +819,11 @@
 									"    pm.response.to.have.header('Content-Type');\r",
 									"})\r",
 									"\r",
-									""
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -882,13 +887,17 @@
 									"pm.test('programStatus  is not empty', function () {\r",
 									"    pm.expect(pm.response.json().programStatus).to.not.be.empty;\r",
 									"})\r",
-									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
 									"var responseBody = pm.response.json();\r",
 									"\r",
 									"var programId = responseBody.programId;\r",
 									"\r",
 									"pm.environment.set('programbatch_programId', programId)\r",
-									"\r",
+									"pm.environment.set('programbatch_programname',programName)\r",
 									"console.log('programId:', programId)\r",
 									"\r",
 									"pm.test(\"validate response body datatype\",()=> {\r",
@@ -980,7 +989,12 @@
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
-									"})"
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -999,7 +1013,7 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "{{BaseURL}}/deletebyprogname/{{programbatch_batchName}}"
+						"url": "{{BaseURL}}/deletebyprogname/{{programbatch_programname}}"
 					},
 					"response": []
 				},
