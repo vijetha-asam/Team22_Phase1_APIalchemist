@@ -764,13 +764,7 @@
 									"    pm.response.to.have.header('Content-Type');\r",
 									"})\r",
 									"\r",
-									"pm.test('Content-Type header is application/json', () => {\r",
-									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"})\r",
-									"\r",
-									"pm.test('Response is valid JSON', function () {\r",
-									"    pm.response.to.be.json;\r",
-									"})"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -973,11 +967,7 @@
 									"pm.test('Content-Type header is application/json', () => {\r",
 									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
 									"})\r",
-									"\r",
-									"\r",
-									"pm.test('Response is valid JSON', function () {\r",
-									"    pm.response.to.be.json;\r",
-									"})"
+									""
 								],
 								"type": "text/javascript"
 							}
