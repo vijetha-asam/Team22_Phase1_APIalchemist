@@ -364,11 +364,13 @@
 									"});",
 									"// Get the request body",
 									"const requestBody = pm.request.body.raw;",
+									"// Parse the request body as JSON",
+									"const requestData = JSON.parse(requestBody);",
 									"// Validate the data entered in the request",
 									"pm.test(\"Response body contains entered data\", function() {",
-									"    pm.expect(responseBody.programDescription).to.equal(requestBody.programDescription);",
-									"    pm.expect(responseBody.programName).to.equal(requestBody.programName);",
-									"    pm.expect(responseBody.programStatus).to.equal(requestBody.programStatus);",
+									"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
+									"    pm.expect(resp.programName).to.equal(requestData.programName);",
+									"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -390,7 +392,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"March24_API-Alchemist_SDET_003\",\n  \"programStatus\": \"Inactive\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"March24_API-Alchemist_SDET_004\",\n  \"programStatus\": \"Inactive\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -472,7 +474,22 @@
 							"script": {
 								"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
 								"exec": [
-									""
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 400\",()=>{",
+									"pm.response.to.have.status(400);",
+									"});",
+									"// Perform response json validation",
+									"pm.test(\"Response is valid JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Bad Request\",()=>{",
+									"pm.response.to.have.status('Bad Request')",
+									"});",
+									"// Perform response time validation",
+									"pm.test(\"response time is less than 700ms\", ()=>{",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
