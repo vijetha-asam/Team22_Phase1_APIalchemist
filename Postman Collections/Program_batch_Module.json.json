@@ -1169,6 +1169,52 @@
 					"response": []
 				},
 				{
+					"name": "Delete Batch with batch Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "6d79f764-d7fd-4d1b-b981-0f0e9aee77dc",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
+					},
+					"response": []
+				},
+				{
 					"name": "User logout",
 					"event": [
 						{
@@ -1670,7 +1716,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"&$%&()\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"&$%&()\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16707\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1794,7 +1840,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": null,\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": null,\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16707\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3258,7 +3304,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete by program Id Copy",
+					"name": "Delete by program Id invalid",
 					"event": [
 						{
 							"listen": "test",
@@ -3300,7 +3346,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Batch with batch Id",
+					"name": "Delete Batch with batch Id invalid",
 					"event": [
 						{
 							"listen": "test",
@@ -3328,7 +3374,7 @@
 							}
 						}
 					],
-					"id": "6d79f764-d7fd-4d1b-b981-0f0e9aee77dc",
+					"id": "a139a604-2fdd-40ca-8b75-8c16f83dabec",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
