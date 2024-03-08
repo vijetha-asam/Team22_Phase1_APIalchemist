@@ -29,7 +29,7 @@
 											"  \"type\": \"object\",",
 											"  \"properties\": {",
 											"    \"programId\": {",
-											"      \"type\": \"integer\"",
+											"      \"type\": 0",
 											"    },",
 											"    \"programName\": {",
 											"      \"type\": \"string\"",
@@ -41,10 +41,10 @@
 											"      \"type\": \"string\"",
 											"    },",
 											"    \"creationTime\": {",
-											"      \"type\": \"string\"",
+											"      \"type\": \"2024-03-06T17:47:14.624+00:00\"",
 											"    },",
 											"    \"lastModTime\": {",
-											"      \"type\": \"string\"",
+											"      \"type\": \"2024-03-06T17:47:14.624+00:00\"",
 											"    }",
 											"  },",
 											"  \"required\": [",
@@ -55,7 +55,7 @@
 											"    \"creationTime\",",
 											"    \"lastModTime\"",
 											"  ]",
-											"}"
+											"};"
 										],
 										"type": "text/javascript"
 									}
