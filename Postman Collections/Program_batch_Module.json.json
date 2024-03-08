@@ -145,7 +145,17 @@
 									"    pm.expect(responseBody.creationTime).to.be.a('string');\r",
 									"    pm.expect(responseBody.lastModTime).to.be.a('string');\r",
 									"});\r",
-									"\r",
+									"if (pm.response.code === 201) {\r",
+									"pm.test(\"validate response body properties\", () => {\r",
+									"    // Check the expected properties exist\r",
+									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programDescription\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programStatus\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"creationTime\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"lastModTime\");\r",
+									"  \r",
+									"});\r",
 									"const schema = {\r",
 									"    'type': 'object',\r",
 									"    'properties': {\r",
@@ -170,8 +180,8 @@
 									"\r",
 									"pm.test('Schema validation', () => {\r",
 									"    pm.response.to.have.jsonSchema(schema);\r",
-									"})\r",
-									"\r",
+									"});\r",
+									"}\r",
 									""
 								],
 								"type": "text/javascript"
@@ -193,7 +203,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-036\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"raw": "{\r\n  \"programDescription\": \"To learn about Postman\",\r\n  \"programName\": \"March24-APIAlchemist-SDET-038\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
