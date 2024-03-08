@@ -361,6 +361,12 @@
 									"    pm.expect(response.programStatus).to.be.a(\"string\");",
 									"    pm.expect(response.creationTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
 									"    pm.expect(response.lastModTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
+									"});",
+									"// Validate the data entered in the request",
+									"pm.test(\"Response body contains entered data\", function() {",
+									"    pm.expect(responseBody.programDescription).to.equal(pm.request.body.json().programDescription);",
+									"    pm.expect(responseBody.programName).to.equal(pm.request.body.json().programName);",
+									"    pm.expect(responseBody.programStatus).to.equal(pm.request.body.json().programStatus);",
 									"});"
 								],
 								"type": "text/javascript"
@@ -382,7 +388,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"March24_API-Alchemist_SDET_001\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"March24_API-Alchemist_SDET_002\",\n  \"programStatus\": \"Inactive\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
