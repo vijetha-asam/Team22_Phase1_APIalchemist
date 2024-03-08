@@ -42,7 +42,7 @@
 							"const response = pm.response.json();",
 							"",
 							"response.forEach(object => {",
-							"    pm.test(\"data types for is correct for user ID \" + object.userId,()=>{",
+							"    pm.test( \"Data types are correct for user ID \" + object.userId,()=>{",
 							"    pm.expect(object.userId).to.be.a(\"string\");",
 							"    pm.expect(object.roleId).to.be.a(\"string\");",
 							"    pm.expect(object.programId).to.be.a(\"number\");",
