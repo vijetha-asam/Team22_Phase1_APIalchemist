@@ -543,7 +543,34 @@
 									"var resp = pm.response.json();",
 									"var programID = resp.programId;",
 									"pm.collectionVariables.set(\"Bug_programModule_programID\",programID);",
-									"pm.collectionVariables.set(\"Delete_programModule_programName\",resp.programName);"
+									"pm.collectionVariables.set(\"Delete_programModule_programName\",resp.programName);",
+									"resp = pm.response.json();",
+									"// Perform response json validation",
+									"pm.test(\"Response is valid JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 400\",()=>{",
+									"pm.response.to.have.status(400);",
+									"});",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Bad Request\",()=>{",
+									"pm.response.to.have.status('Bad Request')",
+									"});",
+									"//Define expected Data",
+									"const expectedData = {",
+									"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
+									"    \"success\": false",
+									"};",
+									"// Validate the response body",
+									"pm.test(\"Response body contains expected error message and success flag\", function() {",
+									"    pm.expect(resp.message).to.equal(expectedData.message);",
+									"    pm.expect(resp.success).to.equal(expectedData.success);",
+									"});",
+									"// Perform response time validation",
+									"pm.test(\"response time is less than 700ms\", ()=>{",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -577,6 +604,44 @@
 				},
 				{
 					"name": "ProgramNameWithSpecialCharacters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8a43fad2-3681-4c38-95f3-4e60915aa046",
+								"exec": [
+									"resp = pm.response.json();",
+									"// Perform response json validation",
+									"pm.test(\"Response is valid JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 400\",()=>{",
+									"pm.response.to.have.status(400);",
+									"});",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Bad Request\",()=>{",
+									"pm.response.to.have.status('Bad Request')",
+									"});",
+									"//Define expected Data",
+									"const expectedData = {",
+									"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
+									"    \"success\": false",
+									"};",
+									"// Validate the response body",
+									"pm.test(\"Response body contains expected error message and success flag\", function() {",
+									"    pm.expect(resp.message).to.equal(expectedData.message);",
+									"    pm.expect(resp.success).to.equal(expectedData.success);",
+									"});",
+									"// Perform response time validation",
+									"pm.test(\"response time is less than 700ms\", ()=>{",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "05cd2b3b-8003-4bbb-a85c-e481303c5a20",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -605,6 +670,44 @@
 				},
 				{
 					"name": "ExistingProgramName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "483c273a-57b0-4d7c-83d1-01f5bc682e46",
+								"exec": [
+									"resp = pm.response.json();",
+									"// Perform response json validation",
+									"pm.test(\"Response is valid JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 400\",()=>{",
+									"pm.response.to.have.status(400);",
+									"});",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Bad Request\",()=>{",
+									"pm.response.to.have.status('Bad Request')",
+									"});",
+									"//Define expected Data",
+									"const expectedData = {",
+									"    \"message\": \"cannot create program , since already exists\",",
+									"    \"success\": false",
+									"};",
+									"// Validate the response body",
+									"pm.test(\"Response body contains expected error message and success flag\", function() {",
+									"    pm.expect(resp.message).to.equal(expectedData.message);",
+									"    pm.expect(resp.success).to.equal(expectedData.success);",
+									"});",
+									"// Perform response time validation",
+									"pm.test(\"response time is less than 700ms\", ()=>{",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "e98879de-5ab8-4d0e-af71-b4f2aa497e7b",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
