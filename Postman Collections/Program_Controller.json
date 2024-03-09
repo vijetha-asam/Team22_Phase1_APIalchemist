@@ -1357,7 +1357,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"{{UpdateProgramName}}\",\n    \"programDescription\": \"{{UpdateProgramDescription}}\",\n    \"programStatus\": \"{{UpdateProgramStatus}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
