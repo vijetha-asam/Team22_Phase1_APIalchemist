@@ -2405,6 +2405,51 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "1fb525e4-274f-40a9-8bae-0454904b8cf0",
+								"exec": [
+									"// Get the request URL\r",
+									"const requestUrl = pm.request.url.toString();\r",
+									"\r",
+									"// Extract the base URL from the request URL\r",
+									"const baseUrl = requestUrl.split(\"?\")[0];\r",
+									"\r",
+									"// Log the base URL\r",
+									"//console.log(\"Base URL:\", baseUrl);\r",
+									"\r",
+									"// Get the request body\r",
+									"const requestBody = pm.request.body;\r",
+									"\r",
+									"// Validate the presence of the request body\r",
+									"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {\r",
+									"    throw new Error(\"Request body is missing\");\r",
+									"}\r",
+									"// Log the request body\r",
+									"//console.log(\"Request body:\", requestBody.raw);\r",
+									"\r",
+									"\r",
+									"// Define the path parameter value\r",
+									"var pathParamValue =pm.environment.get(\"programbatch_programId\");\r",
+									"\r",
+									"// Validate the path parameter value\r",
+									"if (!pathParamValue) {\r",
+									"    throw new Error(\"Path parameter value is missing\");\r",
+									"}\r",
+									"\r",
+									"// Log the path parameter value\r",
+									"console.log(\"Path parameter value:\", pathParamValue);\r",
+									"\r",
+									"// Construct the complete URL with the path parameter\r",
+									"const url = `${baseUrl}/${pathParamValue}`;\r",
+									"\r",
+									"// Set the request URL\r",
+									"pm.request.url = url;"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"id": "e5226f3d-3933-4397-89e0-a9d9daa679b0",
