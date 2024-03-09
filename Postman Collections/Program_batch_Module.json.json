@@ -3008,8 +3008,8 @@
 							"script": {
 								"id": "e6a50dd4-9f47-47ba-8a25-84938a4e0f5e",
 								"exec": [
-									"pm.test(\"Status code is 400 Not Found\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Status code is 404 Not Found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -3091,7 +3091,7 @@
 							"variable": [
 								{
 									"key": "programId",
-									"value": "{{programbatch_programId_invalid}}"
+									"value": "{{programbatch_programId_invalidforget}}"
 								}
 							]
 						}
