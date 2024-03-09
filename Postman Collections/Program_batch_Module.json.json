@@ -3210,15 +3210,15 @@
 					"response": []
 				},
 				{
-					"name": "Delete by program Id",
+					"name": "Delete by program Id invalid id",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "42f5d782-fea1-44fe-a194-e95ad9f572d5",
 								"exec": [
-									"pm.test(\"Status code is 400 Bad Request\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Status code is 404 Not found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -3247,7 +3247,7 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "{{BaseURL}}/deletebyprogid/{{programbatch_programId}}"
+						"url": "{{BaseURL}}/deletebyprogid/{{programbatch_programId_invalidforget}}"
 					},
 					"response": []
 				},
