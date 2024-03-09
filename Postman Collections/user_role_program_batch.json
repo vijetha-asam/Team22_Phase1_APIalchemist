@@ -838,6 +838,142 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Delete assigned program/batch by correct User ID (404) wrong endpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
+						"exec": [
+							"// Status validation ",
+							"",
+							"",
+							"pm.test('Status code is 404', function () {",
+							"    pm.response.to.have.status(404);",
+							"})",
+							"",
+							"// response time validation",
+							"",
+							"pm.test('Response time is less than 500ms', function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"})",
+							"",
+							"// validation of content ",
+							"",
+							"pm.test('Content-Type is present', function () {",
+							"    pm.response.to.have.header('Content-Type');",
+							"})",
+							"",
+							"",
+							"//validation of content type",
+							"",
+							"pm.test('Content-Type Header is application-json', () => {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+							"})",
+							"",
+							"// Data type validation",
+							"",
+							"let dateFormat = /([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))/;",
+							"",
+							"pm.test(\"All Data types are correct\",()=>{",
+							"    var jsondata = pm.response.json();",
+							"    pm.expect(jsondata.timestamp).to.match(dateFormat);",
+							"    pm.expect(jsondata.status).to.be.a(\"number\");",
+							"    pm.expect(jsondata.error).to.be.a(\"string\");",
+							"    pm.expect(jsondata.path).to.be.a(\"string\");",
+							"});",
+							"",
+							"//Validate Response body content",
+							"",
+							"pm.test(\"Request body contains 404 not found \",() => {",
+							"   var jsonData = pm.response.json(); ",
+							"   pm.expect(jsonData).to.haveOwnProperty(\"status\");",
+							"   pm.expect(jsonData.status).to.eql(404);",
+							"   pm.expect(jsonData.error).to.include(\"Not Found\");",
+							" ",
+							" ",
+							"});",
+							"",
+							"//Validating JSON Schema test",
+							"",
+							"var schema = {",
+							"    properties: {",
+							"    timestamp: {",
+							"      type: \"string\",",
+							"    },",
+							"    status: {",
+							"      type: \"number\",",
+							"    },",
+							"    error: {",
+							"      type: \"string\",",
+							"    },",
+							"    path: {",
+							"      type: \"string\",",
+							"    },",
+							"",
+							"  },",
+							"  required: [",
+							"    \"timestamp\",",
+							"    \"status\",",
+							"    \"error\",",
+							"    \"path\"",
+							"  ],",
+							"};",
+							"",
+							"",
+							"pm.test(\"Schema is valid\", () => {",
+							"  pm.response.to.have.jsonSchema(schema);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "5fcec9ff-1b1a-4316-9a05-645a83c44573",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearertoken2}}"
+					}
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/userRoleProgramBatchMap/delete/{{userIdkb}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"userRoleProgramBatchMap",
+						"delete",
+						"{{userIdkb}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"description": "application/json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
