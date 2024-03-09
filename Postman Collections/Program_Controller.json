@@ -788,7 +788,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"March24_APIAlchemist_SDET132\",\n  \"programStatus\": \"NotActive\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"March24_APIAlchemist_SDET132\",\n  \"programStatus\": \"{{InvalidProgramStatus}}\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -918,7 +918,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"000000000000000\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Inactive\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"{{UpdateToOnlyNumbers}}\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Inactive\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -983,7 +983,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"&&&&&&********&&&&&&&&&\",\n  \"programName\": \"March24-API-DAAAS-010\",\n  \"programStatus\": \"Inactive\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"{{UpdateToSpecialChar}}\",\n  \"programName\": \"March24-API-DAAAS-010\",\n  \"programStatus\": \"Inactive\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
