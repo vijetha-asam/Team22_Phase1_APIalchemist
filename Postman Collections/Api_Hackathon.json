@@ -193,6 +193,8 @@
 									"pm.environment.set(\"user-id-env\",jsonData.userId);\r",
 									"console.log(\"userId : \"+jsonData.userId);\r",
 									"\r",
+									"pm.environment.set(\"usermodule_email_env\",userLoginEmail);\r",
+									"\r",
 									"\r",
 									"\r",
 									"pm.test(\"Content-Type header is present\", ()=> {\r",
@@ -360,7 +362,7 @@
 									"//var userLastName=\"abc\"+random;\r",
 									"//var userLastName=\"abc\"+random;\r",
 									"\r",
-									"pm.environment.set(\"usermodule_email_env\",userLoginEmail);"
+									""
 								],
 								"type": "text/javascript"
 							}
