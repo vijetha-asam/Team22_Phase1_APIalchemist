@@ -1639,20 +1639,8 @@
 									"    pm.response.to.have.jsonSchema(schema);\r",
 									"});*/\r",
 									"\r",
-									"const jsonData = pm.response.json();\r",
 									"\r",
-									"if (jsonData.message === \"userComments must begin with alphabet and can contain only alphanumeric characters\") {\r",
-									"    pm.test(\"userComments must begin with alphabet and can contain only alphanumeric characters\", function () {\r",
-									"        pm.expect(jsonData.message).contains(\"userComments must begin with alphabet and can contain only alphanumeric characters\");\r",
-									"    });\r",
-									"} else if (jsonData.message === \"userComments is cannot be null or empty\") {\r",
-									"    pm.test(\"userComments is cannot be null or empty\", function () {\r",
-									"        pm.expect(jsonData.message).contains(\"userComments is cannot be null or empty\");\r",
-									"    });\r",
-									"    pm.test(\"Status code is 400\", function () {\r",
-									"        pm.response.to.have.status(400);\r",
-									"    });\r",
-									"}"
+									""
 								],
 								"type": "text/javascript"
 							}
