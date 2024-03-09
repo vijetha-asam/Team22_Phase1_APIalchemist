@@ -1066,1024 +1066,1035 @@
 			"name": "Update Programs",
 			"item": [
 				{
-					"name": "Update by programId",
+					"name": "Positive",
 					"item": [
 						{
-							"name": "UpdateProgramNameByProgramID",
-							"event": [
+							"name": "Update by programId",
+							"item": [
 								{
-									"listen": "prerequest",
-									"script": {
-										"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = \"16341\";",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
+									"name": "UpdateProgramNameByProgramID",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = \"16341\";",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "48c3d66e-4817-49c5-b8b7-5a9eddafbbef",
+												"exec": [
+													"console.log(\"{{UpdateProgramNameValid_ID}}\");"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "191b8027-55a9-4710-bd20-33632c5e0769",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/putprogram"
+									},
+									"response": []
 								},
 								{
-									"listen": "test",
-									"script": {
-										"id": "48c3d66e-4817-49c5-b8b7-5a9eddafbbef",
-										"exec": [
-											"console.log(\"{{UpdateProgramNameValid_ID}}\");"
-										],
-										"type": "text/javascript"
-									}
+									"name": "UpdateProgramDescriptionByProgramID",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "5fac4e8e-2284-4360-9da9-9bc2e52e4bb4",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = \"16341\";",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "176fa377-3a99-4fdd-91ee-117d89eeb23b",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"Inactive\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/putprogram"
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateProgramStatusByProgramID",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "6e09d942-985b-4c91-a846-b796ad6c2e80",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = \"16341\";",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "4fb3da9a-3f2b-431d-b609-ad8eeeeee985",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/putprogram"
+									},
+									"response": []
 								}
 							],
-							"id": "191b8027-55a9-4710-bd20-33632c5e0769",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/putprogram"
-							},
-							"response": []
+							"id": "db789302-362f-41f8-9ef8-ae1edcca4a24"
 						},
 						{
-							"name": "UpdateProgramDescriptionByProgramID",
-							"event": [
+							"name": "Update by programName",
+							"item": [
 								{
-									"listen": "prerequest",
-									"script": {
-										"id": "5fac4e8e-2284-4360-9da9-9bc2e52e4bb4",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = \"16341\";",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
+									"name": "UpdateProgramStatus ByProgramName",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "711c6b19-ac38-4d94-8e66-7aede753ef67",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "fa59fbeb-dd1d-431b-a322-6cbac42cee10",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url; "
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "a1732573-0ec6-46f8-9605-ee6085f343d7",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateProgramNameValid_ID}}\"\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/program"
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateProgramDescriptionByProgramName",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4cff74f5-d87f-4d64-b3f1-b02e69b21366",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url; "
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "d644a1b3-ca2e-4aa8-8caa-acf828072798",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"{{UpdateProgramDescription_Name}}\",\n    \"programStatus\": \"Inactive\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/program"
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateProgramNameByProgramName",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "58668428-0f34-41ad-930c-1687ea8ea9f8",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url; "
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "23bd2bd2-f28a-46f8-a4c4-dcd9e4fc7a8d",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_Name}}\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/program"
+									},
+									"response": []
 								}
 							],
-							"id": "176fa377-3a99-4fdd-91ee-117d89eeb23b",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"Inactive\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/putprogram"
-							},
-							"response": []
-						},
-						{
-							"name": "UpdateProgramStatusByProgramID",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "6e09d942-985b-4c91-a846-b796ad6c2e80",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = \"16341\";",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "4fb3da9a-3f2b-431d-b609-ad8eeeeee985",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/putprogram"
-							},
-							"response": []
+							"id": "b32a06f5-b23a-4736-90ba-0d54dd329a00"
 						}
 					],
-					"id": "db789302-362f-41f8-9ef8-ae1edcca4a24"
+					"id": "7acd100a-5d02-45e9-944c-c64e05965dee"
 				},
 				{
-					"name": "Update by programName",
+					"name": "Negative",
 					"item": [
 						{
-							"name": "UpdateProgramStatus ByProgramName",
-							"event": [
+							"name": "Update by programId",
+							"item": [
 								{
-									"listen": "test",
-									"script": {
-										"id": "711c6b19-ac38-4d94-8e66-7aede753ef67",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
+									"name": "UpdateProgramNameToSpecialCharacters",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Get the request body",
+													"const requestBody = pm.request.body;",
+													"",
+													"// Validate the presence of the request body",
+													"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
+													"    throw new Error(\"Request body is missing\");",
+													"}",
+													"// Log the request body",
+													"//console.log(\"Request body:\", requestBody.raw);",
+													"",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
+													"",
+													"// Validate the path parameter value",
+													"if (!pathParamValue) {",
+													"    throw new Error(\"Path parameter value is missing\");",
+													"}",
+													"",
+													"// Log the path parameter value",
+													"console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "b6e1c603-adec-445d-90fb-153389dfeafb",
+												"exec": [
+													"resp = pm.response.json();",
+													"// Perform response json validation",
+													"pm.test(\"Response is valid JSON\", function () {",
+													"    pm.response.to.be.json;",
+													"});",
+													"// Perform statuc code validation",
+													"pm.test(\"Status code is 400\",()=>{",
+													"pm.response.to.have.status(400);",
+													"});",
+													"// Perform status validation",
+													"pm.test(\"Check Status as Bad Request\",()=>{",
+													"pm.response.to.have.status('Bad Request')",
+													"});",
+													"//Define expected Data",
+													"const expectedData = {",
+													"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
+													"    \"success\": false",
+													"};",
+													"// Validate the response body",
+													"pm.test(\"Response body contains expected error message and success flag\", function() {",
+													"    pm.expect(resp.message).to.equal(expectedData.message);",
+													"    pm.expect(resp.success).to.equal(expectedData.success);",
+													"});",
+													"// Perform response time validation",
+													"pm.test(\"response time is less than 700ms\", ()=>{",
+													"    pm.expect(pm.response.responseTime).to.be.below(700);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "a7201673-435c-470b-89e9-d6f7bea00e0a",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"{{UpdateToSpecialChar}}\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Inactive\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/putprogram"
+									},
+									"response": []
 								},
 								{
-									"listen": "prerequest",
-									"script": {
-										"id": "fa59fbeb-dd1d-431b-a322-6cbac42cee10",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = \"March24_APIAlchemist_API_001\";",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url; "
-										],
-										"type": "text/javascript"
-									}
+									"name": "UpdateProgramNameToOnlyNumbers",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "b6e1c603-adec-445d-90fb-153389dfeafb",
+												"exec": [
+													"resp = pm.response.json();",
+													"// Perform response json validation",
+													"pm.test(\"Response is valid JSON\", function () {",
+													"    pm.response.to.be.json;",
+													"});",
+													"// Perform statuc code validation",
+													"pm.test(\"Status code is 400\",()=>{",
+													"pm.response.to.have.status(400);",
+													"});",
+													"// Perform status validation",
+													"pm.test(\"Check Status as Bad Request\",()=>{",
+													"pm.response.to.have.status('Bad Request')",
+													"});",
+													"//Define expected Data",
+													"const expectedData = {",
+													"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
+													"    \"success\": false",
+													"};",
+													"// Validate the response body",
+													"pm.test(\"Response body contains expected error message and success flag\", function() {",
+													"    pm.expect(resp.message).to.equal(expectedData.message);",
+													"    pm.expect(resp.success).to.equal(expectedData.success);",
+													"});",
+													"// Perform response time validation",
+													"pm.test(\"response time is less than 700ms\", ()=>{",
+													"    pm.expect(pm.response.responseTime).to.be.below(700);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "239507f7-a4a5-4b7b-a5e7-7c92ca4f9094",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"{{UpdateToOnlyNumbers}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/putprogram"
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateProgramNameToExistingProgramName",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "b6e1c603-adec-445d-90fb-153389dfeafb",
+												"exec": [
+													"resp = pm.response.json();",
+													"// Perform response json validation",
+													"pm.test(\"Response is valid JSON\", function () {",
+													"    pm.response.to.be.json;",
+													"});",
+													"// Perform statuc code validation",
+													"pm.test(\"Status code is 400\",()=>{",
+													"pm.response.to.have.status(400);",
+													"});",
+													"// Perform status validation",
+													"pm.test(\"Check Status as Bad Request\",()=>{",
+													"pm.response.to.have.status('Bad Request')",
+													"});",
+													"//Define expected Data",
+													"const expectedData = {",
+													"    \"message\": \"cannot create program , since already exists\",",
+													"    \"success\": false",
+													"};",
+													"// Validate the response body",
+													"pm.test(\"Response body contains expected error message and success flag\", function() {",
+													"    pm.expect(resp.message).to.equal(expectedData.message);",
+													"    pm.expect(resp.success).to.equal(expectedData.success);",
+													"});",
+													"// Perform response time validation",
+													"pm.test(\"response time is less than 700ms\", ()=>{",
+													"    pm.expect(pm.response.responseTime).to.be.below(700);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "f4205ddc-4f17-4231-9e2e-bd19eb31f493",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"{{ExistingProgramName}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/putprogram"
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateProgramDescriptionWithSpecialChars",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "07fa9362-7c3e-4bf3-8230-84a6d917c2ce",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "93bf9b7f-8ce8-4e38-a74b-ceb01ab9f04b",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"Inactive\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/putprogram"
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateProgramDescriptionWithOnlyNumbers",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "07fa9362-7c3e-4bf3-8230-84a6d917c2ce",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "437a8be0-eb6c-45d1-b777-eca76ef2f935",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"{{UpdateToOnlyNumbers}}\",\n    \"programStatus\": \"Inactive\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/putprogram"
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateProgramStatusWithInvalidValue",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "f6e6817f-984b-43c3-8c4d-a6fc2f20514d",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Log the base URL",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
+													"// Get the request body",
+													"const requestBody = pm.request.body;",
+													"",
+													"// Validate the presence of the request body",
+													"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
+													"    throw new Error(\"Request body is missing\");",
+													"}",
+													"// Log the request body",
+													"//console.log(\"Request body:\", requestBody.raw);",
+													"",
+													"",
+													"// Define the path parameter value",
+													"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
+													"",
+													"// Validate the path parameter value",
+													"if (!pathParamValue) {",
+													"    throw new Error(\"Path parameter value is missing\");",
+													"}",
+													"",
+													"// Log the path parameter value",
+													"console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "d469c745-f0f1-4be0-b8c0-9e36d19a0bdb",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateToSpecialChar}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/putprogram"
+									},
+									"response": []
 								}
 							],
-							"id": "a1732573-0ec6-46f8-9605-ee6085f343d7",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateProgramNameValid_ID}}\"\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/program"
-							},
-							"response": []
+							"id": "09991d51-b5eb-4deb-97f4-61dfa9162d55"
 						},
 						{
-							"name": "UpdateProgramDescriptionByProgramName",
-							"event": [
+							"name": "Update by programName",
+							"item": [
 								{
-									"listen": "prerequest",
-									"script": {
-										"id": "4cff74f5-d87f-4d64-b3f1-b02e69b21366",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = \"March24_APIAlchemist_API_001\";",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url; "
-										],
-										"type": "text/javascript"
-									}
+									"name": "UpdateProgramStatusWithInvalidValue_ByProgramName",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "711c6b19-ac38-4d94-8e66-7aede753ef67",
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "fa59fbeb-dd1d-431b-a322-6cbac42cee10",
+												"exec": [
+													"// Get the base URL from the request",
+													"const baseUrl = pm.request.url.getBaseURL();",
+													"// Log the base URL",
+													"console.log(\"Base URL:\", baseUrl);",
+													"// Define the path parameter value",
+													"const pathParamValue = \"March24_APIAlchemist_API_002\";",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "40e53518-6751-4111-b804-736401494370",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateToOnlyNumbers}}\"\n} ",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/program"
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateProgramDescriptionWithSpecialChar_ByProgramName",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "166a0cab-4e4f-4cab-8411-bb8233b86936",
+												"exec": [
+													"// Get the base URL from the request",
+													"const baseUrl = pm.request.url.getBaseURL();",
+													"// Log the base URL",
+													"console.log(\"Base URL:\", baseUrl);",
+													"// Define the path parameter value",
+													"const pathParamValue = \"March24_APIAlchemist_API_002\";",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "efae2e75-2459-4b69-956f-4e1cd22ea7f5",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"Inactive\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/program"
+									},
+									"response": []
+								},
+								{
+									"name": "UpdateProgramNameWithSpecialChars_ByProgramName",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "8e138ebe-e0e6-41b3-a68c-a4647033c6ee",
+												"exec": [
+													"// Get the base URL from the request",
+													"const baseUrl = pm.request.url.getBaseURL();",
+													"// Log the base URL",
+													"console.log(\"Base URL:\", baseUrl);",
+													"// Define the path parameter value",
+													"const pathParamValue = \"March24_APIAlchemist_API_002\";",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "378742e4-c1f7-49c5-99f6-a24e5525a503",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"{{UpdateToSpecialChar}}\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/program"
+									},
+									"response": []
 								}
 							],
-							"id": "d644a1b3-ca2e-4aa8-8caa-acf828072798",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"{{UpdateProgramDescription_Name}}\",\n    \"programStatus\": \"Inactive\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/program"
-							},
-							"response": []
-						},
-						{
-							"name": "UpdateProgramNameByProgramName",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "58668428-0f34-41ad-930c-1687ea8ea9f8",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = \"March24_APIAlchemist_API_001\";",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url; "
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "23bd2bd2-f28a-46f8-a4c4-dcd9e4fc7a8d",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_Name}}\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/program"
-							},
-							"response": []
+							"id": "6b49ef67-2f59-4595-a1e2-780b7edc3974"
 						}
 					],
-					"id": "b32a06f5-b23a-4736-90ba-0d54dd329a00"
+					"id": "3c75130b-efc7-435c-97ad-cbe82263d60e"
 				}
 			],
 			"id": "39d7f45d-8ffa-43cb-9dd7-dc82b386faa6"
 		},
 		{
 			"name": "Negative Update Programs CSV",
-			"item": [
-				{
-					"name": "Update by programId",
-					"item": [
-						{
-							"name": "UpdateProgramNameToSpecialCharacters",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Get the request body",
-											"const requestBody = pm.request.body;",
-											"",
-											"// Validate the presence of the request body",
-											"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
-											"    throw new Error(\"Request body is missing\");",
-											"}",
-											"// Log the request body",
-											"//console.log(\"Request body:\", requestBody.raw);",
-											"",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
-											"",
-											"// Validate the path parameter value",
-											"if (!pathParamValue) {",
-											"    throw new Error(\"Path parameter value is missing\");",
-											"}",
-											"",
-											"// Log the path parameter value",
-											"console.log(\"Path parameter value:\", pathParamValue);",
-											"",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"id": "b6e1c603-adec-445d-90fb-153389dfeafb",
-										"exec": [
-											"resp = pm.response.json();",
-											"// Perform response json validation",
-											"pm.test(\"Response is valid JSON\", function () {",
-											"    pm.response.to.be.json;",
-											"});",
-											"// Perform statuc code validation",
-											"pm.test(\"Status code is 400\",()=>{",
-											"pm.response.to.have.status(400);",
-											"});",
-											"// Perform status validation",
-											"pm.test(\"Check Status as Bad Request\",()=>{",
-											"pm.response.to.have.status('Bad Request')",
-											"});",
-											"//Define expected Data",
-											"const expectedData = {",
-											"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
-											"    \"success\": false",
-											"};",
-											"// Validate the response body",
-											"pm.test(\"Response body contains expected error message and success flag\", function() {",
-											"    pm.expect(resp.message).to.equal(expectedData.message);",
-											"    pm.expect(resp.success).to.equal(expectedData.success);",
-											"});",
-											"// Perform response time validation",
-											"pm.test(\"response time is less than 700ms\", ()=>{",
-											"    pm.expect(pm.response.responseTime).to.be.below(700);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "a7201673-435c-470b-89e9-d6f7bea00e0a",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateToSpecialChar}}\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Inactive\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/putprogram"
-							},
-							"response": []
-						},
-						{
-							"name": "UpdateProgramNameToOnlyNumbers",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"id": "b6e1c603-adec-445d-90fb-153389dfeafb",
-										"exec": [
-											"resp = pm.response.json();",
-											"// Perform response json validation",
-											"pm.test(\"Response is valid JSON\", function () {",
-											"    pm.response.to.be.json;",
-											"});",
-											"// Perform statuc code validation",
-											"pm.test(\"Status code is 400\",()=>{",
-											"pm.response.to.have.status(400);",
-											"});",
-											"// Perform status validation",
-											"pm.test(\"Check Status as Bad Request\",()=>{",
-											"pm.response.to.have.status('Bad Request')",
-											"});",
-											"//Define expected Data",
-											"const expectedData = {",
-											"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
-											"    \"success\": false",
-											"};",
-											"// Validate the response body",
-											"pm.test(\"Response body contains expected error message and success flag\", function() {",
-											"    pm.expect(resp.message).to.equal(expectedData.message);",
-											"    pm.expect(resp.success).to.equal(expectedData.success);",
-											"});",
-											"// Perform response time validation",
-											"pm.test(\"response time is less than 700ms\", ()=>{",
-											"    pm.expect(pm.response.responseTime).to.be.below(700);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "239507f7-a4a5-4b7b-a5e7-7c92ca4f9094",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateToOnlyNumbers}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/putprogram"
-							},
-							"response": []
-						},
-						{
-							"name": "UpdateProgramNameToExistingProgramName",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "test",
-									"script": {
-										"id": "b6e1c603-adec-445d-90fb-153389dfeafb",
-										"exec": [
-											"resp = pm.response.json();",
-											"// Perform response json validation",
-											"pm.test(\"Response is valid JSON\", function () {",
-											"    pm.response.to.be.json;",
-											"});",
-											"// Perform statuc code validation",
-											"pm.test(\"Status code is 400\",()=>{",
-											"pm.response.to.have.status(400);",
-											"});",
-											"// Perform status validation",
-											"pm.test(\"Check Status as Bad Request\",()=>{",
-											"pm.response.to.have.status('Bad Request')",
-											"});",
-											"//Define expected Data",
-											"const expectedData = {",
-											"    \"message\": \"cannot create program , since already exists\",",
-											"    \"success\": false",
-											"};",
-											"// Validate the response body",
-											"pm.test(\"Response body contains expected error message and success flag\", function() {",
-											"    pm.expect(resp.message).to.equal(expectedData.message);",
-											"    pm.expect(resp.success).to.equal(expectedData.success);",
-											"});",
-											"// Perform response time validation",
-											"pm.test(\"response time is less than 700ms\", ()=>{",
-											"    pm.expect(pm.response.responseTime).to.be.below(700);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "f4205ddc-4f17-4231-9e2e-bd19eb31f493",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{ExistingProgramName}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/putprogram"
-							},
-							"response": []
-						},
-						{
-							"name": "UpdateProgramDescriptionWithSpecialChars",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "07fa9362-7c3e-4bf3-8230-84a6d917c2ce",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "93bf9b7f-8ce8-4e38-a74b-ceb01ab9f04b",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"Inactive\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/putprogram"
-							},
-							"response": []
-						},
-						{
-							"name": "UpdateProgramDescriptionWithOnlyNumbers",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "07fa9362-7c3e-4bf3-8230-84a6d917c2ce",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "437a8be0-eb6c-45d1-b777-eca76ef2f935",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"{{UpdateToOnlyNumbers}}\",\n    \"programStatus\": \"Inactive\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/putprogram"
-							},
-							"response": []
-						},
-						{
-							"name": "UpdateProgramStatusWithInvalidValue",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "f6e6817f-984b-43c3-8c4d-a6fc2f20514d",
-										"exec": [
-											"// Get the request URL",
-											"const requestUrl = pm.request.url.toString();",
-											"",
-											"// Extract the base URL from the request URL",
-											"const baseUrl = requestUrl.split(\"?\")[0];",
-											"",
-											"// Log the base URL",
-											"//console.log(\"Base URL:\", baseUrl);",
-											"",
-											"// Get the request body",
-											"const requestBody = pm.request.body;",
-											"",
-											"// Validate the presence of the request body",
-											"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
-											"    throw new Error(\"Request body is missing\");",
-											"}",
-											"// Log the request body",
-											"//console.log(\"Request body:\", requestBody.raw);",
-											"",
-											"",
-											"// Define the path parameter value",
-											"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
-											"",
-											"// Validate the path parameter value",
-											"if (!pathParamValue) {",
-											"    throw new Error(\"Path parameter value is missing\");",
-											"}",
-											"",
-											"// Log the path parameter value",
-											"console.log(\"Path parameter value:\", pathParamValue);",
-											"",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "d469c745-f0f1-4be0-b8c0-9e36d19a0bdb",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateToSpecialChar}}\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/putprogram"
-							},
-							"response": []
-						}
-					],
-					"id": "09991d51-b5eb-4deb-97f4-61dfa9162d55"
-				},
-				{
-					"name": "Update by programName",
-					"item": [
-						{
-							"name": "UpdateProgramStatusWithInvalidValue_ByProgramName",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "711c6b19-ac38-4d94-8e66-7aede753ef67",
-										"exec": [
-											""
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "fa59fbeb-dd1d-431b-a322-6cbac42cee10",
-										"exec": [
-											"// Get the base URL from the request",
-											"const baseUrl = pm.request.url.getBaseURL();",
-											"// Log the base URL",
-											"console.log(\"Base URL:\", baseUrl);",
-											"// Define the path parameter value",
-											"const pathParamValue = \"March24_APIAlchemist_API_002\";",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "40e53518-6751-4111-b804-736401494370",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateToOnlyNumbers}}\"\n} ",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/program"
-							},
-							"response": []
-						},
-						{
-							"name": "UpdateProgramDescriptionWithSpecialChar_ByProgramName",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "166a0cab-4e4f-4cab-8411-bb8233b86936",
-										"exec": [
-											"// Get the base URL from the request",
-											"const baseUrl = pm.request.url.getBaseURL();",
-											"// Log the base URL",
-											"console.log(\"Base URL:\", baseUrl);",
-											"// Define the path parameter value",
-											"const pathParamValue = \"March24_APIAlchemist_API_002\";",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "efae2e75-2459-4b69-956f-4e1cd22ea7f5",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"Inactive\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/program"
-							},
-							"response": []
-						},
-						{
-							"name": "UpdateProgramNameWithSpecialChars_ByProgramName",
-							"event": [
-								{
-									"listen": "prerequest",
-									"script": {
-										"id": "8e138ebe-e0e6-41b3-a68c-a4647033c6ee",
-										"exec": [
-											"// Get the base URL from the request",
-											"const baseUrl = pm.request.url.getBaseURL();",
-											"// Log the base URL",
-											"console.log(\"Base URL:\", baseUrl);",
-											"// Define the path parameter value",
-											"const pathParamValue = \"March24_APIAlchemist_API_002\";",
-											"// Construct the complete URL with the path parameter",
-											"const url = `${baseUrl}/${pathParamValue}`;",
-											"",
-											"// Set the request URL",
-											"pm.request.url = url;"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "378742e4-c1f7-49c5-99f6-a24e5525a503",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "PUT",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateToSpecialChar}}\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/program"
-							},
-							"response": []
-						}
-					],
-					"id": "6b49ef67-2f59-4595-a1e2-780b7edc3974"
-				}
-			],
+			"item": [],
 			"id": "32f01fbe-9f6e-4ae4-9e01-e34a0995dffa"
 		},
 		{
