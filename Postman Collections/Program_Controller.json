@@ -1306,7 +1306,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateProgramNameValid_ID}}\"\"\n}",
+											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateProgramStatus_Name}}\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
