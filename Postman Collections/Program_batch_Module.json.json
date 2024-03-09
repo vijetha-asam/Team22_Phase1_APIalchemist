@@ -1460,6 +1460,271 @@
 					"response": []
 				},
 				{
+					"name": "Get all programs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b716e42f-b68e-43dd-a223-da1753765ad3",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Status code is 200', () => {\r",
+									"    pm.response.to.have.status(200);\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 5000;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"pm.test(\"count of records with staus active\", function(){\r",
+									"    const jsonData = pm.response.json();\r",
+									"    var count=jsonData.length;\r",
+									"    console.log(count);\r",
+									" });\r",
+									"//Validate the response body\r",
+									"\r",
+									"// Perform schema validation\r",
+									"pm.test(\"Validate Response Schema\", function() {\r",
+									"    // Define the JSON schema\r",
+									"const schema ={\r",
+									"    \"type\": \"array\",\r",
+									"    \"items\": {\r",
+									"        \"type\": \"object\",\r",
+									"        \"properties\": {\r",
+									"            \"programId\": {\"type\": \"number\"},\r",
+									"            \"programName\": {\"type\": \"string\"},\r",
+									"            \"programDescription\": {\"type\": \"string\"},\r",
+									"            \"programStatus\": {\"type\": \"string\"},\r",
+									"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},\r",
+									"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}\r",
+									"        },\r",
+									"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]\r",
+									"    }\r",
+									"}\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "68d24d59-6e73-4924-9e5e-a88d1ec5df57",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/allPrograms"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all programs with users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "044689bb-73b4-4e44-8444-0bd73bedb1f2",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 700;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"// Define the JSON schema\r",
+									"const schema = {\r",
+									"    \"type\": \"array\",\r",
+									"    \"items\": {\r",
+									"        \"type\": \"object\",\r",
+									"        \"properties\": {\r",
+									"            \"programId\": { \"type\": \"number\" },\r",
+									"            \"programName\": { \"type\": \"string\" },\r",
+									"            \"programDescription\": { \"type\": \"string\" },\r",
+									"            \"programStatus\": { \"type\": \"string\" },\r",
+									"            \"creationTime\": { \"type\": \"string\", \"format\": \"date-time\" },\r",
+									"            \"lastModTime\": { \"type\": \"string\", \"format\": \"date-time\" },\r",
+									"            \"programUsers\": {\r",
+									"                \"type\": \"array\",\r",
+									"                \"items\": {\r",
+									"                    \"type\": \"object\",\r",
+									"                    \"properties\": {\r",
+									"                        \"userId\": { \"type\": \"string\" },\r",
+									"                        \"userFirstName\": { \"type\": \"string\" },\r",
+									"                        \"userLastName\": { \"type\": \"string\" },\r",
+									"                        \"userMiddleName\": { \"type\": \"string\" },\r",
+									"                        \"userPhoneNumber\": { \"type\": \"number\" },\r",
+									"                        \"userLocation\": { \"type\": \"string\" },\r",
+									"                        \"userTimeZone\": { \"type\": \"string\" },\r",
+									"                        \"userLinkedinUrl\": { \"type\": \"string\"},\r",
+									"                        \"userEduUg\": { \"type\": \"string\" },\r",
+									"                        \"userEduPg\": { \"type\": \"string\" },\r",
+									"                        \"userComments\": { \"type\": \"string\" },\r",
+									"                        \"userVisaStatus\": { \"type\": \"string\" },\r",
+									"                        \"userLoginEmail\": { \"type\": [\"string\", \"null\"] }\r",
+									"                    },\r",
+									"                    \"required\": [\"userId\", \"userFirstName\", \"userLastName\", \"userPhoneNumber\"]\r",
+									"                }\r",
+									"            }\r",
+									"        },\r",
+									"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]\r",
+									"    }\r",
+									"};\r",
+									"\r",
+									"// Perform schema validation\r",
+									"pm.test(\"Schema Validation\", function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "6e1a7c84-8f5b-4a5d-8131-8c6c3dcf00b4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/allProgramsWithUsers"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all programs with programId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3ff10c04-18ef-4a07-8125-a3e35a6980b4",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"pm.test(\"Validate Response Schema\", function() {\r",
+									"    // Define the JSON schema\r",
+									"const schema ={\r",
+									" \r",
+									"   \r",
+									"        \"type\": \"object\",\r",
+									"        \"properties\": {\r",
+									"            \"programId\": {\"type\": \"number\"},\r",
+									"            \"programName\": {\"type\": \"string\"},\r",
+									"            \"programDescription\": {\"type\": \"string\"},\r",
+									"            \"programStatus\": {\"type\": \"string\"},\r",
+									"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},\r",
+									"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}\r",
+									"        },\r",
+									"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]\r",
+									"    \r",
+									"}\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "0981c555-7d64-432a-a9e2-3cb69501188f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/programs/:programId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"programs",
+								":programId"
+							],
+							"variable": [
+								{
+									"id": "c8a404d7-1275-4153-b280-60a971be259b",
+									"key": "programId",
+									"value": "{{programbatch_programId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Create Batch Module",
 					"event": [
 						{
@@ -1580,835 +1845,6 @@
 							}
 						},
 						"url": "{{BaseURL}}/batches"
-					},
-					"response": []
-				},
-				{
-					"name": "Create Batch Module Missing program Id",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"});\r",
-									"\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"    var limit = 2000;\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});\r",
-									"\r",
-									"\r",
-									"pm.test('Response is valid JSON', function () {\r",
-									"    pm.response.to.be.json;\r",
-									"});\r",
-									"\r",
-									"/*\r",
-									"pm.test(\"validate response body properties\", function () {\r",
-									"    // Check the expected properties exist\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
-									"});\r",
-									"\r",
-									"const schema = {\r",
-									"    \"type\": \"object\",\r",
-									"    \"properties\": {\r",
-									"        \"batchDescription\": { \"type\": \"string\" },\r",
-									"        \"batchName\": { \"type\": \"string\" },\r",
-									"        \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
-									"        \"batchStatus\":{\r",
-									"                'type': 'string',\r",
-									"                'enum': [\r",
-									"                    'active',\r",
-									"                    'inactive'\r",
-									"                ]},\r",
-									"        \"programId\": { \"type\": \"integer\"}\r",
-									"    },\r",
-									"    \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
-									"};\r",
-									"\r",
-									"pm.test('Schema validation', function () {\r",
-									"    pm.response.to.have.jsonSchema(schema);\r",
-									"});*/\r",
-									"\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "dd6e0de4-1b97-4416-afbe-847c24ea0bb0",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\" \"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/batches"
-					},
-					"response": []
-				},
-				{
-					"name": "Create Batch Module Missing batch status",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"});\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 500;\r",
-									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});\r",
-									"\r",
-									"\r",
-									"\r",
-									"// Parse the response body as JSON\r",
-									"var responseBody = pm.response.json();\r",
-									"\r",
-									"// Extract the programId\r",
-									"var batchId = responseBody.batchId;\r",
-									"var batchName = responseBody.batchName;\r",
-									"\r",
-									"// Store the programId in an environment or global variable for later use (optional)\r",
-									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
-									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
-									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
-									"console.log(\"batch Name:\", batchName);\r",
-									"console.log(\"batchId:\", batchId);\r",
-									"if (pm.response.code === 201) {\r",
-									"pm.test(\"validate response body properties\", () => {\r",
-									"    // Check the expected properties exist\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
-									"  \r",
-									"});\r",
-									"if (pm.response.code === 201) {\r",
-									"const schema ={\r",
-									"\r",
-									"  \"type\": \"object\",\r",
-									"  \"properties\": {\r",
-									"    \"batchDescription\": { \"type\": \"string\" },\r",
-									"    \"batchName\": { \"type\": \"string\" },\r",
-									"    \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
-									"    \"batchStatus\":{\r",
-									"            'type': 'string',\r",
-									"            'enum': [\r",
-									"                'active',\r",
-									"                'inactive'\r",
-									"            ]},\r",
-									"    \"programId\": { \"type\": \"integer\"}\r",
-									"  },\r",
-									"  \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
-									"};\r",
-									"const jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test('Schema validation', () => {\r",
-									"    pm.response.to.have.jsonSchema(schema);\r",
-									"});\r",
-									"}\r",
-									"}\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "7db0daa3-ec73-4d88-a7ac-818337430c29",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \" \",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/batches"
-					},
-					"response": []
-				},
-				{
-					"name": "Create Batch Module Missing batch no of classes",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 500;\r",
-									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});\r",
-									"/*pm.test('Check Status Text', () => {\r",
-									"    pm.response.to.have.status('Created');\r",
-									"})\r",
-									"\r",
-									"pm.test('Response is valid JSON', function () {\r",
-									"    pm.response.to.be.json;\r",
-									"})\r",
-									"var requestBody = pm.request.body.raw;\r",
-									"\r",
-									"pm.test('batchDescription  is not empty', function () {\r",
-									"    pm.expect(pm.response.json().batchDescription).to.be.a('string').and.to.not.be.empty;\r",
-									"})\r",
-									"\r",
-									"pm.test('batchName  is not empty', function () {\r",
-									"    pm.expect(pm.response.json().batchName).to.not.be.empty;\r",
-									"})\r",
-									"\r",
-									"pm.test('batchStatus  is not empty', function () {\r",
-									"    pm.expect(pm.response.json().batchStatus).to.be.a('string').and.to.not.be.empty;\r",
-									"})\r",
-									"\r",
-									"pm.test(\"batchNoOfClasses is not empty\", function() {\r",
-									"    pm.expect(pm.response.json().batchNoOfClasses).to.be.a('number').and.to.not.be.null;\r",
-									"});\r",
-									"\r",
-									"// Parse the response body as JSON\r",
-									"var responseBody = pm.response.json();\r",
-									"\r",
-									"// Extract the programId\r",
-									"var batchId = responseBody.batchId;\r",
-									"var batchName = responseBody.batchName;\r",
-									"\r",
-									"// Store the programId in an environment or global variable for later use (optional)\r",
-									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
-									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
-									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
-									"console.log(\"batch Name:\", batchName);\r",
-									"console.log(\"batchId:\", batchId);\r",
-									"if (pm.response.code === 201) {\r",
-									"pm.test(\"validate response body properties\", () => {\r",
-									"    // Check the expected properties exist\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
-									"  \r",
-									"});\r",
-									"\r",
-									"const schema ={\r",
-									"\r",
-									"  \"type\": \"object\",\r",
-									"  \"properties\": {\r",
-									"    \"batchDescription\": { \"type\": \"string\" },\r",
-									"    \"batchName\": { \"type\": \"string\" },\r",
-									"    \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
-									"    \"batchStatus\":{\r",
-									"            'type': 'string',\r",
-									"            'enum': [\r",
-									"                'active',\r",
-									"                'inactive'\r",
-									"            ]},\r",
-									"    \"programId\": { \"type\": \"integer\"}\r",
-									"  },\r",
-									"  \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
-									"};\r",
-									"const jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test('Schema validation', () => {\r",
-									"    pm.response.to.have.jsonSchema(schema);\r",
-									"});\r",
-									"}\r",
-									"*/\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "55b9d0a3-45a1-4678-8f00-f4835514e638",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \" \",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/batches"
-					},
-					"response": []
-				},
-				{
-					"name": "Create Batch Module Missing batchName",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"});\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 500;\r",
-									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});\r",
-									"/*\r",
-									"pm.test('Check Status Text', () => {\r",
-									"    pm.response.to.have.status('Created');\r",
-									"})\r",
-									"\r",
-									"pm.test('Response is valid JSON', function () {\r",
-									"    pm.response.to.be.json;\r",
-									"})\r",
-									"var requestBody = pm.request.body.raw;\r",
-									"\r",
-									"pm.test('batchDescription  is not empty', function () {\r",
-									"    pm.expect(pm.response.json().batchDescription).to.be.a('string').and.to.not.be.empty;\r",
-									"})\r",
-									"\r",
-									"pm.test('batchName  is not empty', function () {\r",
-									"    pm.expect(pm.response.json().batchName).to.not.be.empty;\r",
-									"})\r",
-									"\r",
-									"pm.test('batchStatus  is not empty', function () {\r",
-									"    pm.expect(pm.response.json().batchStatus).to.be.a('string').and.to.not.be.empty;\r",
-									"})\r",
-									"\r",
-									"pm.test(\"batchNoOfClasses is not empty\", function() {\r",
-									"    pm.expect(pm.response.json().batchNoOfClasses).to.be.a('number').and.to.not.be.null;\r",
-									"});\r",
-									"\r",
-									"// Parse the response body as JSON\r",
-									"var responseBody = pm.response.json();\r",
-									"\r",
-									"// Extract the programId\r",
-									"var batchId = responseBody.batchId;\r",
-									"var batchName = responseBody.batchName;\r",
-									"\r",
-									"// Store the programId in an environment or global variable for later use (optional)\r",
-									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
-									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
-									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
-									"console.log(\"batch Name:\", batchName);\r",
-									"console.log(\"batchId:\", batchId);\r",
-									"if (pm.response.code === 201) {\r",
-									"pm.test(\"validate response body properties\", () => {\r",
-									"    // Check the expected properties exist\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
-									"  \r",
-									"});\r",
-									"\r",
-									"const schema ={\r",
-									"\r",
-									"  \"type\": \"object\",\r",
-									"  \"properties\": {\r",
-									"    \"batchDescription\": { \"type\": \"string\" },\r",
-									"    \"batchName\": { \"type\": \"string\" },\r",
-									"    \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
-									"    \"batchStatus\":{\r",
-									"            'type': 'string',\r",
-									"            'enum': [\r",
-									"                'active',\r",
-									"                'inactive'\r",
-									"            ]},\r",
-									"    \"programId\": { \"type\": \"integer\"}\r",
-									"  },\r",
-									"  \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
-									"};\r",
-									"const jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test('Schema validation', () => {\r",
-									"    pm.response.to.have.jsonSchema(schema);\r",
-									"});\r",
-									"}\r",
-									"\r",
-									"*/\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "3d2c27bf-4600-4e89-858d-07567c3b1fe5",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \" \",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/batches"
-					},
-					"response": []
-				},
-				{
-					"name": "Create Batch Module Missing batch description",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
-								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
-									"});\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 500;\r",
-									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});\r",
-									"/*pm.test('Check Status Text', () => {\r",
-									"    pm.response.to.have.status('Created');\r",
-									"})\r",
-									"\r",
-									"pm.test('Response is valid JSON', function () {\r",
-									"    pm.response.to.be.json;\r",
-									"})\r",
-									"var requestBody = pm.request.body.raw;\r",
-									"\r",
-									"pm.test('batchDescription  is not empty', function () {\r",
-									"    pm.expect(pm.response.json().batchDescription).to.be.a('string').and.to.not.be.empty;\r",
-									"})\r",
-									"\r",
-									"pm.test('batchName  is not empty', function () {\r",
-									"    pm.expect(pm.response.json().batchName).to.not.be.empty;\r",
-									"})\r",
-									"\r",
-									"pm.test('batchStatus  is not empty', function () {\r",
-									"    pm.expect(pm.response.json().batchStatus).to.be.a('string').and.to.not.be.empty;\r",
-									"})\r",
-									"\r",
-									"pm.test(\"batchNoOfClasses is not empty\", function() {\r",
-									"    pm.expect(pm.response.json().batchNoOfClasses).to.be.a('number').and.to.not.be.null;\r",
-									"});\r",
-									"\r",
-									"// Parse the response body as JSON\r",
-									"var responseBody = pm.response.json();\r",
-									"\r",
-									"// Extract the programId\r",
-									"var batchId = responseBody.batchId;\r",
-									"var batchName = responseBody.batchName;\r",
-									"\r",
-									"// Store the programId in an environment or global variable for later use (optional)\r",
-									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
-									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
-									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
-									"console.log(\"batch Name:\", batchName);\r",
-									"console.log(\"batchId:\", batchId);\r",
-									"if (pm.response.code === 201) {\r",
-									"pm.test(\"validate response body properties\", () => {\r",
-									"    // Check the expected properties exist\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
-									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
-									"  \r",
-									"});\r",
-									"\r",
-									"const schema ={\r",
-									"\r",
-									"  \"type\": \"object\",\r",
-									"  \"properties\": {\r",
-									"    \"batchDescription\": { \"type\": \"string\" },\r",
-									"    \"batchName\": { \"type\": \"string\" },\r",
-									"    \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
-									"    \"batchStatus\":{\r",
-									"            'type': 'string',\r",
-									"            'enum': [\r",
-									"                'active',\r",
-									"                'inactive'\r",
-									"            ]},\r",
-									"    \"programId\": { \"type\": \"integer\"}\r",
-									"  },\r",
-									"  \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
-									"};\r",
-									"const jsonData = pm.response.json();\r",
-									"\r",
-									"pm.test('Schema validation', () => {\r",
-									"    pm.response.to.have.jsonSchema(schema);\r",
-									"});\r",
-									"}\r",
-									"*/\r",
-									"\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "8eb35eeb-b97f-47dc-a553-cc1d02948796",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \" \",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/batches"
-					},
-					"response": []
-				},
-				{
-					"name": "Get all programs",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "b716e42f-b68e-43dd-a223-da1753765ad3",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"pm.test('Content-Type header is present', () => {\r",
-									"    pm.response.to.have.header('Content-Type');\r",
-									"})\r",
-									"\r",
-									"pm.test('Content-Type header is application/json', () => {\r",
-									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"})\r",
-									"\r",
-									"pm.test('Status code is 200', () => {\r",
-									"    pm.response.to.have.status(200);\r",
-									"})\r",
-									"\r",
-									"pm.test('Response is valid JSON', function () {\r",
-									"    pm.response.to.be.json;\r",
-									"})\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 5000;\r",
-									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});\r",
-									"pm.test(\"count of records with staus active\", function(){\r",
-									"    const jsonData = pm.response.json();\r",
-									"    var count=jsonData.length;\r",
-									"    console.log(count);\r",
-									" });\r",
-									"//Validate the response body\r",
-									"\r",
-									"// Perform schema validation\r",
-									"pm.test(\"Validate Response Schema\", function() {\r",
-									"    // Define the JSON schema\r",
-									"const schema ={\r",
-									"    \"type\": \"array\",\r",
-									"    \"items\": {\r",
-									"        \"type\": \"object\",\r",
-									"        \"properties\": {\r",
-									"            \"programId\": {\"type\": \"number\"},\r",
-									"            \"programName\": {\"type\": \"string\"},\r",
-									"            \"programDescription\": {\"type\": \"string\"},\r",
-									"            \"programStatus\": {\"type\": \"string\"},\r",
-									"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},\r",
-									"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}\r",
-									"        },\r",
-									"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]\r",
-									"    }\r",
-									"}\r",
-									"    pm.response.to.have.jsonSchema(schema);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "68d24d59-6e73-4924-9e5e-a88d1ec5df57",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"url": "{{BaseURL}}/allPrograms"
-					},
-					"response": []
-				},
-				{
-					"name": "Get all programs with programId",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "3ff10c04-18ef-4a07-8125-a3e35a6980b4",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"pm.test('Content-Type header is present', () => {\r",
-									"    pm.response.to.have.header('Content-Type');\r",
-									"})\r",
-									"\r",
-									"pm.test('Content-Type header is application/json', () => {\r",
-									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"})\r",
-									"\r",
-									"pm.test('Response is valid JSON', function () {\r",
-									"    pm.response.to.be.json;\r",
-									"})\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 500;\r",
-									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});\r",
-									"pm.test(\"Validate Response Schema\", function() {\r",
-									"    // Define the JSON schema\r",
-									"const schema ={\r",
-									" \r",
-									"   \r",
-									"        \"type\": \"object\",\r",
-									"        \"properties\": {\r",
-									"            \"programId\": {\"type\": \"number\"},\r",
-									"            \"programName\": {\"type\": \"string\"},\r",
-									"            \"programDescription\": {\"type\": \"string\"},\r",
-									"            \"programStatus\": {\"type\": \"string\"},\r",
-									"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},\r",
-									"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}\r",
-									"        },\r",
-									"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]\r",
-									"    \r",
-									"}\r",
-									"    pm.response.to.have.jsonSchema(schema);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "0981c555-7d64-432a-a9e2-3cb69501188f",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BaseURL}}/programs/:programId",
-							"host": [
-								"{{BaseURL}}"
-							],
-							"path": [
-								"programs",
-								":programId"
-							],
-							"variable": [
-								{
-									"id": "c8a404d7-1275-4153-b280-60a971be259b",
-									"key": "programId",
-									"value": "{{programbatch_programId}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Get all programs with users",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "044689bb-73b4-4e44-8444-0bd73bedb1f2",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"pm.test('Content-Type header is present', () => {\r",
-									"    pm.response.to.have.header('Content-Type');\r",
-									"})\r",
-									"\r",
-									"pm.test('Content-Type header is application/json', () => {\r",
-									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"})\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 700;\r",
-									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});\r",
-									"\r",
-									"pm.test('Response is valid JSON', function () {\r",
-									"    pm.response.to.be.json;\r",
-									"})\r",
-									"// Define the JSON schema\r",
-									"const schema = {\r",
-									"    \"type\": \"array\",\r",
-									"    \"items\": {\r",
-									"        \"type\": \"object\",\r",
-									"        \"properties\": {\r",
-									"            \"programId\": { \"type\": \"number\" },\r",
-									"            \"programName\": { \"type\": \"string\" },\r",
-									"            \"programDescription\": { \"type\": \"string\" },\r",
-									"            \"programStatus\": { \"type\": \"string\" },\r",
-									"            \"creationTime\": { \"type\": \"string\", \"format\": \"date-time\" },\r",
-									"            \"lastModTime\": { \"type\": \"string\", \"format\": \"date-time\" },\r",
-									"            \"programUsers\": {\r",
-									"                \"type\": \"array\",\r",
-									"                \"items\": {\r",
-									"                    \"type\": \"object\",\r",
-									"                    \"properties\": {\r",
-									"                        \"userId\": { \"type\": \"string\" },\r",
-									"                        \"userFirstName\": { \"type\": \"string\" },\r",
-									"                        \"userLastName\": { \"type\": \"string\" },\r",
-									"                        \"userMiddleName\": { \"type\": \"string\" },\r",
-									"                        \"userPhoneNumber\": { \"type\": \"number\" },\r",
-									"                        \"userLocation\": { \"type\": \"string\" },\r",
-									"                        \"userTimeZone\": { \"type\": \"string\" },\r",
-									"                        \"userLinkedinUrl\": { \"type\": \"string\"},\r",
-									"                        \"userEduUg\": { \"type\": \"string\" },\r",
-									"                        \"userEduPg\": { \"type\": \"string\" },\r",
-									"                        \"userComments\": { \"type\": \"string\" },\r",
-									"                        \"userVisaStatus\": { \"type\": \"string\" },\r",
-									"                        \"userLoginEmail\": { \"type\": [\"string\", \"null\"] }\r",
-									"                    },\r",
-									"                    \"required\": [\"userId\", \"userFirstName\", \"userLastName\", \"userPhoneNumber\"]\r",
-									"                }\r",
-									"            }\r",
-									"        },\r",
-									"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]\r",
-									"    }\r",
-									"};\r",
-									"\r",
-									"// Perform schema validation\r",
-									"pm.test(\"Schema Validation\", function () {\r",
-									"    pm.response.to.have.jsonSchema(schema);\r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "6e1a7c84-8f5b-4a5d-8131-8c6c3dcf00b4",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/allProgramsWithUsers"
 					},
 					"response": []
 				},
@@ -2790,6 +2226,570 @@
 								}
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Batch Module Missing program Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"    var limit = 2000;\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"/*\r",
+									"pm.test(\"validate response body properties\", function () {\r",
+									"    // Check the expected properties exist\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    \"type\": \"object\",\r",
+									"    \"properties\": {\r",
+									"        \"batchDescription\": { \"type\": \"string\" },\r",
+									"        \"batchName\": { \"type\": \"string\" },\r",
+									"        \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
+									"        \"batchStatus\":{\r",
+									"                'type': 'string',\r",
+									"                'enum': [\r",
+									"                    'active',\r",
+									"                    'inactive'\r",
+									"                ]},\r",
+									"        \"programId\": { \"type\": \"integer\"}\r",
+									"    },\r",
+									"    \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
+									"};\r",
+									"\r",
+									"pm.test('Schema validation', function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});*/\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "dd6e0de4-1b97-4416-afbe-847c24ea0bb0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\" \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Batch Module Missing batch status",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
+									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
+									"console.log(\"batch Name:\", batchName);\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"if (pm.response.code === 201) {\r",
+									"pm.test(\"validate response body properties\", () => {\r",
+									"    // Check the expected properties exist\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
+									"  \r",
+									"});\r",
+									"if (pm.response.code === 201) {\r",
+									"const schema ={\r",
+									"\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"batchDescription\": { \"type\": \"string\" },\r",
+									"    \"batchName\": { \"type\": \"string\" },\r",
+									"    \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
+									"    \"batchStatus\":{\r",
+									"            'type': 'string',\r",
+									"            'enum': [\r",
+									"                'active',\r",
+									"                'inactive'\r",
+									"            ]},\r",
+									"    \"programId\": { \"type\": \"integer\"}\r",
+									"  },\r",
+									"  \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
+									"};\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"}\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "7db0daa3-ec73-4d88-a7ac-818337430c29",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \" \",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Batch Module Missing batch no of classes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 400 Bad Request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"/*pm.test('Check Status Text', () => {\r",
+									"    pm.response.to.have.status('Created');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"\r",
+									"pm.test('batchDescription  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchDescription).to.be.a('string').and.to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('batchName  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchName).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('batchStatus  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchStatus).to.be.a('string').and.to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"batchNoOfClasses is not empty\", function() {\r",
+									"    pm.expect(pm.response.json().batchNoOfClasses).to.be.a('number').and.to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
+									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
+									"console.log(\"batch Name:\", batchName);\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"if (pm.response.code === 201) {\r",
+									"pm.test(\"validate response body properties\", () => {\r",
+									"    // Check the expected properties exist\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
+									"  \r",
+									"});\r",
+									"\r",
+									"const schema ={\r",
+									"\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"batchDescription\": { \"type\": \"string\" },\r",
+									"    \"batchName\": { \"type\": \"string\" },\r",
+									"    \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
+									"    \"batchStatus\":{\r",
+									"            'type': 'string',\r",
+									"            'enum': [\r",
+									"                'active',\r",
+									"                'inactive'\r",
+									"            ]},\r",
+									"    \"programId\": { \"type\": \"integer\"}\r",
+									"  },\r",
+									"  \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
+									"};\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "55b9d0a3-45a1-4678-8f00-f4835514e638",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \" \",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Batch Module Missing batchName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"/*\r",
+									"pm.test('Check Status Text', () => {\r",
+									"    pm.response.to.have.status('Created');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"\r",
+									"pm.test('batchDescription  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchDescription).to.be.a('string').and.to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('batchName  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchName).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('batchStatus  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchStatus).to.be.a('string').and.to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"batchNoOfClasses is not empty\", function() {\r",
+									"    pm.expect(pm.response.json().batchNoOfClasses).to.be.a('number').and.to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
+									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
+									"console.log(\"batch Name:\", batchName);\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"if (pm.response.code === 201) {\r",
+									"pm.test(\"validate response body properties\", () => {\r",
+									"    // Check the expected properties exist\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
+									"  \r",
+									"});\r",
+									"\r",
+									"const schema ={\r",
+									"\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"batchDescription\": { \"type\": \"string\" },\r",
+									"    \"batchName\": { \"type\": \"string\" },\r",
+									"    \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
+									"    \"batchStatus\":{\r",
+									"            'type': 'string',\r",
+									"            'enum': [\r",
+									"                'active',\r",
+									"                'inactive'\r",
+									"            ]},\r",
+									"    \"programId\": { \"type\": \"integer\"}\r",
+									"  },\r",
+									"  \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
+									"};\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"}\r",
+									"\r",
+									"*/\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "3d2c27bf-4600-4e89-858d-07567c3b1fe5",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \" \",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Batch Module Missing batch description",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"/*pm.test('Check Status Text', () => {\r",
+									"    pm.response.to.have.status('Created');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"\r",
+									"pm.test('batchDescription  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchDescription).to.be.a('string').and.to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('batchName  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchName).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('batchStatus  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchStatus).to.be.a('string').and.to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"batchNoOfClasses is not empty\", function() {\r",
+									"    pm.expect(pm.response.json().batchNoOfClasses).to.be.a('number').and.to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
+									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
+									"console.log(\"batch Name:\", batchName);\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"if (pm.response.code === 201) {\r",
+									"pm.test(\"validate response body properties\", () => {\r",
+									"    // Check the expected properties exist\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
+									"  \r",
+									"});\r",
+									"\r",
+									"const schema ={\r",
+									"\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"batchDescription\": { \"type\": \"string\" },\r",
+									"    \"batchName\": { \"type\": \"string\" },\r",
+									"    \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
+									"    \"batchStatus\":{\r",
+									"            'type': 'string',\r",
+									"            'enum': [\r",
+									"                'active',\r",
+									"                'inactive'\r",
+									"            ]},\r",
+									"    \"programId\": { \"type\": \"integer\"}\r",
+									"  },\r",
+									"  \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
+									"};\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"}\r",
+									"*/\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "8eb35eeb-b97f-47dc-a553-cc1d02948796",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \" \",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
 					},
 					"response": []
 				},
@@ -3323,19 +3323,19 @@
 								"exec": [
 									"\r",
 									"// Parse the response body as JSON\r",
-									"var responseBody = pm.response.json();\r",
+									"//var responseBody = pm.response.json();\r",
 									"\r",
 									"// Extract the programId\r",
-									"var batchId = responseBody.batchId;\r",
-									"var batchName = responseBody.batchName;\r",
+									"//var batchId = responseBody.batchId;\r",
+									"////var batchName = responseBody.batchName;\r",
 									"// Log the programId to the console (optional)\r",
-									"console.log(\"batchId:\", batchId);\r",
+									"//console.log(\"batchId:\", batchId);\r",
 									"\r",
 									"// Store the programId in an environment or global variable for later use (optional)\r",
-									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
-									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"//pm.environment.set(\"programbatch_batchName\", batchName);\r",
+									"//pm.environment.set(\"programbatch_batchid\",batchId);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -3351,7 +3351,7 @@
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
 									"\r",
-									"pm.test('Response is valid JSON', function () {\r",
+									"/*pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
 									"})\r",
 									"if (pm.response.code === 201) {\r",
@@ -3391,7 +3391,7 @@
 									"});\r",
 									"}\r",
 									"\r",
-									"\r",
+									"*/\r",
 									""
 								],
 								"type": "text/javascript"
@@ -3453,7 +3453,7 @@
 								"exec": [
 									"\r",
 									"// Parse the response body as JSON\r",
-									"var responseBody = pm.response.json();\r",
+									"/*var responseBody = pm.response.json();\r",
 									"\r",
 									"// Extract the programId\r",
 									"var batchId = responseBody.batchId;\r",
@@ -3463,9 +3463,9 @@
 									"\r",
 									"// Store the programId in an environment or global variable for later use (optional)\r",
 									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
-									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.environment.set(\"programbatch_batchid\",batchId);*/\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -3480,7 +3480,7 @@
 									"var limit = 500;\r",
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
-									"\r",
+									"/*\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
 									"})\r",
@@ -3520,7 +3520,7 @@
 									"    pm.response.to.have.jsonSchema(schema);\r",
 									"});\r",
 									"}\r",
-									"\r",
+									"*/\r",
 									"\r",
 									""
 								],
