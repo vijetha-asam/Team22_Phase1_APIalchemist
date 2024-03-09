@@ -2991,9 +2991,8 @@
 							],
 							"variable": [
 								{
-									"id": "f78192ac-3159-44df-9070-72206d40f5e5",
 									"key": "batchName",
-									"value": "{{programbatch_batchName}}"
+									"value": "{{programbatch_batchName_invalid}}"
 								}
 							]
 						}
