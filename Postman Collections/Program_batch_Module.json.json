@@ -1251,7 +1251,7 @@
 			"id": "aeb5e63a-acc8-4d40-832a-751c34775a7e"
 		},
 		{
-			"name": "Program Batch Module with data driven Copy",
+			"name": "Program Batch Module with data driven actual",
 			"item": [
 				{
 					"name": "user login controller",
@@ -2250,8 +2250,8 @@
 									"// Store the programId in an environment or global variable for later use (optional)\r",
 									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
 									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -2270,7 +2270,7 @@
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
 									"})\r",
-									"if (pm.response.code === 201) {\r",
+									"if (pm.response.code === 200) {\r",
 									"pm.test(\"validate response body properties\", () => {\r",
 									"    // Check the expected properties exist\r",
 									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
