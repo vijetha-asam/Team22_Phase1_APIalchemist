@@ -1289,8 +1289,13 @@
 							"script": {
 								"id": "1a701381-df1d-461f-869b-c06a564a9f1e",
 								"exec": [
-									" var body = JSON.parse(responseBody);\r",
-									"  tests[\"Count: \"  + body.value.length] = true;\r",
+									" pm.test(\"count of records with staus active\", function(){\r",
+									"    const jsonData = pm.response.json();\r",
+									"    var count=jsonData.length;\r",
+									"    console.log(count);\r",
+									" });\r",
+									"\r",
+									"  //tests[\"Count: \"  + body.value.length] = true;\r",
 									"  \r",
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
