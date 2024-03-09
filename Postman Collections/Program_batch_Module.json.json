@@ -4723,7 +4723,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \" \",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{programbatch_batchName}}\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \" \",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"March24-API_Alchemist-March24-APIAlchemist-SDET-039-SDET120-100\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4795,7 +4795,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"1111\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{programbatch_batchName}}\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"1111\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"March24-API_Alchemist-March24-APIAlchemist-SDET-039-SDET120-100\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4867,7 +4867,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"####\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{programbatch_batchName}}\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"####\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"March24-API_Alchemist-March24-APIAlchemist-SDET-039-SDET120-100\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5155,7 +5155,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": \"{{programbatch_batchid}}\",\r\n    \"batchName\": \" \",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": \"{{programbatch_batchid}}\",\r\n    \"batchName\": ,\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5167,7 +5167,7 @@
 					"response": []
 				},
 				{
-					"name": "Update Batch with empty batch name Copy",
+					"name": "Update Batch with batch name as special characters",
 					"event": [
 						{
 							"listen": "test",
@@ -5227,7 +5227,223 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": \"{{programbatch_batchid}}\",\r\n    \"batchName\": \" \",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": \"{{programbatch_batchid}}\",\r\n    \"batchName\": \" #$%\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Batch with batch no of classes as zero",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"// Log the programId to the console (optional)\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.collectionVariables.set(\"batchName\", batchName);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "eee98e7e-e121-45c2-940f-19146ee3c8d0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": \"{{programbatch_batchid}}\",\r\n    \"batchName\": \"March24-API_Alchemist-March24-APIAlchemist-SDET-039-SDET120-100\",\r\n    \"batchNoOfClasses\": 0,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Batch with batch no of classes as null",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"// Log the programId to the console (optional)\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.collectionVariables.set(\"batchName\", batchName);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "8cae85d0-08ec-465c-94af-a20c0668141f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": \"{{programbatch_batchid}}\",\r\n    \"batchName\": \"March24-API_Alchemist-March24-APIAlchemist-SDET-039-SDET120-100\",\r\n    \"batchNoOfClasses\": ,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Batch with batch no of classes as null Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"// Log the programId to the console (optional)\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.collectionVariables.set(\"batchName\", batchName);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "a3e085d8-4819-4490-bf8c-ca74e5de2c31",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": \"{{programbatch_batchid}}\",\r\n    \"batchName\": \"March24-API_Alchemist-March24-APIAlchemist-SDET-039-SDET120-100\",\r\n    \"batchNoOfClasses\": ,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
