@@ -1516,7 +1516,7 @@
 							"response": []
 						},
 						{
-							"name": "UpdateProgramNameToOnlyNumbers Copy",
+							"name": "UpdateProgramNameToExistingProgramName",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -1563,7 +1563,7 @@
 											"});",
 											"//Define expected Data",
 											"const expectedData = {",
-											"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
+											"    \"message\": \"cannot create program , since already exists\",",
 											"    \"success\": false",
 											"};",
 											"// Validate the response body",
@@ -1595,7 +1595,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateProgramNameToNumbers}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"{{ExistingProgramName}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
