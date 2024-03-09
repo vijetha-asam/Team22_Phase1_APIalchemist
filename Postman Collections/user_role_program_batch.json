@@ -25,20 +25,20 @@
 							"// Parse the response body as JSON",
 							"var responseBody = pm.response.json();",
 							"",
-							"// Check if the response body contains an array and has at least one object",
+							"// Check if the response body is an array and has at least one object",
 							"if (Array.isArray(responseBody) && responseBody.length > 0) {",
-							"    // Extract the userID from the first object in the array",
-							"    var userID = responseBody[0].userId;",
+							"    // Extract the userId from the first object in the array",
+							"    var userId = responseBody[0].userId;",
 							"",
-							"    // Set the userID as an environment variable",
-							"    pm.environment.set(\"userID\", userId);",
+							"    // Set the userId as an environment variable",
+							"    pm.environment.set(\"userIdkb\", userId);",
 							"",
-							"    // Log the userID for verification",
-							"    console.log(\"userID: \", userId);",
+							"    // Log the userId for verification",
+							"    console.log(\"userId: \", userId);",
 							"} else {",
 							"    // Log an error if the response does not meet the expected structure",
 							"    console.error(\"Invalid response structure\");",
-							"}",
+							"};",
 							"",
 							"// status code is 200",
 							"pm.test(\"Status code is 200\", function () {",
@@ -228,6 +228,139 @@
 				}
 			],
 			"id": "2ba910f7-19a8-431a-bade-7476db4669c6",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearertoken2}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/userRoleProgramBatchMaps",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"userRoleProgramBatchMaps"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"description": "application/json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Assigned Program/Batch(es) of All Users (404) wrong endpoint Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
+						"exec": [
+							"// status code is 200",
+							"pm.test(\"Status code is 404\", function () {",
+							"    pm.response.to.have.status(404);",
+							"});",
+							"",
+							"//response time is less than 200 ms",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"//content header present",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"",
+							"//content header is JSON",
+							"",
+							"pm.test('Content-Type Header is application-json', () => {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+							"})",
+							"",
+							"",
+							"// Data type validation",
+							"",
+							"let dateFormat = /([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))/;",
+							"",
+							"pm.test(\"All Data types are correct\",()=>{",
+							"    var jsondata = pm.response.json();",
+							"    pm.expect(jsondata.timestamp).to.match(dateFormat);",
+							"    pm.expect(jsondata.status).to.be.a(\"number\");",
+							"    pm.expect(jsondata.error).to.be.a(\"string\");",
+							"    pm.expect(jsondata.path).to.be.a(\"string\");",
+							"});",
+							"",
+							"//Validate Response body content",
+							"",
+							"pm.test(\"Request body contains 404 not found \",() => {",
+							"   var jsonData = pm.response.json(); ",
+							"   pm.expect(jsonData).to.haveOwnProperty(\"status\");",
+							"   pm.expect(jsonData.status).to.eql(404);",
+							"   pm.expect(jsonData.error).to.include(\"Not Found\");",
+							" ",
+							" ",
+							"});",
+							"",
+							"//Validating JSON Schema test",
+							"",
+							"var schema = {",
+							"    properties: {",
+							"    timestamp: {",
+							"      type: \"string\",",
+							"    },",
+							"    status: {",
+							"      type: \"number\",",
+							"    },",
+							"    error: {",
+							"      type: \"string\",",
+							"    },",
+							"    path: {",
+							"      type: \"string\",",
+							"    },",
+							"",
+							"  },",
+							"  required: [",
+							"    \"timestamp\",",
+							"    \"status\",",
+							"    \"error\",",
+							"    \"path\"",
+							"  ],",
+							"};",
+							"",
+							"",
+							"pm.test(\"Schema is valid\", () => {",
+							"  pm.response.to.have.jsonSchema(schema);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "12744ea8-41c7-44b4-bcf8-816e732ec3b3",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
