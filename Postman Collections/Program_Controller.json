@@ -1393,7 +1393,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateProgramName}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"{{UpdateProgramNameToSpecialChar}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1484,7 +1484,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateProgramName}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"{{UpdateProgramNameToNumbers}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
