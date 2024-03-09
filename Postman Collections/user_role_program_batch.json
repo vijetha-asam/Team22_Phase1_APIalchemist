@@ -440,6 +440,149 @@
 			"response": []
 		},
 		{
+			"name": "Validate assigned program/batch by wrong User ID (404)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
+						"exec": [
+							"// status code is 200",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"//response time is less than 200 ms",
+							"",
+							"pm.test(\"Response time is less than 500ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);",
+							"});",
+							"",
+							"//content header present",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"",
+							"//content header is JSON",
+							"",
+							"pm.test('Content-Type Header is application-json', () => {",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+							"})",
+							"",
+							"",
+							"// Data type validation",
+							"",
+							"// check the data for each and every object",
+							"const response = pm.response.json();",
+							"",
+							"response.forEach(object => {",
+							"    pm.test( \"Data types are correct for user ID \" + object.userId,()=>{",
+							"    pm.expect(object.userId).to.be.a(\"string\");",
+							"    pm.expect(object.roleId).to.be.a(\"string\");",
+							"    pm.expect(object.programId).to.be.a(\"number\");",
+							"    pm.expect(object.batchId).to.be.an(\"number\");",
+							"    pm.expect(object.userRoleProgramBatchStatus).to.be.a(\"string\");",
+							"    });",
+							"});",
+							"",
+							"//Validate Response body content",
+							"",
+							"const responseData = pm.response.json();",
+							"",
+							"pm.test('Request body contains user id referred to', function () {",
+							"    // Iterate through each object in the array",
+							"    responseData.forEach(function (user) {",
+							"        // status is active check",
+							"        pm.expect(user.userId).to.eql(pm.environment.get(\"userIdkb\"));",
+							"    });",
+							"});",
+							"",
+							"",
+							"//Validating JSON Schema test",
+							"",
+							"var schema = {",
+							"    properties: {",
+							"    userId: {",
+							"      type: \"string\",",
+							"    },",
+							"    roleId: {",
+							"      type: \"string\",",
+							"    },",
+							"    programId: {",
+							"      type: \"number\",",
+							"    },",
+							"    batchId: {",
+							"      type: \"number\",",
+							"    },",
+							"    userRoleProgramBatchStatus: {",
+							"      type: \"string\",",
+							"    },",
+							"",
+							"  },",
+							"  required: [",
+							"    \"userId\",",
+							"    \"roleId\",",
+							"    \"programId\",",
+							"    \"batchId\",",
+							"    \"userRoleProgramBatchStatus\"",
+							"  ],",
+							"};",
+							"",
+							"",
+							"pm.test(\"Schema is valid\", () => {",
+							"  pm.response.to.have.jsonSchema(schema);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "ddcee388-80db-4c7d-9983-89ac39335e1f",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearertoken2}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/userRoleProgramBatchMap/{{userIdkb}}",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"userRoleProgramBatchMap",
+						"{{userIdkb}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"description": "application/json",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "test",
 			"id": "a9ecef79-1b26-44bb-92d4-af1316dc1b48",
 			"protocolProfileBehavior": {
