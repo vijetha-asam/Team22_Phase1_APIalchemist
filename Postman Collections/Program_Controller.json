@@ -1153,6 +1153,33 @@
 						},
 						{
 							"name": "UpdateProgramStatusByProgramID",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "6e09d942-985b-4c91-a846-b796ad6c2e80",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Log the base URL",
+											"//console.log(\"Base URL:\", baseUrl);",
+											"",
+											"// Define the path parameter value",
+											"const pathParamValue = \"16341\";",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "4fb3da9a-3f2b-431d-b609-ad8eeeeee985",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1175,7 +1202,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/putprogram/16341"
+								"url": "{{BaseURL}}/putprogram"
 							},
 							"response": []
 						}
