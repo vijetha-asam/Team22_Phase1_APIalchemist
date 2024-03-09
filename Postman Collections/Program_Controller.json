@@ -1340,6 +1340,42 @@
 										],
 										"type": "text/javascript"
 									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "b6e1c603-adec-445d-90fb-153389dfeafb",
+										"exec": [
+											"resp = pm.response.json();",
+											"// Perform response json validation",
+											"pm.test(\"Response is valid JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"// Perform statuc code validation",
+											"pm.test(\"Status code is 400\",()=>{",
+											"pm.response.to.have.status(400);",
+											"});",
+											"// Perform status validation",
+											"pm.test(\"Check Status as Bad Request\",()=>{",
+											"pm.response.to.have.status('Bad Request')",
+											"});",
+											"//Define expected Data",
+											"const expectedData = {",
+											"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
+											"    \"success\": false",
+											"};",
+											"// Validate the response body",
+											"pm.test(\"Response body contains expected error message and success flag\", function() {",
+											"    pm.expect(resp.message).to.equal(expectedData.message);",
+											"    pm.expect(resp.success).to.equal(expectedData.success);",
+											"});",
+											"// Perform response time validation",
+											"pm.test(\"response time is less than 700ms\", ()=>{",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
 								}
 							],
 							"id": "a7201673-435c-470b-89e9-d6f7bea00e0a",
@@ -1357,7 +1393,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateProgramName}}\",\n    \"programDescription\": \"{{UpdateProgramDescription}}\",\n    \"programStatus\": \"{{UpdateProgramStatus}}\"\n}",
+									"raw": "{\n    \"programName\": \"{{UpdateProgramName}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
