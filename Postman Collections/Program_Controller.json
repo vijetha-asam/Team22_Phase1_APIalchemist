@@ -1095,6 +1095,16 @@
 										],
 										"type": "text/javascript"
 									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "48c3d66e-4817-49c5-b8b7-5a9eddafbbef",
+										"exec": [
+											"console.log(\"{{UpdateProgramNameValid_ID}}\");"
+										],
+										"type": "text/javascript"
+									}
 								}
 							],
 							"id": "191b8027-55a9-4710-bd20-33632c5e0769",
@@ -1293,7 +1303,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateProgramStatus_Name}}\"\n}",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateProgramNameValid_ID}}\"\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
