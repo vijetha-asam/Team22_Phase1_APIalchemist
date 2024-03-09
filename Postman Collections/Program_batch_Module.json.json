@@ -2720,7 +2720,7 @@
 									"// Store the programId in an environment or global variable for later use (optional)\r",
 									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
 									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
-									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
+									"//pm.environment.set(\"programbatch_batchid\",batchId);\r",
 									"console.log(\"batch Name:\", batchName);\r",
 									"console.log(\"batchId:\", batchId);\r",
 									"if (pm.response.code === 201) {\r",
@@ -3090,9 +3090,8 @@
 							],
 							"variable": [
 								{
-									"id": "a8c717de-a510-4be5-99cf-8db6b760f095",
 									"key": "programId",
-									"value": "{{programbatch_programId}}"
+									"value": "{{programbatch_programId_invalid}}"
 								}
 							]
 						}
@@ -3118,8 +3117,8 @@
 									"console.log(\"batchId:\", batchId);\r",
 									"\r",
 									"// Store the programId in an environment or global variable for later use (optional)\r",
-									"pm.collectionVariables.set(\"batchId\", batchId);\r",
-									"pm.collectionVariables.set(\"batchName\", batchName);\r",
+									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"//pm.collectionVariables.set(\"batchName\", batchName);\r",
 									"pm.test(\"Status code is  400 Bad request\", function () {\r",
 									"    pm.response.to.have.status(400);\r",
 									"});\r",
