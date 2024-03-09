@@ -1314,7 +1314,7 @@
 					"name": "Update by programId",
 					"item": [
 						{
-							"name": "UpdateProgramNameByProgramID",
+							"name": "UpdateProgramNameToSpecialCharacters",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -1331,7 +1331,7 @@
 											"//console.log(\"Base URL:\", baseUrl);",
 											"",
 											"// Define the path parameter value",
-											"const pathParamValue = \"16341\";",
+											"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
 											"// Construct the complete URL with the path parameter",
 											"const url = `${baseUrl}/${pathParamValue}`;",
 											"",
