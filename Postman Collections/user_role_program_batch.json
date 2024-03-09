@@ -1075,7 +1075,7 @@
 					}
 				}
 			],
-			"id": "38269b4f-ffe8-4c70-af80-36cbbd24d7c7",
+			"id": "b918b412-4b2a-45e0-8952-05754ea2c2f9",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -1086,7 +1086,7 @@
 						"token": "{{Bearertoken2}}"
 					}
 				},
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -1098,13 +1098,12 @@
 					}
 				},
 				"url": {
-					"raw": "{{BaseURL}}/userRoleProgramBatchMap/deleteAll/{{userIdkb}}",
+					"raw": "{{BaseURL}}/userRoleProgramBatchMap/{{userIdkb}}",
 					"host": [
 						"{{BaseURL}}"
 					],
 					"path": [
 						"userRoleProgramBatchMap",
-						"deleteAll",
 						"{{userIdkb}}"
 					],
 					"query": [
@@ -1120,14 +1119,24 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Restore deleted Data (Not a part of scenarios)",
 			"id": "9b42020c-8160-44d2-8b42-35dfa90f3f71",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
 			"request": {
-				"method": "GET",
-				"header": []
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"programId\": {{programIdkb}},\n  \"roleId\": {{roleIdkb}},\n  \"userId\": {{userIdkb}},\n  \"userRoleProgramBatches\": [\n    {\n      \"batchId\": {{batchIdkb}},\n      \"userRoleProgramBatchStatus\": \"Active\"\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/users/roleProgramBatchStatus/{{userIdkb}}"
 			},
 			"response": []
 		}
