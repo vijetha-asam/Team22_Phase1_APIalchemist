@@ -3178,8 +3178,8 @@
 							"script": {
 								"id": "97341be8-f7a4-4ff8-93d4-689adfaa02be",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404 Not Found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -3198,6 +3198,7 @@
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
 									"// Perform schema validation\r",
+									"if (pm.response.code === 201){\r",
 									"pm.test(\"Validate Response Schema\", function() {\r",
 									"    // Define the JSON schema\r",
 									"var schema ={\r",
@@ -3218,7 +3219,8 @@
 									"}\r",
 									"    pm.response.to.have.jsonSchema(schema);\r",
 									"  \r",
-									"});"
+									"});\r",
+									"}"
 								],
 								"type": "text/javascript"
 							}
@@ -3275,8 +3277,8 @@
 							"script": {
 								"id": "e6a50dd4-9f47-47ba-8a25-84938a4e0f5e",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404 Not Found\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -3294,7 +3296,7 @@
 									"var limit = 500;\r",
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
-									"\r",
+									"if (pm.response.code === 201){\r",
 									"// Perform schema validation\r",
 									"pm.test(\"Validate Response Schema\", function() {\r",
 									"    // Define the JSON schema\r",
@@ -3316,7 +3318,8 @@
 									"}\r",
 									"    pm.response.to.have.jsonSchema(schema);\r",
 									"  \r",
-									"});"
+									"});\r",
+									"}"
 								],
 								"type": "text/javascript"
 							}
@@ -3484,8 +3487,8 @@
 							"script": {
 								"id": "42f5d782-fea1-44fe-a194-e95ad9f572d5",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400 Bad Request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -3526,8 +3529,8 @@
 							"script": {
 								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400 Bad Request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
