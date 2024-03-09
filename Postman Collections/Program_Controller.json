@@ -1181,6 +1181,7 @@
 													"const requestData = JSON.parse(requestBody);",
 													"// Validate the data entered in the request",
 													"pm.test(\"Response body contains entered data\", function() {",
+													"    pm.expect(resp.programId).to.equal(pm.environment.get(\"ProgramModule_updateProgram_programId\"));",
 													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
 													"    pm.expect(resp.programName).to.equal(requestData.programName);",
 													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
