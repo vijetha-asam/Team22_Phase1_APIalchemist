@@ -542,8 +542,9 @@
 								"exec": [
 									"var resp = pm.response.json();",
 									"var programID = resp.programId;",
+									"var programNameBug = resp.programName;",
 									"pm.environment.set(\"Bug_programModule_programID\",programID);",
-									"pm.environment.set(\"Delete_programModule_programName\",resp.programName);",
+									"pm.environment.set(\"Delete_programModule_programName\",programNameBug);",
 									"resp = pm.response.json();",
 									"// Perform response json validation",
 									"pm.test(\"Response is valid JSON\", function () {",
