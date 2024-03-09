@@ -1413,7 +1413,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateProgramNameToSpecialChar}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"{{UpdateToSpecialChar}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1504,7 +1504,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateProgramNameToNumbers}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"{{UpdateToOnlyNumbers}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1607,7 +1607,7 @@
 							"response": []
 						},
 						{
-							"name": "UpdateProgramDescriptionByProgramID",
+							"name": "UpdateProgramDescriptionWithSpecialChars",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -1651,6 +1651,61 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"Inactive\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/putprogram"
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProgramDescriptionWithOnlyNumbers",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "07fa9362-7c3e-4bf3-8230-84a6d917c2ce",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Log the base URL",
+											"//console.log(\"Base URL:\", baseUrl);",
+											"",
+											"// Define the path parameter value",
+											"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "437a8be0-eb6c-45d1-b777-eca76ef2f935",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"{{UpdateToOnlyNumbers}}\",\n    \"programStatus\": \"Inactive\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
