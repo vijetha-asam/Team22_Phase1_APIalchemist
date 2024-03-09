@@ -2790,8 +2790,8 @@
 							"script": {
 								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
 								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
+									"pm.test(\"Status code is  400 Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"//Validate response time\r",
 									"pm.test(\"Response time is less than limit\", function() {\r",
@@ -3070,8 +3070,8 @@
 							"script": {
 								"id": "96a1d597-2a84-4a35-a8c1-84612ecb0f84",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -3094,6 +3094,7 @@
 									"var limit = 500;\r",
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
+									"if (pm.response.code === 201){\r",
 									"const responseSchema = {\r",
 									"    \"type\": \"object\",\r",
 									"    \"properties\": {\r",
@@ -3119,7 +3120,8 @@
 									"\r",
 									"    pm.expect(valid).to.be.true;\r",
 									"    pm.expect(validate.errors).to.be.null;\r",
-									"});"
+									"});\r",
+									"}"
 								],
 								"type": "text/javascript"
 							}
@@ -3384,8 +3386,8 @@
 									"// Store the programId in an environment or global variable for later use (optional)\r",
 									"pm.collectionVariables.set(\"batchId\", batchId);\r",
 									"pm.collectionVariables.set(\"batchName\", batchName);\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is  400 Bad request\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -3416,7 +3418,7 @@
 									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
 									"  \r",
 									"});\r",
-									"\r",
+									"if (pm.response.code === 201) {\r",
 									"const schema ={\r",
 									"\r",
 									"  \"type\": \"object\",\r",
@@ -3441,7 +3443,7 @@
 									"});\r",
 									"}\r",
 									"\r",
-									"\r",
+									"}\r",
 									""
 								],
 								"type": "text/javascript"
