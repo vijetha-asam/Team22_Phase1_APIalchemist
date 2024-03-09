@@ -227,7 +227,7 @@
 					}
 				}
 			],
-			"id": "2ba910f7-19a8-431a-bade-7476db4669c6",
+			"id": "12744ea8-41c7-44b4-bcf8-816e732ec3b3",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -270,7 +270,7 @@
 			"response": []
 		},
 		{
-			"name": "Get Assigned Program/Batch(es) of All Users (404) wrong endpoint Copy",
+			"name": "Validate assigned program/batch of a user by correct User ID (200) Positive scenario",
 			"event": [
 				{
 					"listen": "test",
@@ -360,7 +360,7 @@
 					}
 				}
 			],
-			"id": "12744ea8-41c7-44b4-bcf8-816e732ec3b3",
+			"id": "2ba910f7-19a8-431a-bade-7476db4669c6",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
