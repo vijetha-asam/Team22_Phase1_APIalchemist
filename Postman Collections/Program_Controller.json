@@ -1413,7 +1413,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"{{UpdateToSpecialChar}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"{{UpdateToSpecialChar}}\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Inactive\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1650,7 +1650,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"Inactive\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1705,7 +1705,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"{{UpdateToOnlyNumbers}}\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"{{UpdateToOnlyNumbers}}\",\n    \"programStatus\": \"Inactive\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1780,7 +1780,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateToSpecialChar}}\"\n}",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateToSpecialChar}}\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1858,7 +1858,7 @@
 							"response": []
 						},
 						{
-							"name": "UpdateProgramDescriptionByProgramName",
+							"name": "UpdateProgramDescriptionWithSpecialChar_ByProgramName",
 							"id": "efae2e75-2459-4b69-956f-4e1cd22ea7f5",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1874,7 +1874,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API_Phase1\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"Inactive\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -1886,7 +1886,7 @@
 							"response": []
 						},
 						{
-							"name": "UpdateProgramNameByProgramName",
+							"name": "UpdateProgramNameWithSpecialChars_ByProgramName",
 							"id": "378742e4-c1f7-49c5-99f6-a24e5525a503",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1902,7 +1902,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}",
+									"raw": "{\n    \"programName\": \"{{UpdateToSpecialChar}}\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
