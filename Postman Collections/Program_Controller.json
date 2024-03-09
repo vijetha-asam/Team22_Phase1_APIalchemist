@@ -1717,7 +1717,7 @@
 							"response": []
 						},
 						{
-							"name": "UpdateProgramStatusWithSpecialCharacters",
+							"name": "UpdateProgramStatusWithInvalidValue",
 							"event": [
 								{
 									"listen": "prerequest",
@@ -1798,7 +1798,7 @@
 					"name": "Update by programName",
 					"item": [
 						{
-							"name": "UpdateProgramStatus ByProgramName",
+							"name": "UpdateProgramStatusWithInvalidValue",
 							"event": [
 								{
 									"listen": "test",
@@ -1846,7 +1846,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Inactive\"\n}",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateToOnlyNumbers}}\"\n} ",
 									"options": {
 										"raw": {
 											"language": "json"
