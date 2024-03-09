@@ -2091,7 +2091,7 @@
 							"variable": [
 								{
 									"key": "programId",
-									"value": "{{User_Module_MyprogramID}}"
+									"value": "{{programbatch_programId_invalid}}"
 								}
 							]
 						}
