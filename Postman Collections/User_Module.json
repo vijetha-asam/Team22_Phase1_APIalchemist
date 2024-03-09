@@ -681,6 +681,198 @@
 					"response": []
 				},
 				{
+					"name": "Create_MissingEDUug",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e30e2463-fe2f-4dec-8fe8-c034285e891a",
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", ()=> {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", ()=> {\r",
+									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"if(jsonData.message===\"userEduUg must begin with alphabet and can contain only alphanumeric characters\"){\r",
+									" pm.test(\"userEduUg must begin with alphabet and can contain only alphanumeric characters\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"userEduUg must begin with alphabet and can contain only alphanumeric characters\");\r",
+									"}) \r",
+									"return  \r",
+									"}\r",
+									"else if (jsonData.message===\"userEduUg must is cannot be null or empty\") {\r",
+									"\r",
+									"pm.test(\"userEduUg must is cannot be null or empty\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"userEduUg must is cannot be null or empty\");\r",
+									"});\r",
+									"pm.test(\"Status code is 400\",()=>{\r",
+									"pm.response.to.have.status(400);\r",
+									"});\r",
+									"}\r",
+									"\r",
+									"pm.test(\"response time is less than 1000ms\", ()=>{\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4e50fbcd-8f9a-4723-9675-128283e49f8a",
+								"exec": [
+									"const randomNumber = _.random(1000000000,9999999999)\r",
+									"pm.environment.set(\"usermodule_randomNumber\",randomNumber);\r",
+									"\r",
+									"var random = Math.random().toString(36).substring(2);\r",
+									"\r",
+									"var userLoginEmail= \"abc\"+random+\"@gmail.com\";\r",
+									"//var userLastName=\"abc\"+random;\r",
+									"//var userLastName=\"abc\"+random;\r",
+									"\r",
+									"pm.environment.set(\"usermodule_email_env\",userLoginEmail);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "ceb1e24d-1170-42da-95ae-3080492fded2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userComments\": \"{{user_Comments}}\",\r\n  \"userEduPg\": \"{{user_EduPg}}\",\r\n  \"userEduUg\": \"\",\r\n  \"userFirstName\": \"{{user_FirstName}}\",\r\n  \"userId\": \"{{user_Id}}\",\r\n  \"userLastName\": \"{{user_LastName}}\",\r\n  \"userLinkedinUrl\": \"{{user_LinkedinUrl}}\",\r\n  \"userLocation\": \"{{user_Location}}\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"{{login_Status}}\",\r\n    \"password\": \"{{passWORD}}\",\r\n    \"roleIds\": [\r\n      \"{{roleId_student}}\"\r\n    ],\r\n    \"status\": \"{{staTUS}}\",\r\n    \"userLoginEmail\": \"{{usermodule_email_env}}\"\r\n  },\r\n  \"userMiddleName\": \"{{user_MiddleName}}\",\r\n  \"userPhoneNumber\": {{usermodule_randomNumber}},\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"{{roleId_student}}\",\r\n      \"userRoleStatus\": \"{{user_RoleStatus}}\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"{{user_TimeZone}}\",\r\n  \"userVisaStatus\": \"{{user_VisaStatus}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/roleStatus"
+					},
+					"response": []
+				},
+				{
+					"name": "Create_MissingFirstName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e30e2463-fe2f-4dec-8fe8-c034285e891a",
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", ()=> {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", ()=> {\r",
+									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"if(jsonData.message===\"userEduUg must begin with alphabet and can contain only alphanumeric characters\"){\r",
+									" pm.test(\"userEduUg must begin with alphabet and can contain only alphanumeric characters\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"userEduUg must begin with alphabet and can contain only alphanumeric characters\");\r",
+									"}) \r",
+									"return  \r",
+									"}\r",
+									"else if (jsonData.message===\"userEduUg must is cannot be null or empty\") {\r",
+									"\r",
+									"pm.test(\"userEduUg must is cannot be null or empty\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"userEduUg must is cannot be null or empty\");\r",
+									"});\r",
+									"pm.test(\"Status code is 400\",()=>{\r",
+									"pm.response.to.have.status(400);\r",
+									"});\r",
+									"}\r",
+									"\r",
+									"pm.test(\"response time is less than 1000ms\", ()=>{\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4e50fbcd-8f9a-4723-9675-128283e49f8a",
+								"exec": [
+									"const randomNumber = _.random(1000000000,9999999999)\r",
+									"pm.environment.set(\"usermodule_randomNumber\",randomNumber);\r",
+									"\r",
+									"var random = Math.random().toString(36).substring(2);\r",
+									"\r",
+									"var userLoginEmail= \"abc\"+random+\"@gmail.com\";\r",
+									"//var userLastName=\"abc\"+random;\r",
+									"//var userLastName=\"abc\"+random;\r",
+									"\r",
+									"pm.environment.set(\"usermodule_email_env\",userLoginEmail);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "393b69b6-b257-4f27-b84a-c218b4dadea7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userComments\": \"{{user_Comments}}\",\r\n  \"userEduPg\": \"{{user_EduPg}}\",\r\n  \"userEduUg\": \"\",\r\n  \"userFirstName\": \"{{user_FirstName}}\",\r\n  \"userId\": \"{{user_Id}}\",\r\n  \"userLastName\": \"{{user_LastName}}\",\r\n  \"userLinkedinUrl\": \"{{user_LinkedinUrl}}\",\r\n  \"userLocation\": \"{{user_Location}}\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"{{login_Status}}\",\r\n    \"password\": \"{{passWORD}}\",\r\n    \"roleIds\": [\r\n      \"{{roleId_student}}\"\r\n    ],\r\n    \"status\": \"{{staTUS}}\",\r\n    \"userLoginEmail\": \"{{usermodule_email_env}}\"\r\n  },\r\n  \"userMiddleName\": \"{{user_MiddleName}}\",\r\n  \"userPhoneNumber\": {{usermodule_randomNumber}},\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"{{roleId_student}}\",\r\n      \"userRoleStatus\": \"{{user_RoleStatus}}\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"{{user_TimeZone}}\",\r\n  \"userVisaStatus\": \"{{user_VisaStatus}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/roleStatus"
+					},
+					"response": []
+				},
+				{
 					"name": "CreateUser_Negative",
 					"event": [
 						{
