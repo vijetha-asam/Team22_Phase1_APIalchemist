@@ -1281,6 +1281,16 @@
 													"",
 													"// Define the path parameter value",
 													"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+													"",
+													"// Validate the path parameter value",
+													"if (!pathParamValue) {",
+													"    throw new Error(\"Path parameter value is missing\");",
+													"}",
+													"",
+													"// Log the path parameter value",
+													"console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"",
 													"// Construct the complete URL with the path parameter",
 													"const url = `${baseUrl}/${pathParamValue}`;",
 													"",
@@ -1336,6 +1346,16 @@
 													"",
 													"// Define the path parameter value",
 													"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+													"",
+													"// Validate the path parameter value",
+													"if (!pathParamValue) {",
+													"    throw new Error(\"Path parameter value is missing\");",
+													"}",
+													"",
+													"// Log the path parameter value",
+													"console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"",
 													"// Construct the complete URL with the path parameter",
 													"const url = `${baseUrl}/${pathParamValue}`;",
 													"",
@@ -1391,6 +1411,16 @@
 													"",
 													"// Define the path parameter value",
 													"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+													"",
+													"// Validate the path parameter value",
+													"if (!pathParamValue) {",
+													"    throw new Error(\"Path parameter value is missing\");",
+													"}",
+													"",
+													"// Log the path parameter value",
+													"console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"",
 													"// Construct the complete URL with the path parameter",
 													"const url = `${baseUrl}/${pathParamValue}`;",
 													"",
@@ -2116,7 +2146,32 @@
 											"script": {
 												"id": "711c6b19-ac38-4d94-8e66-7aede753ef67",
 												"exec": [
-													""
+													"resp = pm.response.json();",
+													"pm.test(\"Response is valid JSON\", function () {",
+													"    pm.response.to.be.json;",
+													"});",
+													"// Perform statuc code validation",
+													"pm.test(\"Status code is 400\",()=>{",
+													"pm.response.to.have.status(400);",
+													"});",
+													"// Perform status validation",
+													"pm.test(\"Check Status as Bad Request\",()=>{",
+													"pm.response.to.have.status('Bad Request')",
+													"});",
+													"//Define expected Data",
+													"const expectedData = {",
+													"    \"message\": \"Invalid Status: must be Active or Inactive\",",
+													"    \"success\": false",
+													"};",
+													"// Validate the response body",
+													"pm.test(\"Response body contains expected error message and success flag\", function() {",
+													"    pm.expect(resp.message).to.equal(expectedData.message);",
+													"    pm.expect(resp.success).to.equal(expectedData.success);",
+													"});",
+													"// Perform response time validation",
+													"pm.test(\"response time is less than 700ms\", ()=>{",
+													"    pm.expect(pm.response.responseTime).to.be.below(700);",
+													"});"
 												],
 												"type": "text/javascript"
 											}
@@ -2137,6 +2192,16 @@
 													"",
 													"// Define the path parameter value",
 													"const pathParamValue = \"March24_APIAlchemist_API_002\";",
+													"",
+													"// Validate the path parameter value",
+													"if (!pathParamValue) {",
+													"    throw new Error(\"Path parameter value is missing\");",
+													"}",
+													"",
+													"// Log the path parameter value",
+													"console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"",
 													"// Construct the complete URL with the path parameter",
 													"const url = `${baseUrl}/${pathParamValue}`;",
 													"",
@@ -2162,7 +2227,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateToOnlyNumbers}}\"\n} ",
+											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{InvalidProgramStatus}}\"\n} ",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2181,17 +2246,67 @@
 											"script": {
 												"id": "166a0cab-4e4f-4cab-8411-bb8233b86936",
 												"exec": [
-													"// Get the base URL from the request",
-													"const baseUrl = pm.request.url.getBaseURL();",
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
 													"// Log the base URL",
-													"console.log(\"Base URL:\", baseUrl);",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
 													"// Define the path parameter value",
 													"const pathParamValue = \"March24_APIAlchemist_API_002\";",
+													"",
+													"// Validate the path parameter value",
+													"if (!pathParamValue) {",
+													"    throw new Error(\"Path parameter value is missing\");",
+													"}",
+													"",
+													"// Log the path parameter value",
+													"console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"",
 													"// Construct the complete URL with the path parameter",
 													"const url = `${baseUrl}/${pathParamValue}`;",
 													"",
 													"// Set the request URL",
-													"pm.request.url = url;"
+													"pm.request.url = url; "
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "9dfa551d-2fb0-4436-8158-a7cbaf524fab",
+												"exec": [
+													"resp = pm.response.json();",
+													"pm.test(\"Response is valid JSON\", function () {",
+													"    pm.response.to.be.json;",
+													"});",
+													"// Perform statuc code validation",
+													"pm.test(\"Status code is 400\",()=>{",
+													"pm.response.to.have.status(400);",
+													"});",
+													"// Perform status validation",
+													"pm.test(\"Check Status as Bad Request\",()=>{",
+													"pm.response.to.have.status('Bad Request')",
+													"});",
+													"//Define expected Data",
+													"const expectedData = {",
+													"    \"message\": \"programDescription must begin with alphabet and can contain only alphanumeric characters\",",
+													"    \"success\": false",
+													"};",
+													"// Validate the response body",
+													"pm.test(\"Response body contains expected error message and success flag\", function() {",
+													"    pm.expect(resp.message).to.equal(expectedData.message);",
+													"    pm.expect(resp.success).to.equal(expectedData.success);",
+													"});",
+													"// Perform response time validation",
+													"pm.test(\"response time is less than 700ms\", ()=>{",
+													"    pm.expect(pm.response.responseTime).to.be.below(700);",
+													"});"
 												],
 												"type": "text/javascript"
 											}
@@ -2231,17 +2346,68 @@
 											"script": {
 												"id": "8e138ebe-e0e6-41b3-a68c-a4647033c6ee",
 												"exec": [
-													"// Get the base URL from the request",
-													"const baseUrl = pm.request.url.getBaseURL();",
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
 													"// Log the base URL",
-													"console.log(\"Base URL:\", baseUrl);",
+													"//console.log(\"Base URL:\", baseUrl);",
+													"",
 													"// Define the path parameter value",
 													"const pathParamValue = \"March24_APIAlchemist_API_002\";",
+													"",
+													"// Validate the path parameter value",
+													"if (!pathParamValue) {",
+													"    throw new Error(\"Path parameter value is missing\");",
+													"}",
+													"",
+													"// Log the path parameter value",
+													"console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"",
 													"// Construct the complete URL with the path parameter",
 													"const url = `${baseUrl}/${pathParamValue}`;",
 													"",
 													"// Set the request URL",
-													"pm.request.url = url;"
+													"pm.request.url = url; "
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "67655810-7b82-461a-8701-fed91f1f8e66",
+												"exec": [
+													"resp = pm.response.json();",
+													"// Perform response json validation",
+													"pm.test(\"Response is valid JSON\", function () {",
+													"    pm.response.to.be.json;",
+													"});",
+													"// Perform statuc code validation",
+													"pm.test(\"Status code is 400\",()=>{",
+													"pm.response.to.have.status(400);",
+													"});",
+													"// Perform status validation",
+													"pm.test(\"Check Status as Bad Request\",()=>{",
+													"pm.response.to.have.status('Bad Request')",
+													"});",
+													"//Define expected Data",
+													"const expectedData = {",
+													"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
+													"    \"success\": false",
+													"};",
+													"// Validate the response body",
+													"pm.test(\"Response body contains expected error message and success flag\", function() {",
+													"    pm.expect(resp.message).to.equal(expectedData.message);",
+													"    pm.expect(resp.success).to.equal(expectedData.success);",
+													"});",
+													"// Perform response time validation",
+													"pm.test(\"response time is less than 700ms\", ()=>{",
+													"    pm.expect(pm.response.responseTime).to.be.below(700);",
+													"});"
 												],
 												"type": "text/javascript"
 											}
@@ -2263,116 +2429,6 @@
 										"body": {
 											"mode": "raw",
 											"raw": "{\n    \"programName\": \"{{UpdateToSpecialChar}}\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}",
-											"options": {
-												"raw": {
-													"language": "json"
-												}
-											}
-										},
-										"url": "{{BaseURL}}/program"
-									},
-									"response": []
-								},
-								{
-									"name": "UpdateProgramStatusWithInvalidValue Copy",
-									"event": [
-										{
-											"listen": "prerequest",
-											"script": {
-												"id": "f6e6817f-984b-43c3-8c4d-a6fc2f20514d",
-												"exec": [
-													"// Get the request URL",
-													"const requestUrl = pm.request.url.toString();",
-													"",
-													"// Extract the base URL from the request URL",
-													"const baseUrl = requestUrl.split(\"?\")[0];",
-													"",
-													"// Log the base URL",
-													"//console.log(\"Base URL:\", baseUrl);",
-													"",
-													"// Get the request body",
-													"const requestBody = pm.request.body;",
-													"",
-													"// Validate the presence of the request body",
-													"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
-													"    throw new Error(\"Request body is missing\");",
-													"}",
-													"// Log the request body",
-													"//console.log(\"Request body:\", requestBody.raw);",
-													"",
-													"",
-													"// Define the path parameter value",
-													"var pathParamValue =pm.environment.get(\"ProgramModule_updateProgram_programId\");",
-													"",
-													"// Validate the path parameter value",
-													"if (!pathParamValue) {",
-													"    throw new Error(\"Path parameter value is missing\");",
-													"}",
-													"",
-													"// Log the path parameter value",
-													"console.log(\"Path parameter value:\", pathParamValue);",
-													"",
-													"// Construct the complete URL with the path parameter",
-													"const url = `${baseUrl}/${pathParamValue}`;",
-													"",
-													"// Set the request URL",
-													"pm.request.url = url;"
-												],
-												"type": "text/javascript"
-											}
-										},
-										{
-											"listen": "test",
-											"script": {
-												"id": "80a62695-27c5-46bf-8269-58f1f175dcf6",
-												"exec": [
-													"resp = pm.response.json();",
-													"pm.test(\"Response is valid JSON\", function () {",
-													"    pm.response.to.be.json;",
-													"});",
-													"// Perform statuc code validation",
-													"pm.test(\"Status code is 400\",()=>{",
-													"pm.response.to.have.status(400);",
-													"});",
-													"// Perform status validation",
-													"pm.test(\"Check Status as Bad Request\",()=>{",
-													"pm.response.to.have.status('Bad Request')",
-													"});",
-													"//Define expected Data",
-													"const expectedData = {",
-													"    \"message\": \"Invalid Status: must be Active or Inactive\",",
-													"    \"success\": false",
-													"};",
-													"// Validate the response body",
-													"pm.test(\"Response body contains expected error message and success flag\", function() {",
-													"    pm.expect(resp.message).to.equal(expectedData.message);",
-													"    pm.expect(resp.success).to.equal(expectedData.success);",
-													"});",
-													"// Perform response time validation",
-													"pm.test(\"response time is less than 700ms\", ()=>{",
-													"    pm.expect(pm.response.responseTime).to.be.below(700);",
-													"});"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"id": "10203628-bb15-442e-bdde-1cbd4d96b3e5",
-									"protocolProfileBehavior": {
-										"disableBodyPruning": true
-									},
-									"request": {
-										"auth": {
-											"type": "bearer",
-											"bearer": {
-												"token": "{{programModuleToken}}"
-											}
-										},
-										"method": "PUT",
-										"header": [],
-										"body": {
-											"mode": "raw",
-											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateToSpecialChar}}\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
