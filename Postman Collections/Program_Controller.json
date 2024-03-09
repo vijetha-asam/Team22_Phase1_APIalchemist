@@ -1104,7 +1104,7 @@
 											"script": {
 												"id": "48c3d66e-4817-49c5-b8b7-5a9eddafbbef",
 												"exec": [
-													"console.log(\"{{UpdateProgramNameValid_ID}}\");"
+													""
 												],
 												"type": "text/javascript"
 											}
@@ -1280,7 +1280,7 @@
 													"//console.log(\"Base URL:\", baseUrl);",
 													"",
 													"// Define the path parameter value",
-													"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+													"const pathParamValue = pm.environment.get(\"ProgramModule_updateProgramPositive_programName\");",
 													"",
 													"// Validate the path parameter value",
 													"if (!pathParamValue) {",
@@ -1345,7 +1345,7 @@
 													"//console.log(\"Base URL:\", baseUrl);",
 													"",
 													"// Define the path parameter value",
-													"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+													"const pathParamValue = pm.environment.get(\"ProgramModule_updateProgramPositive_programName\");",
 													"",
 													"// Validate the path parameter value",
 													"if (!pathParamValue) {",
@@ -1410,7 +1410,8 @@
 													"//console.log(\"Base URL:\", baseUrl);",
 													"",
 													"// Define the path parameter value",
-													"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+													"//const pathParamValue = \"March24_APIAlchemist_API_001\";",
+													"const pathParamValue = pm.environment.get(\"ProgramModule_updateProgramPositive_programName\");",
 													"",
 													"// Validate the path parameter value",
 													"if (!pathParamValue) {",
