@@ -521,7 +521,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"999999999\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"{{UpdateToOnlyNumbers}}\",\n  \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -657,7 +657,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"^%&$*((*&^%%%$##\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"{{UpdateToSpecialChar}}\",\n  \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -723,7 +723,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"March24-API-DAAA-010\",\n  \"programStatus\": \"Inactive\"\n}\n\n\n",
+							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"{{ExistingProgramName}}\",\n  \"programStatus\": \"Inactive\"\n}\n\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1798,7 +1798,7 @@
 					"name": "Update by programName",
 					"item": [
 						{
-							"name": "UpdateProgramStatusWithInvalidValue_ByName",
+							"name": "UpdateProgramStatusWithInvalidValue_ByProgramName",
 							"event": [
 								{
 									"listen": "test",
@@ -1859,6 +1859,28 @@
 						},
 						{
 							"name": "UpdateProgramDescriptionWithSpecialChar_ByProgramName",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "166a0cab-4e4f-4cab-8411-bb8233b86936",
+										"exec": [
+											"// Get the base URL from the request",
+											"const baseUrl = pm.request.url.getBaseURL();",
+											"// Log the base URL",
+											"console.log(\"Base URL:\", baseUrl);",
+											"// Define the path parameter value",
+											"const pathParamValue = \"March24_APIAlchemist_API_002\";",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "efae2e75-2459-4b69-956f-4e1cd22ea7f5",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1881,12 +1903,34 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/program/March24_APIAlchemist_API_001"
+								"url": "{{BaseURL}}/program"
 							},
 							"response": []
 						},
 						{
 							"name": "UpdateProgramNameWithSpecialChars_ByProgramName",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "8e138ebe-e0e6-41b3-a68c-a4647033c6ee",
+										"exec": [
+											"// Get the base URL from the request",
+											"const baseUrl = pm.request.url.getBaseURL();",
+											"// Log the base URL",
+											"console.log(\"Base URL:\", baseUrl);",
+											"// Define the path parameter value",
+											"const pathParamValue = \"March24_APIAlchemist_API_002\";",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "378742e4-c1f7-49c5-99f6-a24e5525a503",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1909,7 +1953,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/program/March24_APIAlchemist_API_001"
+								"url": "{{BaseURL}}/program"
 							},
 							"response": []
 						}
