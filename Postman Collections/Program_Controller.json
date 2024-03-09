@@ -1662,7 +1662,54 @@
 							"response": []
 						},
 						{
-							"name": "UpdateProgramStatusByProgramID",
+							"name": "UpdateProgramStatusWithSpecialCharacters",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "f6e6817f-984b-43c3-8c4d-a6fc2f20514d",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Log the base URL",
+											"//console.log(\"Base URL:\", baseUrl);",
+											"",
+											"// Get the request body",
+											"const requestBody = pm.request.body;",
+											"",
+											"// Validate the presence of the request body",
+											"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
+											"    throw new Error(\"Request body is missing\");",
+											"}",
+											"// Log the request body",
+											"//console.log(\"Request body:\", requestBody.raw);",
+											"",
+											"",
+											"// Define the path parameter value",
+											"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
+											"",
+											"// Validate the path parameter value",
+											"if (!pathParamValue) {",
+											"    throw new Error(\"Path parameter value is missing\");",
+											"}",
+											"",
+											"// Log the path parameter value",
+											"console.log(\"Path parameter value:\", pathParamValue);",
+											"",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "d469c745-f0f1-4be0-b8c0-9e36d19a0bdb",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1685,7 +1732,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/putprogram/16341"
+								"url": "{{BaseURL}}/putprogram"
 							},
 							"response": []
 						}
