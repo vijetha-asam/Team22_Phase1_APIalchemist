@@ -5587,7 +5587,151 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": \"{{programbatch_batchid}}\",\r\n    \"batchName\": \"March24-API_Alchemist-March24-APIAlchemist-SDET-039-SDET120-100\",\r\n    \"batchNoOfClasses\": AA,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \" \"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": \"{{programbatch_batchid}}\",\r\n    \"batchName\": \"March24-API_Alchemist-March24-APIAlchemist-SDET-039-SDET120-100\",\r\n    \"batchNoOfClasses\": 3,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \" \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Batch with program name as numeric values",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"// Log the programId to the console (optional)\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.collectionVariables.set(\"batchName\", batchName);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "bad31026-fd85-4628-a977-b23ec272cc65",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": \"{{programbatch_batchid}}\",\r\n    \"batchName\": \"March24-API_Alchemist-March24-APIAlchemist-SDET-039-SDET120-100\",\r\n    \"batchNoOfClasses\": 3,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"111\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Batch with program name as Special characters",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"// Log the programId to the console (optional)\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.collectionVariables.set(\"batchName\", batchName);\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "4fc53baf-6ecd-4eaa-9963-37e25ad7552f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": \"{{programbatch_batchid}}\",\r\n    \"batchName\": \"March24-API_Alchemist-March24-APIAlchemist-SDET-039-SDET120-100\",\r\n    \"batchNoOfClasses\": 2,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"#$%\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5721,15 +5865,15 @@
 					"response": []
 				},
 				{
-					"name": "Delete by program Id invalid",
+					"name": "Delete by program Id invalid program id",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "42f5d782-fea1-44fe-a194-e95ad9f572d5",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -5763,15 +5907,15 @@
 					"response": []
 				},
 				{
-					"name": "Delete Batch with batch Id invalid",
+					"name": "Delete Batch with batch Id invalid batch id",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -5804,7 +5948,53 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
+						"url": "{{BaseURL}}/batches/9"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Batch with batch Id as null",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "00d64ac1-39a8-4313-a819-bb2bd429830a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/batches/"
 					},
 					"response": []
 				}
