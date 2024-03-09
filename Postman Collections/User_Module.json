@@ -1333,7 +1333,7 @@
 									"      \"type\": \"string\"\r",
 									"    },\r",
 									"    \"userVisaStatus\": {\r",
-									"      \"type\": \"string\"\r",
+									"      \"type\": \"\"\r",
 									"    }\r",
 									"  },\r",
 									"  \"required\": [\r",
