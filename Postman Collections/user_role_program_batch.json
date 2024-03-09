@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "User login to populate bearer token(not part of this module",
+			"name": "User login (not a part of this module)",
 			"event": [
 				{
 					"listen": "test",
@@ -1164,6 +1164,24 @@
 		},
 		{
 			"name": "Restore deleted Data (Not a part of scenarios)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4b9441a7-f4f1-417a-bfaf-4da2a9c71e95",
+						"exec": [
+							"pm.test('Deleted data has been restored to ensure this module can be rerun ', () => {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.have.property('message');",
+							"    pm.expect(jsonData.message.toLowerCase()).to.include(\"has been successfully assigned to program/batch(es)\");",
+							"})",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"id": "9b42020c-8160-44d2-8b42-35dfa90f3f71",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
@@ -1187,6 +1205,68 @@
 					}
 				},
 				"url": "{{BaseURL}}/users/roleProgramBatchStatus/{{userIdkb}}"
+			},
+			"response": []
+		},
+		{
+			"name": "User logout(not a part of this module)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fa7a1fd8-eba7-42f4-a11e-2e45a1cb864a",
+						"exec": [
+							"//verify if test achieved results",
+							"",
+							"",
+							"pm.test(\"Logout was successful\", function () {",
+							"   pm.expect(pm.response.text()).to.include(\"Logout successful\");",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "c31cb03a-803f-407c-8284-c3476e9b4d08",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "{{Bearertoken2}}"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/logoutlms",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"logoutlms"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"description": "application/json",
+							"disabled": true
+						}
+					]
+				}
 			},
 			"response": []
 		}
