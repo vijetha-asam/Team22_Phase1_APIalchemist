@@ -1213,7 +1213,7 @@
 											"const url = `${baseUrl}/${pathParamValue}`;",
 											"",
 											"// Set the request URL",
-											"pm.request.url = url;"
+											"pm.request.url = url; "
 										],
 										"type": "text/javascript"
 									}
@@ -1798,7 +1798,7 @@
 					"name": "Update by programName",
 					"item": [
 						{
-							"name": "UpdateProgramStatusWithInvalidValue",
+							"name": "UpdateProgramStatusWithInvalidValue_ByName",
 							"event": [
 								{
 									"listen": "test",
@@ -1820,7 +1820,7 @@
 											"// Log the base URL",
 											"console.log(\"Base URL:\", baseUrl);",
 											"// Define the path parameter value",
-											"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+											"const pathParamValue = \"March24_APIAlchemist_API_002\";",
 											"// Construct the complete URL with the path parameter",
 											"const url = `${baseUrl}/${pathParamValue}`;",
 											"",
