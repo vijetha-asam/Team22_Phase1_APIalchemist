@@ -1588,7 +1588,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2216,7 +2216,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{programbatch_batchName}}\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"active\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"March24-APIAlchemist-SDET-API09-029\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"{{Update_BatchDescription}}\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{programbatch_batchName}}\",\r\n    \"batchNoOfClasses\": {{UpdateNoClasses}},\r\n    \"batchStatus\": \"{{Update_BatchStatus}}\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"{{programbatch_programname}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
