@@ -616,7 +616,7 @@
 									"        \"properties\": {\r",
 									"            \"batchId\": {\"type\": \"number\"},\r",
 									"            \"batchName\": {\"type\": \"string\"},\r",
-									"            \"batchDescription\": {\"type\": \"string\"},\r",
+									"            \"batchDescription\": {\"type\": 'string'},\r",
 									"            \"batchStatus\": {\"type\": \"string\"},\r",
 									"\t        \"batchNoOfClasses\":{\"type\": \"number\"},\r",
 									"  \t        \"programId\": {\"type\": \"number\"},\r",
