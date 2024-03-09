@@ -1078,7 +1078,27 @@
 									"    pm.environment.set(\"error_message\", \"Path parameter 'programbatch_batchid' is missing\");\r",
 									"    pm.request.cancel = true;\r",
 									"}\r",
-									""
+									"// Get the request URL\r",
+									"const requestUrl = pm.request.url.toString();\r",
+									"\r",
+									"// Get the protocol and host part of the URL\r",
+									"const urlParts = requestUrl.split('/');\r",
+									"const baseUrl = urlParts.slice(0, 3).join('/');\r",
+									"\r",
+									"// Append the remaining path parts to form the complete URL\r",
+									"const remainingPath = urlParts.slice(3).join('/');\r",
+									"const completeUrl = baseUrl + '/' + remainingPath;\r",
+									"console.log(\"Complete URL:\", completeUrl);\r",
+									"// Set the request URL\r",
+									"pm.request.url = completeUrl;\r",
+									"//console.log(\"Complete URL:\", completeUrl);\r",
+									"// Define the path parameter value\r",
+									"var pathParamValue =pm.environment.get(\"programbatch_programId\");\r",
+									"\r",
+									"// Validate the path parameter value\r",
+									"if (!pathParamValue) {\r",
+									"    throw new Error(\"Path parameter value is missing\");\r",
+									"}"
 								],
 								"type": "text/javascript"
 							}
