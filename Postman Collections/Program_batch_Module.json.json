@@ -4735,7 +4735,7 @@
 					"response": []
 				},
 				{
-					"name": "Update Batch with batch Id batch description as numeric values",
+					"name": "Update Batch with batch description as numeric values",
 					"event": [
 						{
 							"listen": "test",
@@ -4879,7 +4879,7 @@
 					"response": []
 				},
 				{
-					"name": "Update Batch with batch Id Copy 3",
+					"name": "Update Batch with batch Id with batch description as null",
 					"event": [
 						{
 							"listen": "test",
@@ -4939,7 +4939,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"Newbatch for SDET\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{programbatch_batchName}}\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": null,\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{programbatch_batchName}}\",\r\n    \"batchNoOfClasses\": 5,\r\n    \"batchStatus\": \"Inactive\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"UpdatedPost1healthcare21\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
