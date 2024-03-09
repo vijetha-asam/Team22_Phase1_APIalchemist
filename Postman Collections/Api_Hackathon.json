@@ -393,7 +393,7 @@
 					"response": []
 				},
 				{
-					"name": "Create_student Copy",
+					"name": "CreateUser_Negative",
 					"event": [
 						{
 							"listen": "prerequest",
