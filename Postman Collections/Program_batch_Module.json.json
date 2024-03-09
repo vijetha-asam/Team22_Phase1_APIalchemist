@@ -1584,7 +1584,146 @@
 					"response": []
 				},
 				{
-					"name": "Create Batch Module Copy",
+					"name": "Create Batch Module Missing program Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"pm.test('Check Status Text', () => {\r",
+									"    pm.response.to.have.status('Created');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"\r",
+									"pm.test('batchDescription  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchDescription).to.be.a('string').and.to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('batchName  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchName).to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test('batchStatus  is not empty', function () {\r",
+									"    pm.expect(pm.response.json().batchStatus).to.be.a('string').and.to.not.be.empty;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"batchNoOfClasses is not empty\", function() {\r",
+									"    pm.expect(pm.response.json().batchNoOfClasses).to.be.a('number').and.to.not.be.null;\r",
+									"});\r",
+									"\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"//pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.environment.set(\"programbatch_batchName\", batchName);\r",
+									"pm.environment.set(\"programbatch_batchid\",batchId);\r",
+									"console.log(\"batch Name:\", batchName);\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"if (pm.response.code === 201) {\r",
+									"pm.test(\"validate response body properties\", () => {\r",
+									"    // Check the expected properties exist\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
+									"  \r",
+									"});\r",
+									"if (pm.response.code === 201) {\r",
+									"const schema ={\r",
+									"\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"batchDescription\": { \"type\": \"string\" },\r",
+									"    \"batchName\": { \"type\": \"string\" },\r",
+									"    \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
+									"    \"batchStatus\":{\r",
+									"            'type': 'string',\r",
+									"            'enum': [\r",
+									"                'active',\r",
+									"                'inactive'\r",
+									"            ]},\r",
+									"    \"programId\": { \"type\": \"integer\"}\r",
+									"  },\r",
+									"  \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
+									"};\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});\r",
+									"}\r",
+									"}\r",
+									"if(jsonData.message===\"userComments must begin with alphabet and can contain only alphanumeric characters\"){\r",
+									" pm.test(\"userComments must begin with alphabet and can contain only alphanumeric characters\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"userComments must begin with alphabet and can contain only alphanumeric characters\");\r",
+									"}) \r",
+									"return  \r",
+									"}\r",
+									"else if (jsonData.message===\"userComments is cannot be null or empty\") {\r",
+									"\r",
+									"pm.test(\"userComments is cannot be null or empty\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"userComments is cannot be null or empty\");\r",
+									"});\r",
+									"pm.test(\"Status code is 400\",()=>{\r",
+									"pm.response.to.have.status(400);\r",
+									"});\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "dd6e0de4-1b97-4416-afbe-847c24ea0bb0",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\" \"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Batch Module Missing batch status",
 					"event": [
 						{
 							"listen": "test",
@@ -1696,7 +1835,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \" \",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2110,7 +2249,11 @@
 									"var limit = 5000;\r",
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
-									"\r",
+									"pm.test(\"count of records with staus active\", function(){\r",
+									"    const jsonData = pm.response.json();\r",
+									"    var count=jsonData.length;\r",
+									"    console.log(count);\r",
+									" });\r",
 									"//Validate the response body\r",
 									"\r",
 									"// Perform schema validation\r",
