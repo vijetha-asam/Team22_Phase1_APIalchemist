@@ -1273,16 +1273,16 @@
 									"pm.test(\"Response is valid JSON\", function () {\r",
 									"    pm.response.to.be.json;\r",
 									"});\r",
-									"if(jsonData.message===\"User First Name must begin with alphabet and can contain only alphanumeric characters\"){\r",
-									" pm.test(\"User First Name must begin with alphabet and can contain only alphanumeric characters\",function(){\r",
-									"pm.expect(jsonData.message).contains(\"User First Name must begin with alphabet and can contain only alphanumeric characters\");\r",
+									"if(jsonData.message===\"userMiddleName must contain one or more alphabets only\"){\r",
+									" pm.test(\"userMiddleName must contain one or more alphabets only\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"userMiddleName must contain one or more alphabets only\");\r",
 									"}) \r",
 									"return  \r",
 									"}\r",
-									"else if (jsonData.message===\"User First Name is cannot be null or empty\") {\r",
+									"else if (jsonData.message===\"userMiddleName is cannot be null or empty\") {\r",
 									"\r",
-									"pm.test(\"User First Name is cannot be null or empty\",function(){\r",
-									"pm.expect(jsonData.message).contains(\"User First Name is cannot be null or empty\");\r",
+									"pm.test(\"userMiddleName is cannot be null or empty\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"userMiddleName is cannot be null or empty\");\r",
 									"});\r",
 									"pm.test(\"Status code is 400\",()=>{\r",
 									"pm.response.to.have.status(400);\r",
@@ -1333,7 +1333,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userComments\": \"{{user_Comments}}\",\r\n  \"userEduPg\": \"{{user_EduPg}}\",\r\n  \"userEduUg\": \"{{user_EduUg}}\",\r\n  \"userFirstName\": \"\",\r\n  \"userId\": \"{{user_Id}}\",\r\n  \"userLastName\": \"{{user_LastName}}\",\r\n  \"userLinkedinUrl\": \"{{user_LinkedinUrl}}\",\r\n  \"userLocation\": \"{{user_Location}}\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"{{login_Status}}\",\r\n    \"password\": \"{{passWORD}}\",\r\n    \"roleIds\": [\r\n      \"{{roleId_student}}\"\r\n    ],\r\n    \"status\": \"{{staTUS}}\",\r\n    \"userLoginEmail\": \"{{usermodule_email_env}}\"\r\n  },\r\n  \"userMiddleName\": \"{{user_MiddleName}}\",\r\n  \"userPhoneNumber\": {{usermodule_randomNumber}},\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"{{roleId_student}}\",\r\n      \"userRoleStatus\": \"{{user_RoleStatus}}\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"{{user_TimeZone}}\",\r\n  \"userVisaStatus\": \"{{user_VisaStatus}}\"\r\n}",
+							"raw": "{\r\n  \"userComments\": \"{{user_Comments}}\",\r\n  \"userEduPg\": \"{{user_EduPg}}\",\r\n  \"userEduUg\": \"{{user_EduUg}}\",\r\n  \"userFirstName\": \"{{user_FirstName}}\",\r\n  \"userId\": \"{{user_Id}}\",\r\n  \"userLastName\": \"{{user_LastName}}\",\r\n  \"userLinkedinUrl\": \"{{user_LinkedinUrl}}\",\r\n  \"userLocation\": \"{{user_Location}}\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"{{login_Status}}\",\r\n    \"password\": \"{{passWORD}}\",\r\n    \"roleIds\": [\r\n      \"{{roleId_student}}\"\r\n    ],\r\n    \"status\": \"{{staTUS}}\",\r\n    \"userLoginEmail\": \"{{usermodule_email_env}}\"\r\n  },\r\n  \"userMiddleName\": \"\",\r\n  \"userPhoneNumber\": {{usermodule_randomNumber}},\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"{{roleId_student}}\",\r\n      \"userRoleStatus\": \"{{user_RoleStatus}}\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"{{user_TimeZone}}\",\r\n  \"userVisaStatus\": \"{{user_VisaStatus}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
