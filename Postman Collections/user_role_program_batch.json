@@ -1126,7 +1126,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "// {\n//   \"programId\": {{programIdkb}},\n//   \"roleId\": {{roleIdkb}},\n//   \"userId\": {{userIdkb}},\n//   \"userRoleProgramBatches\": [\n//     {\n//       \"batchId\": {{batchIdkb}},\n//       \"userRoleProgramBatchStatus\": \"Active\"\n//     }\n//   ]\n// }\n\n{\n  \"programId\": 16208,\n  \"roleId\": \"R03\",\n  \"userId\": \"U07\",\n  \"userRoleProgramBatches\": [\n    {\n      \"batchId\": 8432,\n      \"userRoleProgramBatchStatus\": \"Active\"\n    }\n  ]\n}",
+					"raw": "{\n  \"programId\": {{programIdkb}},\n  \"roleId\": \"{{roleIdkb}}\",\n  \"userId\": \"{{userIdkb}}\",\n  \"userRoleProgramBatches\": [\n    {\n      \"batchId\": {{batchIdkb}},\n      \"userRoleProgramBatchStatus\": \"Active\"\n    }\n  ]\n}\n\n// {\n//   \"programId\": 16208,\n//   \"roleId\": \"R03\",\n//   \"userId\": \"U07\",\n//   \"userRoleProgramBatches\": [\n//     {\n//       \"batchId\": 8432,\n//       \"userRoleProgramBatchStatus\": \"Active\"\n//     }\n//   ]\n// }",
 					"options": {
 						"raw": {
 							"language": "json"
