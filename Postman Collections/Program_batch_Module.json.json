@@ -1583,7 +1583,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"&$%&()\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"17355\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"&$%&()\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1707,7 +1707,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": null,\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"17355\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": null,\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1831,7 +1831,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"&New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"17355\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"&New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1955,7 +1955,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \" \",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"17355\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \" \",\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2079,7 +2079,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": 1111,\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"17355\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": 1111,\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2203,7 +2203,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \" \",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"17355\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \" \",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2327,7 +2327,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\":\"New batch for sdet to learn about api\",\r\n    \"batchName\": 1111,\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"17355\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\":\"New batch for sdet to learn about api\",\r\n    \"batchName\": 1111,\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2451,7 +2451,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\":\"New batch for sdet to learn about api\",\r\n    \"batchName\": \"#&&@1A\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"17355\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\":\"New batch for sdet to learn about api\",\r\n    \"batchName\": \"#&&@1A\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2575,7 +2575,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\":\"New batch for sdet to learn about api\",\r\n    \"batchName\": null,\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"17355\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\":\"New batch for sdet to learn about api\",\r\n    \"batchName\": null,\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2699,7 +2699,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\":\"New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-APIAlchemist-SDET-029\",\r\n    \"batchNoOfClasses\": \"0\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"17355\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\":\"New batch for sdet to learn about api\",\r\n    \"batchName\": \"March24-APIAlchemist-SDET-029\",\r\n    \"batchNoOfClasses\": \"0\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2727,7 +2727,7 @@
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
 									"pm.test('Check Status Text', () => {\r",
-									"    pm.response.to.have.status('Bad  request');\r",
+									"    pm.response.to.have.status('Bad Request');\r",
 									"})\r",
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
@@ -2851,7 +2851,7 @@
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
 									"pm.test('Check Status Text', () => {\r",
-									"    pm.response.to.have.status('Bad  request');\r",
+									"    pm.response.to.have.status('Bad Request');\r",
 									"})\r",
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
@@ -2975,7 +2975,7 @@
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
 									"pm.test('Check Status Text', () => {\r",
-									"    pm.response.to.have.status('Bad  request');\r",
+									"    pm.response.to.have.status('Bad Request');\r",
 									"})\r",
 									"\r",
 									"pm.test('Response is valid JSON', function () {\r",
