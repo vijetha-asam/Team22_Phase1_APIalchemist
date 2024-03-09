@@ -2947,8 +2947,36 @@
 					"name": "Delete by programID",
 					"item": [
 						{
-							"name": "DeleteProgram By ProgramId",
+							"name": "DeleteProgram By BugProgramId",
 							"id": "7b5a2db7-2f51-47cf-a7a2-caccc9fca45c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/deletebyprogid/{{Bug_programModule_programID}}"
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteProgram By Valid ProgramId",
+							"id": "b046bfd0-8a8f-4f0d-8ae0-1424ac79f5c5",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
 							},
