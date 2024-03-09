@@ -1125,6 +1125,33 @@
 						},
 						{
 							"name": "UpdateProgramDescriptionByProgramID",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "5fac4e8e-2284-4360-9da9-9bc2e52e4bb4",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Log the base URL",
+											"//console.log(\"Base URL:\", baseUrl);",
+											"",
+											"// Define the path parameter value",
+											"const pathParamValue = \"16341\";",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "176fa377-3a99-4fdd-91ee-117d89eeb23b",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1147,7 +1174,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/putprogram/16341"
+								"url": "{{BaseURL}}/putprogram"
 							},
 							"response": []
 						},
@@ -1230,10 +1257,15 @@
 									"script": {
 										"id": "fa59fbeb-dd1d-431b-a322-6cbac42cee10",
 										"exec": [
-											"// Get the base URL from the request",
-											"const baseUrl = pm.request.url.getBaseURL();",
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
 											"// Log the base URL",
-											"console.log(\"Base URL:\", baseUrl);",
+											"//console.log(\"Base URL:\", baseUrl);",
+											"",
 											"// Define the path parameter value",
 											"const pathParamValue = \"March24_APIAlchemist_API_001\";",
 											"// Construct the complete URL with the path parameter",
@@ -1274,6 +1306,33 @@
 						},
 						{
 							"name": "UpdateProgramDescriptionByProgramName",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4cff74f5-d87f-4d64-b3f1-b02e69b21366",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Log the base URL",
+											"//console.log(\"Base URL:\", baseUrl);",
+											"",
+											"// Define the path parameter value",
+											"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url; "
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "d644a1b3-ca2e-4aa8-8caa-acf828072798",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1296,12 +1355,39 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/program/March24_APIAlchemist_API_001"
+								"url": "{{BaseURL}}/program"
 							},
 							"response": []
 						},
 						{
 							"name": "UpdateProgramNameByProgramName",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "58668428-0f34-41ad-930c-1687ea8ea9f8",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Log the base URL",
+											"//console.log(\"Base URL:\", baseUrl);",
+											"",
+											"// Define the path parameter value",
+											"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url; "
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "23bd2bd2-f28a-46f8-a4c4-dcd9e4fc7a8d",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1324,7 +1410,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/program/March24_APIAlchemist_API_001"
+								"url": "{{BaseURL}}/program"
 							},
 							"response": []
 						}
