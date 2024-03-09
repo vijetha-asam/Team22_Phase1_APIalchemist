@@ -1289,6 +1289,9 @@
 							"script": {
 								"id": "1a701381-df1d-461f-869b-c06a564a9f1e",
 								"exec": [
+									" var body = JSON.parse(responseBody);\r",
+									"  tests[\"Count: \"  + body.value.length] = true;\r",
+									"  \r",
 									"pm.test(\"Status code is 200\", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});"
@@ -1298,6 +1301,42 @@
 						}
 					],
 					"id": "74ef00d9-6cc0-4a38-a391-c8496331e0a6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseURL}}/users/activeUsers"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Active_User _invalidAuth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1a701381-df1d-461f-869b-c06a564a9f1e",
+								"exec": [
+									" var body = JSON.parse(responseBody);\r",
+									"  tests[\"Count: \"  + body.value.length] = true;\r",
+									"  \r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "3eb1face-1aa7-4388-b0bb-540f77184988",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
