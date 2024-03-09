@@ -6,6 +6,51 @@
 	},
 	"item": [
 		{
+			"name": "User login to populate bearer token(not part of this module",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "763867e5-98fd-4aa5-a343-da6d787c20ba",
+						"exec": [
+							"//populate the token in global variables",
+							"",
+							"pm.globals.set('Bearertoken2', pm.response.json().token)",
+							"",
+							"//gives a message that token is generated",
+							"",
+							"pm.test('Bearertoken2 populated - as prerequisite', () => {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData).to.haveOwnProperty('token');",
+							"    pm.expect(jsonData.type).to.include('Bearer');",
+							"    pm.expect(jsonData.token.length).to.equal(199);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"id": "70ef2ce5-a95c-48c4-b189-0d00c6f57f9a",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"password\": \"{{loginpass}}\",\n  \"userLoginEmailId\": \"{{loginemail}}\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{BaseURL}}/login"
+			},
+			"response": []
+		},
+		{
 			"name": "Get Assigned Program/Batch(es) of All Users (200) Positive scenario",
 			"event": [
 				{
