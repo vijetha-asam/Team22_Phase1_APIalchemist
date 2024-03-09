@@ -1308,6 +1308,251 @@
 			"id": "39d7f45d-8ffa-43cb-9dd7-dc82b386faa6"
 		},
 		{
+			"name": "Negative Update Programs CSV",
+			"item": [
+				{
+					"name": "Update by programId",
+					"item": [
+						{
+							"name": "UpdateProgramNameByProgramID",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Log the base URL",
+											"//console.log(\"Base URL:\", baseUrl);",
+											"",
+											"// Define the path parameter value",
+											"const pathParamValue = \"16341\";",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "a7201673-435c-470b-89e9-d6f7bea00e0a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/putprogram"
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProgramDescriptionByProgramID",
+							"id": "93bf9b7f-8ce8-4e38-a74b-ceb01ab9f04b",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Inactive\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/putprogram/16341"
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProgramStatusByProgramID",
+							"id": "d469c745-f0f1-4be0-b8c0-9e36d19a0bdb",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/putprogram/16341"
+							},
+							"response": []
+						}
+					],
+					"id": "09991d51-b5eb-4deb-97f4-61dfa9162d55"
+				},
+				{
+					"name": "Update by programName",
+					"item": [
+						{
+							"name": "UpdateProgramStatus ByProgramName",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "711c6b19-ac38-4d94-8e66-7aede753ef67",
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "fa59fbeb-dd1d-431b-a322-6cbac42cee10",
+										"exec": [
+											"// Get the base URL from the request",
+											"const baseUrl = pm.request.url.getBaseURL();",
+											"// Log the base URL",
+											"console.log(\"Base URL:\", baseUrl);",
+											"// Define the path parameter value",
+											"const pathParamValue = \"March24_APIAlchemist_API_001\";",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "40e53518-6751-4111-b804-736401494370",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Inactive\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/program"
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProgramDescriptionByProgramName",
+							"id": "efae2e75-2459-4b69-956f-4e1cd22ea7f5",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API_Phase1\",\n    \"programStatus\": \"Inactive\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/program/March24_APIAlchemist_API_001"
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateProgramNameByProgramName",
+							"id": "378742e4-c1f7-49c5-99f6-a24e5525a503",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/program/March24_APIAlchemist_API_001"
+							},
+							"response": []
+						}
+					],
+					"id": "6b49ef67-2f59-4595-a1e2-780b7edc3974"
+				}
+			],
+			"id": "32f01fbe-9f6e-4ae4-9e01-e34a0995dffa"
+		},
+		{
 			"name": "Delete Programs",
 			"item": [
 				{
