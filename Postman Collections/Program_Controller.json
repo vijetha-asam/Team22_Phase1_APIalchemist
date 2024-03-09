@@ -1405,7 +1405,125 @@
 							"response": []
 						},
 						{
+							"name": "UpdateProgramNameToOnlyNumbers",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Log the base URL",
+											"//console.log(\"Base URL:\", baseUrl);",
+											"",
+											"// Define the path parameter value",
+											"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "b6e1c603-adec-445d-90fb-153389dfeafb",
+										"exec": [
+											"resp = pm.response.json();",
+											"// Perform response json validation",
+											"pm.test(\"Response is valid JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"// Perform statuc code validation",
+											"pm.test(\"Status code is 400\",()=>{",
+											"pm.response.to.have.status(400);",
+											"});",
+											"// Perform status validation",
+											"pm.test(\"Check Status as Bad Request\",()=>{",
+											"pm.response.to.have.status('Bad Request')",
+											"});",
+											"//Define expected Data",
+											"const expectedData = {",
+											"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
+											"    \"success\": false",
+											"};",
+											"// Validate the response body",
+											"pm.test(\"Response body contains expected error message and success flag\", function() {",
+											"    pm.expect(resp.message).to.equal(expectedData.message);",
+											"    pm.expect(resp.success).to.equal(expectedData.success);",
+											"});",
+											"// Perform response time validation",
+											"pm.test(\"response time is less than 700ms\", ()=>{",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "239507f7-a4a5-4b7b-a5e7-7c92ca4f9094",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programName\": \"{{UpdateProgramName}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/putprogram"
+							},
+							"response": []
+						},
+						{
 							"name": "UpdateProgramDescriptionByProgramID",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "07fa9362-7c3e-4bf3-8230-84a6d917c2ce",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Log the base URL",
+											"//console.log(\"Base URL:\", baseUrl);",
+											"",
+											"// Define the path parameter value",
+											"const pathParamValue = pm.environment.get(ProgramModule_updateProgram_programId);",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "93bf9b7f-8ce8-4e38-a74b-ceb01ab9f04b",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -1428,7 +1546,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/putprogram/16341"
+								"url": "{{BaseURL}}/putprogram"
 							},
 							"response": []
 						},
