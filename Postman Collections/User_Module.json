@@ -193,7 +193,7 @@
 									"pm.environment.set(\"user-id-env\",jsonData.userId);\r",
 									"console.log(\"userId : \"+jsonData.userId);\r",
 									"\r",
-									"\r",
+									"pm.environment.set(\"User_Module_Email_env\",jsonData.userLoginEmail);\r",
 									"\r",
 									"\r",
 									"\r",
@@ -488,7 +488,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userComments\": \"{{user_Comments}}\",\r\n  \"userEduPg\": \"{{user_EduPg}}\",\r\n  \"userEduUg\": \"{{user_EduUg}}\",\r\n  \"userFirstName\": \"{{user_FirstName}}\",\r\n  \"userId\": \"{{user_Id}}\",\r\n  \"userLastName\": \"{{user_LastName}}\",\r\n  \"userLinkedinUrl\": \"{{user_LinkedinUrl}}\",\r\n  \"userLocation\": \"{{user_Location}}\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"{{login_Status}}\",\r\n    \"password\": \"{{passWORD}}\",\r\n    \"roleIds\": [\r\n      \"{{roleId_student}}\"\r\n    ],\r\n    \"status\": \"{{staTUS}}\",\r\n    \"userLoginEmail\": \"{{usermodule_email_env}}\"\r\n  },\r\n  \"userMiddleName\": \"{{user_MiddleName}}\",\r\n  \"userPhoneNumber\": {{usermodule_randomNumber}},\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"{{roleId_student}}\",\r\n      \"userRoleStatus\": \"{{user_RoleStatus}}\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"{{user_TimeZone}}\",\r\n  \"userVisaStatus\": \"{{user_VisaStatus}}\"\r\n}",
+							"raw": "{\r\n  \"userComments\": \"{{user_Comments}}\",\r\n  \"userEduPg\": \"{{user_EduPg}}\",\r\n  \"userEduUg\": \"{{user_EduUg}}\",\r\n  \"userFirstName\": \"{{user_FirstName}}\",\r\n  \"userId\": \"{{user_Id}}\",\r\n  \"userLastName\": \"{{user_LastName}}\",\r\n  \"userLinkedinUrl\": \"{{user_LinkedinUrl}}\",\r\n  \"userLocation\": \"{{user_Location}}\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"{{login_Status}}\",\r\n    \"password\": \"{{passWORD}}\",\r\n    \"roleIds\": [\r\n      \"{{roleId_student}}\"\r\n    ],\r\n    \"status\": \"{{staTUS}}\",\r\n    \"userLoginEmail\": \"{{User_Module_Email_env}}\"\r\n  },\r\n  \"userMiddleName\": \"{{user_MiddleName}}\",\r\n  \"userPhoneNumber\": {{usermodule_randomNumber}},\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"{{roleId_student}}\",\r\n      \"userRoleStatus\": \"{{user_RoleStatus}}\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"{{user_TimeZone}}\",\r\n  \"userVisaStatus\": \"{{user_VisaStatus}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
