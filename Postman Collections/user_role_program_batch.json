@@ -6,1269 +6,1287 @@
 	},
 	"item": [
 		{
-			"name": "User login (not a part of this module)",
-			"event": [
+			"name": "Pre-requisites",
+			"item": [
 				{
-					"listen": "test",
-					"script": {
-						"id": "763867e5-98fd-4aa5-a343-da6d787c20ba",
-						"exec": [
-							"//populate the token in global variables",
-							"",
-							"pm.globals.set('Bearertoken2', pm.response.json().token)",
-							"",
-							"//gives a message that token is generated",
-							"",
-							"pm.test('Bearertoken2 populated - as prerequisite', () => {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData).to.haveOwnProperty('token');",
-							"    pm.expect(jsonData.type).to.include('Bearer');",
-							"    pm.expect(jsonData.token.length).to.equal(199);",
-							"})"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "70ef2ce5-a95c-48c4-b189-0d00c6f57f9a",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"password\": \"{{loginpass}}\",\n  \"userLoginEmailId\": \"{{loginemail}}\"\n}\n",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": "{{BaseURL}}/login"
-			},
-			"response": []
-		},
-		{
-			"name": "Get Assigned Program/Batch(es) of All Users (200) Positive scenario",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "31b910c8-2e94-49e6-8251-d8ccfd09bd52",
-						"exec": [
-							"///store the first one as it will be deleted and need to be restored",
-							"",
-							"",
-							"var responseBody = pm.response.json();",
-							"",
-							"// Check if the response body is an array and has at least one object",
-							"if (Array.isArray(responseBody) && responseBody.length > 0) {",
-							" // Set the userId as an environment variable",
-							"    pm.environment.set(\"userIdkb\", responseBody[0].userId);",
-							"    pm.environment.set(\"roleIdkb\", responseBody[0].roleId);",
-							"    pm.environment.set(\"programIdkb\", responseBody[0].programId);",
-							"    pm.environment.set(\"batchIdkb\", responseBody[0].batchId);",
-							"    pm.environment.set(\"userRoleProgramBatchStatuskb\", responseBody[0].userRoleProgramBatchStatus);",
-							"",
-							"    // Log the userId for verification",
-							"    console.log(\"userId: \", responseBody[0].userId);",
-							"} else {",
-							"    // Log an error if the response does not meet the expected structure",
-							"    console.error(\"Invalid response structure\");",
-							"};",
-							"",
-							"// status code is 200",
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"//Try catch code to work on",
-							"",
-							"// try{",
-							"//     pm.expect(x).to.be.below(0.5,\"was not below 0.5\");",
-							"//     pm.test(\"Pass - it was less than 0.5\", () => true); // this will only execute if no exception raised",
-							"// }catch(e){",
-							"//     pm.test(\"FAIL - it was more than 0.5\", () => {throw new Error(e.message)}); ",
-							"// }",
-							"",
-							"",
-							"//response time is less than 200 ms",
-							"",
-							"pm.test(\"Response time is less than 500ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
-							"});",
-							"",
-							"//content header present",
-							"",
-							"pm.test(\"Content-Type is present\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"});",
-							"",
-							"",
-							"//content header is JSON",
-							"",
-							"pm.test('Content-Type Header is application-json', () => {",
-							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
-							"})",
-							"",
-							"",
-							"// check the data for each and every object",
-							"const response = pm.response.json();",
-							"",
-							"response.forEach(object => {",
-							"    pm.test( \"Data types are correct for user ID \" + object.userId,()=>{",
-							"    pm.expect(object.userId).to.be.a(\"string\");",
-							"    pm.expect(object.roleId).to.be.a(\"string\");",
-							"    pm.expect(object.programId).to.be.a(\"number\");",
-							"    pm.expect(object.batchId).to.be.an(\"number\");",
-							"    pm.expect(object.userRoleProgramBatchStatus).to.be.a(\"string\");",
-							"    });",
-							"});",
-							"",
-							"",
-							"// Data content validation",
-							"const responseData = pm.response.json();",
-							"",
-							"pm.test('Each user batch has status active', function () {",
-							"    // Iterate through each object in the array",
-							"    responseData.forEach(function (user) {",
-							"        // status is active check",
-							"        pm.expect(user.userRoleProgramBatchStatus).to.be.oneOf(['Active', 'active']); ",
-							"    });",
-							"});",
-							"",
-							"//Validating JSON Schema test",
-							"",
-							"var schema = {",
-							"    properties: {",
-							"    userId: {",
-							"      type: \"string\",",
-							"    },",
-							"    roleId: {",
-							"      type: \"string\",",
-							"    },",
-							"    programId: {",
-							"      type: \"number\",",
-							"    },",
-							"    batchId: {",
-							"      type: \"number\",",
-							"    },",
-							"    userRoleProgramBatchStatus: {",
-							"      type: \"string\",",
-							"    },",
-							"",
-							"  },",
-							"  required: [",
-							"    \"userId\",",
-							"    \"roleId\",",
-							"    \"programId\",",
-							"    \"batchId\",",
-							"    \"userRoleProgramBatchStatus\"",
-							"  ],",
-							"};",
-							"",
-							"",
-							"pm.test(\"Schema is valid\", () => {",
-							"  pm.response.to.have.jsonSchema(schema);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "d38c56b2-3846-4ef6-9014-b16e095768f8",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Bearertoken2}}"
-					}
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BaseURL}}/userRoleProgramBatchMap",
-					"host": [
-						"{{BaseURL}}"
-					],
-					"path": [
-						"userRoleProgramBatchMap"
-					],
-					"query": [
+					"name": "User login (not a part of this module)",
+					"event": [
 						{
-							"key": "",
-							"value": null,
-							"description": "application/json",
-							"disabled": true
+							"listen": "test",
+							"script": {
+								"id": "763867e5-98fd-4aa5-a343-da6d787c20ba",
+								"exec": [
+									"//populate the token in global variables",
+									"",
+									"pm.globals.set('Bearertoken2', pm.response.json().token)",
+									"",
+									"//gives a message that token is generated",
+									"",
+									"pm.test('Bearertoken2 populated - as prerequisite', () => {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.haveOwnProperty('token');",
+									"    pm.expect(jsonData.type).to.include('Bearer');",
+									"    pm.expect(jsonData.token.length).to.equal(199);",
+									"})"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Assigned Program/Batch(es) of All Users (404) wrong endpoint",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
-						"exec": [
-							"// status code is 200",
-							"pm.test(\"Status code is 404\", function () {",
-							"    pm.response.to.have.status(404);",
-							"});",
-							"",
-							"//response time is less than 200 ms",
-							"",
-							"pm.test(\"Response time is less than 500ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
-							"});",
-							"",
-							"//content header present",
-							"",
-							"pm.test(\"Content-Type is present\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"});",
-							"",
-							"",
-							"//content header is JSON",
-							"",
-							"pm.test('Content-Type Header is application-json', () => {",
-							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
-							"})",
-							"",
-							"",
-							"// Data type validation",
-							"",
-							"let dateFormat = /([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))/;",
-							"",
-							"pm.test(\"All Data types are correct\",()=>{",
-							"    var jsondata = pm.response.json();",
-							"    pm.expect(jsondata.timestamp).to.match(dateFormat);",
-							"    pm.expect(jsondata.status).to.be.a(\"number\");",
-							"    pm.expect(jsondata.error).to.be.a(\"string\");",
-							"    pm.expect(jsondata.path).to.be.a(\"string\");",
-							"});",
-							"",
-							"//Validate Response body content",
-							"",
-							"pm.test(\"Request body contains 404 not found \",() => {",
-							"   var jsonData = pm.response.json(); ",
-							"   pm.expect(jsonData).to.haveOwnProperty(\"status\");",
-							"   pm.expect(jsonData.status).to.eql(404);",
-							"   pm.expect(jsonData.error).to.include(\"Not Found\");",
-							" ",
-							" ",
-							"});",
-							"",
-							"//Validating JSON Schema test",
-							"",
-							"var schema = {",
-							"    properties: {",
-							"    timestamp: {",
-							"      type: \"string\",",
-							"    },",
-							"    status: {",
-							"      type: \"number\",",
-							"    },",
-							"    error: {",
-							"      type: \"string\",",
-							"    },",
-							"    path: {",
-							"      type: \"string\",",
-							"    },",
-							"",
-							"  },",
-							"  required: [",
-							"    \"timestamp\",",
-							"    \"status\",",
-							"    \"error\",",
-							"    \"path\"",
-							"  ],",
-							"};",
-							"",
-							"",
-							"pm.test(\"Schema is valid\", () => {",
-							"  pm.response.to.have.jsonSchema(schema);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
+					],
+					"id": "70ef2ce5-a95c-48c4-b189-0d00c6f57f9a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"password\": \"{{loginpass}}\",\n  \"userLoginEmailId\": \"{{loginemail}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/login"
+					},
+					"response": []
 				}
 			],
-			"id": "12744ea8-41c7-44b4-bcf8-816e732ec3b3",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Bearertoken2}}"
-					}
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BaseURL}}/userRoleProgramBatchMaps",
-					"host": [
-						"{{BaseURL}}"
-					],
-					"path": [
-						"userRoleProgramBatchMaps"
-					],
-					"query": [
+			"id": "64f25f8e-5b87-4971-ba68-1599a4cc6055"
+		},
+		{
+			"name": "Module based test",
+			"item": [
+				{
+					"name": "Validate assigned program/batch by wrong User ID (404)",
+					"event": [
 						{
-							"key": "",
-							"value": null,
-							"description": "application/json",
-							"disabled": true
+							"listen": "test",
+							"script": {
+								"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
+								"exec": [
+									"// Status validation ",
+									"",
+									"",
+									"pm.test('Status code is 404', function () {",
+									"    pm.response.to.have.status(404);",
+									"})",
+									"",
+									"// response time validation",
+									"",
+									"pm.test('Response time is less than 500ms', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"})",
+									"",
+									"// validation of content ",
+									"",
+									"pm.test('Content-Type is present', function () {",
+									"    pm.response.to.have.header('Content-Type');",
+									"})",
+									"",
+									"",
+									"//validation of content type",
+									"",
+									"pm.test('Content-Type Header is application-json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"})",
+									"",
+									"//Data type validation",
+									"",
+									"pm.test('All Data types are correct', () => {",
+									"    var jsondata = pm.response.json();",
+									"    pm.expect(jsondata.message).to.be.a('string');",
+									"    pm.expect(jsondata.success).to.be.a('boolean');",
+									"})",
+									"",
+									"//Data content validation",
+									"",
+									"pm.test('Request body contains 404 not found ', () => {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.haveOwnProperty('message');",
+									"    pm.expect(jsonData.success).to.be.false;",
+									"    pm.expect(jsonData.message).to.include('UserRoleProgramBatchMap not found with Id');",
+									"})",
+									"",
+									"",
+									"//schema validation",
+									"",
+									"var schema = {",
+									"    properties: {",
+									"        timestamp: {",
+									"            message: { type: 'string' },",
+									"            success: { type: 'boolean' }",
+									"        },",
+									"        required: [",
+									"            'message',",
+									"            'success'",
+									"        ]",
+									"    }",
+									"};",
+									"",
+									"pm.test(\"Schema is valid\", () => {",
+									"  pm.response.to.have.jsonSchema({",
+									"    type: \"object\",",
+									"    properties: {",
+									"      message: {",
+									"        type: \"string\"",
+									"      },",
+									"      success: {",
+									"        type: \"boolean\"",
+									"      }",
+									"    },",
+									"    required: [\"message\", \"success\"]",
+									"  });",
+									"});",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Validate assigned program/batch by correct User ID (200) Positive scenario",
-			"event": [
+					],
+					"id": "ddcee388-80db-4c7d-9983-89ac39335e1f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/userRoleProgramBatchMap/U999",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"userRoleProgramBatchMap",
+								"U999"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"description": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
-						"exec": [
-							"// status code is 200",
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"//response time is less than 500 ms",
-							"",
-							"pm.test(\"Response time is less than 500ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
-							"});",
-							"",
-							"//content header present",
-							"",
-							"pm.test(\"Content-Type is present\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"});",
-							"",
-							"",
-							"//content header is JSON",
-							"",
-							"pm.test('Content-Type Header is application-json', () => {",
-							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
-							"})",
-							"",
-							"",
-							"// Data type validation",
-							"",
-							"// check the data for each and every object",
-							"const response = pm.response.json();",
-							"",
-							"response.forEach(object => {",
-							"    pm.test( \"Data types are correct for user ID \" + object.userId,()=>{",
-							"    pm.expect(object.userId).to.be.a(\"string\");",
-							"    pm.expect(object.roleId).to.be.a(\"string\");",
-							"    pm.expect(object.programId).to.be.a(\"number\");",
-							"    pm.expect(object.batchId).to.be.an(\"number\");",
-							"    pm.expect(object.userRoleProgramBatchStatus).to.be.a(\"string\");",
-							"    });",
-							"});",
-							"",
-							"//Validate Response body content",
-							"",
-							"const responseData = pm.response.json();",
-							"",
-							"pm.test('Request body contains user id referred to', function () {",
-							"    // Iterate through each object in the array",
-							"    responseData.forEach(function (user) {",
-							"        // status is active check",
-							"        pm.expect(user.userId).to.eql(pm.environment.get(\"userIdkb\"));",
-							"    });",
-							"});",
-							"",
-							"",
-							"//Validating JSON Schema test",
-							"",
-							"var schema = {",
-							"    properties: {",
-							"    userId: {",
-							"      type: \"string\",",
-							"    },",
-							"    roleId: {",
-							"      type: \"string\",",
-							"    },",
-							"    programId: {",
-							"      type: \"number\",",
-							"    },",
-							"    batchId: {",
-							"      type: \"number\",",
-							"    },",
-							"    userRoleProgramBatchStatus: {",
-							"      type: \"string\",",
-							"    },",
-							"",
-							"  },",
-							"  required: [",
-							"    \"userId\",",
-							"    \"roleId\",",
-							"    \"programId\",",
-							"    \"batchId\",",
-							"    \"userRoleProgramBatchStatus\"",
-							"  ],",
-							"};",
-							"",
-							"",
-							"pm.test(\"Schema is valid\", () => {",
-							"  pm.response.to.have.jsonSchema(schema);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "2ba910f7-19a8-431a-bade-7476db4669c6",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Bearertoken2}}"
-					}
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BaseURL}}/userRoleProgramBatchMap/{{userIdkb}}",
-					"host": [
-						"{{BaseURL}}"
-					],
-					"path": [
-						"userRoleProgramBatchMap",
-						"{{userIdkb}}"
-					],
-					"query": [
+					"name": "Get Assigned Program/Batch(es) of All Users (200) Positive scenario",
+					"event": [
 						{
-							"key": "",
-							"value": null,
-							"description": "application/json",
-							"disabled": true
+							"listen": "test",
+							"script": {
+								"id": "31b910c8-2e94-49e6-8251-d8ccfd09bd52",
+								"exec": [
+									"///store the first one as it will be deleted and need to be restored",
+									"",
+									"",
+									"var responseBody = pm.response.json();",
+									"",
+									"// Check if the response body is an array and has at least one object",
+									"if (Array.isArray(responseBody) && responseBody.length > 0) {",
+									" // Set the userId as an environment variable",
+									"    pm.environment.set(\"userIdkb\", responseBody[0].userId);",
+									"    pm.environment.set(\"roleIdkb\", responseBody[0].roleId);",
+									"    pm.environment.set(\"programIdkb\", responseBody[0].programId);",
+									"    pm.environment.set(\"batchIdkb\", responseBody[0].batchId);",
+									"    pm.environment.set(\"userRoleProgramBatchStatuskb\", responseBody[0].userRoleProgramBatchStatus);",
+									"",
+									"    // Log the userId for verification",
+									"    console.log(\"userId: \", responseBody[0].userId);",
+									"} else {",
+									"    // Log an error if the response does not meet the expected structure",
+									"    console.error(\"Invalid response structure\");",
+									"};",
+									"",
+									"// status code is 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"//Try catch code to work on",
+									"",
+									"// try{",
+									"//     pm.expect(x).to.be.below(0.5,\"was not below 0.5\");",
+									"//     pm.test(\"Pass - it was less than 0.5\", () => true); // this will only execute if no exception raised",
+									"// }catch(e){",
+									"//     pm.test(\"FAIL - it was more than 0.5\", () => {throw new Error(e.message)}); ",
+									"// }",
+									"",
+									"",
+									"//response time is less than 200 ms",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"//content header present",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"",
+									"//content header is JSON",
+									"",
+									"pm.test('Content-Type Header is application-json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"})",
+									"",
+									"",
+									"// check the data for each and every object",
+									"const response = pm.response.json();",
+									"",
+									"response.forEach(object => {",
+									"    pm.test( \"Data types are correct for user ID \" + object.userId,()=>{",
+									"    pm.expect(object.userId).to.be.a(\"string\");",
+									"    pm.expect(object.roleId).to.be.a(\"string\");",
+									"    pm.expect(object.programId).to.be.a(\"number\");",
+									"    pm.expect(object.batchId).to.be.an(\"number\");",
+									"    pm.expect(object.userRoleProgramBatchStatus).to.be.a(\"string\");",
+									"    });",
+									"});",
+									"",
+									"",
+									"// Data content validation",
+									"const responseData = pm.response.json();",
+									"",
+									"pm.test('Each user batch has status active', function () {",
+									"    // Iterate through each object in the array",
+									"    responseData.forEach(function (user) {",
+									"        // status is active check",
+									"        pm.expect(user.userRoleProgramBatchStatus).to.be.oneOf(['Active', 'active']); ",
+									"    });",
+									"});",
+									"",
+									"//Validating JSON Schema test",
+									"",
+									"var schema = {",
+									"    properties: {",
+									"    userId: {",
+									"      type: \"string\",",
+									"    },",
+									"    roleId: {",
+									"      type: \"string\",",
+									"    },",
+									"    programId: {",
+									"      type: \"number\",",
+									"    },",
+									"    batchId: {",
+									"      type: \"number\",",
+									"    },",
+									"    userRoleProgramBatchStatus: {",
+									"      type: \"string\",",
+									"    },",
+									"",
+									"  },",
+									"  required: [",
+									"    \"userId\",",
+									"    \"roleId\",",
+									"    \"programId\",",
+									"    \"batchId\",",
+									"    \"userRoleProgramBatchStatus\"",
+									"  ],",
+									"};",
+									"",
+									"",
+									"pm.test(\"Schema is valid\", () => {",
+									"  pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Validate assigned program/batch by wrong User ID (404)",
-			"event": [
+					],
+					"id": "d38c56b2-3846-4ef6-9014-b16e095768f8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/userRoleProgramBatchMap",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"userRoleProgramBatchMap"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"description": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
-						"exec": [
-							"// Status validation ",
-							"",
-							"",
-							"pm.test('Status code is 404', function () {",
-							"    pm.response.to.have.status(404);",
-							"})",
-							"",
-							"// response time validation",
-							"",
-							"pm.test('Response time is less than 500ms', function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
-							"})",
-							"",
-							"// validation of content ",
-							"",
-							"pm.test('Content-Type is present', function () {",
-							"    pm.response.to.have.header('Content-Type');",
-							"})",
-							"",
-							"",
-							"//validation of content type",
-							"",
-							"pm.test('Content-Type Header is application-json', () => {",
-							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
-							"})",
-							"",
-							"//Data type validation",
-							"",
-							"pm.test('All Data types are correct', () => {",
-							"    var jsondata = pm.response.json();",
-							"    pm.expect(jsondata.message).to.be.a('string');",
-							"    pm.expect(jsondata.success).to.be.a('boolean');",
-							"})",
-							"",
-							"//Data content validation",
-							"",
-							"pm.test('Request body contains 404 not found ', () => {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData).to.haveOwnProperty('message');",
-							"    pm.expect(jsonData.success).to.be.false;",
-							"    pm.expect(jsonData.message).to.include('UserRoleProgramBatchMap not found with Id');",
-							"})",
-							"",
-							"",
-							"//schema validation",
-							"",
-							"var schema = {",
-							"    properties: {",
-							"        timestamp: {",
-							"            message: { type: 'string' },",
-							"            success: { type: 'boolean' }",
-							"        },",
-							"        required: [",
-							"            'message',",
-							"            'success'",
-							"        ]",
-							"    }",
-							"};",
-							"",
-							"pm.test(\"Schema is valid\", () => {",
-							"  pm.response.to.have.jsonSchema({",
-							"    type: \"object\",",
-							"    properties: {",
-							"      message: {",
-							"        type: \"string\"",
-							"      },",
-							"      success: {",
-							"        type: \"boolean\"",
-							"      }",
-							"    },",
-							"    required: [\"message\", \"success\"]",
-							"  });",
-							"});",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "ddcee388-80db-4c7d-9983-89ac39335e1f",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Bearertoken2}}"
-					}
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BaseURL}}/userRoleProgramBatchMap/U999",
-					"host": [
-						"{{BaseURL}}"
-					],
-					"path": [
-						"userRoleProgramBatchMap",
-						"U999"
-					],
-					"query": [
+					"name": "Get Assigned Program/Batch(es) of All Users (404) wrong endpoint",
+					"event": [
 						{
-							"key": "",
-							"value": null,
-							"description": "application/json",
-							"disabled": true
+							"listen": "test",
+							"script": {
+								"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
+								"exec": [
+									"// status code is 200",
+									"pm.test(\"Status code is 404\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});",
+									"",
+									"//response time is less than 200 ms",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"//content header present",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"",
+									"//content header is JSON",
+									"",
+									"pm.test('Content-Type Header is application-json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"})",
+									"",
+									"",
+									"// Data type validation",
+									"",
+									"let dateFormat = /([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))/;",
+									"",
+									"pm.test(\"All Data types are correct\",()=>{",
+									"    var jsondata = pm.response.json();",
+									"    pm.expect(jsondata.timestamp).to.match(dateFormat);",
+									"    pm.expect(jsondata.status).to.be.a(\"number\");",
+									"    pm.expect(jsondata.error).to.be.a(\"string\");",
+									"    pm.expect(jsondata.path).to.be.a(\"string\");",
+									"});",
+									"",
+									"//Validate Response body content",
+									"",
+									"pm.test(\"Request body contains 404 not found \",() => {",
+									"   var jsonData = pm.response.json(); ",
+									"   pm.expect(jsonData).to.haveOwnProperty(\"status\");",
+									"   pm.expect(jsonData.status).to.eql(404);",
+									"   pm.expect(jsonData.error).to.include(\"Not Found\");",
+									" ",
+									" ",
+									"});",
+									"",
+									"//Validating JSON Schema test",
+									"",
+									"var schema = {",
+									"    properties: {",
+									"    timestamp: {",
+									"      type: \"string\",",
+									"    },",
+									"    status: {",
+									"      type: \"number\",",
+									"    },",
+									"    error: {",
+									"      type: \"string\",",
+									"    },",
+									"    path: {",
+									"      type: \"string\",",
+									"    },",
+									"",
+									"  },",
+									"  required: [",
+									"    \"timestamp\",",
+									"    \"status\",",
+									"    \"error\",",
+									"    \"path\"",
+									"  ],",
+									"};",
+									"",
+									"",
+									"pm.test(\"Schema is valid\", () => {",
+									"  pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Validate assigned program/batch by correct User ID (404) wrong endpoint",
-			"event": [
+					],
+					"id": "12744ea8-41c7-44b4-bcf8-816e732ec3b3",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/userRoleProgramBatchMaps",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"userRoleProgramBatchMaps"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"description": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
-						"exec": [
-							"// Status validation ",
-							"",
-							"",
-							"pm.test('Status code is 404', function () {",
-							"    pm.response.to.have.status(404);",
-							"})",
-							"",
-							"// response time validation",
-							"",
-							"pm.test('Response time is less than 500ms', function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
-							"})",
-							"",
-							"// validation of content ",
-							"",
-							"pm.test('Content-Type is present', function () {",
-							"    pm.response.to.have.header('Content-Type');",
-							"})",
-							"",
-							"",
-							"//validation of content type",
-							"",
-							"pm.test('Content-Type Header is application-json', () => {",
-							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
-							"})",
-							"",
-							"// Data type validation",
-							"",
-							"let dateFormat = /([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))/;",
-							"",
-							"pm.test(\"All Data types are correct\",()=>{",
-							"    var jsondata = pm.response.json();",
-							"    pm.expect(jsondata.timestamp).to.match(dateFormat);",
-							"    pm.expect(jsondata.status).to.be.a(\"number\");",
-							"    pm.expect(jsondata.error).to.be.a(\"string\");",
-							"    pm.expect(jsondata.path).to.be.a(\"string\");",
-							"});",
-							"",
-							"//Validate Response body content",
-							"",
-							"pm.test(\"Request body contains 404 not found \",() => {",
-							"   var jsonData = pm.response.json(); ",
-							"   pm.expect(jsonData).to.haveOwnProperty(\"status\");",
-							"   pm.expect(jsonData.status).to.eql(404);",
-							"   pm.expect(jsonData.error).to.include(\"Not Found\");",
-							" ",
-							" ",
-							"});",
-							"",
-							"//Validating JSON Schema test",
-							"",
-							"var schema = {",
-							"    properties: {",
-							"    timestamp: {",
-							"      type: \"string\",",
-							"    },",
-							"    status: {",
-							"      type: \"number\",",
-							"    },",
-							"    error: {",
-							"      type: \"string\",",
-							"    },",
-							"    path: {",
-							"      type: \"string\",",
-							"    },",
-							"",
-							"  },",
-							"  required: [",
-							"    \"timestamp\",",
-							"    \"status\",",
-							"    \"error\",",
-							"    \"path\"",
-							"  ],",
-							"};",
-							"",
-							"",
-							"pm.test(\"Schema is valid\", () => {",
-							"  pm.response.to.have.jsonSchema(schema);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "978a62ae-f736-4377-a29e-67979fa22a20",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Bearertoken2}}"
-					}
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BaseURL}}/userRoleProgramBatchMaps/{{userIdkb}}",
-					"host": [
-						"{{BaseURL}}"
-					],
-					"path": [
-						"userRoleProgramBatchMaps",
-						"{{userIdkb}}"
-					],
-					"query": [
+					"name": "Validate assigned program/batch by correct User ID (200) Positive scenario",
+					"event": [
 						{
-							"key": "",
-							"value": null,
-							"description": "application/json",
-							"disabled": true
+							"listen": "test",
+							"script": {
+								"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
+								"exec": [
+									"// status code is 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"//response time is less than 500 ms",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"//content header present",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"",
+									"//content header is JSON",
+									"",
+									"pm.test('Content-Type Header is application-json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"})",
+									"",
+									"",
+									"// Data type validation",
+									"",
+									"// check the data for each and every object",
+									"const response = pm.response.json();",
+									"",
+									"response.forEach(object => {",
+									"    pm.test( \"Data types are correct for user ID \" + object.userId,()=>{",
+									"    pm.expect(object.userId).to.be.a(\"string\");",
+									"    pm.expect(object.roleId).to.be.a(\"string\");",
+									"    pm.expect(object.programId).to.be.a(\"number\");",
+									"    pm.expect(object.batchId).to.be.an(\"number\");",
+									"    pm.expect(object.userRoleProgramBatchStatus).to.be.a(\"string\");",
+									"    });",
+									"});",
+									"",
+									"//Validate Response body content",
+									"",
+									"const responseData = pm.response.json();",
+									"",
+									"pm.test('Request body contains user id referred to', function () {",
+									"    // Iterate through each object in the array",
+									"    responseData.forEach(function (user) {",
+									"        // status is active check",
+									"        pm.expect(user.userId).to.eql(pm.environment.get(\"userIdkb\"));",
+									"    });",
+									"});",
+									"",
+									"",
+									"//Validating JSON Schema test",
+									"",
+									"var schema = {",
+									"    properties: {",
+									"    userId: {",
+									"      type: \"string\",",
+									"    },",
+									"    roleId: {",
+									"      type: \"string\",",
+									"    },",
+									"    programId: {",
+									"      type: \"number\",",
+									"    },",
+									"    batchId: {",
+									"      type: \"number\",",
+									"    },",
+									"    userRoleProgramBatchStatus: {",
+									"      type: \"string\",",
+									"    },",
+									"",
+									"  },",
+									"  required: [",
+									"    \"userId\",",
+									"    \"roleId\",",
+									"    \"programId\",",
+									"    \"batchId\",",
+									"    \"userRoleProgramBatchStatus\"",
+									"  ],",
+									"};",
+									"",
+									"",
+									"pm.test(\"Schema is valid\", () => {",
+									"  pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete assigned program/batch by wrong User ID (404)",
-			"event": [
+					],
+					"id": "2ba910f7-19a8-431a-bade-7476db4669c6",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/userRoleProgramBatchMap/{{userIdkb}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"userRoleProgramBatchMap",
+								"{{userIdkb}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"description": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
-						"exec": [
-							"// Status code validation",
-							"",
-							"pm.test('Status code is 404', function () {",
-							"    pm.response.to.have.status(404);",
-							"})",
-							"",
-							"// Response time validation",
-							"",
-							"pm.test('Response time is less than 500ms', function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
-							"})",
-							"",
-							"//Content availability validation",
-							"",
-							"pm.test('Content-Type is present', function () {",
-							"    pm.response.to.have.header('Content-Type');",
-							"})",
-							"",
-							"//content type validation",
-							"",
-							"pm.test('Content-Type Header is application-json', () => {",
-							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
-							"})",
-							"",
-							"//Response body Data Type validation",
-							"",
-							"pm.test('All Data types are correct', () => {",
-							"    var jsondata = pm.response.json();",
-							"    pm.expect(jsondata.message).to.be.a('string');",
-							"    pm.expect(jsondata.success).to.be.a('boolean');",
-							"})",
-							"",
-							"",
-							"// Response body content validation",
-							"",
-							"pm.test('Request body contains user id not found error ', () => {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData).to.have.property('message');",
-							"    pm.expect(jsonData.success).to.be.false;",
-							"    pm.expect(jsonData.message.toLowerCase()).to.include('userroleprogrambatchmap not found with id');",
-							"})",
-							"",
-							"",
-							"// Response body schema validation",
-							"",
-							"var schema = {",
-							"    properties: {",
-							"        timestamp: {",
-							"            message: { type: 'string' },",
-							"            success: { type: 'boolean' }",
-							"        },",
-							"        required: [",
-							"            'message',",
-							"            'success'",
-							"        ]",
-							"    }",
-							"};",
-							"",
-							"pm.test('Schema is valid', () => {",
-							"    pm.response.to.have.jsonSchema({",
-							"        type: 'object',",
-							"        properties: {",
-							"            message: { type: 'string' },",
-							"            success: { type: 'boolean' }",
-							"        },",
-							"        required: [",
-							"            'message',",
-							"            'success'",
-							"        ]",
-							"    });",
-							"})",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "a491a162-8965-4913-a52b-ae083b493c63",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Bearertoken2}}"
-					}
-				},
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BaseURL}}/userRoleProgramBatchMap/deleteAll/U999",
-					"host": [
-						"{{BaseURL}}"
-					],
-					"path": [
-						"userRoleProgramBatchMap",
-						"deleteAll",
-						"U999"
-					],
-					"query": [
+					"name": "Validate assigned program/batch by correct User ID (404) wrong endpoint",
+					"event": [
 						{
-							"key": "",
-							"value": null,
-							"description": "application/json",
-							"disabled": true
+							"listen": "test",
+							"script": {
+								"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
+								"exec": [
+									"// Status validation ",
+									"",
+									"",
+									"pm.test('Status code is 404', function () {",
+									"    pm.response.to.have.status(404);",
+									"})",
+									"",
+									"// response time validation",
+									"",
+									"pm.test('Response time is less than 500ms', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"})",
+									"",
+									"// validation of content ",
+									"",
+									"pm.test('Content-Type is present', function () {",
+									"    pm.response.to.have.header('Content-Type');",
+									"})",
+									"",
+									"",
+									"//validation of content type",
+									"",
+									"pm.test('Content-Type Header is application-json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"})",
+									"",
+									"// Data type validation",
+									"",
+									"let dateFormat = /([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))/;",
+									"",
+									"pm.test(\"All Data types are correct\",()=>{",
+									"    var jsondata = pm.response.json();",
+									"    pm.expect(jsondata.timestamp).to.match(dateFormat);",
+									"    pm.expect(jsondata.status).to.be.a(\"number\");",
+									"    pm.expect(jsondata.error).to.be.a(\"string\");",
+									"    pm.expect(jsondata.path).to.be.a(\"string\");",
+									"});",
+									"",
+									"//Validate Response body content",
+									"",
+									"pm.test(\"Request body contains 404 not found \",() => {",
+									"   var jsonData = pm.response.json(); ",
+									"   pm.expect(jsonData).to.haveOwnProperty(\"status\");",
+									"   pm.expect(jsonData.status).to.eql(404);",
+									"   pm.expect(jsonData.error).to.include(\"Not Found\");",
+									" ",
+									" ",
+									"});",
+									"",
+									"//Validating JSON Schema test",
+									"",
+									"var schema = {",
+									"    properties: {",
+									"    timestamp: {",
+									"      type: \"string\",",
+									"    },",
+									"    status: {",
+									"      type: \"number\",",
+									"    },",
+									"    error: {",
+									"      type: \"string\",",
+									"    },",
+									"    path: {",
+									"      type: \"string\",",
+									"    },",
+									"",
+									"  },",
+									"  required: [",
+									"    \"timestamp\",",
+									"    \"status\",",
+									"    \"error\",",
+									"    \"path\"",
+									"  ],",
+									"};",
+									"",
+									"",
+									"pm.test(\"Schema is valid\", () => {",
+									"  pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete assigned program/batch by correct User ID (404) wrong endpoint",
-			"event": [
+					],
+					"id": "978a62ae-f736-4377-a29e-67979fa22a20",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/userRoleProgramBatchMaps/{{userIdkb}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"userRoleProgramBatchMaps",
+								"{{userIdkb}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"description": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
-						"exec": [
-							"// Status validation ",
-							"",
-							"",
-							"pm.test('Status code is 404', function () {",
-							"    pm.response.to.have.status(404);",
-							"})",
-							"",
-							"// response time validation",
-							"",
-							"pm.test('Response time is less than 500ms', function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
-							"})",
-							"",
-							"// validation of content ",
-							"",
-							"pm.test('Content-Type is present', function () {",
-							"    pm.response.to.have.header('Content-Type');",
-							"})",
-							"",
-							"",
-							"//validation of content type",
-							"",
-							"pm.test('Content-Type Header is application-json', () => {",
-							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
-							"})",
-							"",
-							"// Data type validation",
-							"",
-							"let dateFormat = /([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))/;",
-							"",
-							"pm.test(\"All Data types are correct\",()=>{",
-							"    var jsondata = pm.response.json();",
-							"    pm.expect(jsondata.timestamp).to.match(dateFormat);",
-							"    pm.expect(jsondata.status).to.be.a(\"number\");",
-							"    pm.expect(jsondata.error).to.be.a(\"string\");",
-							"    pm.expect(jsondata.path).to.be.a(\"string\");",
-							"});",
-							"",
-							"//Validate Response body content",
-							"",
-							"pm.test(\"Request body contains 404 not found \",() => {",
-							"   var jsonData = pm.response.json(); ",
-							"   pm.expect(jsonData).to.haveOwnProperty(\"status\");",
-							"   pm.expect(jsonData.status).to.eql(404);",
-							"   pm.expect(jsonData.error).to.include(\"Not Found\");",
-							" ",
-							" ",
-							"});",
-							"",
-							"//Validating JSON Schema test",
-							"",
-							"var schema = {",
-							"    properties: {",
-							"    timestamp: {",
-							"      type: \"string\",",
-							"    },",
-							"    status: {",
-							"      type: \"number\",",
-							"    },",
-							"    error: {",
-							"      type: \"string\",",
-							"    },",
-							"    path: {",
-							"      type: \"string\",",
-							"    },",
-							"",
-							"  },",
-							"  required: [",
-							"    \"timestamp\",",
-							"    \"status\",",
-							"    \"error\",",
-							"    \"path\"",
-							"  ],",
-							"};",
-							"",
-							"",
-							"pm.test(\"Schema is valid\", () => {",
-							"  pm.response.to.have.jsonSchema(schema);",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "5fcec9ff-1b1a-4316-9a05-645a83c44573",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Bearertoken2}}"
-					}
-				},
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BaseURL}}/userRoleProgramBatchMap/delete/{{userIdkb}}",
-					"host": [
-						"{{BaseURL}}"
-					],
-					"path": [
-						"userRoleProgramBatchMap",
-						"delete",
-						"{{userIdkb}}"
-					],
-					"query": [
+					"name": "Delete assigned program/batch by wrong User ID (404)",
+					"event": [
 						{
-							"key": "",
-							"value": null,
-							"description": "application/json",
-							"disabled": true
+							"listen": "test",
+							"script": {
+								"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
+								"exec": [
+									"// Status code validation",
+									"",
+									"pm.test('Status code is 404', function () {",
+									"    pm.response.to.have.status(404);",
+									"})",
+									"",
+									"// Response time validation",
+									"",
+									"pm.test('Response time is less than 500ms', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"})",
+									"",
+									"//Content availability validation",
+									"",
+									"pm.test('Content-Type is present', function () {",
+									"    pm.response.to.have.header('Content-Type');",
+									"})",
+									"",
+									"//content type validation",
+									"",
+									"pm.test('Content-Type Header is application-json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"})",
+									"",
+									"//Response body Data Type validation",
+									"",
+									"pm.test('All Data types are correct', () => {",
+									"    var jsondata = pm.response.json();",
+									"    pm.expect(jsondata.message).to.be.a('string');",
+									"    pm.expect(jsondata.success).to.be.a('boolean');",
+									"})",
+									"",
+									"",
+									"// Response body content validation",
+									"",
+									"pm.test('Request body contains user id not found error ', () => {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('message');",
+									"    pm.expect(jsonData.success).to.be.false;",
+									"    pm.expect(jsonData.message.toLowerCase()).to.include('userroleprogrambatchmap not found with id');",
+									"})",
+									"",
+									"",
+									"// Response body schema validation",
+									"",
+									"var schema = {",
+									"    properties: {",
+									"        timestamp: {",
+									"            message: { type: 'string' },",
+									"            success: { type: 'boolean' }",
+									"        },",
+									"        required: [",
+									"            'message',",
+									"            'success'",
+									"        ]",
+									"    }",
+									"};",
+									"",
+									"pm.test('Schema is valid', () => {",
+									"    pm.response.to.have.jsonSchema({",
+									"        type: 'object',",
+									"        properties: {",
+									"            message: { type: 'string' },",
+									"            success: { type: 'boolean' }",
+									"        },",
+									"        required: [",
+									"            'message',",
+									"            'success'",
+									"        ]",
+									"    });",
+									"})",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Delete assigned program/batch by correct User ID (200) Positive scenario",
-			"event": [
+					],
+					"id": "a491a162-8965-4913-a52b-ae083b493c63",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/userRoleProgramBatchMap/deleteAll/U999",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"userRoleProgramBatchMap",
+								"deleteAll",
+								"U999"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"description": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
 				{
-					"listen": "test",
-					"script": {
-						"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
-						"exec": [
-							"// status code is 200",
-							"pm.test(\"Status code is 200\", function () {",
-							"    pm.response.to.have.status(200);",
-							"});",
-							"",
-							"//response time is less than 500 ms",
-							"",
-							"pm.test(\"Response time is less than 500ms\", function () {",
-							"    pm.expect(pm.response.responseTime).to.be.below(500);",
-							"});",
-							"",
-							"//content header present",
-							"",
-							"pm.test(\"Content-Type is present\", function () {",
-							"    pm.response.to.have.header(\"Content-Type\");",
-							"});",
-							"",
-							"",
-							"//content header is JSON",
-							"",
-							"pm.test('Content-Type Header is application-json', () => {",
-							"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
-							"})",
-							"",
-							"",
-							"// Data type validation",
-							"",
-							"// check the data for each and every object",
-							"const jsondata = pm.response.json();",
-							"",
-							"pm.test(\"All Data types are correct\",()=>{",
-							"    var jsondata = pm.response.json();",
-							"    pm.expect(jsondata.message).to.be.a(\"string\");",
-							"});",
-							"",
-							"",
-							"//Validate Response body content",
-							"",
-							"",
-							"",
-							"pm.test('Request body contains user id referred to', function () {",
-							"    ",
-							"         pm.expect(jsondata.message.toLowerCase()).to.include(\"deleted all programs/batches assigned to user id\");",
-							"    });",
-							"",
-							"",
-							"",
-							"// Response body schema validation",
-							"",
-							"var schema = {",
-							"    properties: {",
-							"        timestamp: {",
-							"            message: { type: 'string' },",
-							"            success: { type: 'boolean' }",
-							"        },",
-							"        required: [",
-							"            'message',",
-							"            'success'",
-							"        ]",
-							"    }",
-							"};",
-							"",
-							"pm.test('Schema is valid', () => {",
-							"    pm.response.to.have.jsonSchema({",
-							"        type: 'object',",
-							"        properties: {",
-							"            message: { type: 'string' },",
-							"            success: { type: 'boolean' }",
-							"        },",
-							"        required: [",
-							"            'message',",
-							"            'success'",
-							"        ]",
-							"    });",
-							"})",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "b918b412-4b2a-45e0-8952-05754ea2c2f9",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Bearertoken2}}"
-					}
-				},
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BaseURL}}/userRoleProgramBatchMap/deleteAll/{{userIdkb}}",
-					"host": [
-						"{{BaseURL}}"
-					],
-					"path": [
-						"userRoleProgramBatchMap",
-						"deleteAll",
-						"{{userIdkb}}"
-					],
-					"query": [
+					"name": "Delete assigned program/batch by correct User ID (404) wrong endpoint",
+					"event": [
 						{
-							"key": "",
-							"value": null,
-							"description": "application/json",
-							"disabled": true
+							"listen": "test",
+							"script": {
+								"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
+								"exec": [
+									"// Status validation ",
+									"",
+									"",
+									"pm.test('Status code is 404', function () {",
+									"    pm.response.to.have.status(404);",
+									"})",
+									"",
+									"// response time validation",
+									"",
+									"pm.test('Response time is less than 500ms', function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"})",
+									"",
+									"// validation of content ",
+									"",
+									"pm.test('Content-Type is present', function () {",
+									"    pm.response.to.have.header('Content-Type');",
+									"})",
+									"",
+									"",
+									"//validation of content type",
+									"",
+									"pm.test('Content-Type Header is application-json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"})",
+									"",
+									"// Data type validation",
+									"",
+									"let dateFormat = /([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))/;",
+									"",
+									"pm.test(\"All Data types are correct\",()=>{",
+									"    var jsondata = pm.response.json();",
+									"    pm.expect(jsondata.timestamp).to.match(dateFormat);",
+									"    pm.expect(jsondata.status).to.be.a(\"number\");",
+									"    pm.expect(jsondata.error).to.be.a(\"string\");",
+									"    pm.expect(jsondata.path).to.be.a(\"string\");",
+									"});",
+									"",
+									"//Validate Response body content",
+									"",
+									"pm.test(\"Request body contains 404 not found \",() => {",
+									"   var jsonData = pm.response.json(); ",
+									"   pm.expect(jsonData).to.haveOwnProperty(\"status\");",
+									"   pm.expect(jsonData.status).to.eql(404);",
+									"   pm.expect(jsonData.error).to.include(\"Not Found\");",
+									" ",
+									" ",
+									"});",
+									"",
+									"//Validating JSON Schema test",
+									"",
+									"var schema = {",
+									"    properties: {",
+									"    timestamp: {",
+									"      type: \"string\",",
+									"    },",
+									"    status: {",
+									"      type: \"number\",",
+									"    },",
+									"    error: {",
+									"      type: \"string\",",
+									"    },",
+									"    path: {",
+									"      type: \"string\",",
+									"    },",
+									"",
+									"  },",
+									"  required: [",
+									"    \"timestamp\",",
+									"    \"status\",",
+									"    \"error\",",
+									"    \"path\"",
+									"  ],",
+									"};",
+									"",
+									"",
+									"pm.test(\"Schema is valid\", () => {",
+									"  pm.response.to.have.jsonSchema(schema);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Restore deleted Data (Not a part of scenarios)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "4b9441a7-f4f1-417a-bfaf-4da2a9c71e95",
-						"exec": [
-							"pm.test('Deleted data has been restored to ensure this module can be rerun ', () => {",
-							"    var jsonData = pm.response.json();",
-							"    pm.expect(jsonData).to.have.property('message');",
-							"    pm.expect(jsonData.message.toLowerCase()).to.include(\"has been successfully assigned to program/batch(es)\");",
-							"})",
-							"",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "9b42020c-8160-44d2-8b42-35dfa90f3f71",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Bearertoken2}}"
-					}
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"programId\": {{programIdkb}},\n  \"roleId\": \"{{roleIdkb}}\",\n  \"userId\": \"{{userIdkb}}\",\n  \"userRoleProgramBatches\": [\n    {\n      \"batchId\": {{batchIdkb}},\n      \"userRoleProgramBatchStatus\": \"Active\"\n    }\n  ]\n}\n\n// {\n//   \"programId\": 16208,\n//   \"roleId\": \"R03\",\n//   \"userId\": \"U07\",\n//   \"userRoleProgramBatches\": [\n//     {\n//       \"batchId\": 8432,\n//       \"userRoleProgramBatchStatus\": \"Active\"\n//     }\n//   ]\n// }",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": "{{BaseURL}}/users/roleProgramBatchStatus/{{userIdkb}}"
-			},
-			"response": []
-		},
-		{
-			"name": "User logout(not a part of this module)",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "fa7a1fd8-eba7-42f4-a11e-2e45a1cb864a",
-						"exec": [
-							"//verify if test achieved results",
-							"",
-							"",
-							"pm.test(\"Logout was successful\", function () {",
-							"   pm.expect(pm.response.text()).to.include(\"Logout successful\");",
-							"});",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "c31cb03a-803f-407c-8284-c3476e9b4d08",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {
-						"token": "{{Bearertoken2}}"
-					}
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{BaseURL}}/logoutlms",
-					"host": [
-						"{{BaseURL}}"
 					],
-					"path": [
-						"logoutlms"
-					],
-					"query": [
+					"id": "5fcec9ff-1b1a-4316-9a05-645a83c44573",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/userRoleProgramBatchMap/delete/{{userIdkb}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"userRoleProgramBatchMap",
+								"delete",
+								"{{userIdkb}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"description": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete assigned program/batch by correct User ID (200) Positive scenario",
+					"event": [
 						{
-							"key": "",
-							"value": null,
-							"description": "application/json",
-							"disabled": true
+							"listen": "test",
+							"script": {
+								"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
+								"exec": [
+									"// status code is 200",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"//response time is less than 500 ms",
+									"",
+									"pm.test(\"Response time is less than 500ms\", function () {",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"//content header present",
+									"",
+									"pm.test(\"Content-Type is present\", function () {",
+									"    pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"",
+									"//content header is JSON",
+									"",
+									"pm.test('Content-Type Header is application-json', () => {",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');",
+									"})",
+									"",
+									"",
+									"// Data type validation",
+									"",
+									"// check the data for each and every object",
+									"const jsondata = pm.response.json();",
+									"",
+									"pm.test(\"All Data types are correct\",()=>{",
+									"    var jsondata = pm.response.json();",
+									"    pm.expect(jsondata.message).to.be.a(\"string\");",
+									"});",
+									"",
+									"",
+									"//Validate Response body content",
+									"",
+									"",
+									"",
+									"pm.test('Request body contains user id referred to', function () {",
+									"    ",
+									"         pm.expect(jsondata.message.toLowerCase()).to.include(\"deleted all programs/batches assigned to user id\");",
+									"    });",
+									"",
+									"",
+									"",
+									"// Response body schema validation",
+									"",
+									"var schema = {",
+									"    properties: {",
+									"        timestamp: {",
+									"            message: { type: 'string' },",
+									"            success: { type: 'boolean' }",
+									"        },",
+									"        required: [",
+									"            'message',",
+									"            'success'",
+									"        ]",
+									"    }",
+									"};",
+									"",
+									"pm.test('Schema is valid', () => {",
+									"    pm.response.to.have.jsonSchema({",
+									"        type: 'object',",
+									"        properties: {",
+									"            message: { type: 'string' },",
+									"            success: { type: 'boolean' }",
+									"        },",
+									"        required: [",
+									"            'message',",
+									"            'success'",
+									"        ]",
+									"    });",
+									"})",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
-					]
+					],
+					"id": "b918b412-4b2a-45e0-8952-05754ea2c2f9",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/userRoleProgramBatchMap/deleteAll/{{userIdkb}}",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"userRoleProgramBatchMap",
+								"deleteAll",
+								"{{userIdkb}}"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"description": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			],
+			"id": "a55067f1-df23-4272-865c-240d2e3d0983"
+		},
+		{
+			"name": "Post-test restorations",
+			"item": [
+				{
+					"name": "Restore deleted Data (Not a part of scenarios)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4b9441a7-f4f1-417a-bfaf-4da2a9c71e95",
+								"exec": [
+									"pm.test('Deleted data has been restored to ensure this module can be rerun ', () => {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('message');",
+									"    pm.expect(jsonData.message.toLowerCase()).to.include(\"has been successfully assigned to program/batch(es)\");",
+									"})",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "9b42020c-8160-44d2-8b42-35dfa90f3f71",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"programId\": {{programIdkb}},\n  \"roleId\": \"{{roleIdkb}}\",\n  \"userId\": \"{{userIdkb}}\",\n  \"userRoleProgramBatches\": [\n    {\n      \"batchId\": {{batchIdkb}},\n      \"userRoleProgramBatchStatus\": \"Active\"\n    }\n  ]\n}\n\n// {\n//   \"programId\": 16208,\n//   \"roleId\": \"R03\",\n//   \"userId\": \"U07\",\n//   \"userRoleProgramBatches\": [\n//     {\n//       \"batchId\": 8432,\n//       \"userRoleProgramBatchStatus\": \"Active\"\n//     }\n//   ]\n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/roleProgramBatchStatus/{{userIdkb}}"
+					},
+					"response": []
+				},
+				{
+					"name": "User logout(not a part of this module)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa7a1fd8-eba7-42f4-a11e-2e45a1cb864a",
+								"exec": [
+									"//verify if test achieved results",
+									"",
+									"",
+									"pm.test(\"Logout was successful\", function () {",
+									"   pm.expect(pm.response.text()).to.include(\"Logout successful\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "c31cb03a-803f-407c-8284-c3476e9b4d08",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/logoutlms",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"logoutlms"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"description": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "59aa0555-b0cf-4a97-8be1-41da704817e8"
 		}
 	]
 }
