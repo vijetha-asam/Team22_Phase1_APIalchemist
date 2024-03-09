@@ -1270,61 +1270,6 @@
 			"name": "Program_BatchModule_invalid",
 			"item": [
 				{
-					"name": "Create Batch Module Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);\r",
-									"});\r",
-									"// Parse the response body as JSON\r",
-									"var responseBody = pm.response.json();\r",
-									"\r",
-									"// Extract the programId\r",
-									"var batchId = responseBody.batchId;\r",
-									"var batchName = responseBody.batchName;\r",
-									"// Log the programId to the console (optional)\r",
-									"console.log(\"batchId:\", batchId);\r",
-									"\r",
-									"// Store the programId in an environment or global variable for later use (optional)\r",
-									"pm.collectionVariables.set(\"batchId\", batchId);\r",
-									"pm.collectionVariables.set(\"batchName\", batchName);\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "5f05355f-b87d-4b36-9719-8e7ec8d9263b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{accessToken}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \" \",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/batches"
-					},
-					"response": []
-				},
-				{
 					"name": "user login controller Invalid credentials",
 					"event": [
 						{
@@ -1467,6 +1412,61 @@
 							}
 						},
 						"url": "{{BaseURL}}/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Batch Module Bad credentials",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"// Parse the response body as JSON\r",
+									"var responseBody = pm.response.json();\r",
+									"\r",
+									"// Extract the programId\r",
+									"var batchId = responseBody.batchId;\r",
+									"var batchName = responseBody.batchName;\r",
+									"// Log the programId to the console (optional)\r",
+									"console.log(\"batchId:\", batchId);\r",
+									"\r",
+									"// Store the programId in an environment or global variable for later use (optional)\r",
+									"pm.collectionVariables.set(\"batchId\", batchId);\r",
+									"pm.collectionVariables.set(\"batchName\", batchName);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "5f05355f-b87d-4b36-9719-8e7ec8d9263b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{accessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"New batch for sdet to learn about api\",\r\n    \"batchName\": \" \",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
 					},
 					"response": []
 				},
@@ -2079,7 +2079,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": 1111,\r\n    \"batchName\": \"March24-API_Alchemist-Post1healthcare21-SDET120-010\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"New batch with updated\",\r\n    \"batchName\": \"March24-API_Alchemist-March24-APIAlchemist-SDET-039-SDET120-100\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16226\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
