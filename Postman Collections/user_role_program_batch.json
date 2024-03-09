@@ -1028,10 +1028,8 @@
 							"const responseData = pm.response.json();",
 							"",
 							"pm.test('Request body contains user id referred to', function () {",
-							"    // Iterate through each object in the array",
-							"    responseData.forEach(function (user) {",
-							"        // status is active check",
-							"        pm.expect(user.userId).to.eql(pm.environment.get(\"userIdkb\"));",
+							"    ",
+							"        pm.expect(pm.response.json().message).ToLowerCase.to.include(pm.environment.get(\"userIdkb\"));",
 							"    });",
 							"});",
 							"",
@@ -1086,7 +1084,7 @@
 						"token": "{{Bearertoken2}}"
 					}
 				},
-				"method": "GET",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "raw",
@@ -1098,12 +1096,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{BaseURL}}/userRoleProgramBatchMap/{{userIdkb}}",
+					"raw": "{{BaseURL}}/userRoleProgramBatchMap/deleteAll/{{userIdkb}}",
 					"host": [
 						"{{BaseURL}}"
 					],
 					"path": [
 						"userRoleProgramBatchMap",
+						"deleteAll",
 						"{{userIdkb}}"
 					],
 					"query": [
