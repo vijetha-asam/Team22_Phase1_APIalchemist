@@ -215,6 +215,25 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "9880330a-0297-4b05-bda9-9f49a30f115b",
+								"exec": [
+									"const randomNumber = _.random(100,999)\r",
+									"pm.environment.set(\"randomNumber\",randomNumber);\r",
+									"var random = Math.random().toString(36).substring(2);\r",
+									"\r",
+									"\r",
+									"var batchName=\"Mar24-Alchemist-SDET-\"+randomNumber;\r",
+									"var batchDescription=\"API_hackathonteam02\"+random;\r",
+									"\r",
+									"pm.environment.set(\"batch_name-env\", batchName);\r",
+									"pm.environment.set(\"batch_desc-env\", batchDescription);"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"id": "b57ceda4-2400-4580-a202-7ee03952970a",
