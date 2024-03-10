@@ -1333,6 +1333,95 @@
 					"response": []
 				},
 				{
+					"name": "Create Batch Module Missing program Id Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"    var limit = 2000;\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"/*\r",
+									"pm.test(\"validate response body properties\", function () {\r",
+									"    // Check the expected properties exist\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchName\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchDescription\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchStatus\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"batchNoOfClasses\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programId\");\r",
+									"    pm.expect(pm.response.text()).to.include(\"programName\");\r",
+									"});\r",
+									"\r",
+									"const schema = {\r",
+									"    \"type\": \"object\",\r",
+									"    \"properties\": {\r",
+									"        \"batchDescription\": { \"type\": \"string\" },\r",
+									"        \"batchName\": { \"type\": \"string\" },\r",
+									"        \"batchNoOfClasses\": { \"type\": \"integer\"},\r",
+									"        \"batchStatus\":{\r",
+									"                'type': 'string',\r",
+									"                'enum': [\r",
+									"                    'active',\r",
+									"                    'inactive'\r",
+									"                ]},\r",
+									"        \"programId\": { \"type\": \"integer\"}\r",
+									"    },\r",
+									"    \"required\": [\"batchDescription\", \"batchName\", \"batchNoOfClasses\", \"batchStatus\", \"programId\"]\r",
+									"};\r",
+									"\r",
+									"pm.test('Schema validation', function () {\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"});*/\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "c313f024-b93c-44de-9aa7-4eafff87f05c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
 					"name": "Create Batch Module Missing batch status",
 					"event": [
 						{
