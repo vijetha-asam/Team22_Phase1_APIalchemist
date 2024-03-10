@@ -55,6 +55,28 @@
 				},
 				{
 					"name": "Create new user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d2846e9f-d817-4a8d-a2c9-9b6b447d196b",
+								"exec": [
+									"var responseBody = pm.response.json();",
+									"",
+									"",
+									"    try{",
+									"   pm.expect(responseBody).to.have.own.property(\"userId\");",
+									"   pm.environment.set(\"userIdkb\", responseBody.userId);",
+									"    pm.test(\"PASS - User ID was created successfully\", () => true); ",
+									"}catch(e){",
+									"    pm.test(\"User ID was not created as it already exists or some other error\", () => {throw new Error(e.message)}); ",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "cd9906ae-5c20-48a1-81f5-3c8973d6295a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
