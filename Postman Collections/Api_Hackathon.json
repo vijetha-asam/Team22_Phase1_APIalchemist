@@ -3183,6 +3183,34 @@
 						"url": "{{BaseURL}}/saveprogram"
 					},
 					"response": []
+				},
+				{
+					"name": "{{BaseURL}}/batches",
+					"id": "b57ceda4-2400-4580-a202-7ee03952970a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"batchDescription\": \"API_hackathon_Batch\",\r\n  \"batchName\": \"March24-EliteForce-SDET-SDET01-001\",\r\n  \"batchNoOfClasses\": 3,\r\n  \"batchStatus\": \"active\",\r\n  \"programId\": 16889\r\n }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
 				}
 			],
 			"id": "29c3dcc5-c6e6-4672-8f5a-62b080051a6e"
