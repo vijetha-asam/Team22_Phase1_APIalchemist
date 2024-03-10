@@ -1761,15 +1761,17 @@
 							"script": {
 								"id": "86236caa-35a8-4462-8e09-4f289f6d355e",
 								"exec": [
-									"var responseBody = pm.response.json();",
+									"var responseText = pm.response.text();",
 									"",
 									"",
 									"    try{",
-									"   pm.expect(responseBody.success).to.be.true;",
+									"   pm.expect(responseText).to.include(\"is deleted Successfully!\");",
 									"    pm.test(\"PASS - Program was deleted\", () => true); ",
 									"}catch(e){",
 									"    pm.test(\"FAIL - Program was not deleted or other error\", () => {throw new Error(e.message)}); ",
-									"}"
+									"}",
+									"",
+									""
 								],
 								"type": "text/javascript"
 							}
