@@ -313,6 +313,24 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "fdedb236-6082-4d63-9501-169b6c83a068",
+								"exec": [
+									"var batchName= \"March24-APIAlchemist-DA55SDET-DA-\" + pm.variables.replaceIn(\"{{$randomInt}}\");",
+									"pm.globals.set(\"batch_Namekb\", batchName);",
+									"",
+									"var batchDesc= \"March24-APIAlchemist-DA55-001-DASDET-\" + pm.variables.replaceIn(\"{{$randomInt}}\");",
+									"pm.globals.set(\"batchDesckb\", batchDesc);",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"id": "ca000745-2b97-4182-9ec4-51c4d57c5646",
@@ -330,7 +348,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"batchDescription\": \"March24-APIAlchemist-March24-APIAlchemist-DA55-001-DASDET-001\",\n    \"batchName\": \"March24-APIAlchemist-DA55SDET-DA-001\",\n    \"batchNoOfClasses\": 10,\n    \"batchStatus\": \"Active\",\n    \"programId\": \"{{programIdkb}}\",\n    \"programName\": \"March24-APIAlchemist-DA55-001\"\n}",
+							"raw": "{\n    \"batchDescription\": \"{{batchDesckb}}\",\n    \"batchName\": \"{{batch_Namekb}}\",\n    \"batchNoOfClasses\": 10,\n    \"batchStatus\": \"Active\",\n    \"programId\": \"{{programIdkb}}\",\n    \"programName\": \"{{prog_Namekb}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1722,7 +1740,7 @@
 			"name": "Post-test restorations",
 			"item": [
 				{
-					"name": "New Request",
+					"name": "Delete Batch",
 					"id": "31f58c7e-a944-442b-b27e-83436e6c5c9f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
