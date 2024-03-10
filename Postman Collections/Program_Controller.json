@@ -3112,6 +3112,31 @@
 										],
 										"type": "text/javascript"
 									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "b682ad50-5f73-4809-a9a5-bcd70f7e6b6f",
+										"exec": [
+											"var response = pm.response.json();",
+											"",
+											"// Perform statuc code validation",
+											"pm.test(\"Status code is 200\",()=>{",
+											"pm.response.to.have.status(200);",
+											"});",
+											"// Perform status validation",
+											"pm.test(\"Check Status as OK\",()=>{",
+											"pm.response.to.have.status('OK')",
+											"});",
+											"// Get the runtime programName from the environment variable",
+											"const programID = pm.environment.get(\"Bug_programModule_programID\");",
+											"",
+											"// Update the response message with the program ID Define expected Data",
+											"const expectedResponseMessage = \"Program Id-${programID} is deleted Successfully!\";",
+											""
+										],
+										"type": "text/javascript"
+									}
 								}
 							],
 							"id": "7b5a2db7-2f51-47cf-a7a2-caccc9fca45c",
