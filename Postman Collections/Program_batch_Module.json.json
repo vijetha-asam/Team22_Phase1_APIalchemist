@@ -1449,7 +1449,7 @@
 									"const randomInt = pm.variables.replaceIn(\"{{$randomInt}}\");\r",
 									"\r",
 									"// Construct the ProgramName variable\r",
-									"const ProgramName = `March24-APIAlchemist-SDET5DA1-${randomInt}`;\r",
+									"const ProgramName = `March24-APIAlchemist-SDETDA-${randomInt}`;\r",
 									"\r",
 									"// Set the generated ProgramName as an environment variable\r",
 									"pm.environment.set(\"ProgramName\", ProgramName);\r",
@@ -1855,10 +1855,10 @@
 									"const randomInt = pm.variables.replaceIn(\"{{$randomInt}}\");\r",
 									"\r",
 									"// Construct the ProgramName variable\r",
-									"const ProgramName = `March24-APIAlchemist-SDET5DA1-${randomInt}`;\r",
+									"const BatchName = `March24-APIAlchemist-SDETDA-SDET120-${randomInt}`;\r",
 									"\r",
 									"// Set the generated ProgramName as an environment variable\r",
-									"pm.environment.set(\"BatchName_ProgramBatch\", ProgramName);\r",
+									"pm.environment.set(\"BatchName_ProgramBatch\", BatchName);\r",
 									""
 								],
 								"type": "text/javascript"
