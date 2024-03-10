@@ -3310,25 +3310,6 @@
 					"response": []
 				},
 				{
-					"name": "{{BaseURL}}userRoleProgramBatchMap",
-					"id": "6ac5341a-a9fe-44a5-813f-84acf57e7e20",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{Usermodule_token}}"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"url": "{{BaseURL}}/userRoleProgramBatchMap"
-					},
-					"response": []
-				},
-				{
 					"name": "{{BaseURL}}/users/roleStatus",
 					"id": "974e5925-c39b-4c9c-bbc5-dfefe654b8c3",
 					"protocolProfileBehavior": {
