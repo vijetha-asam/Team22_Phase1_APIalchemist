@@ -3701,6 +3701,39 @@
 										],
 										"type": "text/javascript"
 									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7fe69b76-1111-4ee2-9c51-8555640ff669",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Define the path parameter value",
+											"var pathParamValue =pm.environment.get(\"Delete_programName_programModule\");",
+											"",
+											"// Validate the path parameter value",
+											"if (!pathParamValue) {",
+											"    //throw new Error(\"Path parameter value is missing\");",
+											"    console.log(\"ERROR : Path parameter value is missing\");",
+											"}",
+											"else{",
+											"// Log the path parameter value",
+											"console.log(\"Path parameter value:\", pathParamValue);",
+											"",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;",
+											"} "
+										],
+										"type": "text/javascript"
+									}
 								}
 							],
 							"id": "2e91c1c7-b39e-4158-aa43-16500dd27ca5",
@@ -3716,12 +3749,82 @@
 								},
 								"method": "DELETE",
 								"header": [],
-								"url": "{{BaseURL}}/deletebyprogname/{{Delete_alreadyDeletedprogramName_programModule}}"
+								"url": "{{BaseURL}}/deletebyprogname"
 							},
 							"response": []
 						},
 						{
 							"name": "DeleteNonexistingProgramName",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "513e0b1b-68af-42cc-bcca-632f376b7f61",
+										"exec": [
+											"var resp = pm.response.json();",
+											"",
+											"// Perform status code validation",
+											"pm.test(\"Status code is 404\",()=>{",
+											"pm.response.to.have.status(404);",
+											"});",
+											"// Perform status validation",
+											"pm.test(\"Check Status as Not Found\",()=>{",
+											"pm.response.to.have.status('Not Found')",
+											"});",
+											"//Define expected Data",
+											"const programId = pm.environment.get(\"Delete_NonexistingProgramName_programModule\");",
+											"const expectedData = {",
+											"    \"message\": \"no record found with programName\",",
+											"    \"success\": false",
+											"};",
+											"",
+											"// Validate the response body",
+											"pm.test(\"Response body contains expected error message and success flag\", function() {",
+											"    pm.expect(resp.message).to.equal(expectedData.message);",
+											"    pm.expect(resp.success).to.equal(expectedData.success);",
+											"});",
+											"// Perform response time validation",
+											"pm.test(\"response time is less than 700ms\", ()=>{",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "c423129e-252e-4808-a514-cab7cb6f01e7",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Define the path parameter value",
+											"var pathParamValue =pm.environment.get(\"Delete_NonexistingProgramName_programModule\");",
+											"",
+											"// Validate the path parameter value",
+											"if (!pathParamValue) {",
+											"    //throw new Error(\"Path parameter value is missing\");",
+											"    console.log(\"ERROR : Path parameter value is missing\");",
+											"}",
+											"else{",
+											"// Log the path parameter value",
+											"console.log(\"Path parameter value:\", pathParamValue);",
+											"",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;",
+											"} "
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "ad967d3a-812d-4392-9b4b-5c3ec61639cf",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -3735,7 +3838,7 @@
 								},
 								"method": "DELETE",
 								"header": [],
-								"url": "{{BaseURL}}/deletebyprogname/{{Delete_NonexistingProgramName_programModule}}"
+								"url": "{{BaseURL}}/deletebyprogname"
 							},
 							"response": []
 						}
@@ -3763,7 +3866,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{BaseURL}}/programs/{{programId}}"
+						"url": "{{BaseURL}}/programs/{{programModule_programID}}"
 					},
 					"response": []
 				},
@@ -3922,7 +4025,7 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{BaseURL}}/program{{programId}}"
+						"url": "{{BaseURL}}/program{{programModule_programID}}"
 					},
 					"response": []
 				},
