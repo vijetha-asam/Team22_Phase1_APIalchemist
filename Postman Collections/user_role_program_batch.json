@@ -263,8 +263,24 @@
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
 						"method": "GET",
-						"header": []
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"batchDescription\": \"March24-APIAlchemist-March24-APIAlchemist-DA55-001-DASDET-001\",\n  \"batchName\": \"March24-APIAlchemist-DA55SDET-DA-001\",\n  \"batchNoOfClasses\": 0,\n  \"batchStatus\": \"Active\",\n  \"programId\": \"{{programIdkb}}\",\n  \"programName\": \"March24-APIAlchemist-DA55-001\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
 					},
 					"response": []
 				}
