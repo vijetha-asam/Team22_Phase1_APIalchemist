@@ -194,7 +194,7 @@
 									"console.log(\"userId : \"+jsonData.userId);\r",
 									"\r",
 									"pm.environment.set(\"User_Module_Email_env\",jsonData.userLoginEmail);\r",
-									"pm.environment.set(\"User_Module_ContactNumber\",jsonData.userPhoneNumber);\r",
+									"pm.environment.set(\"User_Module_ContactNumber_env\",jsonData.userPhoneNumber);\r",
 									"\r",
 									"\r",
 									"pm.test(\"Content-Type header is present\", ()=> {\r",
@@ -2983,6 +2983,56 @@
 							],
 							"variable": [
 								{
+									"key": "batchId",
+									"value": "{{User_Module_MyBatchID}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "users-programBatchBy-batchId Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5c3c4044-4133-43db-9e49-a2a4a1d88c9b",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "d516cff6-a9a1-490f-98ad-4fbff33f8a05",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BaseURL}}/users/programBatch/:batchId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"programBatch",
+								":batchId"
+							],
+							"variable": [
+								{
+									"id": "c6cc6b13-12b5-49f3-b285-2122bd09ec8b",
 									"key": "batchId",
 									"value": "{{User_Module_MyBatchID}}"
 								}
