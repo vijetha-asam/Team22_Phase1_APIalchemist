@@ -3114,6 +3114,8 @@
 							"script": {
 								"id": "970be96e-5723-4aac-84c9-bc8bc81bc343",
 								"exec": [
+									" const jsonData=JSON.parse(requestBody);\r",
+									" \r",
 									" var schema=\r",
 									" {\r",
 									" \"type\": \"object\",\r",
@@ -3154,7 +3156,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"Mar24-Alchemist-SDET-137\",\r\n \"programName\": \"API_hackathon\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"raw": "{\r\n  \"programDescription\": \"{{program_Description}}\",\r\n \"programName\": \"{{program_Name}}\",\r\n  \"programStatus\": \"{{program_Status}}\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
