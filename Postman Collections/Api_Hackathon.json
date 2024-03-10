@@ -2978,7 +2978,7 @@
 							"variable": [
 								{
 									"key": "batchId",
-									"value": "{{User_Module_ProgramId_env}}"
+									"value": "{{User_Module_BatchId_env}}"
 								}
 							]
 						}
