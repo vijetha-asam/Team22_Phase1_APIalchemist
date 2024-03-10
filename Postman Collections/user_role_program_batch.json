@@ -295,7 +295,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"batchDescription\": \"March24-APIAlchemist-March24-APIAlchemist-DA55-001-DASDET-001\",\n    \"batchName\": \"March24-APIAlchemist-DA55SDET-DA-001\",\n    \"batchNoOfClasses\": 0,\n    \"batchStatus\": \"Active\",\n    \"programId\": \"{{programIdkb}}\",\n    \"programName\": \"March24-APIAlchemist-DA55-001\"\n}",
+							"raw": "{\n    \"batchDescription\": \"March24-APIAlchemist-March24-APIAlchemist-DA55-001-DASDET-001\",\n    \"batchName\": \"March24-APIAlchemist-DA55SDET-DA-001\",\n    \"batchNoOfClasses\": 10,\n    \"batchStatus\": \"Active\",\n    \"programId\": \"{{programIdkb}}\",\n    \"programName\": \"March24-APIAlchemist-DA55-001\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -417,12 +417,19 @@
 							"script": {
 								"id": "4b9441a7-f4f1-417a-bfaf-4da2a9c71e95",
 								"exec": [
-									"pm.test('Deleted data has been restored to ensure this module can be rerun ', () => {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.have.property('message');",
-									"    pm.expect(jsonData.message.toLowerCase()).to.include(\"has been successfully assigned to program/batch(es)\");",
+									"",
+									"var responseBody = pm.response.json();",
+									"",
+									" try{",
+									"  pm.test('PASS - Newly created user assigned to Batch and Program ', () => {",
+									"    var responseBody = pm.response.json();",
+									"    pm.expect(responseBody).to.have.property('message');",
+									"    pm.expect(responseBody.message.toLowerCase()).to.include(\"has been successfully assigned to program/batch(es)\");",
 									"})",
 									"",
+									"}catch(e){",
+									"    pm.test(\"FAIL - User was not assigned to program/batch as it already is or some other error\", () => {throw new Error(e.message)}); ",
+									"}",
 									""
 								],
 								"type": "text/javascript"
@@ -444,7 +451,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programId\": {{programIdkb}},\n  \"roleId\": \"{{roleIdkb}}\",\n  \"userId\": \"{{userIdkb}}\",\n  \"userRoleProgramBatches\": [\n    {\n      \"batchId\": {{batchIdkb}},\n      \"userRoleProgramBatchStatus\": \"Active\"\n    }\n  ]\n}\n\n// {\n//   \"programId\": 16208,\n//   \"roleId\": \"R03\",\n//   \"userId\": \"U07\",\n//   \"userRoleProgramBatches\": [\n//     {\n//       \"batchId\": 8432,\n//       \"userRoleProgramBatchStatus\": \"Active\"\n//     }\n//   ]\n// }",
+							"raw": "{\n  \"programId\": {{programIdkb}},\n  \"roleId\": \"{{roleIdkb}}\",\n  \"userId\": \"{{userIdkb}}\",\n  \"userRoleProgramBatches\": [\n    {\n      \"batchId\": {{batchIdkb}},\n      \"userRoleProgramBatchStatus\": \"Active\"\n    }\n  ]\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
