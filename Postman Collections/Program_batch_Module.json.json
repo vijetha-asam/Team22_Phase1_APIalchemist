@@ -5031,7 +5031,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Batch Module Bug- Batch description should not be empty",
+					"name": "Create Batch Module Bug- Batch description should not be null",
 					"event": [
 						{
 							"listen": "test",
@@ -5172,7 +5172,7 @@
 					"response": []
 				},
 				{
-					"name": "Update Batch with batch Id with batch description is null",
+					"name": "Update Batch with batch Id  Bug- Batch description should not be null",
 					"event": [
 						{
 							"listen": "test",
