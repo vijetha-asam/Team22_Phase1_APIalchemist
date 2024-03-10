@@ -1846,6 +1846,23 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3f31e915-4670-4bf5-baa9-2c756efeb64d",
+								"exec": [
+									"const randomInt = pm.variables.replaceIn(\"{{$randomInt}}\");\r",
+									"\r",
+									"// Construct the ProgramName variable\r",
+									"const ProgramName = `March24-APIAlchemist-SDET5DA1-${randomInt}`;\r",
+									"\r",
+									"// Set the generated ProgramName as an environment variable\r",
+									"pm.environment.set(\"BatchName_ProgramBatch\", ProgramName);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"id": "366d30b9-5f6c-46b4-a96b-da4e8a43e5c0",
