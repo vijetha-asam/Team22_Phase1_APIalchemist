@@ -4134,9 +4134,11 @@
 								"exec": [
 									"var resp = pm.response.json();",
 									"var programID = resp.programId;",
-									"pm.environment.set(\"programModule_programID\",programID);",
+									"var programNAME = resp.programName;",
+									"pm.environment.set(\"DemoprogramModule_programID\",programID);",
 									"//pm.environment.set(\"UserModule_ProgramId\",programID);",
-									"//pm.environment.set(\"Delete_programName_programModule\",resp.programId)",
+									"pm.environment.set(\"DemoDelete_programId_programModule\",programID);",
+									"pm.environment.set(\"DemoDelete_programName_programModule\",programNAME);",
 									"",
 									"// Perform header-content-type validation",
 									"pm.test(\"Content-Type header is present\", ()=> {",
@@ -4295,12 +4297,12 @@
 						},
 						"method": "GET",
 						"header": [],
-						"url": "{{BaseURL}}/programs/{{ProgramModule_Get_ProgramID}}"
+						"url": "{{BaseURL}}/programs/{{DemoprogramModule_programID}}"
 					},
 					"response": []
 				},
 				{
-					"name": "UpdateProgramNameByProgramID Copy",
+					"name": "DemoUpdateProgramNameByProgramID",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -4325,7 +4327,7 @@
 									"// Log the request body",
 									"console.log(\"Request body:\", requestBody.raw);",
 									"// Define the path parameter value",
-									"var pathParamValue =pm.environment.get(\"ProgramModule_updateProgram_programId\");",
+									"var pathParamValue =pm.environment.get(\"DemoprogramModule_programID\");",
 									"",
 									"// Validate the path parameter value",
 									"if (!pathParamValue) {",
@@ -4434,7 +4436,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo_Updated\",\n  \"programName\": \"Demo_Program001_Updated\",\n  \"programStatus\": \"Active\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
