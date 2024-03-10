@@ -1244,6 +1244,86 @@
 					"response": []
 				},
 				{
+					"name": "Get all Batches Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a50480e3-a60e-4fe3-b0dc-792a82230d07",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"// Perform schema validation\r",
+									"pm.test(\"Validate Response Schema\", function() {\r",
+									"    // Define the JSON schema\r",
+									"var schema ={\r",
+									"    \"type\": \"array\",\r",
+									"    \"items\": {\r",
+									"        \"type\": \"object\",\r",
+									"        \"properties\": {\r",
+									"            \"batchId\": {\"type\": \"number\"},\r",
+									"            \"batchName\": {\"type\": \"string\"},\r",
+									"            \"batchDescription\": {},\r",
+									"            \"batchStatus\": {\"type\": \"string\"},\r",
+									"\t        \"batchNoOfClasses\":{\"type\": \"number\"},\r",
+									"  \t        \"programId\": {\"type\": \"number\"},\r",
+									"            \"programName\": {\"type\": \"string\"},  \r",
+									"        },\r",
+									"        \"required\": [\"batchId\", \"batchName\", \"batchDescription\",\"batchStatus\", \"batchNoOfClasses\",\"programId\",\"programName\"]\r",
+									"    }\r",
+									"}\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"  \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "b919e05b-c793-47ec-844d-a87a2beb6165",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
 					"name": "Create Batch Module Missing program Id",
 					"event": [
 						{
@@ -4435,23 +4515,23 @@
 					"response": []
 				},
 				{
-					"name": "Delete Batch with batch Id Copy",
+					"name": "Delete Batch with batch Id with invalid batchId",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"});\r",
-									"pm.test('Content-Type header is present', () => {\r",
+									"/*pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
 									"})\r",
 									"\r",
 									"pm.test('Content-Type header is application/json', () => {\r",
 									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"})\r",
+									"})*/\r",
 									"\r",
 									"//Validate response time\r",
 									"pm.test(\"Response time is less than limit\", function() {\r",
@@ -4476,7 +4556,53 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "{{BaseURL}}/batches/{{programbatch_batchid_invalid}}"
+						"url": "{{BaseURL}}/batches/{{programbatch_batchid-invalid}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Batch with batch Id with invalid end point/ empty batchid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"/*pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})*/\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "68e23c48-105c-4a60-ba4d-93f270161c1c",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/batches/{{ }}"
 					},
 					"response": []
 				},
