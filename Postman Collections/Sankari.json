@@ -647,7 +647,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userComments\": \"ok\",\r\n  \"userEduPg\": \"BA\",\r\n  \"userEduUg\": \"MCA\",\r\n  \"userFirstName\": \"hh\",\r\n  \"userId\": \"U111\",\r\n  \"userLastName\": \"hhh\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/hh hhh/\",\r\n  \"userLocation\": \"Ottawa\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"NA\",\r\n    \"password\": \"NA\",\r\n    \"roleIds\": [\r\n      \"string\"\r\n    ],\r\n    \"status\": \"yes\",\r\n    \"userLoginEmail\": \"harisiva1980@gmail.com\"\r\n  },\r\n  \"userMiddleName\": \"h\",\r\n  \"userPhoneNumber\": 2326796754,\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R03\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4\"\r\n}\r\n",
+							"raw": "{\r\n  \"userComments\": \"ok\",\r\n  \"userEduPg\": \"BA\",\r\n  \"userEduUg\": \"MCA\",\r\n  \"userFirstName\": \"hh\",\r\n  \"userId\": \"U118\",\r\n  \"userLastName\": \"hhh\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/hh hhh/\",\r\n  \"userLocation\": \"Ottawa\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"NA\",\r\n    \"password\": \"NA\",\r\n    \"roleIds\": [\r\n      \"string\"\r\n    ],\r\n    \"status\": \"yes\",\r\n    \"userLoginEmail\": \"harisiva1987@gmail.com\"\r\n  },\r\n  \"userMiddleName\": \"h\",\r\n  \"userPhoneNumber\": 4737632754,\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R03\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -773,7 +773,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U298"
+									"value": "U118"
 								}
 							]
 						}
@@ -816,7 +816,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U298"
+									"value": "U118"
 								}
 							]
 						}
@@ -902,7 +902,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U34"
+									"value": "U118"
 								}
 							]
 						}
@@ -981,7 +981,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U298"
+									"value": "U118"
 								}
 							]
 						}
@@ -1069,7 +1069,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U298"
+									"value": "U118"
 								}
 							]
 						}
@@ -1113,7 +1113,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U298"
+									"value": "U118"
 								}
 							]
 						}
@@ -1177,7 +1177,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userRoleList\": [\r\n    \"R02\"\r\n  ]\r\n}",
+							"raw": "{\r\n  \"userRoleList\": [\r\n    \"R03\"\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1197,7 +1197,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U34"
+									"value": "U118"
 								}
 							]
 						}
@@ -1285,7 +1285,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U34"
+									"value": "U118"
 								}
 							]
 						}
@@ -1300,7 +1300,46 @@
 							"script": {
 								"id": "1104f538-8add-4d81-8b36-c2adb2eaf0c8",
 								"exec": [
-									""
+									"var schema={\"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"programId\": {\r",
+									"      \"type\": \"number\"\r",
+									"    },\r",
+									"    \"roleId\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userId\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userRoleProgramBatches\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": {\r",
+									"        \"type\": \"object\",\r",
+									"        \"properties\": {\r",
+									"          \"batchId\": {\r",
+									"            \"type\": \"number\"\r",
+									"          },\r",
+									"          \"userRoleProgramBatchStatus\": {\r",
+									"            \"type\": \"string\"\r",
+									"          }\r",
+									"        },\r",
+									"        \"required\": [\r",
+									"          \"batchId\",\r",
+									"          \"userRoleProgramBatchStatus\"\r",
+									"        ]\r",
+									"      }\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"programId\",\r",
+									"    \"roleId\",\r",
+									"    \"userId\",\r",
+									"    \"userRoleProgramBatches\"\r",
+									"  ]\r",
+									"}\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
 								],
 								"type": "text/javascript"
 							}
@@ -1365,7 +1404,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programId\": 16208,\r\n  \"roleId\": \"R02\",\r\n  \"userId\": \"U34\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8432,\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
+							"raw": "{\r\n  \"programId\": 16940,\r\n  \"roleId\": \"R03\",\r\n  \"userId\": \"U118\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8814,\r\n      \"userRoleProgramBatchStatus\": \"Inactive\"\r\n    }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1409,7 +1448,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programId\": 16208,\r\n  \"roleId\": \"R02\",\r\n  \"userId\": \"U34\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8432,\r\n      \"userRoleProgramBatchStatus\": \"\"\r\n    }\r\n  ]\r\n}\r\n",
+							"raw": "{\r\n  \"programId\": 16940,\r\n  \"roleId\": \"R03\",\r\n  \"userId\": \"U118\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8814,\r\n      \"userRoleProgramBatchStatus\": \"\"\r\n    }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1429,7 +1468,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U34"
+									"value": "U118"
 								}
 							]
 						}
