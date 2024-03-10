@@ -2783,6 +2783,20 @@
 				},
 				{
 					"name": "users-by-programid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5fd922e7-3eec-4bca-8d25-b8b6bc93c4ab",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "aa7dde92-841e-45de-8bf4-e0e4d5d82f16",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -2809,7 +2823,7 @@
 							"variable": [
 								{
 									"key": "programId",
-									"value": "16889"
+									"value": "{{User_Module_ProgramId_env}}"
 								}
 							]
 						}
@@ -2984,7 +2998,7 @@
 							"variable": [
 								{
 									"key": "batchId",
-									"value": "8762"
+									"value": "{{User_Module_ProgramId_env}}"
 								}
 							]
 						}
@@ -3281,6 +3295,19 @@
 				},
 				{
 					"name": "{{BaseURL}}/users/roleProgramBatchStatus/U1148",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97882e5e-198c-485b-a698-274044a6b563",
+								"exec": [
+									"const jsonData=JSON.parse(requestBody);\r",
+									"console.log(\"jsonData\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "911e40be-b29f-4672-9114-6f63566b7f74",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -3296,14 +3323,30 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programId\": 16889,\r\n  \"roleId\": \"R03\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8812,\r\n      \"userRoleProgramBatchStatus\": \"active\"\r\n    }\r\n  ]\r\n}\r\n",
+							"raw": "{\r\n  \"programId\": {{User_Module_ProgramId_env}},\r\n  \"roleId\": \"R03\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": {{C}},\r\n      \"userRoleProgramBatchStatus\": \"active\"\r\n    }\r\n  ]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{BaseURL}}/users/roleProgramBatchStatus/U1148"
+						"url": {
+							"raw": "{{BaseURL}}/users/roleProgramBatchStatus/:userId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleProgramBatchStatus",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "{{user-id-env}}"
+								}
+							]
+						}
 					},
 					"response": []
 				}
