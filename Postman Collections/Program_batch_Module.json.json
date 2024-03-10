@@ -5131,33 +5131,21 @@
 					"response": []
 				},
 				{
-					"name": "Create Batch Module batchName is null",
+					"name": "Create Batch Module Copy",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
 								"exec": [
-									"pm.test(\"Status code is 400\", function () {\r",
-									"    pm.response.to.have.status(400);\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
 									"});\r",
 									"//Validate response time\r",
 									"pm.test(\"Response time is less than limit\", function() {\r",
 									"var limit = 500;\r",
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
-									"pm.test('Content-Type header is application/json', () => {\r",
-									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"})\r",
-									"pm.test('Content-Type header is present', () => {\r",
-									"    pm.response.to.have.header('Content-Type');\r",
-									"})\r",
-									"\r",
-									"pm.test('Check Status Text', () => {\r",
-									"    pm.response.to.have.status('Bad Request');\r",
-									"})\r",
-									"\r",
-									"/*\r",
 									"pm.test('Check Status Text', () => {\r",
 									"    pm.response.to.have.status('Created');\r",
 									"})\r",
@@ -5181,9 +5169,9 @@
 									"\r",
 									"pm.test(\"batchNoOfClasses is not empty\", function() {\r",
 									"    pm.expect(pm.response.json().batchNoOfClasses).to.be.a('number').and.to.not.be.null;\r",
-									"});*/\r",
+									"});\r",
 									"\r",
-									"//Parse the response body as JSON\r",
+									"// Parse the response body as JSON\r",
 									"var responseBody = pm.response.json();\r",
 									"\r",
 									"// Extract the programId\r",
@@ -5238,9 +5226,26 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "3f31e915-4670-4bf5-baa9-2c756efeb64d",
+								"exec": [
+									"const randomInt = pm.variables.replaceIn(\"{{$randomInt}}\");\r",
+									"\r",
+									"// Construct the ProgramName variable\r",
+									"const BatchName = `March24-APIAlchemist-SDETDA-SDET120-${randomInt}`;\r",
+									"\r",
+									"// Set the generated ProgramName as an environment variable\r",
+									"pm.environment.set(\"BatchName_ProgramBatch\", BatchName);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
-					"id": "c1dcc9eb-9451-4e27-ae1f-7504e2b14ca3",
+					"id": "7b6bacb7-3fa8-409e-8e0e-1001a0823de4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -5255,7 +5260,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"null\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"null\",\r\n    \"batchName\": \"{{BatchName_ProgramBatch}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5263,52 +5268,6 @@
 							}
 						},
 						"url": "{{BaseURL}}/batches"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Batch with batch Id Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"pm.test('Content-Type header is present', () => {\r",
-									"    pm.response.to.have.header('Content-Type');\r",
-									"})\r",
-									"\r",
-									"pm.test('Content-Type header is application/json', () => {\r",
-									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"})\r",
-									"\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 500;\r",
-									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "95501cc3-402e-43d1-a257-51b8ee4fa7e9",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
 					},
 					"response": []
 				},
@@ -5448,7 +5407,7 @@
 					"response": []
 				},
 				{
-					"name": "Delete Batch with batch Id Copy 2",
+					"name": "Delete Batch with batch Id",
 					"event": [
 						{
 							"listen": "test",
