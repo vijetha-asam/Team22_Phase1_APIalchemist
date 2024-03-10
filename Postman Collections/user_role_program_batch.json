@@ -1766,7 +1766,7 @@
 									"",
 									"    try{",
 									"   pm.expect(responseText).to.include(\"is deleted Successfully!\");",
-									"    pm.test(\"PASS - Program was deleted\", () => true); ",
+									"    pm.test(\"PASS- message confirms action on Program ID \" + pm.environment.get(\"programIdkb\") + \" was as per - \" + responseText, () => true); ",
 									"}catch(e){",
 									"    pm.test(\"FAIL - Program was not deleted or other error\", () => {throw new Error(e.message)}); ",
 									"}",
@@ -1808,7 +1808,7 @@
 									"",
 									"    try{",
 									"   pm.expect(responseText).to.include(\"deleted Successfully!\");",
-									"    pm.test(\"PASS - Batch was deleted\", () => true); ",
+									"    pm.test(\"PASS - Batch was deleted as confirmed in body - \" + responseText, () => true); ",
 									"}catch(e){",
 									"    pm.test(\"FAIL - Batch was not deleted or other error\", () => {throw new Error(e.message)}); ",
 									"}",
@@ -1859,7 +1859,7 @@
 									"",
 									"    try{",
 									"   pm.expect(responseText).to.include(\"Deleted User ID:  \" + useridkb);",
-									"    pm.test(\"PASS - User was deactivated/deleted\", () => true); ",
+									"    pm.test(\"PASS - User was deactivated/deleted as confirmed in body - \" + responseText, () => true); ",
 									"}catch(e){",
 									"    pm.test(\"FAIL - Batch was not deleted or other error\", () => {throw new Error(e.message)}); ",
 									"}",
@@ -1888,7 +1888,7 @@
 					"response": []
 				},
 				{
-					"name": "User logout(not a part of this module)",
+					"name": "User logout(postreq)",
 					"event": [
 						{
 							"listen": "test",
