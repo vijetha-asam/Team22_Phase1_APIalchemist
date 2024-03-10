@@ -52,6 +52,18 @@
 						"url": "{{BaseURL}}/login"
 					},
 					"response": []
+				},
+				{
+					"name": "New Request",
+					"id": "cd9906ae-5c20-48a1-81f5-3c8973d6295a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "64f25f8e-5b87-4971-ba68-1599a4cc6055"
