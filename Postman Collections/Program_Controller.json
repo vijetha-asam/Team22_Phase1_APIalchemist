@@ -1674,7 +1674,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}",
+											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2274,7 +2274,7 @@
 													"// Log the request body",
 													"console.log(\"Request body:\", requestBody.raw);",
 													"// Define the path parameter value",
-													"var pathParamValue =pm.environment.get(\"ProgramModule_updateProgram_programId\");",
+													"var pathParamValue =pm.environment.get(\"programModule_programID\");",
 													"",
 													"// Validate the path parameter value",
 													"if (!pathParamValue) {",
@@ -2347,7 +2347,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"{{UpdateToOnlyNumbers}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+											"raw": "{\n    \"programName\": \"{{UpdateToOnlyNumbers}}\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}\n",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2384,7 +2384,7 @@
 													"// Log the request body",
 													"console.log(\"Request body:\", requestBody.raw);",
 													"// Define the path parameter value",
-													"var pathParamValue =pm.environment.get(\"ProgramModule_updateProgram_programId\");",
+													"var pathParamValue =pm.environment.get(\"programModule_programID\");",
 													"",
 													"// Validate the path parameter value",
 													"if (!pathParamValue) {",
@@ -2457,7 +2457,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"{{ExistingProgramName}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+											"raw": "{\n    \"programName\": \"{{ExistingProgramName}}\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}\n",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2494,7 +2494,7 @@
 													"// Log the request body",
 													"console.log(\"Request body:\", requestBody.raw);",
 													"// Define the path parameter value",
-													"var pathParamValue =pm.environment.get(\"ProgramModule_updateProgram_programId\");",
+													"var pathParamValue =pm.environment.get(\"programModule_programID\");",
 													"",
 													"// Validate the path parameter value",
 													"if (!pathParamValue) {",
@@ -2566,7 +2566,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"Inactive\"\n}",
+											"raw": "{\n    \"programName\": \"{{UpdateToOnlyNumbers}}\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}\n",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2603,7 +2603,7 @@
 													"// Log the request body",
 													"console.log(\"Request body:\", requestBody.raw);",
 													"// Define the path parameter value",
-													"var pathParamValue =pm.environment.get(\"ProgramModule_updateProgram_programId\");",
+													"var pathParamValue =pm.environment.get(\"programModule_programID\");",
 													"",
 													"// Validate the path parameter value",
 													"if (!pathParamValue) {",
@@ -2675,7 +2675,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_002\",\n    \"programDescription\": \"{{UpdateToOnlyNumbers}}\",\n    \"programStatus\": \"Inactive\"\n}",
+											"raw": "{\n    \"programName\": \"{{UpdateToOnlyNumbers}}\",\n    \"programDescription\": \"{{UpdateToOnlyNumbers}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}\n\n",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2712,7 +2712,7 @@
 													"// Log the request body",
 													"console.log(\"Request body:\", requestBody.raw);",
 													"// Define the path parameter value",
-													"var pathParamValue =pm.environment.get(\"ProgramModule_updateProgram_programId\");",
+													"var pathParamValue =pm.environment.get(\"programModule_programID\");",
 													"",
 													"// Validate the path parameter value",
 													"if (!pathParamValue) {",
