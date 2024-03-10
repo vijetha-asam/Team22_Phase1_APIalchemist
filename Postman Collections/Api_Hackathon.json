@@ -120,8 +120,10 @@
 									"var programName=\" Mar24-Alchemist-SDET-0012\"+random;\r",
 									"var programDescription=\"API_hackathonteam02\"+random;\r",
 									"//pm.variables.replaceIn(\"{{$randomprogramName}}\");\r",
-									"pm.environment.set(\"program_name-env\", pm.variables.replaceIn(\"{{$randomprogramName}}\"));\r",
-									"pm.environment.set(\"program_desc-env\", pm.variables.replaceIn(\"{{$randomprogramDescription}}\"));"
+									"//pm.environment.set(\"program_name-env\", pm.variables.replaceIn(\"{{$randomprogramName}}\"));\r",
+									"//pm.environment.set(\"program_desc-env\", pm.variables.replaceIn(\"{{$randomprogramDescription}}\"));\r",
+									"pm.environment.set(\"program_name-env\", programName);\r",
+									"pm.environment.set(\"program_desc-env\", programDescription);"
 								],
 								"type": "text/javascript"
 							}
@@ -142,7 +144,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"{{$randomprogramDescription}}\",\r\n \"programName\": \"{{$randomprogramName}}\",\r\n  \"programStatus\": \"active\"\r\n}",
+							"raw": "{\r\n  \"programDescription\": \"{{program_desc-env}}\",\r\n \"programName\": \"{{program_name-env}}\",\r\n  \"programStatus\": \"active\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
