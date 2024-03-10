@@ -54,7 +54,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Create new user",
 					"id": "cd9906ae-5c20-48a1-81f5-3c8973d6295a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
