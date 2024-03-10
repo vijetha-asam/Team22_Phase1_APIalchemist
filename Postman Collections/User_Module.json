@@ -125,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"{{program_Description}}\",\r\n \"programName\": \"{{program_Name}}\",\r\n  \"programStatus\": \"{{program_Status}}\"\r\n}\r\n",
+							"raw": "{\r\n  \"programDescription\": \"Mar24-Alchemist-SDET-008\",\r\n \"programName\": \"API_hackathonteam1\",\r\n  \"programStatus\": \"{{program_Status}}\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
