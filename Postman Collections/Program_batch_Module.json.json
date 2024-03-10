@@ -6156,7 +6156,7 @@
 									"const batchDescription = batchDescriptions[randomIndex];\r",
 									"\r",
 									"// Set the generated batch description as an environment variable\r",
-									"pm.environment.set(\"dynamic_batch_description\", batchDescription);\r",
+									"pm.environment.set(\"ProgramBatch_batch_description\", batchDescription);\r",
 									"// Generate a random number of classes within a specified range\r",
 									"const minClasses = 5; // Minimum number of classes\r",
 									"const maxClasses = 20; // Maximum number of classes\r",
@@ -6164,7 +6164,7 @@
 									"const numberOfClasses = Math.floor(Math.random() * (maxClasses - minClasses + 1)) + minClasses;\r",
 									"\r",
 									"// Set the generated number of classes as an environment variable\r",
-									"pm.environment.set(\"dynamic_number_of_classes\", numberOfClasses);\r",
+									"pm.environment.set(\"ProgramBatch_batch_no_of_classes\", numberOfClasses);\r",
 									""
 								],
 								"type": "text/javascript"
@@ -6186,7 +6186,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"{{dynamic_batch_description}}\",\r\n    \"batchName\": \"{{BatchName_ProgramBatch}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"{{ProgramBatch_batch_description}}\",\r\n    \"batchName\": \"{{BatchName_ProgramBatch}}\",\r\n    \"batchNoOfClasses\": \"{{ProgramBatch_batch_no_of_classes}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
