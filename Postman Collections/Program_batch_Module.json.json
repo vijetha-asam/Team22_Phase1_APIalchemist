@@ -1244,15 +1244,15 @@
 					"response": []
 				},
 				{
-					"name": "Get all Batches Copy",
+					"name": "Get all Batches invalid end point",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "a50480e3-a60e-4fe3-b0dc-792a82230d07",
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
 									"});\r",
 									"pm.test('Content-Type header is present', () => {\r",
 									"    pm.response.to.have.header('Content-Type');\r",
@@ -1261,15 +1261,16 @@
 									"pm.test('Content-Type header is application/json', () => {\r",
 									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
 									"})\r",
-									"\r",
+									"/*\r",
 									"pm.test('Response is valid JSON', function () {\r",
 									"    pm.response.to.be.json;\r",
-									"})\r",
+									"})*/\r",
 									"//Validate response time\r",
 									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 500;\r",
+									"var limit = 1000;\r",
 									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
 									"});\r",
+									"/*\r",
 									"// Perform schema validation\r",
 									"pm.test(\"Validate Response Schema\", function() {\r",
 									"    // Define the JSON schema\r",
@@ -1291,7 +1292,7 @@
 									"}\r",
 									"    pm.response.to.have.jsonSchema(schema);\r",
 									"  \r",
-									"});"
+									"});*/"
 								],
 								"type": "text/javascript"
 							}
@@ -1319,7 +1320,88 @@
 								}
 							}
 						},
-						"url": "{{BaseURL}}/batches"
+						"url": "{{BaseURL}}/batche"
+					},
+					"response": []
+				},
+				{
+					"name": "Get all Batches invalid URL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a50480e3-a60e-4fe3-b0dc-792a82230d07",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"/*pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})*/\r",
+									"/*\r",
+									"pm.test('Response is valid JSON', function () {\r",
+									"    pm.response.to.be.json;\r",
+									"})*/\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 1000;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"/*\r",
+									"// Perform schema validation\r",
+									"pm.test(\"Validate Response Schema\", function() {\r",
+									"    // Define the JSON schema\r",
+									"var schema ={\r",
+									"    \"type\": \"array\",\r",
+									"    \"items\": {\r",
+									"        \"type\": \"object\",\r",
+									"        \"properties\": {\r",
+									"            \"batchId\": {\"type\": \"number\"},\r",
+									"            \"batchName\": {\"type\": \"string\"},\r",
+									"            \"batchDescription\": {},\r",
+									"            \"batchStatus\": {\"type\": \"string\"},\r",
+									"\t        \"batchNoOfClasses\":{\"type\": \"number\"},\r",
+									"  \t        \"programId\": {\"type\": \"number\"},\r",
+									"            \"programName\": {\"type\": \"string\"},  \r",
+									"        },\r",
+									"        \"required\": [\"batchId\", \"batchName\", \"batchDescription\",\"batchStatus\", \"batchNoOfClasses\",\"programId\",\"programName\"]\r",
+									"    }\r",
+									"}\r",
+									"    pm.response.to.have.jsonSchema(schema);\r",
+									"  \r",
+									"});*/"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "72a7422e-4a30-49b4-b4ed-86dca91a1a36",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{invalid_BUrl}}/batches"
 					},
 					"response": []
 				},
