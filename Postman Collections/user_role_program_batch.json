@@ -81,11 +81,18 @@
 							"script": {
 								"id": "29b4bf72-42e3-4cdb-b100-a286275f05a5",
 								"exec": [
-									"var userphone= \"March24-APIAlchemist-DA55-001\" + pm.variables.replaceIn(\"{{$randomInt}}\");",
-									"pm.globals.set(\"prog_Namekb\", progName);",
+									"// Generate a random 10-digit number for user phone number and set environment variable",
+									"var randomTenDigitNumber = Math.floor(Math.random() * 9000000000) + 1000000000;",
 									"",
-									"var ProgDesc= \"This is for temporary use \" + pm.variables.replaceIn(\"{{$randomInt}}\");",
-									"pm.globals.set(\"prog_Desckb\", ProgDesc);"
+									"",
+									"postman.setEnvironmentVariable('userphonekb', randomTenDigitNumber);",
+									"",
+									"",
+									"//Generate random email address",
+									"var useremail= \"team22-notforusermodule\" + pm.variables.replaceIn(\"{{$randomInt}}\") + ",
+									"\"@gmail.com\";",
+									"pm.globals.set(\"useremailkb\", useremail);",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -106,7 +113,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"userComments\": \"this is created for Team 22 User role program batch demo/test\",\n  \"userEduPg\": \"MS in Machine learning\",\n  \"userEduUg\": \"BE Electronics Engineering\",\n  \"userFirstName\": \"APIAlchemistone\",\n  \"userId\": \"U111\",\n  \"userLastName\": \"Blake\",\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/gideon-blake123/\",\n  \"userLocation\": \"Boston\",\n  \"userLogin\": {\n    \"loginStatus\": \"Active\",\n    \"password\": \"Positive+1\",\n    \"roleIds\": [\n      \"R01\"\n    ],\n    \"status\": \"Active\",\n    \"userLoginEmail\": \"team22-notforusermodule@gmail.com\"\n  },\n  \"userMiddleName\": \"Incham\",\n  \"userPhoneNumber\": 6786666666,\n  \"userRoleMaps\": [\n    {\n      \"roleId\": \"R03\",\n      \"userRoleStatus\": \"Active\"\n    }\n  ],\n  \"userTimeZone\": \"EST\",\n  \"userVisaStatus\": \"US-Citizen\"\n}\n",
+							"raw": "{\n  \"userComments\": \"this is created for Team 22 User role program batch demo/test\",\n  \"userEduPg\": \"MS in Machine learning\",\n  \"userEduUg\": \"BE Electronics Engineering\",\n  \"userFirstName\": \"APIAlchemistone\",\n  \"userId\": \"U111\",\n  \"userLastName\": \"Blake\",\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/gideon-blake123/\",\n  \"userLocation\": \"Boston\",\n  \"userLogin\": {\n    \"loginStatus\": \"Active\",\n    \"password\": \"Positive+1\",\n    \"roleIds\": [\n      \"R01\"\n    ],\n    \"status\": \"Active\",\n    \"userLoginEmail\": \"{{useremailkb}}\"\n  },\n  \"userMiddleName\": \"Incham\",\n  \"userPhoneNumber\": {{userphonekb}},\n  \"userRoleMaps\": [\n    {\n      \"roleId\": \"R03\",\n      \"userRoleStatus\": \"Active\"\n    }\n  ],\n  \"userTimeZone\": \"EST\",\n  \"userVisaStatus\": \"US-Citizen\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
