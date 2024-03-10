@@ -2804,6 +2804,11 @@
 									"pm.test(\"response time is less than 1000ms\", ()=>{\r",
 									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
 									"});\r",
+									"\r",
+									"pm.test(\"Validate JSON value in response\",()=>{\r",
+									"    const response=pm.response.json();\r",
+									"    pm.expect(response.userComments).to,eql(response.user_Comments)\r",
+									"});\r",
 									""
 								],
 								"type": "text/javascript"
