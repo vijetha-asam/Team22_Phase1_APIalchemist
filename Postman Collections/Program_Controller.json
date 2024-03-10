@@ -4125,7 +4125,7 @@
 			"name": "demo",
 			"item": [
 				{
-					"name": "Create new program for demo",
+					"name": "DemoCreate new program",
 					"event": [
 						{
 							"listen": "test",
@@ -4221,7 +4221,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo\",\n  \"programName\": \"Demo_Program001\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo001\",\n  \"programName\": \"Demo_Program001\",\n  \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4442,7 +4442,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo_Updated\",\n  \"programName\": \"Demo_Program001_Updated\",\n  \"programStatus\": \"Active\"\n}",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo001_Updated\",\n  \"programName\": \"Demo_Program001_Updated\",\n  \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
