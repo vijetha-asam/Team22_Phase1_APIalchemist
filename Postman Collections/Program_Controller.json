@@ -1178,7 +1178,9 @@
 							"script": {
 								"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
 								"exec": [
-									"resp = pm.response.json();",
+									"var resp = pm.response.json();",
+									"var programID = resp.programId;",
+									"pm.environment.set(\"Bug_programModule_programID\",programID);",
 									"pm.test(\"Response is valid JSON\", function () {",
 									"    pm.response.to.be.json;",
 									"});",
