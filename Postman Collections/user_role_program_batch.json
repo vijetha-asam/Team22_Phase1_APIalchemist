@@ -1077,7 +1077,7 @@
 							"script": {
 								"id": "aa2507ad-8bfe-4696-b80d-629059cf0f60",
 								"exec": [
-									"// status code validation",
+									"//status code validation",
 									"try {",
 									"    pm.expect(pm.response).to.have.status(200);",
 									"     pm.test(\"PASS - Status code is 200\", () => true);",
@@ -1086,6 +1086,8 @@
 									"        pm.response.to.have.status(200);",
 									"    });",
 									"}",
+									"",
+									"",
 									"",
 									"//response time validation",
 									"",
