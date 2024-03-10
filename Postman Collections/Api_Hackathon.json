@@ -3108,6 +3108,37 @@
 				},
 				{
 					"name": "{{BaseURL}}//saveprogram",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "970be96e-5723-4aac-84c9-bc8bc81bc343",
+								"exec": [
+									" var schema=\r",
+									" {\r",
+									" \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"programDescription\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"programName\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"programStatus\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"programDescription\",\r",
+									"    \"programName\",\r",
+									"    \"programStatus\"\r",
+									"  ]\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "4608cd71-1d13-4da1-9260-1aee5f71b302",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
