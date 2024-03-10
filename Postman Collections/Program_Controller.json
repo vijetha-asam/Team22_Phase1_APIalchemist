@@ -4606,7 +4606,7 @@
 							"script": {
 								"id": "8496de19-7501-4053-a801-07b0a979bc58",
 								"exec": [
-									"var response = pm.response.json();",
+									"var response = pm.response;",
 									"",
 									"// Perform statuc code validation",
 									"pm.test(\"Status code is 200\",()=>{",
@@ -4620,7 +4620,7 @@
 									"const programID = pm.environment.get(\"DemoprogramModule_programID\");",
 									"",
 									"// Update the response message with the program ID Define expected Data",
-									"const expectedResponseMessage = \"Message: Program Id-${programID} is deleted Successfully!\";",
+									"var expectedResponseMessage = \"Program Id-${programID} is deleted Successfully!\";",
 									"",
 									"// Validate the response body",
 									"pm.test(\"Response body contains expected success message\", function() {",
