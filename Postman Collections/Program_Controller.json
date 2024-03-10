@@ -6,295 +6,6 @@
 	},
 	"item": [
 		{
-			"name": "Get Programs",
-			"item": [
-				{
-					"name": "Get by programId",
-					"item": [
-						{
-							"name": "Get Program by ProgramId",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "24dafda5-4c06-408b-ac81-124cb36d69c6",
-										"exec": [
-											"var resp = pm.response.json();",
-											"",
-											"//Validate the response body",
-											"pm.test('Schema validation', () => {",
-											"  pm.response.to.have.jsonSchema (schema);",
-											"});",
-											"var schema = {",
-											"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
-											"  \"type\": \"object\",",
-											"  \"properties\": {",
-											"    \"programId\": {",
-											"      \"type\": \"integer\"",
-											"    },",
-											"    \"programName\": {",
-											"      \"type\": \"string\"",
-											"    },",
-											"    \"programDescription\": {",
-											"      \"type\": \"string\"",
-											"    },",
-											"    \"programStatus\": {",
-											"      \"type\": \"string\"",
-											"    },",
-											"    \"creationTime\": {",
-											"      \"type\": \"string\"",
-											"    },",
-											"    \"lastModTime\": {",
-											"      \"type\": \"string\"",
-											"    }",
-											"  },",
-											"  \"required\": [",
-											"    \"programId\",",
-											"    \"programName\",",
-											"    \"programDescription\",",
-											"    \"programStatus\",",
-											"    \"creationTime\",",
-											"    \"lastModTime\"",
-											"  ]",
-											"}",
-											""
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "36a16b16-d733-4518-9e4e-c5f8a3fdf065",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "GET",
-								"header": [],
-								"url": "{{BaseURL}}/programs/{{ProgramModule_Get_ProgramID}}"
-							},
-							"response": []
-						},
-						{
-							"name": "Get program by deleted programId",
-							"id": "85885faa-abbb-443f-bdc8-7d09028b0724",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "GET",
-								"header": [],
-								"url": "{{BaseURL}}/programs/{{deletedProgramId_programModule}}"
-							},
-							"response": []
-						},
-						{
-							"name": "Get program by non existing programId",
-							"id": "2686a9ba-d4bc-4e4a-8d38-9aaf3ee4cbb9",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "GET",
-								"header": [],
-								"url": "{{BaseURL}}/programs/{{Nonexisting_programID_programModule}}"
-							},
-							"response": []
-						}
-					],
-					"id": "a221793c-394e-4d68-8457-cf31d312f49d"
-				},
-				{
-					"name": "Get all programs",
-					"item": [
-						{
-							"name": "Get All Programs",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "7225bca6-f2df-4234-968b-c8d23ebded6e",
-										"exec": [
-											"// Perform validations",
-											"pm.test(\"Response is valid JSON\", function () {",
-											"    pm.response.to.be.json;",
-											"});",
-											"// Perform status validation",
-											"pm.test(\"Check Status as OK\",()=>{",
-											"pm.response.to.have.status('OK')",
-											"});",
-											"// Perform response time validation",
-											"pm.test(\"response time is less than 700ms\", ()=>{",
-											"    pm.expect(pm.response.responseTime).to.be.below(700);",
-											"});",
-											"",
-											"// Perform schema validation",
-											"pm.test(\"Validate Response Schema\", function() {",
-											"    // Define the JSON schema",
-											"const schema ={",
-											"    \"type\": \"array\",",
-											"    \"items\": {",
-											"        \"type\": \"object\",",
-											"        \"properties\": {",
-											"            \"programId\": {\"type\": \"number\"},",
-											"            \"programName\": {\"type\": \"string\"},",
-											"            \"programDescription\": {\"type\": \"string\"},",
-											"            \"programStatus\": {\"type\": \"string\"},",
-											"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},",
-											"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}",
-											"        },",
-											"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]",
-											"    }",
-											"}",
-											"    pm.response.to.have.jsonSchema(schema);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "5b6b630c-f99f-40e7-af28-f62b132903d0",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "GET",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": "{{BaseURL}}/allPrograms"
-							},
-							"response": []
-						}
-					],
-					"id": "f706ddff-46bc-463f-bdbc-a2e0001186f8"
-				},
-				{
-					"name": "Get all programs with Users",
-					"item": [
-						{
-							"name": "Get all programs with Users",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"id": "3f22cb71-5a95-44c9-a74d-09b2eaba82d0",
-										"exec": [
-											"// Perform validations",
-											"pm.test(\"Response is valid JSON\", function () {",
-											"    pm.response.to.be.json;",
-											"});",
-											"// Perform status validation",
-											"pm.test(\"Check Status as OK\",()=>{",
-											"pm.response.to.have.status('OK')",
-											"});",
-											"// Perform response time validation",
-											"pm.test(\"response time is less than 700ms\", ()=>{",
-											"    pm.expect(pm.response.responseTime).to.be.below(700);",
-											"});",
-											"",
-											"// Define the JSON schema",
-											"const schema = {",
-											"    \"type\": \"array\",",
-											"    \"items\": {",
-											"        \"type\": \"object\",",
-											"        \"properties\": {",
-											"            \"programId\": { \"type\": \"number\" },",
-											"            \"programName\": { \"type\": \"string\" },",
-											"            \"programDescription\": { \"type\": \"string\" },",
-											"            \"programStatus\": { \"type\": \"string\" },",
-											"            \"creationTime\": { \"type\": \"string\", \"format\": \"date-time\" },",
-											"            \"lastModTime\": { \"type\": \"string\", \"format\": \"date-time\" },",
-											"            \"programUsers\": {",
-											"                \"type\": \"array\",",
-											"                \"items\": {",
-											"                    \"type\": \"object\",",
-											"                    \"properties\": {",
-											"                        \"userId\": { \"type\": \"string\" },",
-											"                        \"userFirstName\": { \"type\": \"string\" },",
-											"                        \"userLastName\": { \"type\": \"string\" },",
-											"                        \"userMiddleName\": { \"type\": \"string\" },",
-											"                        \"userPhoneNumber\": { \"type\": \"number\" },",
-											"                        \"userLocation\": { \"type\": \"string\" },",
-											"                        \"userTimeZone\": { \"type\": \"string\" },",
-											"                        \"userLinkedinUrl\": { \"type\": \"string\"},",
-											"                        \"userEduUg\": { \"type\": \"string\" },",
-											"                        \"userEduPg\": { \"type\": \"string\" },",
-											"                        \"userComments\": { \"type\": \"string\" },",
-											"                        \"userVisaStatus\": { \"type\": \"string\" },",
-											"                        \"userLoginEmail\": { \"type\": [\"string\", \"null\"] }",
-											"                    },",
-											"                    \"required\": [\"userId\", \"userFirstName\", \"userLastName\", \"userPhoneNumber\"]",
-											"                }",
-											"            }",
-											"        },",
-											"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]",
-											"    }",
-											"};",
-											"",
-											"// Perform schema validation",
-											"pm.test(\"Schema Validation\", function () {",
-											"    pm.response.to.have.jsonSchema(schema);",
-											"});"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"id": "45a01115-149d-4dc8-bf4e-ec2f88830329",
-							"protocolProfileBehavior": {
-								"disableBodyPruning": true
-							},
-							"request": {
-								"auth": {
-									"type": "bearer",
-									"bearer": {
-										"token": "{{programModuleToken}}"
-									}
-								},
-								"method": "GET",
-								"header": [],
-								"url": "{{BaseURL}}/allProgramsWithUsers"
-							},
-							"response": []
-						}
-					],
-					"id": "f662d5b1-378d-42da-8b34-b8acdaa57ae1"
-				}
-			],
-			"id": "c1526b18-b41e-4a4b-8bc0-8804741b2701"
-		},
-		{
 			"name": "Post Program CSV",
 			"item": [
 				{
@@ -1256,6 +967,54 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7c9f37cf-1b54-43a6-a317-b5788294bdaa",
+								"exec": [
+									"//Function to generate a random string of special characters",
+									"function generateRandomString(length) {",
+									"  const specialCharacters = '!@#$%^&*()_+-=[]{}|;:,.<>?';",
+									"  let result = '';",
+									"  for (let i = 0; i < length; i++) {",
+									"    const randomIndex = Math.floor(Math.random() * specialCharacters.length);",
+									"    result += specialCharacters.charAt(randomIndex);",
+									"  }",
+									"  return result;",
+									"}",
+									"",
+									"// Generate a random string of 10 special characters",
+									"const randomSpecialCharacters = generateRandomString(10);",
+									"",
+									"",
+									"const programDescriptionValue = `A-${randomSpecialCharacters}`;",
+									"const programNameValue = `APIHackathon_Phase1_Bugs_${randomSpecialCharacters}`;",
+									"// Function to generate a random number within a range",
+									"function generateRandomNumber(min, max) {",
+									"    return Math.floor(Math.random() * (max - min + 1)) + min;",
+									"}",
+									"",
+									"// Get the request body from the request editor",
+									"const requestBody = {",
+									"    programDescription: programDescriptionValue,",
+									"    programName: programNameValue,",
+									"    programStatus: \"Active\"",
+									"};",
+									"",
+									"// Update the request body in the request editor",
+									"pm.request.headers.add({",
+									"    key: 'Content-Type',",
+									"    value: 'application/json'",
+									"});",
+									"",
+									"pm.request.body = {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(requestBody)",
+									"};"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"id": "c4caa146-75b4-42f1-8b52-e69057a89719",
@@ -1273,7 +1032,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"A^^^^^^\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Inactive\"\n}\n",
+							"raw": "{\n    \"programDescription\": \"{{programDescriptionValue}}\",\n    \"programName\": \"{{programNameValue}}\",\n    \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4821,6 +4580,295 @@
 				}
 			],
 			"id": "43915d8d-b922-4eda-a935-a6c8f06d8ddc"
+		},
+		{
+			"name": "Get Programs",
+			"item": [
+				{
+					"name": "Get by programId",
+					"item": [
+						{
+							"name": "Get Program by ProgramId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "24dafda5-4c06-408b-ac81-124cb36d69c6",
+										"exec": [
+											"var resp = pm.response.json();",
+											"",
+											"//Validate the response body",
+											"pm.test('Schema validation', () => {",
+											"  pm.response.to.have.jsonSchema (schema);",
+											"});",
+											"var schema = {",
+											"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
+											"  \"type\": \"object\",",
+											"  \"properties\": {",
+											"    \"programId\": {",
+											"      \"type\": \"integer\"",
+											"    },",
+											"    \"programName\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"programDescription\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"programStatus\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"creationTime\": {",
+											"      \"type\": \"string\"",
+											"    },",
+											"    \"lastModTime\": {",
+											"      \"type\": \"string\"",
+											"    }",
+											"  },",
+											"  \"required\": [",
+											"    \"programId\",",
+											"    \"programName\",",
+											"    \"programDescription\",",
+											"    \"programStatus\",",
+											"    \"creationTime\",",
+											"    \"lastModTime\"",
+											"  ]",
+											"}",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "36a16b16-d733-4518-9e4e-c5f8a3fdf065",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURL}}/programs/{{ProgramModule_Get_ProgramID}}"
+							},
+							"response": []
+						},
+						{
+							"name": "Get program by deleted programId",
+							"id": "85885faa-abbb-443f-bdc8-7d09028b0724",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURL}}/programs/{{deletedProgramId_programModule}}"
+							},
+							"response": []
+						},
+						{
+							"name": "Get program by non existing programId",
+							"id": "2686a9ba-d4bc-4e4a-8d38-9aaf3ee4cbb9",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURL}}/programs/{{Nonexisting_programID_programModule}}"
+							},
+							"response": []
+						}
+					],
+					"id": "a221793c-394e-4d68-8457-cf31d312f49d"
+				},
+				{
+					"name": "Get all programs",
+					"item": [
+						{
+							"name": "Get All Programs",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "7225bca6-f2df-4234-968b-c8d23ebded6e",
+										"exec": [
+											"// Perform validations",
+											"pm.test(\"Response is valid JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"// Perform status validation",
+											"pm.test(\"Check Status as OK\",()=>{",
+											"pm.response.to.have.status('OK')",
+											"});",
+											"// Perform response time validation",
+											"pm.test(\"response time is less than 700ms\", ()=>{",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);",
+											"});",
+											"",
+											"// Perform schema validation",
+											"pm.test(\"Validate Response Schema\", function() {",
+											"    // Define the JSON schema",
+											"const schema ={",
+											"    \"type\": \"array\",",
+											"    \"items\": {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"            \"programId\": {\"type\": \"number\"},",
+											"            \"programName\": {\"type\": \"string\"},",
+											"            \"programDescription\": {\"type\": \"string\"},",
+											"            \"programStatus\": {\"type\": \"string\"},",
+											"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},",
+											"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}",
+											"        },",
+											"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]",
+											"    }",
+											"}",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "5b6b630c-f99f-40e7-af28-f62b132903d0",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/allPrograms"
+							},
+							"response": []
+						}
+					],
+					"id": "f706ddff-46bc-463f-bdbc-a2e0001186f8"
+				},
+				{
+					"name": "Get all programs with Users",
+					"item": [
+						{
+							"name": "Get all programs with Users",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f22cb71-5a95-44c9-a74d-09b2eaba82d0",
+										"exec": [
+											"// Perform validations",
+											"pm.test(\"Response is valid JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"// Perform status validation",
+											"pm.test(\"Check Status as OK\",()=>{",
+											"pm.response.to.have.status('OK')",
+											"});",
+											"// Perform response time validation",
+											"pm.test(\"response time is less than 700ms\", ()=>{",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);",
+											"});",
+											"",
+											"// Define the JSON schema",
+											"const schema = {",
+											"    \"type\": \"array\",",
+											"    \"items\": {",
+											"        \"type\": \"object\",",
+											"        \"properties\": {",
+											"            \"programId\": { \"type\": \"number\" },",
+											"            \"programName\": { \"type\": \"string\" },",
+											"            \"programDescription\": { \"type\": \"string\" },",
+											"            \"programStatus\": { \"type\": \"string\" },",
+											"            \"creationTime\": { \"type\": \"string\", \"format\": \"date-time\" },",
+											"            \"lastModTime\": { \"type\": \"string\", \"format\": \"date-time\" },",
+											"            \"programUsers\": {",
+											"                \"type\": \"array\",",
+											"                \"items\": {",
+											"                    \"type\": \"object\",",
+											"                    \"properties\": {",
+											"                        \"userId\": { \"type\": \"string\" },",
+											"                        \"userFirstName\": { \"type\": \"string\" },",
+											"                        \"userLastName\": { \"type\": \"string\" },",
+											"                        \"userMiddleName\": { \"type\": \"string\" },",
+											"                        \"userPhoneNumber\": { \"type\": \"number\" },",
+											"                        \"userLocation\": { \"type\": \"string\" },",
+											"                        \"userTimeZone\": { \"type\": \"string\" },",
+											"                        \"userLinkedinUrl\": { \"type\": \"string\"},",
+											"                        \"userEduUg\": { \"type\": \"string\" },",
+											"                        \"userEduPg\": { \"type\": \"string\" },",
+											"                        \"userComments\": { \"type\": \"string\" },",
+											"                        \"userVisaStatus\": { \"type\": \"string\" },",
+											"                        \"userLoginEmail\": { \"type\": [\"string\", \"null\"] }",
+											"                    },",
+											"                    \"required\": [\"userId\", \"userFirstName\", \"userLastName\", \"userPhoneNumber\"]",
+											"                }",
+											"            }",
+											"        },",
+											"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]",
+											"    }",
+											"};",
+											"",
+											"// Perform schema validation",
+											"pm.test(\"Schema Validation\", function () {",
+											"    pm.response.to.have.jsonSchema(schema);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "45a01115-149d-4dc8-bf4e-ec2f88830329",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "GET",
+								"header": [],
+								"url": "{{BaseURL}}/allProgramsWithUsers"
+							},
+							"response": []
+						}
+					],
+					"id": "f662d5b1-378d-42da-8b34-b8acdaa57ae1"
+				}
+			],
+			"id": "c1526b18-b41e-4a4b-8bc0-8804741b2701"
 		},
 		{
 			"name": "Login-Valid User",
