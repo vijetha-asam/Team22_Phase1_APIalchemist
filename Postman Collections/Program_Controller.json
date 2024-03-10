@@ -3076,6 +3076,44 @@
 					"item": [
 						{
 							"name": "DeleteProgram By BugProgramId",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "ab582363-89c5-43d9-b6a0-7f0e79cff09f",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Get the request body",
+											"const requestBody = pm.request.body;",
+											"",
+											"// Define the path parameter value",
+											"var pathParamValue =pm.environment.get(\"Bug_programModule_programID\");",
+											"",
+											"// Validate the path parameter value",
+											"if (!pathParamValue) {",
+											"    //throw new Error(\"Path parameter value is missing\");",
+											"    console.log(\"ERROR : Path parameter value is missing\");",
+											"}",
+											"else{",
+											"// Log the path parameter value",
+											"console.log(\"Path parameter value:\", pathParamValue);",
+											"",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;",
+											"} "
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "7b5a2db7-2f51-47cf-a7a2-caccc9fca45c",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -3098,7 +3136,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/deletebyprogid/{{Bug_programModule_programID}}"
+								"url": "{{BaseURL}}/deletebyprogid"
 							},
 							"response": []
 						},
@@ -3371,7 +3409,7 @@
 											"//console.log(\"Base URL:\", baseUrl);",
 											"",
 											"// Define the path parameter value",
-											"const pathParamValue = pm.environment.get(\"Delete_programName_programModule\");",
+											"const pathParamValue = pm.environment.get(\"BugDelete_programModule_programName\");",
 											"",
 											"// Validate the path parameter value",
 											"// if (!pathParamValue) {",
