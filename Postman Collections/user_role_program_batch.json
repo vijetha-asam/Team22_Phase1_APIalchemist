@@ -69,7 +69,7 @@
 									"   pm.environment.set(\"userIdkb\", responseBody.userId);",
 									"    pm.test(\"PASS - User ID was created successfully\", () => true); ",
 									"}catch(e){",
-									"    pm.test(\"User ID was not created as it already exists or some other error\", () => {throw new Error(e.message)}); ",
+									"    pm.test(\"FAIL - User ID was not created as it already exists as the phone number will be duplicated or some other error\", () => {throw new Error(e.message)}); ",
 									"}",
 									""
 								],
