@@ -1431,6 +1431,33 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "cc518394-3ca5-42c9-b9a8-a156652bf0aa",
+								"exec": [
+									"// Get the current date\r",
+									"const currentDate = new Date();\r",
+									"const month = currentDate.toLocaleString('default', { month: 'long' });\r",
+									"const day = currentDate.getDate();\r",
+									"\r",
+									"// Get the team name and program name from environment variables\r",
+									"const teamName = pm.environment.get(\"team_name\");\r",
+									"const programName = pm.environment.get(\"programName\");\r",
+									"\r",
+									"// Generate a random serial number (5 digits)\r",
+									"const randomSerialNumber = Math.floor(Math.random() * 90000) + 10000;\r",
+									"\r",
+									"// Combine the parts to form the serial number\r",
+									"const serialNumber = `${month}${day}-${teamName}-${programName}-${randomSerialNumber}`;\r",
+									"\r",
+									"// Set the generated serial number as an environment variable\r",
+									"pm.environment.set(\"generated_serial_number\", serialNumber);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"id": "1436e70e-8f4d-418d-8c86-c80142c4714b",
