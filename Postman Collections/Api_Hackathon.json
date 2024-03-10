@@ -119,8 +119,9 @@
 									"//var user_email_id= \"abc\"+random+\"@gmail.com\";\r",
 									"var programName=\" Mar24-Alchemist-SDET-0012\"+random;\r",
 									"var programDescription=\"API_hackathonteam02\"+random;\r",
-									"pm.variables.replaceIn(\"{{$randomprogramName}}\");\r",
-									"pm.variables.replaceIn(\"{{$randomprogramDescription}}\");"
+									"//pm.variables.replaceIn(\"{{$randomprogramName}}\");\r",
+									"pm.environment.set(\"program_name-env\", pm.variables.replaceIn(\"{{$randomprogramName}}\"));\r",
+									"pm.environment.set(\"program_desc-env\", pm.variables.replaceIn(\"{{$randomprogramDescription}}\"));"
 								],
 								"type": "text/javascript"
 							}
