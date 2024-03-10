@@ -125,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"Mar24-API-SDET-0081\",\r\n \"programName\": \"API_bootcampofteams98\",\r\n  \"programStatus\": \"active\"\r\n}",
+							"raw": "{\r\n  \"programDescription\": \"Mar24-API-SDET-0085\",\r\n \"programName\": \"API_bootcampofteams95\",\r\n  \"programStatus\": \"active\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -231,7 +231,7 @@
 								"id": "97882e5e-198c-485b-a698-274044a6b563",
 								"exec": [
 									"var jsonData=JSON.parse(responseBody);\r",
-									"console.log(\"jsonData\");"
+									"//console.log(\"message\",jsonData);"
 								],
 								"type": "text/javascript"
 							}
