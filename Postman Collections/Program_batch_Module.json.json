@@ -1438,7 +1438,7 @@
 								"id": "cc518394-3ca5-42c9-b9a8-a156652bf0aa",
 								"exec": [
 									"var progName= \"March24-APIAlchemist-SDET5DA1-\" + pm.variables.replaceIn(\"{{$randomInt}}\");\r",
-									"pm.globals.set(\"programName\",programName);\r",
+									"pm.environment.set(\"programName\",programName);\r",
 									""
 								],
 								"type": "text/javascript"
