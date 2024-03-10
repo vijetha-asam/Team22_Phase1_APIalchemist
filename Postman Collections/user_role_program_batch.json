@@ -205,6 +205,18 @@
 							"body": "{\n    \"userId\": \"U1458\",\n    \"userFirstName\": \"APIAlchemistone\",\n    \"userLastName\": \"Blake\",\n    \"userMiddleName\": \"Incham\",\n    \"userPhoneNumber\": 6786666666,\n    \"userLocation\": \"Boston\",\n    \"userTimeZone\": \"EST\",\n    \"userLinkedinUrl\": \"https://www.linkedin.com/in/gideon-blake123/\",\n    \"userEduUg\": \"BE Electronics Engineering\",\n    \"userEduPg\": \"MS in Machine learning\",\n    \"userComments\": \"this is created for Team 22 User role program batch demo/test\",\n    \"userVisaStatus\": \"US-Citizen\",\n    \"userLoginEmail\": \"team22-notforusermodule@gmail.com\"\n}"
 						}
 					]
+				},
+				{
+					"name": "Create new program",
+					"id": "a9312bb1-82ac-4492-94f0-7cf64457a675",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			],
 			"id": "64f25f8e-5b87-4971-ba68-1599a4cc6055"
