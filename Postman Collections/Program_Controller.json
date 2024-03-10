@@ -3125,10 +3125,10 @@
 											"pm.test(\"Check Status as OK\",()=>{",
 											"pm.response.to.have.status('OK')",
 											"});",
-											"// Get the runtime programName from the environment variable",
+											"// Get the runtime programId from the environment variable",
 											"const programID = pm.environment.get(\"Bug_programModule_programID\");",
 											"",
-											"// Update the response message with the program ID Define expected Data",
+											"// Update the response message with the programId Define expected Data",
 											"const expectedResponseMessage = \"Program Id-${programID} is deleted Successfully!\";",
 											"",
 											"// Validate the response body",
@@ -3279,6 +3279,47 @@
 										"id": "8f957547-f37d-42f1-a576-48b0cbfc7eba",
 										"exec": [
 											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "da38c694-bb38-4260-9f8c-004f13e27e69",
+										"exec": [
+											"// Perform status code validation",
+											"pm.test(\"Status code is 404\",()=>{",
+											"pm.response.to.have.status(404);",
+											"});",
+											"// Perform status validation",
+											"pm.test(\"Check Status as Not Found\",()=>{",
+											"pm.response.to.have.status('Not Found')",
+											"});",
+											"//Define expected Data",
+											"const programId = pm.environment.get(\"Nonexisting_programID_programModule\");",
+											"const expectedData = {",
+											"    \"message\": \"no record found with programId${programId}\",",
+											"    \"success\": false",
+											"};",
+											"// Update the response message with the program ID Define expected Data",
+											"const expectedResponseMessage = \"no record found with programId${programID}\";",
+											"",
+											"// Validate the response body",
+											"pm.test(\"Response body contains expected success message\", function() {",
+											"    pm.expect(response.message).to.equal(expectedResponseMessage);",
+											"});",
+											"",
+											"",
+											"// Validate the response body",
+											"pm.test(\"Response body contains expected error message and success flag\", function() {",
+											"    pm.expect(resp.message).to.equal(expectedData.message);",
+											"    pm.expect(resp.success).to.equal(expectedData.success);",
+											"});",
+											"// Perform response time validation",
+											"pm.test(\"response time is less than 700ms\", ()=>{",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);",
+											"});"
 										],
 										"type": "text/javascript"
 									}
