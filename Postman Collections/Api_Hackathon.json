@@ -3033,66 +3033,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "{{BaseURL}}/users/U877",
-					"id": "bb1ecfe8-127d-4b50-b297-ccb2553848d3",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{Usermodule_token}}"
-							}
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": "{{BaseURL}}/users/U1148"
-					},
-					"response": []
-				},
-				{
-					"name": "{{BaseURL}}/users/roleStatus",
-					"id": "974e5925-c39b-4c9c-bbc5-dfefe654b8c3",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{Usermodule_token}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"userComments\": \"comments\",\r\n  \"userEduPg\": \"Dgree\",\r\n  \"userEduUg\": \"Pg\",\r\n  \"userFirstName\": \"Team\",\r\n  \"userId\": \"U001\",\r\n  \"userLastName\": \"ccssd\",\r\n  \"userLinkedinUrl\": \"http:www.linkedin.com\",\r\n  \"userLocation\": \"UK\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"active\",\r\n    \"password\": \"sad\",\r\n    \"roleIds\": [\r\n      \"R03\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"godfdzf@gmail.com\"\r\n  },\r\n  \"userMiddleName\": \"fsf\",\r\n  \"userPhoneNumber\": 5062210100,\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R03\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"GC-EAD\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/users/roleStatus"
-					},
-					"response": []
-				},
-				{
-					"name": "{{BaseURL}}/deletebyprogid/{{User_Module_ProgramId_env}}",
-					"id": "aebe0b3a-18d2-4bf8-9823-ad9c50ab27b2",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": "{{BaseURL}}/deletebyprogid/{{User_Module_ProgramId_env}}"
-					},
-					"response": []
 				}
 			],
 			"id": "29c3dcc5-c6e6-4672-8f5a-62b080051a6e"
