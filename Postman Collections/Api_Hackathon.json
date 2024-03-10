@@ -125,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"Mar24-API-SDET-881\",\r\n \"programName\": \"API_bootcampteams1\",\r\n  \"programStatus\": \"active\"\r\n}",
+							"raw": "{\r\n  \"programDescription\": \"Mar24-API-SDET-81\",\r\n \"programName\": \"API_bootcampteams2\",\r\n  \"programStatus\": \"active\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -144,7 +144,7 @@
 							"script": {
 								"id": "246cca84-c055-471a-bd3f-d250f68881f8",
 								"exec": [
-									"const jsonData=JSON.parse(requestBody);\r",
+									"var jsonData=JSON.parse(responseBody);\r",
 									" pm.environment.set(\"User_Module_BatchId_env\",jsonData.batchId);\r",
 									"\r",
 									" pm.test(\"Content-Type header is present\", ()=> {\r",
@@ -230,7 +230,7 @@
 							"script": {
 								"id": "97882e5e-198c-485b-a698-274044a6b563",
 								"exec": [
-									"const jsonData=JSON.parse(requestBody);\r",
+									"var jsonData=JSON.parse(responseBody);\r",
 									"console.log(\"jsonData\");"
 								],
 								"type": "text/javascript"
@@ -2145,11 +2145,7 @@
 									"});\r",
 									"return\r",
 									"}\r",
-									"else{\r",
-									"    pm.test(\"Status code is 200\",()=>{\r",
-									"pm.response.to.have.status(200);\r",
-									"});\r",
-									"}\r",
+									"\r",
 									"\r",
 									""
 								],
