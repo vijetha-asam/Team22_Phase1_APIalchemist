@@ -1,0 +1,1883 @@
+{
+	"info": {
+		"_postman_id": "73a09ff5-65c1-4f45-8e1a-6ce0c1837e1f",
+		"name": "Team22_APIalchemist_Phase1_APIhackathon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Module 2",
+			"item": [
+				{
+					"name": "GET all programs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1b061187-a699-45c4-b605-7db4e0297738",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", ()=> {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", ()=> {\r",
+									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"response time is less than 1000ms\", ()=>{\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "75466419-0b41-4179-9dc5-649be289c7d2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/allPrograms"
+					},
+					"response": []
+				},
+				{
+					"name": "GET userRoleProgramBatchMap",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "520a3094-76b0-49c5-bd8f-289a814f8ebe",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.value).to.eql(100);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4d133823-d6eb-454b-89b4-c6409d527608",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "c1489402-1c50-442f-995d-e1df0db50290",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/userRoleProgramBatchMap"
+					},
+					"response": []
+				},
+				{
+					"name": "GET User by RoleID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4e2149ef-94ed-4817-beb5-94ef11b9c4de",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "eb666260-83bb-413f-bcdb-24b321b12aec",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roles/:roleid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roles",
+								":roleid"
+							],
+							"variable": [
+								{
+									"key": "roleid",
+									"value": "R02"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User by without RoleID",
+					"id": "3d9d6a77-42e2-4621-b3e5-5e46e3a9dace",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roles/:roleid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roles",
+								":roleid"
+							],
+							"variable": [
+								{
+									"key": "roleid",
+									"value": "R04"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET User by roleid V2",
+					"id": "cc4c43c6-7cc2-4c35-afeb-39f1b119684d",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/v2/users"
+					},
+					"response": []
+				},
+				{
+					"name": "GET ActiveUsers",
+					"id": "aa446181-4366-432c-895d-4b7d45dd11ce",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/activeUsers"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"id": "212cf2aa-7970-4cba-9419-5392866da4ab",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"Numpyninja@1\",\r\n  \"userLoginEmailId\": \"sdetorganizers@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Create User RoleStatus without mail ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "db1ef99e-2fd1-42c5-a3ce-e70e9ea4c988",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "2ba849c0-fd09-4d15-b541-e3243eb9ea7b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"userComments\": \"ok\",\r\n\"userEduPg\": \"BA\",\r\n\"userEduUg\": \"MCA\",\r\n\"userFirstName\": \"hh\",\r\n\"userLastName\": \"hhhh\",\r\n\"userLinkedinUrl\": \"https://www.linkedin.com/in/hh hhh/\",\r\n\"userLocation\": \"Ottawa\",\r\n\"userMiddleName\": \"H\",\r\n\"userPhoneNumber\": 5643217865,\r\n\"userRoleMaps\": [\r\n{\r\n\"roleId\": \"R02\",\r\n\"userRoleStatus\": \"Active\"\r\n}\r\n],\r\n\"userTimeZone\": \"EST\",\r\n\"userVisaStatus\": \"H4\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/roleStatus"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb3e33ff-f531-4db0-b8bb-4025e0271306",
+								"exec": [
+									"var schema = \r",
+									"{\"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"batchDescription\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"batchName\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"batchNoOfClasses\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"batchStatus\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"programId\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"batchDescription\",\r",
+									"    \"batchName\",\r",
+									"    \"batchNoOfClasses\",\r",
+									"    \"batchStatus\",\r",
+									"    \"programId\"\r",
+									"  ]\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "92c9d2ec-4e2e-4b54-b30e-95da1883f7cf",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"FIRST_HACKATHON_SDET134\",\r\n    \"batchName\": \"API_HACKATHON_MARCH2024_SDET(134)\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16538\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Batch Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb3e33ff-f531-4db0-b8bb-4025e0271306",
+								"exec": [
+									"var schema = \r",
+									"{\"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"batchDescription\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"batchName\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"batchNoOfClasses\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"batchStatus\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"programId\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"batchDescription\",\r",
+									"    \"batchName\",\r",
+									"    \"batchNoOfClasses\",\r",
+									"    \"batchStatus\",\r",
+									"    \"programId\"\r",
+									"  ]\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "03726626-3ef2-4240-bc03-be4a9c28f588",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"batchDescription\": \"FIRST_HACKATHON_SDET134\",\r\n    \"batchName\": \"API_HACKATHON_MARCH2024_SDET(134)\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16538\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "Create User RoleStatus with mail ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "70e50a08-902c-468b-ae14-11c1ae0b10ba",
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", ()=> {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", ()=> {\r",
+									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 201\",()=>{\r",
+									"pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"\r",
+									"\r",
+									"pm.test(\"userComments  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userComments).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"userEduPg  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userEduPg).to.not.be.empty;\r",
+									"});\r",
+									"pm.test(\"userEduUg  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userEduUg).to.not.be.empty;\r",
+									"});\r",
+									"pm.test(\"userFirstName  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userFirstName).to.not.be.empty;\r",
+									"});\r",
+									"pm.test(\"userId  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userId).to.not.be.empty;\r",
+									"});\r",
+									"pm.test(\"userLastName  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userLastName).to.not.be.empty;\r",
+									"});\r",
+									"pm.test(\"userLinkedinUrl  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userLinkedinUrl).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"userLocation  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userLocation).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"userLoginEmail  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userLoginEmail).to.not.be.empty;\r",
+									"});\r",
+									"pm.test(\"userMiddleName  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userMiddleName).to.not.be.empty;\r",
+									"});\r",
+									"pm.test(\"userPhoneNumber  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userPhoneNumber).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"userTimeZone  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userTimeZone).to.not.be.empty;\r",
+									"});\r",
+									"pm.test(\"userVisaStatus  is not empty\", function () {\r",
+									"    pm.expect(pm.response.json().userVisaStatus).to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"userPhoneNumber is present and is an number\", function () {\r",
+									"    pm.expect(responseBody.userPhoneNumber).to.be.an('number');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Status Text\",()=>{\r",
+									"pm.response.to.have.status('Created')\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type Header is present\",()=>{\r",
+									"    pm.response.to.have.header(\"Content-Type\")\r",
+									"});\r",
+									"\r",
+									"var schema = \r",
+									"{\r",
+									"\"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"userComments\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userEduPg\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userEduUg\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userFirstName\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userId\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userLastName\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userLinkedinUrl\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userLocation\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userLoginEmail\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userMiddleName\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userPhoneNumber\": {\r",
+									"      \"type\": \"number\"\r",
+									"    },\r",
+									"    \"userTimeZone\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userVisaStatus\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"userComments\",\r",
+									"    \"userEduPg\",\r",
+									"    \"userEduUg\",\r",
+									"    \"userFirstName\",\r",
+									"    \"userId\",\r",
+									"    \"userLastName\",\r",
+									"    \"userLinkedinUrl\",\r",
+									"    \"userLocation\",\r",
+									"    \"userLoginEmail\",\r",
+									"    \"userMiddleName\",\r",
+									"    \"userPhoneNumber\",\r",
+									"    \"userTimeZone\",\r",
+									"    \"userVisaStatus\"\r",
+									"  ]\r",
+									"}\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});\r",
+									"pm.test(\"response time is less than 1000ms\", ()=>{\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "cc58773e-022e-49af-99a5-f715756f3794",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userComments\": \"ok\",\r\n  \"userEduPg\": \"BA\",\r\n  \"userEduUg\": \"MCA\",\r\n  \"userFirstName\": \"hh\",\r\n  \"userId\": \"U111\",\r\n  \"userLastName\": \"hhh\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/in/hh hhh/\",\r\n  \"userLocation\": \"Ottawa\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"NA\",\r\n    \"password\": \"NA\",\r\n    \"roleIds\": [\r\n      \"string\"\r\n    ],\r\n    \"status\": \"yes\",\r\n    \"userLoginEmail\": \"harisiva1980@gmail.com\"\r\n  },\r\n  \"userMiddleName\": \"h\",\r\n  \"userPhoneNumber\": 2326796754,\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R03\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/roleStatus"
+					},
+					"response": []
+				},
+				{
+					"name": "Update User by UserID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4b9d642-734c-42e5-a152-3f8b594db6ba",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"var schema=\r",
+									"{ \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"userComments\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userEduPg\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userEduUg\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userFirstName\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userId\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userLastName\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userLinkedinUrl\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userLocation\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userLoginEmail\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userMiddleName\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userPhoneNumber\": {\r",
+									"      \"type\": \"number\"\r",
+									"    },\r",
+									"    \"userTimeZone\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userVisaStatus\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"userComments\",\r",
+									"    \"userEduPg\",\r",
+									"    \"userEduUg\",\r",
+									"    \"userFirstName\",\r",
+									"    \"userId\",\r",
+									"    \"userLastName\",\r",
+									"    \"userLinkedinUrl\",\r",
+									"    \"userLocation\",\r",
+									"    \"userLoginEmail\",\r",
+									"    \"userMiddleName\",\r",
+									"    \"userPhoneNumber\",\r",
+									"    \"userTimeZone\",\r",
+									"    \"userVisaStatus\"\r",
+									"  ]\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "3089e7be-cb47-4751-b858-bd1fb2710850",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userComments\": \"ok\",\r\n  \"userEduPg\": \"Computer Science Engineering\",\r\n  \"userEduUg\": \"MBA\",\r\n  \"userFirstName\": \"rr\",\r\n  \"userId\": \"U34\",\r\n  \"userLastName\": \"rrr\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/fed/?trk\",\r\n  \"userLocation\": \"ON\",\r\n  \"userLoginEmail\": \"sivahari86868787@gmail.com\",\r\n  \"userMiddleName\": \"r\",\r\n  \"userPhoneNumber\": 9081238998,\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4\"\r\n}  ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U34"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User by UserID without Firstname",
+					"id": "d69b3ac1-c35a-4a2c-a51b-73fbcb5fc4a4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userComments\": \"ok\",\r\n  \"userEduPg\": \"Computer Science Engineering\",\r\n  \"userEduUg\": \"MBA\",\r\n  \"userFirstName\": \"\",\r\n  \"userId\": \"U34\",\r\n  \"userLastName\": \"rrr\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/fed/?trk\",\r\n  \"userLocation\": \"ON\",\r\n  \"userLoginEmail\": \"sivahari86868787@gmail.com\",\r\n  \"userMiddleName\": \"r\",\r\n  \"userPhoneNumber\": 9081238998,\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4\"\r\n}  ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U298"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User by Invalid UserID",
+					"id": "56aebfb5-3883-4339-85c6-6d04700f0824",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userComments\": \"ok\",\r\n  \"userEduPg\": \"Computer Science Engineering\",\r\n  \"userEduUg\": \"MBA\",\r\n  \"userFirstName\": \"rr\",\r\n  \"userId\": \"U34\",\r\n  \"userLastName\": \"rrr\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/fed/?trk\",\r\n  \"userLocation\": \"ON\",\r\n  \"userLoginEmail\": \"sivahari86868787@gmail.com\",\r\n  \"userMiddleName\": \"r\",\r\n  \"userPhoneNumber\": 9081238998,\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4\"\r\n}  ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User by UserID without Lastname",
+					"id": "fc52f1e8-cd2f-4517-8985-a53bb335826a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userComments\": \"ok\",\r\n  \"userEduPg\": \"Computer Science Engineering\",\r\n  \"userEduUg\": \"MBA\",\r\n  \"userFirstName\": \"rr\",\r\n  \"userId\": \"U34\",\r\n  \"userLastName\": \"\",\r\n  \"userLinkedinUrl\": \"https://www.linkedin.com/fed/?trk\",\r\n  \"userLocation\": \"ON\",\r\n  \"userLoginEmail\": \"sivahari86868787@gmail.com\",\r\n  \"userMiddleName\": \"r\",\r\n  \"userPhoneNumber\": 9081238998,\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"H4\"\r\n}  ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U34"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Role Status by UserID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "64666188-e042-44eb-83ed-dede6636bbfa",
+								"exec": [
+									"var schema=\r",
+									"{ \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"roleId\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userRoleStatus\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"roleId\",\r",
+									"    \"userRoleStatus\"\r",
+									"  ]\r",
+									"}\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "7e97d626-112e-4bdd-b9ca-8857fc72dbeb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roleId\": \"R03\",\r\n  \"userRoleStatus\": \"Active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roleStatus/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleStatus",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U298"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User Role Status by InvalidUserID",
+					"id": "33cdfee3-36ff-415b-bfaf-929b92c5ce37",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roleId\": \"R01\",\r\n  \"userRoleStatus\": \"Active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roleStatus/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleStatus",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser RoleStatus(UserID) invalid RoleID",
+					"id": "f2cd5295-766e-4469-b073-a726502c855b",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roleId\": \"R04\",\r\n  \"userRoleStatus\": \"Active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roleStatus/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleStatus",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U298"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser RoleStatus(UserID) without Status",
+					"id": "60da3e8c-205c-4331-91c9-2e1d3b530818",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"roleId\": \"R01\",\r\n  \"userRoleStatus\": \"\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roleStatus/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleStatus",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U298"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User RoleId by UserID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "df76968e-eccc-44f6-923c-02a59cb331d7",
+								"exec": [
+									"var schema={  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"userRoleList\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": {\r",
+									"        \"type\": \"string\"\r",
+									"      }\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"userRoleList\"\r",
+									"  ]\r",
+									"}\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.value).to.eql(100);\r",
+									"});\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "89322df2-236b-4ad2-b398-4423ab5a96d7",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userRoleList\": [\r\n    \"R02\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roleId/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleId",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U34"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User RoleId by Invalid UserID",
+					"id": "be0555a4-52aa-476c-98ce-a3297a42d30a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userRoleList\": [\r\n    \"R01\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roleId/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleId",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User RoleId by without RoleID",
+					"id": "44bc9802-6ac5-4066-a628-d1508b489da2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userRoleList\": [\r\n    \"\"\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roleId/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleId",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U34"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User RoleProgramBatchStatus by UserID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1104f538-8add-4d81-8b36-c2adb2eaf0c8",
+								"exec": [
+									"var schema={ \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"programId\": {\r",
+									"      \"type\": \"number\"\r",
+									"    },\r",
+									"    \"roleId\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userId\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userRoleProgramBatches\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": {\r",
+									"        \"type\": \"object\",\r",
+									"        \"properties\": {\r",
+									"          \"batchId\": {\r",
+									"            \"type\": \"number\"\r",
+									"          },\r",
+									"          \"userRoleProgramBatchStatus\": {\r",
+									"            \"type\": \"string\"\r",
+									"          }\r",
+									"        },\r",
+									"        \"required\": [\r",
+									"          \"batchId\",\r",
+									"          \"userRoleProgramBatchStatus\"\r",
+									"        ]\r",
+									"      }\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"programId\",\r",
+									"    \"roleId\",\r",
+									"    \"userId\",\r",
+									"    \"userRoleProgramBatches\"\r",
+									"  ]\r",
+									"}\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "a4226e32-e95c-4b96-a1a5-1cf570e784c1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programId\": 16208,\r\n  \"roleId\": \"R02\",\r\n  \"userId\": \"U34\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8432,\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roleProgramBatchStatus/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleProgramBatchStatus",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U34"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser RoleProgramBatchStatus by invalidUserid",
+					"id": "8660c88c-2bbd-43af-a369-d8720d8e4cb8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programId\": 16208,\r\n  \"roleId\": \"R02\",\r\n  \"userId\": \"U34\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8432,\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roleProgramBatchStatus/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleProgramBatchStatus",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User RoleProgramBatchStatus without batch id",
+					"id": "325d2242-fd42-40df-9f73-d8dcca24b769",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programId\": 16208,\r\n  \"roleId\": \"R02\",\r\n  \"userId\": \"U34\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8432,\r\n      \"userRoleProgramBatchStatus\": \"\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roleProgramBatchStatus/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleProgramBatchStatus",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U34"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User LoginStatus by Userid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9ee8690d-5591-453a-9b5d-6cf6c64fdec2",
+								"exec": [
+									"var schema={\r",
+									"     \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"loginStatus\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"password\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"roleIds\": {\r",
+									"      \"type\": \"array\",\r",
+									"      \"items\": {\r",
+									"        \"type\": \"string\"\r",
+									"      }\r",
+									"    },\r",
+									"    \"status\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"userLoginEmail\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"loginStatus\",\r",
+									"    \"password\",\r",
+									"    \"roleIds\",\r",
+									"    \"status\",\r",
+									"    \"userLoginEmail\"\r",
+									"  ]\r",
+									"}\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type is present\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "a6ffc6aa-1226-4877-9939-7076d48ef8e4",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"loginStatus\": \"Active\",\r\n  \"password\": \"string\",\r\n  \"roleIds\": [\r\n    \"string\"\r\n  ],\r\n  \"status\": \"Active\",\r\n  \"userLoginEmail\": \"APIMasters_01.Jobathon@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/userLogin/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"userLogin",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U34"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User LoginStatus without  Status",
+					"id": "f46b93ff-cb97-4e0d-ba42-cc5bac998ea1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"loginStatus\": \"Active\",\r\n  \"password\": \"string\",\r\n  \"roleIds\": [\r\n    \"string\"\r\n  ],\r\n  \"status\": \"Active\",\r\n  \"userLoginEmail\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/userLogin/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"userLogin",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U34"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User LoginStatus by Invalid Userid",
+					"id": "fc7aac50-2b1f-4a9f-883d-e02d92df08ca",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"loginStatus\": \"Active\",\r\n  \"password\": \"string\",\r\n  \"roleIds\": [\r\n    \"string\"\r\n  ],\r\n  \"status\": \"Active\",\r\n  \"userLoginEmail\": \"APIMasters_01.Jobathon@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/userLogin/:userid",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"userLogin",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "U11"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User by Valid UserID",
+					"id": "6da08201-a264-4efc-bc6b-6daf3d636758",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}}/users/:userid",
+							"host": [
+								"{{BaseURL}}}"
+							],
+							"path": [
+								"users",
+								":userid"
+							],
+							"variable": [
+								{
+									"key": "userid",
+									"value": "{{user-id-env}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User by Valid UserID Copy",
+					"id": "24f17b8b-6928-439c-afa5-286dd47a7ac8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}}/users/:userid",
+							"host": [
+								"{{BaseURL}}}"
+							],
+							"path": [
+								"users",
+								":userid"
+							],
+							"variable": [
+								{
+									"id": "3806849e-f590-4429-86b9-79e82e375634",
+									"key": "userid",
+									"value": "{{user-id-env}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User by Valid UserID Copy",
+					"id": "1dfb79e0-d6c0-4d7f-9a8a-c76cec5538ea",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}}/users/:userid",
+							"host": [
+								"{{BaseURL}}}"
+							],
+							"path": [
+								"users",
+								":userid"
+							],
+							"variable": [
+								{
+									"id": "1886beb2-1b1a-43a9-b21c-d1d82e9d0e33",
+									"key": "userid",
+									"value": "{{user-id-env}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User by Invalid UserID",
+					"id": "87f13ad4-83e4-4bcc-9e7f-609e823fa821",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/U11"
+					},
+					"response": []
+				}
+			],
+			"id": "4d02bf94-c777-4a44-8164-8c8e9d5b4c57"
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": {}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "68587fd9-8293-445c-844f-aa709d8bab7a",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "7cdd49d8-9082-4c75-8e42-ab24430fe11d",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseUrl",
+			"value": "https://lms-marchapi-hackathon-a258d2bbd43b.herokuapp.com/lms"
+		}
+	]
+}
