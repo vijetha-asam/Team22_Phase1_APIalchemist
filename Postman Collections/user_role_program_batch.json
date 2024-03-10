@@ -1687,6 +1687,18 @@
 			"name": "Post-test restorations",
 			"item": [
 				{
+					"name": "New Request",
+					"id": "31f58c7e-a944-442b-b27e-83436e6c5c9f",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
 					"name": "User logout(not a part of this module)",
 					"event": [
 						{
