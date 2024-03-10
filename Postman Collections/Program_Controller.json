@@ -4353,6 +4353,12 @@
 							"script": {
 								"id": "48c3d66e-4817-49c5-b8b7-5a9eddafbbef",
 								"exec": [
+									"var resp = pm.response.json();",
+									"var programNAME = resp.programName;",
+									"",
+									"pm.environment.set(\"Demo_Updated_programName_programModule\",programNAME);",
+									"",
+									"",
 									"// Perform header-content-type validation",
 									"pm.test(\"Content-Type header is present\", ()=> {",
 									"    pm.response.to.have.header(\"Content-Type\");",
@@ -4448,7 +4454,7 @@
 					"response": []
 				},
 				{
-					"name": "UpdateProgramNameByProgramName Copy",
+					"name": "DemoUpdateProgramNameByProgramName",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -4473,7 +4479,7 @@
 									"// Log the request body",
 									"console.log(\"Request body:\", requestBody.raw);",
 									"// Define the path parameter value",
-									"var pathParamValue =pm.environment.get(\"ProgramModule_updateProgramPositive_programName\");",
+									"var pathParamValue =pm.environment.get(\"Demo_Updated_programName_programModule\");",
 									"",
 									"// Validate the path parameter value",
 									"if (!pathParamValue) {",
@@ -4499,6 +4505,7 @@
 							"script": {
 								"id": "44b78011-3a90-43ff-b03f-2afe8b7bad81",
 								"exec": [
+									"var resp = pm.response.json();",
 									"// Perform header-content-type validation",
 									"pm.test(\"Content-Type header is present\", ()=> {",
 									"    pm.response.to.have.header(\"Content-Type\");",
@@ -4581,7 +4588,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_Name}}\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo002\",\n  \"programName\": \"Demo_Program002\",\n  \"programStatus\": \"Inctive\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4593,7 +4600,7 @@
 					"response": []
 				},
 				{
-					"name": "DeleteProgram By Valid ProgramId Copy",
+					"name": "Demo DeleteProgram By Valid ProgramId",
 					"event": [
 						{
 							"listen": "test",
@@ -4691,7 +4698,7 @@
 					"response": []
 				},
 				{
-					"name": "DeleteExistingProgramByValidProgramName Copy",
+					"name": "DemoDeleteExistingProgramByValidProgramName",
 					"event": [
 						{
 							"listen": "test",
