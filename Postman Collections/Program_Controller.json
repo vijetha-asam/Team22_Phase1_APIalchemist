@@ -1159,7 +1159,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"{{UpdateToSpecialChar}}\",\n  \"programName\": \"March24-API-DAAAS-010\",\n  \"programStatus\": \"Inactive\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"{{UpdateToSpecialChar}}\",\n  \"programName\": \"March24-API-DA-010\",\n  \"programStatus\": \"Inactive\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1224,7 +1224,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"A^^^^^^^^^^^^^^^^\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Inactive\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"A^^^^^^\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"Inactive\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
