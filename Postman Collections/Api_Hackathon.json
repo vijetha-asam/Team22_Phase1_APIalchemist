@@ -57,7 +57,7 @@
 							"script": {
 								"id": "970be96e-5723-4aac-84c9-bc8bc81bc343",
 								"exec": [
-									" const jsonData=JSON.parse(requestBody);\r",
+									"var jsonData=JSON.parse(responseBody);\r",
 									" pm.environment.set(\"User_Module_ProgramId_env\",jsonData.programId);\r",
 									"\r",
 									" pm.test(\"Content-Type header is present\", ()=> {\r",
@@ -125,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"Mar24-API-SDET-34\",\r\n \"programName\": \"API_Allteams\",\r\n  \"programStatus\": \"active\"\r\n}",
+							"raw": "{\r\n  \"programDescription\": \"Mar24-API-SDET-881\",\r\n \"programName\": \"API_bootcampteams1\",\r\n  \"programStatus\": \"active\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3339,6 +3339,19 @@
 							}
 						},
 						"url": "{{BaseURL}}/users/roleStatus"
+					},
+					"response": []
+				},
+				{
+					"name": "{{BaseURL}}/deletebyprogid/{{User_Module_ProgramId_env}}",
+					"id": "aebe0b3a-18d2-4bf8-9823-ad9c50ab27b2",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/deletebyprogid/{{User_Module_ProgramId_env}}"
 					},
 					"response": []
 				}
