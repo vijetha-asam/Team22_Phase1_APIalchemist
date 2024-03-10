@@ -1300,50 +1300,7 @@
 							"script": {
 								"id": "1104f538-8add-4d81-8b36-c2adb2eaf0c8",
 								"exec": [
-									"var schema={ \"type\": \"object\",\r",
-									"  \"properties\": {\r",
-									"    \"programId\": {\r",
-									"      \"type\": \"number\"\r",
-									"    },\r",
-									"    \"roleId\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"userId\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"userRoleProgramBatches\": {\r",
-									"      \"type\": \"array\",\r",
-									"      \"items\": {\r",
-									"        \"type\": \"object\",\r",
-									"        \"properties\": {\r",
-									"          \"batchId\": {\r",
-									"            \"type\": \"number\"\r",
-									"          },\r",
-									"          \"userRoleProgramBatchStatus\": {\r",
-									"            \"type\": \"string\"\r",
-									"          }\r",
-									"        },\r",
-									"        \"required\": [\r",
-									"          \"batchId\",\r",
-									"          \"userRoleProgramBatchStatus\"\r",
-									"        ]\r",
-									"      }\r",
-									"    }\r",
-									"  },\r",
-									"  \"required\": [\r",
-									"    \"programId\",\r",
-									"    \"roleId\",\r",
-									"    \"userId\",\r",
-									"    \"userRoleProgramBatches\"\r",
-									"  ]\r",
-									"}\r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Content-Type is present\", function () {\r",
-									"    pm.response.to.have.header(\"Content-Type\");\r",
-									"});"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -1364,7 +1321,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programId\": 16208,\r\n  \"roleId\": \"R02\",\r\n  \"userId\": \"U298,\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8432,\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
+							"raw": "{\r\n  \"programId\": 16940,\r\n  \"roleId\": \"R03\",\r\n  \"userId\": \"U118\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8814,\r\n      \"userRoleProgramBatchStatus\": \"Inactive\"\r\n    }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1384,7 +1341,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U298"
+									"value": "U118"
 								}
 							]
 						}
