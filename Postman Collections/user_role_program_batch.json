@@ -1171,9 +1171,12 @@
 									"    ]",
 									"};",
 									"",
+									"try{ pm.expect(response).to.have.jsonSchema(schema);",
 									"pm.test(\"Schema is valid\", () => {",
 									"    pm.response.to.have.jsonSchema(schema);",
-									"});"
+									"});}catch(e){",
+									"    pm.test(\"FAIL - schema validation failed\", () => {throw new Error(e.message)}); ",
+									"}"
 								],
 								"type": "text/javascript"
 							}
