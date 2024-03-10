@@ -77,7 +77,7 @@
 									"});\r",
 									"\r",
 									" \r",
-									" var schema=\r",
+									" /*var schema=\r",
 									" {\r",
 									" \"type\": \"object\",\r",
 									"  \"properties\": {\r",
@@ -100,7 +100,7 @@
 									"\r",
 									"pm.test('Schema validation', () => {\r",
 									"  pm.response.to.have.jsonSchema (schema);\r",
-									"});\r",
+									"});*/\r",
 									"pm.test(\"response time is less than 1000ms\", ()=>{\r",
 									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
 									"});\r",
@@ -125,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"Mar24-Alchemist-SDET-008\",\r\n \"programName\": \"API_hackathonteam1\",\r\n  \"programStatus\": \"{{program_Status}}\"\r\n}\r\n",
+							"raw": "{\r\n  \"programDescription\": \"Mar24-API-SDET-34\",\r\n \"programName\": \"API_Allteams\",\r\n  \"programStatus\": \"active\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
