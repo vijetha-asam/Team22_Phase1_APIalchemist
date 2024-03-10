@@ -1333,7 +1333,7 @@
 					"response": []
 				},
 				{
-					"name": "Create Batch Module Missing program Id Copy",
+					"name": "Create Batch Module invalid program Id",
 					"event": [
 						{
 							"listen": "test",
