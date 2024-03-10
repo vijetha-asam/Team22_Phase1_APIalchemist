@@ -95,7 +95,7 @@
 								},
 								"method": "GET",
 								"header": [],
-								"url": "{{BaseURL}}/programs/{{deletedProgramId}}"
+								"url": "{{BaseURL}}/programs/{{deletedProgramId_programModule}}"
 							},
 							"response": []
 						},
