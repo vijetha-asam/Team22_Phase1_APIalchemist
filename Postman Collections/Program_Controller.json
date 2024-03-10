@@ -3278,7 +3278,30 @@
 									"script": {
 										"id": "8f957547-f37d-42f1-a576-48b0cbfc7eba",
 										"exec": [
-											""
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Define the path parameter value",
+											"var pathParamValue =pm.environment.get(\"Nonexisting_programID_programModule\");",
+											"",
+											"// Validate the path parameter value",
+											"if (!pathParamValue) {",
+											"    //throw new Error(\"Path parameter value is missing\");",
+											"    console.log(\"ERROR : Path parameter value is missing\");",
+											"}",
+											"else{",
+											"// Log the path parameter value",
+											"console.log(\"Path parameter value:\", pathParamValue);",
+											"",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;",
+											"} "
 										],
 										"type": "text/javascript"
 									}
@@ -3288,6 +3311,8 @@
 									"script": {
 										"id": "da38c694-bb38-4260-9f8c-004f13e27e69",
 										"exec": [
+											"var resp = pm.response.json();",
+											"",
 											"// Perform status code validation",
 											"pm.test(\"Status code is 404\",()=>{",
 											"pm.response.to.have.status(404);",
@@ -3302,14 +3327,6 @@
 											"    \"message\": \"no record found with programId${programId}\",",
 											"    \"success\": false",
 											"};",
-											"// Update the response message with the program ID Define expected Data",
-											"const expectedResponseMessage = \"no record found with programId${programID}\";",
-											"",
-											"// Validate the response body",
-											"pm.test(\"Response body contains expected success message\", function() {",
-											"    pm.expect(response.message).to.equal(expectedResponseMessage);",
-											"});",
-											"",
 											"",
 											"// Validate the response body",
 											"pm.test(\"Response body contains expected error message and success flag\", function() {",
@@ -3347,12 +3364,82 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/deletebyprogid/{{Nonexisting_programID_programModule}}"
+								"url": "{{BaseURL}}/deletebyprogid"
 							},
 							"response": []
 						},
 						{
 							"name": "Delete already deleted program by programId",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "f775d376-b095-4dad-a106-12226e8602d4",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Define the path parameter value",
+											"var pathParamValue =pm.environment.get(\"Bug_programModule_programID\");",
+											"",
+											"// Validate the path parameter value",
+											"if (!pathParamValue) {",
+											"    //throw new Error(\"Path parameter value is missing\");",
+											"    console.log(\"ERROR : Path parameter value is missing\");",
+											"}",
+											"else{",
+											"// Log the path parameter value",
+											"console.log(\"Path parameter value:\", pathParamValue);",
+											"",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;",
+											"} "
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "54c43695-e96c-42b7-9260-fd6b206f34aa",
+										"exec": [
+											"var response = pm.response.json();",
+											"",
+											"// Perform statuc code validation",
+											"pm.test(\"Status code is 200\",()=>{",
+											"pm.response.to.have.status(200);",
+											"});",
+											"// Perform status validation",
+											"pm.test(\"Check Status as OK\",()=>{",
+											"pm.response.to.have.status('OK')",
+											"});",
+											"// Get the runtime programId from the environment variable",
+											"const programID = pm.environment.get(\"Bug_programModule_programID\");",
+											"",
+											"// Update the response message with the programId Define expected Data",
+											"const expectedResponseMessage = \"Program Id-${programID} is deleted Successfully!\";",
+											"",
+											"// Validate the response body",
+											"pm.test(\"Response body contains expected success message\", function() {",
+											"    pm.expect(response.message).to.equal(expectedResponseMessage);",
+											"});",
+											"",
+											"// Perform response time validation",
+											"pm.test(\"response time is less than 700ms\", ()=>{",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "3f2d668e-e5f6-43d5-8098-0f3d43fe8512",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -3375,7 +3462,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/deletebyprogid/{Bug_programModule_programID}"
+								"url": "{{BaseURL}}/deletebyprogid"
 							},
 							"response": []
 						}
