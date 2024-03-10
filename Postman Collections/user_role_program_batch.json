@@ -222,7 +222,7 @@
 									"   pm.environment.set(\"programIdkb\", responseBody.programId);",
 									"    pm.test(\"PASS - Program was created successfully\", () => true); ",
 									"}catch(e){",
-									"    pm.test(\"FAIL - Program was not created due to error\", () => {throw new Error(e.message)}); ",
+									"    pm.test(\"FAIL - Program was not created as it already exists\", () => {throw new Error(e.message)}); ",
 									"}",
 									""
 								],
@@ -253,6 +253,18 @@
 							}
 						},
 						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
+					"name": "Create new batch",
+					"id": "ca000745-2b97-4182-9ec4-51c4d57c5646",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}
