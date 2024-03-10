@@ -1741,14 +1741,118 @@
 			"item": [
 				{
 					"name": "Delete program",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "86236caa-35a8-4462-8e09-4f289f6d355e",
+								"exec": [
+									"var responseBody = pm.response.json();",
+									"",
+									"",
+									"    try{",
+									"   pm.expect(responseBody.success).to.be.true;",
+									"    pm.test(\"PASS - Program was deleted\", () => true); ",
+									"}catch(e){",
+									"    pm.test(\"FAIL - Program was not deleted or other error\", () => {throw new Error(e.message)}); ",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "31f58c7e-a944-442b-b27e-83436e6c5c9f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
 						"method": "DELETE",
 						"header": [],
-						"url": "{{BaseURL}}//deletebyprogid/{{programIdkb}}"
+						"url": "{{BaseURL}}/deletebyprogid/{{programIdkb}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "86236caa-35a8-4462-8e09-4f289f6d355e",
+								"exec": [
+									"var responseBody = pm.response.json();",
+									"",
+									"",
+									"    try{",
+									"   pm.expect(responseBody.success).to.be.true;",
+									"    pm.test(\"PASS - Batch was deleted\", () => true); ",
+									"}catch(e){",
+									"    pm.test(\"FAIL - Batch was not deleted or other error\", () => {throw new Error(e.message)}); ",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "726f50a4-4ead-409e-b18b-7c3983f03780",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/batches/{{batchIdkb}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "86236caa-35a8-4462-8e09-4f289f6d355e",
+								"exec": [
+									"var responseBody = pm.response.json();",
+									"",
+									"",
+									"    try{",
+									"   pm.expect(responseBody.success).to.be.true;",
+									"    pm.test(\"PASS - Batch was deleted\", () => true); ",
+									"}catch(e){",
+									"    pm.test(\"FAIL - Batch was not deleted or other error\", () => {throw new Error(e.message)}); ",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "d610b313-99fa-437b-a176-02a3a8f4707a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/users/{{userIdkb}}"
 					},
 					"response": []
 				},
