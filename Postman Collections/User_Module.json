@@ -125,7 +125,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"Mar24-API-SDET-0080\",\r\n \"programName\": \"API_bootcampofteams90\",\r\n  \"programStatus\": \"active\"\r\n}",
+							"raw": "{\r\n  \"programDescription\": \"Mar24-API-SDET-0081\",\r\n \"programName\": \"API_bootcampofteams98\",\r\n  \"programStatus\": \"active\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -252,7 +252,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programId\": {{User_Module_ProgramId_env}},\r\n  \"roleId\": \"R03\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": {{User_Module_BatchId_env}},\r\n      \"userRoleProgramBatchStatus\": \"active\"\r\n    }\r\n  ]\r\n}\r\n",
+							"raw": "{\r\n  \"programId\": {{User_Module_ProgramId_env}},\r\n  \"roleId\": \"R03\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": {{User_Module_BatchId_env}},\r\n      \"userRoleProgramBatchStatus\": \"active\"\r\n    }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
