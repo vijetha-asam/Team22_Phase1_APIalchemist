@@ -474,7 +474,7 @@
 									"",
 									"",
 									"    try{",
-									"   pm.expect(responseBody.message).to.include(\"true\");",
+									"   pm.expect(responseBody.success).to.be.true;",
 									"    pm.test(\"PASS - User was assigned to Program/Batch\", () => true); ",
 									"}catch(e){",
 									"    pm.test(\"FAIL - User was not assigned to program/batch as that already exists or other error\", () => {throw new Error(e.message)}); ",
@@ -1740,14 +1740,15 @@
 			"name": "Post-test restorations",
 			"item": [
 				{
-					"name": "Delete Batch",
+					"name": "Delete program",
 					"id": "31f58c7e-a944-442b-b27e-83436e6c5c9f",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}//deletebyprogid/{{programIdkb}}"
 					},
 					"response": []
 				},
