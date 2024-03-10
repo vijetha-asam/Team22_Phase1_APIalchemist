@@ -482,6 +482,8 @@
 									"pm.test(\"Response is valid JSON\", function () {",
 									"    pm.response.to.be.json;",
 									"});",
+									"// Log the request body",
+									"console.log(\"Request Body:\", pm.request.body.raw);",
 									"// Perform statuc code validation",
 									"pm.test(\"Status code is 400\",()=>{",
 									"pm.response.to.have.status(400);",
