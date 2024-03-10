@@ -3088,9 +3088,6 @@
 											"// Extract the base URL from the request URL",
 											"const baseUrl = requestUrl.split(\"?\")[0];",
 											"",
-											"// Get the request body",
-											"const requestBody = pm.request.body;",
-											"",
 											"// Define the path parameter value",
 											"var pathParamValue =pm.environment.get(\"Bug_programModule_programID\");",
 											"",
@@ -3133,6 +3130,16 @@
 											"",
 											"// Update the response message with the program ID Define expected Data",
 											"const expectedResponseMessage = \"Program Id-${programID} is deleted Successfully!\";",
+											"",
+											"// Validate the response body",
+											"pm.test(\"Response body contains expected success message\", function() {",
+											"    pm.expect(response.message).to.equal(expectedResponseMessage);",
+											"});",
+											"",
+											"// Perform response time validation",
+											"pm.test(\"response time is less than 700ms\", ()=>{",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);",
+											"});",
 											""
 										],
 										"type": "text/javascript"
@@ -3167,6 +3174,76 @@
 						},
 						{
 							"name": "DeleteProgram By Valid ProgramId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8496de19-7501-4053-a801-07b0a979bc58",
+										"exec": [
+											"var response = pm.response.json();",
+											"",
+											"// Perform statuc code validation",
+											"pm.test(\"Status code is 200\",()=>{",
+											"pm.response.to.have.status(200);",
+											"});",
+											"// Perform status validation",
+											"pm.test(\"Check Status as OK\",()=>{",
+											"pm.response.to.have.status('OK')",
+											"});",
+											"// Get the runtime programName from the environment variable",
+											"const programID = pm.environment.get(\"programModule_programID\");",
+											"",
+											"// Update the response message with the program ID Define expected Data",
+											"const expectedResponseMessage = \"Program Id-${programID} is deleted Successfully!\";",
+											"",
+											"// Validate the response body",
+											"pm.test(\"Response body contains expected success message\", function() {",
+											"    pm.expect(response.message).to.equal(expectedResponseMessage);",
+											"});",
+											"",
+											"// Perform response time validation",
+											"pm.test(\"response time is less than 700ms\", ()=>{",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);",
+											"});",
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "6b3912e5-c793-483d-9369-82810f90df9e",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Define the path parameter value",
+											"var pathParamValue =pm.environment.get(\"programModule_programID\");",
+											"",
+											"// Validate the path parameter value",
+											"if (!pathParamValue) {",
+											"    //throw new Error(\"Path parameter value is missing\");",
+											"    console.log(\"ERROR : Path parameter value is missing\");",
+											"}",
+											"else{",
+											"// Log the path parameter value",
+											"console.log(\"Path parameter value:\", pathParamValue);",
+											"",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;",
+											"} "
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "b046bfd0-8a8f-4f0d-8ae0-1424ac79f5c5",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
@@ -3189,7 +3266,7 @@
 										}
 									}
 								},
-								"url": "{{BaseURL}}/deletebyprogid/{{programModule_programID}}"
+								"url": "{{BaseURL}}/deletebyprogid"
 							},
 							"response": []
 						},
@@ -3290,7 +3367,7 @@
 											"const programName = pm.environment.get(\"Delete_programName_programModule\");",
 											"",
 											"",
-											"// Update the response message with the program ID Define expected Data",
+											"// Update the response message with the program Name Define expected Data",
 											"const expectedResponseMessage = \"Program Name-${programName} is deleted Successfully!\";",
 											"const expectedSuccessFlag = false;",
 											"",
