@@ -375,6 +375,34 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "6d13c452-af12-498c-a5af-34e7a350901d",
+								"exec": [
+									"const serialNumber = '{generateRandomNumber(0001, 9999)';",
+									"const programNameValue = 'March24-ApiAlchemist-Hackathon-${serialNumber}';",
+									"",
+									"",
+									"// Function to generate a random number within a range",
+									"function generateRandomNumber(min, max) {",
+									"    return Math.floor(Math.random() * (max - min + 1)) + min;",
+									"}",
+									"// Get the request body from the request editor",
+									"const requestBody = {",
+									"    programDescription: \"APIHackathon_Phase1\",",
+									"    programName: programNameValue,",
+									"    programStatus: \"Inactive\"",
+									"};",
+									"// Update the request body in the request editor",
+									"pm.request.body = {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(requestBody)",
+									"};"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"id": "045410d9-c071-4df3-a09d-d0c226e7fbdb",
@@ -392,7 +420,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"March24_API-Alchemist_SDET_Program001\",\n  \"programStatus\": \"Inactive\"\n}\n",
+							"raw": "{\n    \"programDescription\" : \"APIHackathon_Phase1\",\n    \"programName\": \"{{programNameValue}}\",\n    \"programStatus\": \"Inactive\"\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
