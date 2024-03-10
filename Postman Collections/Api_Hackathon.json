@@ -3115,6 +3115,7 @@
 								"id": "970be96e-5723-4aac-84c9-bc8bc81bc343",
 								"exec": [
 									" const jsonData=JSON.parse(requestBody);\r",
+									" pm.environment.set(\"User_Module_ProgramId_env\",jsonData.programId);\r",
 									" \r",
 									" var schema=\r",
 									" {\r",
