@@ -1452,7 +1452,7 @@
 									"const ProgramName = `March24-APIAlchemist-SDETDA-${randomInt}`;\r",
 									"\r",
 									"// Set the generated ProgramName as an environment variable\r",
-									"pm.environment.set(\"ProgramName\", ProgramName);\r",
+									"pm.environment.set(\"ProgramName_Batch\", ProgramName);\r",
 									""
 								],
 								"type": "text/javascript"
@@ -1474,7 +1474,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"{{ProgramDescription}}\",\r\n  \"programName\": \"{{ProgramName}}\",\r\n  \"programStatus\": \"{{ProgramStatus}}\"\r\n}\r\n",
+							"raw": "{\r\n  \"programDescription\": \"{{ProgramDescription}}\",\r\n  \"programName\": \"{{ProgramName_Batch}}\",\r\n  \"programStatus\": \"{{ProgramStatus}}\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1880,7 +1880,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"{{BatchDescription}}\",\r\n    \"batchName\": \"{{BatchName_ProgramBatch}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2361,15 +2361,13 @@
 							"script": {
 								"id": "1fb525e4-274f-40a9-8bae-0454904b8cf0",
 								"exec": [
-									"// Extract the request URL from environment variables\r",
-									"var requestUrl = pm.variables.replaceIn(\"{{BaseURL}}/batches/{{programbatch_batchid}}\");\r",
+									"const randomInt = pm.variables.replaceIn(\"{{$randomInt}}\");\r",
 									"\r",
-									"// Check if the request URL contains the path parameter placeholder\r",
-									"if (requestUrl.includes('{{programbatch_batchid}}')) {\r",
-									"    // Path parameter is missing, set an error message and cancel the request\r",
-									"    pm.environment.set(\"error_message\", \"Path parameter 'programbatch_batchid' is missing\");\r",
-									"    pm.request.cancel = true;\r",
-									"}\r",
+									"// Construct the ProgramName variable\r",
+									"const BatchName = `March24-APIAlchemist-SDETDA-SDET021-${randomInt}`;\r",
+									"\r",
+									"// Set the generated ProgramName as an environment variable\r",
+									"pm.environment.set(\"BatchName_ProgramBatch_update\", BatchName);\r",
 									""
 								],
 								"type": "text/javascript"
