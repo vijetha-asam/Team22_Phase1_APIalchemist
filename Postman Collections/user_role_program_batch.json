@@ -408,6 +408,52 @@
 							"body": "{\n    \"batchId\": 8915,\n    \"batchName\": \"March24-APIAlchemist-DA55SDET-DA-001\",\n    \"batchDescription\": \"March24-APIAlchemist-March24-APIAlchemist-DA55-001-DASDET-001\",\n    \"batchStatus\": \"Active\",\n    \"batchNoOfClasses\": 10,\n    \"programId\": 17049,\n    \"programName\": \"March24-APIAlchemist-DA55-001\"\n}"
 						}
 					]
+				},
+				{
+					"name": "Assign newly created user to newly created batch and program",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4b9441a7-f4f1-417a-bfaf-4da2a9c71e95",
+								"exec": [
+									"pm.test('Deleted data has been restored to ensure this module can be rerun ', () => {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('message');",
+									"    pm.expect(jsonData.message.toLowerCase()).to.include(\"has been successfully assigned to program/batch(es)\");",
+									"})",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "9b42020c-8160-44d2-8b42-35dfa90f3f71",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"programId\": {{programIdkb}},\n  \"roleId\": \"{{roleIdkb}}\",\n  \"userId\": \"{{userIdkb}}\",\n  \"userRoleProgramBatches\": [\n    {\n      \"batchId\": {{batchIdkb}},\n      \"userRoleProgramBatchStatus\": \"Active\"\n    }\n  ]\n}\n\n// {\n//   \"programId\": 16208,\n//   \"roleId\": \"R03\",\n//   \"userId\": \"U07\",\n//   \"userRoleProgramBatches\": [\n//     {\n//       \"batchId\": 8432,\n//       \"userRoleProgramBatchStatus\": \"Active\"\n//     }\n//   ]\n// }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/roleProgramBatchStatus/{{userIdkb}}"
+					},
+					"response": []
 				}
 			],
 			"id": "64f25f8e-5b87-4971-ba68-1599a4cc6055"
@@ -1533,52 +1579,6 @@
 		{
 			"name": "Post-test restorations",
 			"item": [
-				{
-					"name": "Restore deleted Data (Not a part of scenarios)",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "4b9441a7-f4f1-417a-bfaf-4da2a9c71e95",
-								"exec": [
-									"pm.test('Deleted data has been restored to ensure this module can be rerun ', () => {",
-									"    var jsonData = pm.response.json();",
-									"    pm.expect(jsonData).to.have.property('message');",
-									"    pm.expect(jsonData.message.toLowerCase()).to.include(\"has been successfully assigned to program/batch(es)\");",
-									"})",
-									"",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "9b42020c-8160-44d2-8b42-35dfa90f3f71",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{Bearertoken2}}"
-							}
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"programId\": {{programIdkb}},\n  \"roleId\": \"{{roleIdkb}}\",\n  \"userId\": \"{{userIdkb}}\",\n  \"userRoleProgramBatches\": [\n    {\n      \"batchId\": {{batchIdkb}},\n      \"userRoleProgramBatchStatus\": \"Active\"\n    }\n  ]\n}\n\n// {\n//   \"programId\": 16208,\n//   \"roleId\": \"R03\",\n//   \"userId\": \"U07\",\n//   \"userRoleProgramBatches\": [\n//     {\n//       \"batchId\": 8432,\n//       \"userRoleProgramBatchStatus\": \"Active\"\n//     }\n//   ]\n// }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/users/roleProgramBatchStatus/{{userIdkb}}"
-					},
-					"response": []
-				},
 				{
 					"name": "User logout(not a part of this module)",
 					"event": [
