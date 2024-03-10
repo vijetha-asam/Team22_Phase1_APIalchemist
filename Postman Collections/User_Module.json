@@ -6,6 +6,242 @@
 	},
 	"item": [
 		{
+			"name": "Pre-Requisites",
+			"item": [
+				{
+					"name": "Create_Batch",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "246cca84-c055-471a-bd3f-d250f68881f8",
+								"exec": [
+									"const jsonData=JSON.parse(requestBody);\r",
+									" pm.environment.set(\"User_Module_BatchId_env\",jsonData.batchId);\r",
+									"\r",
+									" pm.test(\"Content-Type header is present\", ()=> {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", ()=> {\r",
+									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 201\",()=>{\r",
+									"pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									"var schema=\r",
+									"{\r",
+									"\"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"batchDescription\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"batchName\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"batchNoOfClasses\": {\r",
+									"      \"type\": \"number\"\r",
+									"    },\r",
+									"    \"batchStatus\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"programId\": {\r",
+									"      \"type\": \"number\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"batchDescription\",\r",
+									"    \"batchName\",\r",
+									"    \"batchNoOfClasses\",\r",
+									"    \"batchStatus\",\r",
+									"    \"programId\"\r",
+									"  ]\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "b57ceda4-2400-4580-a202-7ee03952970a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"batchDescription\": \"{{batch_Description}}\",\r\n  \"batchName\": \"{{batch_Name}}\",\r\n  \"batchNoOfClasses\": {{batch_NoOfClasses}},\r\n  \"batchStatus\": \"{{batch_Status}}\",\r\n  \"programId\": {{User_Module_ProgramId_env}}\r\n }\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "Creat_Program",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "970be96e-5723-4aac-84c9-bc8bc81bc343",
+								"exec": [
+									" const jsonData=JSON.parse(requestBody);\r",
+									" pm.environment.set(\"User_Module_ProgramId_env\",jsonData.programId);\r",
+									"\r",
+									" pm.test(\"Content-Type header is present\", ()=> {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", ()=> {\r",
+									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 201\",()=>{\r",
+									"pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
+									" \r",
+									" var schema=\r",
+									" {\r",
+									" \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"programDescription\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"programName\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"programStatus\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"programDescription\",\r",
+									"    \"programName\",\r",
+									"    \"programStatus\"\r",
+									"  ]\r",
+									"}\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});\r",
+									"pm.test(\"response time is less than 1000ms\", ()=>{\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "4608cd71-1d13-4da1-9260-1aee5f71b302",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programDescription\": \"{{program_Description}}\",\r\n \"programName\": \"{{program_Name}}\",\r\n  \"programStatus\": \"{{program_Status}}\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
+					"name": "Assign_To_User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97882e5e-198c-485b-a698-274044a6b563",
+								"exec": [
+									"const jsonData=JSON.parse(requestBody);\r",
+									"console.log(\"jsonData\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "911e40be-b29f-4672-9114-6f63566b7f74",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programId\": {{User_Module_ProgramId_env}},\r\n  \"roleId\": \"R03\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": {{C}},\r\n      \"userRoleProgramBatchStatus\": \"active\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/users/roleProgramBatchStatus/:userId",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"users",
+								"roleProgramBatchStatus",
+								":userId"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "{{user-id-env}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "9dfa9b20-e9eb-4452-b1ff-3169c66f9e52"
+		},
+		{
 			"name": "UserModule",
 			"item": [
 				{
@@ -3119,244 +3355,9 @@
 						"url": "{{BaseURL}}/users/roleStatus"
 					},
 					"response": []
-				},
-				{
-					"name": "Creat_Program",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "970be96e-5723-4aac-84c9-bc8bc81bc343",
-								"exec": [
-									" const jsonData=JSON.parse(requestBody);\r",
-									" pm.environment.set(\"User_Module_ProgramId_env\",jsonData.programId);\r",
-									"\r",
-									" pm.test(\"Content-Type header is present\", ()=> {\r",
-									"    pm.response.to.have.header(\"Content-Type\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Content-Type header is application/json\", ()=> {\r",
-									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Status code is 201\",()=>{\r",
-									"pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Response is valid JSON\", function () {\r",
-									"    pm.response.to.be.json;\r",
-									"});\r",
-									"\r",
-									" \r",
-									" var schema=\r",
-									" {\r",
-									" \"type\": \"object\",\r",
-									"  \"properties\": {\r",
-									"    \"programDescription\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"programName\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"programStatus\": {\r",
-									"      \"type\": \"string\"\r",
-									"    }\r",
-									"  },\r",
-									"  \"required\": [\r",
-									"    \"programDescription\",\r",
-									"    \"programName\",\r",
-									"    \"programStatus\"\r",
-									"  ]\r",
-									"}\r",
-									"\r",
-									"pm.test('Schema validation', () => {\r",
-									"  pm.response.to.have.jsonSchema (schema);\r",
-									"});\r",
-									"pm.test(\"response time is less than 1000ms\", ()=>{\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "4608cd71-1d13-4da1-9260-1aee5f71b302",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{Usermodule_token}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"{{program_Description}}\",\r\n \"programName\": \"{{program_Name}}\",\r\n  \"programStatus\": \"{{program_Status}}\"\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/saveprogram"
-					},
-					"response": []
-				},
-				{
-					"name": "Create_Batch",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "246cca84-c055-471a-bd3f-d250f68881f8",
-								"exec": [
-									"const jsonData=JSON.parse(requestBody);\r",
-									" pm.environment.set(\"User_Module_BatchId_env\",jsonData.batchId);\r",
-									"\r",
-									" pm.test(\"Content-Type header is present\", ()=> {\r",
-									"    pm.response.to.have.header(\"Content-Type\");\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Content-Type header is application/json\", ()=> {\r",
-									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Status code is 201\",()=>{\r",
-									"pm.response.to.have.status(201);\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Response is valid JSON\", function () {\r",
-									"    pm.response.to.be.json;\r",
-									"});\r",
-									"\r",
-									"var schema=\r",
-									"{\r",
-									"\"type\": \"object\",\r",
-									"  \"properties\": {\r",
-									"    \"batchDescription\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"batchName\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"batchNoOfClasses\": {\r",
-									"      \"type\": \"number\"\r",
-									"    },\r",
-									"    \"batchStatus\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"programId\": {\r",
-									"      \"type\": \"number\"\r",
-									"    }\r",
-									"  },\r",
-									"  \"required\": [\r",
-									"    \"batchDescription\",\r",
-									"    \"batchName\",\r",
-									"    \"batchNoOfClasses\",\r",
-									"    \"batchStatus\",\r",
-									"    \"programId\"\r",
-									"  ]\r",
-									"}"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "b57ceda4-2400-4580-a202-7ee03952970a",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{Usermodule_token}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"batchDescription\": \"{{batch_Description}}\",\r\n  \"batchName\": \"{{batch_Name}}\",\r\n  \"batchNoOfClasses\": {{batch_NoOfClasses}},\r\n  \"batchStatus\": \"{{batch_Status}}\",\r\n  \"programId\": {{User_Module_ProgramId_env}}\r\n }\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/batches"
-					},
-					"response": []
-				},
-				{
-					"name": "{{BaseURL}}/users/roleProgramBatchStatus/U1148",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "97882e5e-198c-485b-a698-274044a6b563",
-								"exec": [
-									"const jsonData=JSON.parse(requestBody);\r",
-									"console.log(\"jsonData\");"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "911e40be-b29f-4672-9114-6f63566b7f74",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{Usermodule_token}}"
-							}
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"programId\": {{User_Module_ProgramId_env}},\r\n  \"roleId\": \"R03\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": {{C}},\r\n      \"userRoleProgramBatchStatus\": \"active\"\r\n    }\r\n  ]\r\n}\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BaseURL}}/users/roleProgramBatchStatus/:userId",
-							"host": [
-								"{{BaseURL}}"
-							],
-							"path": [
-								"users",
-								"roleProgramBatchStatus",
-								":userId"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "{{user-id-env}}"
-								}
-							]
-						}
-					},
-					"response": []
 				}
 			],
 			"id": "29c3dcc5-c6e6-4672-8f5a-62b080051a6e"
-		},
-		{
-			"name": "Pre-Requisits",
-			"item": [],
-			"id": "9dfa9b20-e9eb-4452-b1ff-3169c66f9e52"
 		}
 	]
 }
