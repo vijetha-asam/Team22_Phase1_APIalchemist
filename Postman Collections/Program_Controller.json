@@ -3280,7 +3280,16 @@
 								},
 								"method": "DELETE",
 								"header": [],
-								"url": "{{BaseURL}}/deletebyprogname"
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/deletebyprogname/{{Delete_programName_programModule}}"
 							},
 							"response": []
 						},
