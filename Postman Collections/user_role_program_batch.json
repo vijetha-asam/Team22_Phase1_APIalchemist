@@ -75,6 +75,20 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "29b4bf72-42e3-4cdb-b100-a286275f05a5",
+								"exec": [
+									"var userphone= \"March24-APIAlchemist-DA55-001\" + pm.variables.replaceIn(\"{{$randomInt}}\");",
+									"pm.globals.set(\"prog_Namekb\", progName);",
+									"",
+									"var ProgDesc= \"This is for temporary use \" + pm.variables.replaceIn(\"{{$randomInt}}\");",
+									"pm.globals.set(\"prog_Desckb\", ProgDesc);"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"id": "cd9906ae-5c20-48a1-81f5-3c8973d6295a",
@@ -228,6 +242,20 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "561785cc-9398-4885-b67d-98fac5920ae8",
+								"exec": [
+									"var progName= \"March24-APIAlchemist-DA55-001\" + pm.variables.replaceIn(\"{{$randomInt}}\");",
+									"pm.globals.set(\"prog_Namekb\", progName);",
+									"",
+									"var ProgDesc= \"This is for temporary use \" + pm.variables.replaceIn(\"{{$randomInt}}\");",
+									"pm.globals.set(\"prog_Desckb\", ProgDesc);"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"id": "a9312bb1-82ac-4492-94f0-7cf64457a675",
@@ -245,7 +273,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"String\",\n  \"programName\": \"March24-APIAlchemist-DA55-001\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"{{prog_Desckb}}\",\n  \"programName\": \"{{prog_Namekb}}\",\n  \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
