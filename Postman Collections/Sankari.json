@@ -1540,7 +1540,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"loginStatus\": \"Active\",\r\n  \"password\": \"string\",\r\n  \"roleIds\": [\r\n    \"string\"\r\n  ],\r\n  \"status\": \"Active\",\r\n  \"userLoginEmail\": \"APIMasters_01.Jobathon@gmail.com\"\r\n}",
+							"raw": "{\r\n  \"loginStatus\": \"Active\",\r\n  \"password\": \"string\",\r\n  \"roleIds\": [\r\n    \"string\"\r\n  ],\r\n  \"status\": \"active\",\r\n  \"userLoginEmail\": \"APIMasters_01.Joba@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1560,7 +1560,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U34"
+									"value": "U118"
 								}
 							]
 						}
@@ -1604,7 +1604,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U34"
+									"value": "U118"
 								}
 							]
 						}
