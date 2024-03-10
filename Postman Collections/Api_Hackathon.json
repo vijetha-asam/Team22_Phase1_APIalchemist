@@ -3107,7 +3107,7 @@
 					"response": []
 				},
 				{
-					"name": "{{BaseURL}}//saveprogram",
+					"name": "Creat_Program",
 					"event": [
 						{
 							"listen": "test",
@@ -3116,6 +3116,23 @@
 								"exec": [
 									" const jsonData=JSON.parse(requestBody);\r",
 									" pm.environment.set(\"User_Module_ProgramId_env\",jsonData.programId);\r",
+									"\r",
+									" pm.test(\"Content-Type header is present\", ()=> {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", ()=> {\r",
+									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code is 201\",()=>{\r",
+									"pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response is valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"\r",
 									" \r",
 									" var schema=\r",
 									" {\r",
@@ -3136,7 +3153,15 @@
 									"    \"programName\",\r",
 									"    \"programStatus\"\r",
 									"  ]\r",
-									"}"
+									"}\r",
+									"\r",
+									"pm.test('Schema validation', () => {\r",
+									"  pm.response.to.have.jsonSchema (schema);\r",
+									"});\r",
+									"pm.test(\"response time is less than 1000ms\", ()=>{\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -3169,7 +3194,7 @@
 					"response": []
 				},
 				{
-					"name": "{{BaseURL}}/batches",
+					"name": "Create_Batch",
 					"id": "b57ceda4-2400-4580-a202-7ee03952970a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
