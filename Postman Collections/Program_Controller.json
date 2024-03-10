@@ -1273,7 +1273,7 @@
 													"// Log the request body",
 													"console.log(\"Request body:\", requestBody.raw);",
 													"// Define the path parameter value",
-													"var pathParamValue =pm.environment.get(\"ProgramModule_updateProgram_programId\");",
+													"var pathParamValue =pm.environment.get(\"programModule_programID\");",
 													"",
 													"// Validate the path parameter value",
 													"if (!pathParamValue) {",
@@ -1382,7 +1382,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"MarchHackathon\",\n    \"programStatus\": \"Inactive\"\n}",
+											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"APIHackathon_Phase1\",\n    \"programStatus\": \"Active\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1528,7 +1528,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"Inactive\"\n}",
+											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"Active\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
