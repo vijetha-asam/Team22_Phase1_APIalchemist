@@ -6,6 +6,53 @@
 	},
 	"item": [
 		{
+			"name": "Login_Prerequisite",
+			"item": [
+				{
+					"name": "Login-Valid User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "23199d6a-ea53-4459-80ef-4efe21905c47",
+								"exec": [
+									"var resp = pm.response.json();",
+									"var token = resp.token;",
+									"pm.environment.set(\"programModuleToken\",token);",
+									"//pm.globals.set(\"validUserID\",userID);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "87dcef6d-e360-43bf-b80d-a50981da72df",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"password\": \"Numpyninja@1\",\n  \"userLoginEmailId\": \"sdetorganizers@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/login"
+					},
+					"response": []
+				}
+			],
+			"id": "4385ce69-768c-433d-b758-ec638ce49304"
+		},
+		{
 			"name": "Post Program CSV",
 			"item": [
 				{
@@ -3719,6 +3766,26 @@
 			"item": [
 				{
 					"name": "Get All Programs-invalid endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "079c1528-d98b-4d31-82dd-b9f729a5b970",
+								"exec": [
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 404\",()=>{",
+									"pm.response.to.have.status(404);",
+									"});",
+									"",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Not Found\",()=>{",
+									"pm.response.to.have.status('Not Found')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "3c156e9c-6807-4f12-87bd-4f23492ee0c7",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -3747,6 +3814,26 @@
 				},
 				{
 					"name": "Get program by programId-invalid endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f6e81d61-2de8-4472-8b29-613a4a5d7016",
+								"exec": [
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 404\",()=>{",
+									"pm.response.to.have.status(404);",
+									"});",
+									"",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Not Found\",()=>{",
+									"pm.response.to.have.status('Not Found')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "5351b941-d9c9-483c-87ed-20e204eaf2c5",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -3766,6 +3853,26 @@
 				},
 				{
 					"name": "Get all programs with Users-invalid endpoint",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b93cb8ed-c90e-4dbb-8915-6bb3874266ef",
+								"exec": [
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 404\",()=>{",
+									"pm.response.to.have.status(404);",
+									"});",
+									"",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Not Found\",()=>{",
+									"pm.response.to.have.status('Not Found')",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "2addf292-2d1b-47e7-b824-f9951f4fb6cc",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -3855,731 +3962,6 @@
 				}
 			],
 			"id": "6cc80cf3-6836-4ce9-8b08-c473d2271c81"
-		},
-		{
-			"name": "demo",
-			"item": [
-				{
-					"name": "DemoCreate new program",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
-								"exec": [
-									"var resp = pm.response.json();",
-									"var programID = resp.programId;",
-									"var programNAME = resp.programName;",
-									"pm.environment.set(\"DemoprogramModule_programID\",programID);",
-									"//pm.environment.set(\"UserModule_ProgramId\",programID);",
-									"//pm.environment.set(\"DemoDelete_programId_programModule\",programID);",
-									"pm.environment.set(\"DemoDelete_programName_programModule\",programNAME);",
-									"",
-									"// Perform header-content-type validation",
-									"pm.test(\"Content-Type header is present\", ()=> {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Content-Type header is application/json\", ()=> {",
-									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');",
-									"});",
-									"// Perform statuc code validation",
-									"pm.test(\"Status code is 201\",()=>{",
-									"pm.response.to.have.status(201);",
-									"});",
-									"// Perform response json validation",
-									"pm.test(\"Response is valid JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"// Perform status validation",
-									"pm.test(\"Check Status as created\",()=>{",
-									"pm.response.to.have.status('Created')",
-									"});",
-									"// Perform response time validation",
-									"pm.test(\"response time is less than 700ms\", ()=>{",
-									"    pm.expect(pm.response.responseTime).to.be.below(700);",
-									"});",
-									"// Perform schema validation",
-									"pm.test(\"Validate Response Schema\", function() {",
-									"    const schema = {",
-									"        \"type\": \"object\",",
-									"        \"properties\": {",
-									"            \"programId\": {\"type\": \"number\"},",
-									"            \"programName\": {\"type\": \"string\"},",
-									"            \"programDescription\": {\"type\": \"string\"},",
-									"            \"programStatus\": {\"type\": \"string\"},",
-									"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},",
-									"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}",
-									"        },",
-									"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]",
-									"    };",
-									"",
-									"    pm.response.to.have.jsonSchema(schema);",
-									"});",
-									"pm.test(\"Validate Data Types\", function() {",
-									"    const response = pm.response.json();",
-									"//pm.expect(pm.response.json().programId).to.not.be.empty;",
-									"    pm.expect(response.programId).to.be.a(\"number\");",
-									"    pm.expect(response.programName).to.be.a(\"string\");",
-									"    pm.expect(response.programDescription).to.be.a(\"string\");",
-									"    pm.expect(response.programStatus).to.be.a(\"string\");",
-									"    pm.expect(response.creationTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
-									"    pm.expect(response.lastModTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
-									"});",
-									"// Get the request body",
-									"const requestBody = pm.request.body.raw;",
-									"// Parse the request body as JSON",
-									"const requestData = JSON.parse(requestBody);",
-									"// Validate the data entered in the request",
-									"pm.test(\"Response body contains entered data\", function() {",
-									"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
-									"    pm.expect(resp.programName).to.equal(requestData.programName);",
-									"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "7f16c616-ca1f-4025-a475-5d49acde78a5",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"APIHackathon_Team22\",\n  \"programName\": \"March24_APIAlchemist_Team22_UpdateProgramName001\",\n  \"programStatus\": \"Active\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/saveprogram"
-					},
-					"response": []
-				},
-				{
-					"name": "Get Program by ProgramId Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "24dafda5-4c06-408b-ac81-124cb36d69c6",
-								"exec": [
-									"var resp = pm.response.json();",
-									"",
-									"//Validate the response body",
-									"pm.test('Schema validation', () => {",
-									"  pm.response.to.have.jsonSchema (schema);",
-									"});",
-									"var schema = {",
-									"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",",
-									"  \"type\": \"object\",",
-									"  \"properties\": {",
-									"    \"programId\": {",
-									"      \"type\": \"integer\"",
-									"    },",
-									"    \"programName\": {",
-									"      \"type\": \"string\"",
-									"    },",
-									"    \"programDescription\": {",
-									"      \"type\": \"string\"",
-									"    },",
-									"    \"programStatus\": {",
-									"      \"type\": \"string\"",
-									"    },",
-									"    \"creationTime\": {",
-									"      \"type\": \"string\"",
-									"    },",
-									"    \"lastModTime\": {",
-									"      \"type\": \"string\"",
-									"    }",
-									"  },",
-									"  \"required\": [",
-									"    \"programId\",",
-									"    \"programName\",",
-									"    \"programDescription\",",
-									"    \"programStatus\",",
-									"    \"creationTime\",",
-									"    \"lastModTime\"",
-									"  ]",
-									"}",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "9f254db7-fbfe-4fe2-914d-291bbbe1362b",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "GET",
-						"header": [],
-						"url": "{{BaseURL}}/programs/{{DemoprogramModule_programID}}"
-					},
-					"response": []
-				},
-				{
-					"name": "DemoUpdateProgramNameByProgramID",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
-								"exec": [
-									"// Get the request URL",
-									"const requestUrl = pm.request.url.toString();",
-									"",
-									"// Extract the base URL from the request URL",
-									"const baseUrl = requestUrl.split(\"?\")[0];",
-									"",
-									"// Get the request body",
-									"const requestBody = pm.request.body;",
-									"",
-									"// Validate the presence of the request body",
-									"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
-									"    //throw new Error(\"Request body is missing\");",
-									"    console.log(\"ERROR : Request body is missing\");",
-									"}",
-									"else{",
-									"// Log the request body",
-									"console.log(\"Request body:\", requestBody.raw);",
-									"// Define the path parameter value",
-									"var pathParamValue =pm.environment.get(\"DemoprogramModule_programID\");",
-									"",
-									"// Validate the path parameter value",
-									"if (!pathParamValue) {",
-									"    //throw new Error(\"Path parameter value is missing\");",
-									"    console.log(\"ERROR : Path parameter value is missing\");",
-									"}",
-									"else{",
-									"// Log the path parameter value",
-									"console.log(\"Path parameter value:\", pathParamValue);",
-									"",
-									"// Construct the complete URL with the path parameter",
-									"const url = `${baseUrl}/${pathParamValue}`;",
-									"",
-									"// Set the request URL",
-									"pm.request.url = url;",
-									"} }"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "48c3d66e-4817-49c5-b8b7-5a9eddafbbef",
-								"exec": [
-									"var resp = pm.response.json();",
-									"var programNAME = resp.programName;",
-									"pm.environment.set(\"Demo_Updated_programName_programModule\",programNAME);",
-									"",
-									"",
-									"// Perform header-content-type validation",
-									"pm.test(\"Content-Type header is present\", ()=> {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Content-Type header is application/json\", ()=> {",
-									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');",
-									"});",
-									"// Perform statuc code validation",
-									"pm.test(\"Status code is 200\",()=>{",
-									"pm.response.to.have.status(200);",
-									"});",
-									"// Perform response json validation",
-									"pm.test(\"Response is valid JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"// Perform status validation",
-									"pm.test(\"Check Status as OK\",()=>{",
-									"pm.response.to.have.status('OK')",
-									"});",
-									"// Perform response time validation",
-									"pm.test(\"response time is less than 700ms\", ()=>{",
-									"    pm.expect(pm.response.responseTime).to.be.below(700);",
-									"});",
-									"// Perform schema validation",
-									"pm.test(\"Validate Response Schema\", function() {",
-									"    const schema = {",
-									"        \"type\": \"object\",",
-									"        \"properties\": {",
-									"            \"programId\": {\"type\": \"number\"},",
-									"            \"programName\": {\"type\": \"string\"},",
-									"            \"programDescription\": {\"type\": \"string\"},",
-									"            \"programStatus\": {\"type\": \"string\"},",
-									"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},",
-									"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}",
-									"        },",
-									"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]",
-									"    };",
-									"",
-									"    pm.response.to.have.jsonSchema(schema);",
-									"});",
-									"pm.test(\"Validate Data Types\", function() {",
-									"    const response = pm.response.json();",
-									"//pm.expect(pm.response.json().programId).to.not.be.empty;",
-									"    pm.expect(response.programId).to.be.a(\"number\");",
-									"    pm.expect(response.programName).to.be.a(\"string\");",
-									"    pm.expect(response.programDescription).to.be.a(\"string\");",
-									"    pm.expect(response.programStatus).to.be.a(\"string\");",
-									"    pm.expect(response.creationTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
-									"    pm.expect(response.lastModTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
-									"});",
-									"// Get the request body",
-									"const requestBody = pm.request.body.raw;",
-									"// Parse the request body as JSON",
-									"const requestData = JSON.parse(requestBody);",
-									"// Validate the data entered in the request",
-									"pm.test(\"Response body contains entered data\", function() {",
-									"    const resp = pm.response.json();",
-									"    pm.expect(resp.programId).to.equal(pm.environment.get(\"DemoprogramModule_programID\"));",
-									"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
-									"    pm.expect(resp.programName).to.equal(requestData.programName);",
-									"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "330d3fbb-67ea-41f6-b330-d7811affaa1e",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo00\",\n  \"programName\": \"Demo_Program00\",\n  \"programStatus\": \"Inactive\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/putprogram"
-					},
-					"response": []
-				},
-				{
-					"name": "DemoUpdateProgramNameByProgramName",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "58668428-0f34-41ad-930c-1687ea8ea9f8",
-								"exec": [
-									"// Get the request URL",
-									"const requestUrl = pm.request.url.toString();",
-									"",
-									"// Extract the base URL from the request URL",
-									"const baseUrl = requestUrl.split(\"?\")[0];",
-									"",
-									"// Get the request body",
-									"const requestBody = pm.request.body;",
-									"",
-									"// Validate the presence of the request body",
-									"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
-									"    //throw new Error(\"Request body is missing\");",
-									"    console.log(\"ERROR : Request body is missing\");",
-									"}",
-									"else{",
-									"// Log the request body",
-									"console.log(\"Request body:\", requestBody.raw);",
-									"// Define the path parameter value",
-									"var pathParamValue =pm.environment.get(\"DemoDelete_programName_programModule\");",
-									"",
-									"// Validate the path parameter value",
-									"if (!pathParamValue) {",
-									"    //throw new Error(\"Path parameter value is missing\");",
-									"    console.log(\"ERROR : Path parameter value is missing\");",
-									"}",
-									"else{",
-									"// Log the path parameter value",
-									"console.log(\"Path parameter value:\", pathParamValue);",
-									"",
-									"// Construct the complete URL with the path parameter",
-									"const url = `${baseUrl}/${pathParamValue}`;",
-									"",
-									"// Set the request URL",
-									"pm.request.url = url;",
-									"} }"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "44b78011-3a90-43ff-b03f-2afe8b7bad81",
-								"exec": [
-									"var resp = pm.response.json();",
-									"// Perform header-content-type validation",
-									"pm.test(\"Content-Type header is present\", ()=> {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Content-Type header is application/json\", ()=> {",
-									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');",
-									"});",
-									"// Perform statuc code validation",
-									"pm.test(\"Status code is 200\",()=>{",
-									"pm.response.to.have.status(200);",
-									"});",
-									"// Perform response json validation",
-									"pm.test(\"Response is valid JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"// Perform status validation",
-									"pm.test(\"Check Status as OK\",()=>{",
-									"pm.response.to.have.status('OK')",
-									"});",
-									"// Perform response time validation",
-									"pm.test(\"response time is less than 700ms\", ()=>{",
-									"    pm.expect(pm.response.responseTime).to.be.below(700);",
-									"});",
-									"// Perform schema validation",
-									"pm.test(\"Validate Response Schema\", function() {",
-									"    const schema = {",
-									"        \"type\": \"object\",",
-									"        \"properties\": {",
-									"            \"programId\": {\"type\": \"number\"},",
-									"            \"programName\": {\"type\": \"string\"},",
-									"            \"programDescription\": {\"type\": \"string\"},",
-									"            \"programStatus\": {\"type\": \"string\"},",
-									"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},",
-									"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}",
-									"        },",
-									"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]",
-									"    };",
-									"",
-									"    pm.response.to.have.jsonSchema(schema);",
-									"});",
-									"pm.test(\"Validate Data Types\", function() {",
-									"    const response = pm.response.json();",
-									"//pm.expect(pm.response.json().programId).to.not.be.empty;",
-									"    pm.expect(response.programId).to.be.a(\"number\");",
-									"    pm.expect(response.programName).to.be.a(\"string\");",
-									"    pm.expect(response.programDescription).to.be.a(\"string\");",
-									"    pm.expect(response.programStatus).to.be.a(\"string\");",
-									"    pm.expect(response.creationTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
-									"    pm.expect(response.lastModTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
-									"});",
-									"// Get the request body",
-									"const requestBody = pm.request.body.raw;",
-									"// Parse the request body as JSON",
-									"const requestData = JSON.parse(requestBody);",
-									"// Validate the data entered in the request",
-									"pm.test(\"Response body contains entered data\", function() {",
-									"    const resp = pm.response.json();",
-									"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
-									"    pm.expect(resp.programName).to.equal(requestData.programName);",
-									"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "66dd8b36-f44d-4983-89fc-69a7f7331db3",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo00\",\n  \"programName\": \"Demo_Program00\",\n  \"programStatus\": \"Inactive\"\n}\n\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/program"
-					},
-					"response": []
-				},
-				{
-					"name": "Demo DeleteProgram By Valid ProgramId",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "8496de19-7501-4053-a801-07b0a979bc58",
-								"exec": [
-									"var response = pm.response.json;",
-									"",
-									"// Perform statuc code validation",
-									"pm.test(\"Status code is 200\",()=>{",
-									"pm.response.to.have.status(200);",
-									"});",
-									"// Perform status validation",
-									"pm.test(\"Check Status as OK\",()=>{",
-									"pm.response.to.have.status('OK')",
-									"});",
-									"// Get the runtime programName from the environment variable",
-									"var programID = pm.environment.get(\"DemoprogramModule_programID\");",
-									"",
-									"// Update the response message with the program ID Define expected Data",
-									"var expectedResponseMessage = \"Message: Program Id-${programID} is deleted Successfully!\";",
-									"",
-									"// Validate the response body",
-									"pm.test(\"Response body contains expected success message\", function() {",
-									"   // pm.expect(pm.response.text()).to.include(expectedResponseMessage);",
-									"   pm.expect(pm.response.text()).to.be.equal(expectedResponseMessage);",
-									"});",
-									"",
-									"// Perform response time validation",
-									"pm.test(\"response time is less than 700ms\", ()=>{",
-									"    pm.expect(pm.response.responseTime).to.be.below(700);",
-									"});",
-									""
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "6b3912e5-c793-483d-9369-82810f90df9e",
-								"exec": [
-									"// Get the request URL",
-									"const requestUrl = pm.request.url.toString();",
-									"",
-									"// Extract the base URL from the request URL",
-									"const baseUrl = requestUrl.split(\"?\")[0];",
-									"",
-									"// Define the path parameter value",
-									"var pathParamValue =pm.environment.get(\"DemoprogramModule_programID\");",
-									"",
-									"// Validate the path parameter value",
-									"if (!pathParamValue) {",
-									"    //throw new Error(\"Path parameter value is missing\");",
-									"    console.log(\"ERROR : Path parameter value is missing\");",
-									"}",
-									"else{",
-									"// Log the path parameter value",
-									"console.log(\"Path parameter value:\", pathParamValue);",
-									"",
-									"// Construct the complete URL with the path parameter",
-									"const url = `${baseUrl}/${pathParamValue}`;",
-									"",
-									"// Set the request URL",
-									"pm.request.url = url;",
-									"} "
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "140621f3-f607-462f-9904-e7b0a61ad7be",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/deletebyprogid"
-					},
-					"response": []
-				},
-				{
-					"name": "UpdateProgramNameByProgramName",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "58668428-0f34-41ad-930c-1687ea8ea9f8",
-								"exec": [
-									"// Get the request URL",
-									"const requestUrl = pm.request.url.toString();",
-									"",
-									"// Extract the base URL from the request URL",
-									"const baseUrl = requestUrl.split(\"?\")[0];",
-									"",
-									"// Get the request body",
-									"const requestBody = pm.request.body;",
-									"",
-									"// Validate the presence of the request body",
-									"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
-									"    //throw new Error(\"Request body is missing\");",
-									"    console.log(\"ERROR : Request body is missing\");",
-									"}",
-									"else{",
-									"// Log the request body",
-									"console.log(\"Request body:\", requestBody.raw);",
-									"// Define the path parameter value",
-									"var pathParamValue =pm.environment.get(\"programModule_programName\");",
-									"",
-									"// Validate the path parameter value",
-									"if (!pathParamValue) {",
-									"    //throw new Error(\"Path parameter value is missing\");",
-									"    console.log(\"ERROR : Path parameter value is missing\");",
-									"}",
-									"else{",
-									"// Log the path parameter value",
-									"console.log(\"Path parameter value:\", pathParamValue);",
-									"",
-									"// Construct the complete URL with the path parameter",
-									"const url = `${baseUrl}/${pathParamValue}`;",
-									"",
-									"// Set the request URL",
-									"pm.request.url = url;",
-									"} }"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"id": "44b78011-3a90-43ff-b03f-2afe8b7bad81",
-								"exec": [
-									"// Perform header-content-type validation",
-									"pm.test(\"Content-Type header is present\", ()=> {",
-									"    pm.response.to.have.header(\"Content-Type\");",
-									"});",
-									"",
-									"pm.test(\"Content-Type header is application/json\", ()=> {",
-									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');",
-									"});",
-									"// Perform statuc code validation",
-									"pm.test(\"Status code is 200\",()=>{",
-									"pm.response.to.have.status(200);",
-									"});",
-									"// Perform response json validation",
-									"pm.test(\"Response is valid JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"// Perform status validation",
-									"pm.test(\"Check Status as OK\",()=>{",
-									"pm.response.to.have.status('OK')",
-									"});",
-									"// Perform response time validation",
-									"pm.test(\"response time is less than 700ms\", ()=>{",
-									"    pm.expect(pm.response.responseTime).to.be.below(700);",
-									"});",
-									"// Perform schema validation",
-									"pm.test(\"Validate Response Schema\", function() {",
-									"    const schema = {",
-									"        \"type\": \"object\",",
-									"        \"properties\": {",
-									"            \"programId\": {\"type\": \"number\"},",
-									"            \"programName\": {\"type\": \"string\"},",
-									"            \"programDescription\": {\"type\": \"string\"},",
-									"            \"programStatus\": {\"type\": \"string\"},",
-									"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},",
-									"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}",
-									"        },",
-									"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]",
-									"    };",
-									"",
-									"    pm.response.to.have.jsonSchema(schema);",
-									"});",
-									"pm.test(\"Validate Data Types\", function() {",
-									"    const response = pm.response.json();",
-									"//pm.expect(pm.response.json().programId).to.not.be.empty;",
-									"    pm.expect(response.programId).to.be.a(\"number\");",
-									"    pm.expect(response.programName).to.be.a(\"string\");",
-									"    pm.expect(response.programDescription).to.be.a(\"string\");",
-									"    pm.expect(response.programStatus).to.be.a(\"string\");",
-									"    pm.expect(response.creationTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
-									"    pm.expect(response.lastModTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
-									"});",
-									"// Get the request body",
-									"const requestBody = pm.request.body.raw;",
-									"// Parse the request body as JSON",
-									"const requestData = JSON.parse(requestBody);",
-									"// Validate the data entered in the request",
-									"pm.test(\"Response body contains entered data\", function() {",
-									"    const resp = pm.response.json();",
-									"    pm.expect(resp.programId).to.equal(pm.environment.get(\"programModule_programID_two\"));",
-									"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
-									"    pm.expect(resp.programName).to.equal(requestData.programName);",
-									"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "23bd2bd2-f28a-46f8-a4c4-dcd9e4fc7a8d",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_Name}}\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"Active\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/program"
-					},
-					"response": []
-				}
-			],
-			"id": "43915d8d-b922-4eda-a935-a6c8f06d8ddc"
 		},
 		{
 			"name": "Get Programs",
@@ -4869,47 +4251,6 @@
 				}
 			],
 			"id": "c1526b18-b41e-4a4b-8bc0-8804741b2701"
-		},
-		{
-			"name": "Login-Valid User",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"id": "23199d6a-ea53-4459-80ef-4efe21905c47",
-						"exec": [
-							"var resp = pm.response.json();",
-							"var token = resp.token;",
-							"pm.environment.set(\"programModuleToken\",token);",
-							"//pm.globals.set(\"validUserID\",userID);"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"id": "87dcef6d-e360-43bf-b80d-a50981da72df",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": {}
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n  \"password\": \"Numpyninja@1\",\n  \"userLoginEmailId\": \"sdetorganizers@gmail.com\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": "{{BaseURL}}/login"
-			},
-			"response": []
 		}
 	],
 	"variable": [
