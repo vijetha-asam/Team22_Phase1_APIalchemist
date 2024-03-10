@@ -114,10 +114,12 @@
 							"script": {
 								"id": "b8ea8f0b-7ba8-4319-ba9a-555712b4fd5f",
 								"exec": [
+									"const randomNumber = _.random(1000000000,9999999999)\r",
+									"pm.environment.set(\"randomNumber\",randomNumber);\r",
 									"var random = Math.random().toString(36).substring(2);\r",
 									"\r",
 									"//var user_email_id= \"abc\"+random+\"@gmail.com\";\r",
-									"var programName=\" Mar24-Alchemist-SDET-0012\"+random;\r",
+									"var programName=\" Mar-Alchemist-SDET-\"+randomNumber;\r",
 									"var programDescription=\"API_hackathonteam02\"+random;\r",
 									"//pm.variables.replaceIn(\"{{$randomprogramName}}\");\r",
 									"//pm.environment.set(\"program_name-env\", pm.variables.replaceIn(\"{{$randomprogramName}}\"));\r",
