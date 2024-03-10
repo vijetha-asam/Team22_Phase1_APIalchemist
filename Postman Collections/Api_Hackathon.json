@@ -108,6 +108,22 @@
 								],
 								"type": "text/javascript"
 							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "b8ea8f0b-7ba8-4319-ba9a-555712b4fd5f",
+								"exec": [
+									"var random = Math.random().toString(36).substring(2);\r",
+									"\r",
+									"//var user_email_id= \"abc\"+random+\"@gmail.com\";\r",
+									"var programName=\" Mar24-Alchemist-SDET-0012\"+random;\r",
+									"var programDescription=\"API_hackathonteam02\"+random;\r",
+									"pm.variables.replaceIn(\"{{$randomprogramName}}\");\r",
+									"pm.variables.replaceIn(\"{{$randomprogramDescription}}\");"
+								],
+								"type": "text/javascript"
+							}
 						}
 					],
 					"id": "4608cd71-1d13-4da1-9260-1aee5f71b302",
@@ -125,7 +141,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programDescription\": \"Mar24-API-SDET-0085\",\r\n \"programName\": \"API_bootcampofteams95\",\r\n  \"programStatus\": \"active\"\r\n}",
+							"raw": "{\r\n  \"programDescription\": \"{{$randomprogramDescription}}\",\r\n \"programName\": \"{{$randomprogramName}}\",\r\n  \"programStatus\": \"active\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
