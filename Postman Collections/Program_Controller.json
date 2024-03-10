@@ -2672,7 +2672,7 @@
 													"pm.test(\"Response is valid JSON\", function () {",
 													"    pm.response.to.be.json;",
 													"});",
-													"// Perform statuc code validation",
+													"// Perform status code validation",
 													"pm.test(\"Status code is 400\",()=>{",
 													"pm.response.to.have.status(400);",
 													"});",
