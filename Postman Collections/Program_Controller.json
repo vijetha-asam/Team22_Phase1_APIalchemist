@@ -1759,7 +1759,7 @@
 													"    const resp = pm.response.json();",
 													"    pm.expect(resp.programId).to.equal(pm.environment.get(\"programModule_programID_two\"));",
 													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
-													"    pm.expect(resp.programName).to.equal(pm.environment.get(\"ProgramModule_updateProgram_programName\"));",
+													"    pm.expect(resp.programName).to.equal(pm.environment.get(\"programModule_programName\"));",
 													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
 													"});"
 												],
@@ -1826,7 +1826,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"March2024Hackathon_API\",\n    \"programStatus\": \"{{UpdateProgramStatus_Name}}\"\n}",
+											"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"{{programModule_programName}}\",\n  \"programStatus\": \"{{UpdateProgramStatus_Name}}\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -1949,7 +1949,7 @@
 													"    const resp = pm.response.json();",
 													"    pm.expect(resp.programId).to.equal(pm.environment.get(\"programModule_programID_two\"));",
 													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
-													"    pm.expect(resp.programName).to.equal(pm.environment.get(\"ProgramModule_updateProgram_programName\"));",
+													"    pm.expect(resp.programName).to.equal(pm.environment.get(\"programModule_programName\"));",
 													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
 													"});"
 												],
@@ -1972,7 +1972,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"March24_APIAlchemist_API_001\",\n    \"programDescription\": \"{{UpdateProgramDescription_Name}}\",\n    \"programStatus\": \"Inactive\"\n}",
+											"raw": "{\n  \"programDescription\": \"{{UpdateProgramDescription_Name}}\",\n  \"programName\": \"{{programModule_programName}}\",\n  \"programStatus\": \"{{UpdateProgramStatus_Name}}\"\n}\n",
 											"options": {
 												"raw": {
 													"language": "json"
