@@ -475,7 +475,7 @@
 									"",
 									"    try{",
 									"   pm.expect(responseBody.success).to.be.true;",
-									"    pm.test(\"PASS - User was assigned to Program/Batch - user \" + + pm.environment.get(\"userIdkb\") + \" and program id \" + + pm.environment.get(\"programIdkb\") + \" batch id\" + + pm.environment.get(\"batchIdkb\"), () => true); ",
+									"    pm.test(\"PASS - User was assigned to Program/Batch - user \" + pm.environment.get(\"userIdkb\") + \" and program id \" + + pm.environment.get(\"programIdkb\") + \" batch id\" + + pm.environment.get(\"batchIdkb\"), () => true); ",
 									"}catch(e){",
 									"    pm.test(\"FAIL - User was not assigned to program/batch as that already exists or other error\", () => {throw new Error(e.message)}); ",
 									"}",
