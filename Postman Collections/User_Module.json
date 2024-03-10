@@ -3155,6 +3155,34 @@
 						"url": "{{BaseURL}}/users/roleStatus"
 					},
 					"response": []
+				},
+				{
+					"name": "{{BaseURL}}//saveprogram",
+					"id": "4608cd71-1d13-4da1-9260-1aee5f71b302",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programDescription\": \"Mar24-Alchemist-SDET-137\",\r\n \"programName\": \"API_hackathon\",\r\n  \"programStatus\": \"active\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
 				}
 			],
 			"id": "29c3dcc5-c6e6-4672-8f5a-62b080051a6e"
