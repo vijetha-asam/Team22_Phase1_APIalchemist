@@ -719,7 +719,6 @@
 									"var resp = pm.response.json();",
 									"var programID = resp.programId;",
 									"var programNameBug = resp.programName;",
-									"pm.environment.set(\"Bug_programModule_programID\",programID);",
 									"pm.environment.set(\"BugDelete_programModule_programName\",programNameBug);",
 									"// Perform response json validation",
 									"pm.test(\"Response is valid JSON\", function () {",
@@ -747,6 +746,41 @@
 									"pm.test(\"response time is less than 700ms\", ()=>{",
 									"    pm.expect(pm.response.responseTime).to.be.below(700);",
 									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2730cfa9-2d70-415d-ab40-0dba69f7575f",
+								"exec": [
+									"// Generate a random serial number",
+									"const serialNumber = generateRandomNumber(1, 9999);",
+									"const programNameValue = `March24-ApiAlchemist-SDETBug-${serialNumber}`;",
+									"",
+									"// Function to generate a random number within a range",
+									"function generateRandomNumber(min, max) {",
+									"    return Math.floor(Math.random() * (max - min + 1)) + min;",
+									"}",
+									"",
+									"// Get the request body from the request editor",
+									"const requestBody = {",
+									"    programDescription: \"APIHackathon_Phase1_Bugs\",",
+									"    programName: programNameValue,",
+									"    programStatus: \"Active\"",
+									"};",
+									"",
+									"// Update the request body in the request editor",
+									"pm.request.headers.add({",
+									"    key: 'Content-Type',",
+									"    value: 'application/json'",
+									"});",
+									"",
+									"pm.request.body = {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(requestBody)",
+									"};"
 								],
 								"type": "text/javascript"
 							}
