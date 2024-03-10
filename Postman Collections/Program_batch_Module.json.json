@@ -6158,8 +6158,8 @@
 									"// Set the generated batch description as an environment variable\r",
 									"pm.environment.set(\"ProgramBatch_batch_description\", batchDescription);\r",
 									"// Generate a random number of classes within a specified range\r",
-									"const minClasses = 5; // Minimum number of classes\r",
-									"const maxClasses = 20; // Maximum number of classes\r",
+									"const minClasses = 2; // Minimum number of classes\r",
+									"const maxClasses = 10; // Maximum number of classes\r",
 									"\r",
 									"const numberOfClasses = Math.floor(Math.random() * (maxClasses - minClasses + 1)) + minClasses;\r",
 									"\r",
@@ -6689,6 +6689,27 @@
 									"\r",
 									"// Set the generated ProgramName as an environment variable\r",
 									"pm.environment.set(\"BatchName_ProgramBatch_update\", BatchName);\r",
+									"// Array of predefined batch descriptions\r",
+									"const batchDescriptions = [\r",
+									"    \"A new batch started for Postman Functional testing\",\r",
+									"    \"A new batch started for API Functional testing\",\r",
+									"    \"A new batch started for Rest assured Automated testing\"\r",
+									"];\r",
+									"\r",
+									"// Select a random batch description from the array\r",
+									"const randomIndex = Math.floor(Math.random() * batchDescriptions.length);\r",
+									"const batchDescription = batchDescriptions[randomIndex];\r",
+									"\r",
+									"// Set the generated batch description as an environment variable\r",
+									"pm.environment.set(\"Update_ProgramBatch_batch_description\", batchDescription);\r",
+									"// Generate a random number of classes within a specified range\r",
+									"const minClasses = 2; // Minimum number of classes\r",
+									"const maxClasses = 10; // Maximum number of classes\r",
+									"\r",
+									"const numberOfClasses = Math.floor(Math.random() * (maxClasses - minClasses + 1)) + minClasses;\r",
+									"\r",
+									"// Set the generated number of classes as an environment variable\r",
+									"pm.environment.set(\"Update_ProgramBatch_batch_no_of_classes\", numberOfClasses);\r",
 									""
 								],
 								"type": "text/javascript"
@@ -6710,7 +6731,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"{{Update_BatchDescription}}\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{BatchName_ProgramBatch_update}}\",\r\n    \"batchNoOfClasses\": {{UpdateNoClasses}},\r\n    \"batchStatus\": \"{{Update_BatchStatus}}\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"{{programbatch_programname}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"{{Update_ProgramBatch_batch_description}}\",\r\n    \"batchId\": {{programbatch_batchid}},\r\n    \"batchName\": \"{{BatchName_ProgramBatch_update}}\",\r\n    \"batchNoOfClasses\": {{Update_ProgramBatch_batch_no_of_classes}},\r\n    \"batchStatus\": \"{{Update_BatchStatus}}\",\r\n    \"programId\": {{programbatch_programId}},\r\n    \"programName\": \"{{programbatch_programname}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -10597,6 +10618,64 @@
 					"response": []
 				},
 				{
+					"name": "Delete Batch with batch Id with invalid batchId",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})\r",
+									"pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"/*pm.test('Content-Type header is present', () => {\r",
+									"    pm.response.to.have.header('Content-Type');\r",
+									"})\r",
+									"\r",
+									"pm.test('Content-Type header is application/json', () => {\r",
+									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"})*/\r",
+									"\r",
+									"//Validate response time\r",
+									"pm.test(\"Response time is less than limit\", function() {\r",
+									"var limit = 500;\r",
+									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
+									"});\r",
+									"pm.test('Check Status Text', () => {\r",
+									"    pm.response.to.have.status('Not Found');\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "e785d717-87c7-4183-a0f0-cfa6077c5f94",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programbatchmodule_tokenaccessToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseURL}}/batches/{{programbatch_batchid-invalid}}"
+					},
+					"response": []
+				},
+				{
 					"name": "Create Batch Module Bug- Batch description should not be null",
 					"event": [
 						{
@@ -10705,6 +10784,27 @@
 									"\r",
 									"// Set the generated ProgramName as an environment variable\r",
 									"pm.environment.set(\"BatchName_ProgramBatch\", BatchName);\r",
+									"// Array of predefined batch descriptions\r",
+									"const batchDescriptions = [\r",
+									"    \"A new batch started for Postman Functional testing\",\r",
+									"    \"A new batch started for API Functional testing\",\r",
+									"    \"A new batch started for Rest assured Automated testing\"\r",
+									"];\r",
+									"\r",
+									"// Select a random batch description from the array\r",
+									"const randomIndex = Math.floor(Math.random() * batchDescriptions.length);\r",
+									"const batchDescription = batchDescriptions[randomIndex];\r",
+									"\r",
+									"// Set the generated batch description as an environment variable\r",
+									"pm.environment.set(\"ProgramBatch_batch_description\", batchDescription);\r",
+									"// Generate a random number of classes within a specified range\r",
+									"const minClasses = 2; // Minimum number of classes\r",
+									"const maxClasses = 10; // Maximum number of classes\r",
+									"\r",
+									"const numberOfClasses = Math.floor(Math.random() * (maxClasses - minClasses + 1)) + minClasses;\r",
+									"\r",
+									"// Set the generated number of classes as an environment variable\r",
+									"pm.environment.set(\"ProgramBatch_batch_no_of_classes\", numberOfClasses);\r",
 									""
 								],
 								"type": "text/javascript"
@@ -10726,7 +10826,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": null,\r\n    \"batchName\": \"{{BatchName_ProgramBatch}}\",\r\n    \"batchNoOfClasses\": \"{{BatchNoClasses}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": null,\r\n    \"batchName\": \"{{BatchName_ProgramBatch}}\",\r\n    \"batchNoOfClasses\": \"{{ProgramBatch_batch_no_of_classes}}\",\r\n    \"batchStatus\": \"{{BatchStatus}}\",\r\n    \"programId\":\"{{programbatch_programId}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -10923,64 +11023,6 @@
 						"method": "DELETE",
 						"header": [],
 						"url": "{{BaseURL}}/batches/{{programbatch_batchid}}"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Batch with batch Id with invalid batchId",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "73bae510-17d2-44de-9871-c4223eac25d2",
-								"exec": [
-									"pm.test(\"Status code is 404\", function () {\r",
-									"    pm.response.to.have.status(404);\r",
-									"});\r",
-									"\r",
-									"\r",
-									"pm.test('Content-Type header is application/json', () => {\r",
-									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"})\r",
-									"pm.test('Content-Type header is present', () => {\r",
-									"    pm.response.to.have.header('Content-Type');\r",
-									"})\r",
-									"\r",
-									"/*pm.test('Content-Type header is present', () => {\r",
-									"    pm.response.to.have.header('Content-Type');\r",
-									"})\r",
-									"\r",
-									"pm.test('Content-Type header is application/json', () => {\r",
-									"    pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
-									"})*/\r",
-									"\r",
-									"//Validate response time\r",
-									"pm.test(\"Response time is less than limit\", function() {\r",
-									"var limit = 500;\r",
-									"pm.expect(pm.response.responseTime).to.be.below(limit);  \r",
-									"});\r",
-									"pm.test('Check Status Text', () => {\r",
-									"    pm.response.to.have.status('Not Found');\r",
-									"})"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "e785d717-87c7-4183-a0f0-cfa6077c5f94",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
-							}
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": "{{BaseURL}}/batches/{{programbatch_batchid-invalid}}"
 					},
 					"response": []
 				},
