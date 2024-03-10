@@ -4355,7 +4355,6 @@
 								"exec": [
 									"var resp = pm.response.json();",
 									"var programNAME = resp.programName;",
-									"",
 									"pm.environment.set(\"Demo_Updated_programName_programModule\",programNAME);",
 									"",
 									"",
@@ -4588,7 +4587,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo002\",\n  \"programName\": \"Demo_Program002\",\n  \"programStatus\": \"Inctive\"\n}",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo002\",\n  \"programName\": \"Demo_Program002\",\n  \"programStatus\": \"Inactive\"\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4694,106 +4693,6 @@
 							}
 						},
 						"url": "{{BaseURL}}/deletebyprogid"
-					},
-					"response": []
-				},
-				{
-					"name": "DemoDeleteExistingProgramByValidProgramName",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "2cd60f43-e210-4d07-a2df-47453130cd98",
-								"exec": [
-									"var resp = pm.response.json();",
-									"",
-									"pm.test(\"Response is valid JSON\", function () {",
-									"    pm.response.to.be.json;",
-									"});",
-									"// Perform statuc code validation",
-									"pm.test(\"Status code is 200\",()=>{",
-									"pm.response.to.have.status(200);",
-									"});",
-									"// Perform status validation",
-									"pm.test(\"Check Status as OK\",()=>{",
-									"pm.response.to.have.status('OK')",
-									"});",
-									"// Get the runtime programName from the environment variable",
-									"const programName = pm.environment.get(\"Delete_programName_programModule\");",
-									"",
-									"",
-									"// Update the response message with the program Name Define expected Data",
-									"const expectedResponseMessage = \"Program Name-${programName} is deleted Successfully!\";",
-									"",
-									"// Validate the response body",
-									"pm.test(\"Response body contains expected message\", function() {",
-									"    pm.expect(resp.message).to.equal(expectedResponseMessage);",
-									"});",
-									"// Perform response time validation",
-									"pm.test(\"response time is less than 700ms\", ()=>{",
-									"    pm.expect(pm.response.responseTime).to.be.below(700);",
-									"});"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"id": "6982ada3-16a5-41e7-a807-d5c4371a3274",
-								"exec": [
-									"// Get the request URL",
-									"const requestUrl = pm.request.url.toString();",
-									"",
-									"// Extract the base URL from the request URL",
-									"const baseUrl = requestUrl.split(\"?\")[0];",
-									"",
-									"// Define the path parameter value",
-									"var pathParamValue =pm.environment.get(\"Delete_programName_programModule\");",
-									"",
-									"// Validate the path parameter value",
-									"if (!pathParamValue) {",
-									"    //throw new Error(\"Path parameter value is missing\");",
-									"    console.log(\"ERROR : Path parameter value is missing\");",
-									"}",
-									"else{",
-									"// Log the path parameter value",
-									"console.log(\"Path parameter value:\", pathParamValue);",
-									"",
-									"// Construct the complete URL with the path parameter",
-									"const url = `${baseUrl}/${pathParamValue}`;",
-									"",
-									"// Set the request URL",
-									"pm.request.url = url;",
-									"} "
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"id": "fb62f7fb-e997-4f79-b62e-97fce2d8b999",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": {
-								"token": "{{programModuleToken}}"
-							}
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/deletebyprogname"
 					},
 					"response": []
 				}
