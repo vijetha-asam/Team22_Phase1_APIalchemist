@@ -70,7 +70,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"password\": \"Numpyninja@1\",\r\n  \"userLoginEmailId\": \"sdetorganizers@gmail.com\"\r\n}",
+							"raw": "{\r\n  \"password\": \"{{Password}}\",\r\n  \"userLoginEmailId\": \"{{userlogin}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
