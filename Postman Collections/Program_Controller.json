@@ -449,8 +449,8 @@
 									"var resp = pm.response.json();",
 									"var programID = resp.programId;",
 									"var programNAME = resp.programName;",
-									"pm.environment.set(\"programModule_programID_two\",programID);",
-									"pm.environment.set(\"Delete_programName_programModule\",programNAME)",
+									"//pm.environment.set(\"programModule_programID_two\",programID);",
+									"pm.environment.set(\"programDA_programName\",programNAME)",
 									"",
 									"// Perform header-content-type validation",
 									"pm.test(\"Content-Type header is present\", ()=> {",
@@ -767,7 +767,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"A%%^$#%%%%&&&**************************\",\n  \"programStatus\": \"Active\"\n}",
+							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"A**************************\",\n  \"programStatus\": \"Active\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
