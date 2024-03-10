@@ -2984,7 +2984,7 @@
 							"variable": [
 								{
 									"key": "batchId",
-									"value": "{{User_Module_MyBatchID}}"
+									"value": "8762"
 								}
 							]
 						}
@@ -3209,6 +3209,34 @@
 							}
 						},
 						"url": "{{BaseURL}}/batches"
+					},
+					"response": []
+				},
+				{
+					"name": "{{BaseURL}}/users/roleProgramBatchStatus/U1148",
+					"id": "911e40be-b29f-4672-9114-6f63566b7f74",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Usermodule_token}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"programId\": 16889,\r\n  \"roleId\": \"R03\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8762,\r\n      \"userRoleProgramBatchStatus\": \"active\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/users/roleProgramBatchStatus/U1148"
 					},
 					"response": []
 				}
