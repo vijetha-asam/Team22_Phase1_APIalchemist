@@ -114,16 +114,14 @@
 							"script": {
 								"id": "b8ea8f0b-7ba8-4319-ba9a-555712b4fd5f",
 								"exec": [
-									"const randomNumber = _.random(1000000000,9999999999)\r",
+									"const randomNumber = _.random(100,999)\r",
 									"pm.environment.set(\"randomNumber\",randomNumber);\r",
 									"var random = Math.random().toString(36).substring(2);\r",
 									"\r",
-									"//var user_email_id= \"abc\"+random+\"@gmail.com\";\r",
-									"var programName=\" Mar-Alchemist-SDET-\"+randomNumber;\r",
+									"\r",
+									"var programName=\"Mar24-Alchemist-SDET-\"+randomNumber;\r",
 									"var programDescription=\"API_hackathonteam02\"+random;\r",
-									"//pm.variables.replaceIn(\"{{$randomprogramName}}\");\r",
-									"//pm.environment.set(\"program_name-env\", pm.variables.replaceIn(\"{{$randomprogramName}}\"));\r",
-									"//pm.environment.set(\"program_desc-env\", pm.variables.replaceIn(\"{{$randomprogramDescription}}\"));\r",
+									"\r",
 									"pm.environment.set(\"program_name-env\", programName);\r",
 									"pm.environment.set(\"program_desc-env\", programDescription);"
 								],
@@ -251,7 +249,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"batchDescription\": \"{{batch_Description}}\",\r\n  \"batchName\": \"{{batch_Name}}\",\r\n  \"batchNoOfClasses\": {{batch_NoOfClasses}},\r\n  \"batchStatus\": \"{{batch_Status}}\",\r\n  \"programId\": {{User_Module_ProgramId_env}}\r\n }\r\n",
+							"raw": "{\r\n  \"batchDescription\": \"{{batch_desc-env}}\",\r\n  \"batchName\": \"{{batch_name-env}}\",\r\n  \"batchNoOfClasses\": 3,\r\n  \"batchStatus\": \"active\",\r\n  \"programId\": {{User_Module_ProgramId_env}}\r\n }\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
