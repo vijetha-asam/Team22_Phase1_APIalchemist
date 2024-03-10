@@ -2911,8 +2911,8 @@
 									" var body = JSON.parse(responseBody);\r",
 									"  tests[\"Count: \"  + body.value.length] = true;\r",
 									"  \r",
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401);\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -2927,7 +2927,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "{{Usermodule_token}}"
+								"token": ""
 							}
 						},
 						"method": "GET",
