@@ -396,10 +396,8 @@
 									"    programStatus: \"Inactive\"",
 									"};",
 									"// Update the request body in the request editor",
-									"pm.request.body = {",
-									"    mode: 'raw',",
-									"    raw: JSON.stringify(requestBody)",
-									"};"
+									"// Set the updated request body",
+									"pm.request.body.json(requestBody);"
 								],
 								"type": "text/javascript"
 							}
