@@ -208,13 +208,51 @@
 				},
 				{
 					"name": "Create new program",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "916e09ca-26ea-4f0a-9eb3-d25e3c9b53eb",
+								"exec": [
+									"var responseBody = pm.response.json();",
+									"",
+									"",
+									"    try{",
+									"   pm.expect(responseBody).to.have.own.property(\"programId\");",
+									"   pm.environment.set(\"programIdkb\", responseBody.programId);",
+									"    pm.test(\"PASS - Program was created successfully\", () => true); ",
+									"}catch(e){",
+									"    pm.test(\"FAIL - Program was not created due to error\", () => {throw new Error(e.message)}); ",
+									"}",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "a9312bb1-82ac-4492-94f0-7cf64457a675",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": []
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken2}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"programDescription\": \"String\",\n  \"programName\": \"March24-APIAlchemist-DA55-001\",\n  \"programStatus\": \"Active\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
 					},
 					"response": []
 				}
