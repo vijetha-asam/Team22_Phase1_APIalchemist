@@ -3055,7 +3055,7 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"url": "{{BaseURL}}/users/U877"
+						"url": "{{BaseURL}}/users/U1148"
 					},
 					"response": []
 				},
@@ -3095,7 +3095,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"userComments\": \"comments\",\r\n  \"userEduPg\": \"Dgree\",\r\n  \"userEduUg\": \"Pg\",\r\n  \"userFirstName\": \"Team\",\r\n  \"userId\": \"U001\",\r\n  \"userLastName\": \"ccssd\",\r\n  \"userLinkedinUrl\": \"http:www.linkedin.com\",\r\n  \"userLocation\": \"UK\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"active\",\r\n    \"password\": \"sad\",\r\n    \"roleIds\": [\r\n      \"R01\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"\"\r\n  },\r\n  \"userMiddleName\": \"fsf\",\r\n  \"userPhoneNumber\": 9662212100,\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R01\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"GC-EAD\"\r\n}",
+							"raw": "{\r\n  \"userComments\": \"comments\",\r\n  \"userEduPg\": \"Dgree\",\r\n  \"userEduUg\": \"Pg\",\r\n  \"userFirstName\": \"Team\",\r\n  \"userId\": \"U001\",\r\n  \"userLastName\": \"ccssd\",\r\n  \"userLinkedinUrl\": \"http:www.linkedin.com\",\r\n  \"userLocation\": \"UK\",\r\n  \"userLogin\": {\r\n    \"loginStatus\": \"active\",\r\n    \"password\": \"sad\",\r\n    \"roleIds\": [\r\n      \"R03\"\r\n    ],\r\n    \"status\": \"Active\",\r\n    \"userLoginEmail\": \"godfdzf@gmail.com\"\r\n  },\r\n  \"userMiddleName\": \"fsf\",\r\n  \"userPhoneNumber\": 5062210100,\r\n  \"userRoleMaps\": [\r\n    {\r\n      \"roleId\": \"R03\",\r\n      \"userRoleStatus\": \"Active\"\r\n    }\r\n  ],\r\n  \"userTimeZone\": \"EST\",\r\n  \"userVisaStatus\": \"GC-EAD\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3151,7 +3151,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"batchDescription\": \"API_hackathon_Batch\",\r\n  \"batchName\": \"March24-EliteForce-SDET-SDET01-001\",\r\n  \"batchNoOfClasses\": 3,\r\n  \"batchStatus\": \"active\",\r\n  \"programId\": 16889\r\n }\r\n",
+							"raw": "{\r\n  \"batchDescription\": \"API_hackathon_Batch\",\r\n  \"batchName\": \"March24-Alchemist-SDET-SDET137\",\r\n  \"batchNoOfClasses\": 3,\r\n  \"batchStatus\": \"active\",\r\n  \"programId\": 16889\r\n }\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -3179,7 +3179,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programId\": 16889,\r\n  \"roleId\": \"R03\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8762,\r\n      \"userRoleProgramBatchStatus\": \"active\"\r\n    }\r\n  ]\r\n}\r\n",
+							"raw": "{\r\n  \"programId\": 16889,\r\n  \"roleId\": \"R03\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8812,\r\n      \"userRoleProgramBatchStatus\": \"active\"\r\n    }\r\n  ]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
