@@ -1830,9 +1830,9 @@
 									"",
 									"    try{",
 									"   pm.expect(responseBody.success).to.be.true;",
-									"    pm.test(\"PASS - Batch was deleted\", () => true); ",
+									"    pm.test(\"PASS - User was deactivated\", () => true); ",
 									"}catch(e){",
-									"    pm.test(\"FAIL - Batch was not deleted or other error\", () => {throw new Error(e.message)}); ",
+									"    pm.test(\"FAIL - User was not deactivated or other error\", () => {throw new Error(e.message)}); ",
 									"}"
 								],
 								"type": "text/javascript"
