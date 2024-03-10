@@ -755,9 +755,22 @@
 							"script": {
 								"id": "2730cfa9-2d70-415d-ab40-0dba69f7575f",
 								"exec": [
-									"// Generate a random serial number",
-									"const serialNumber = generateRandomNumber(1, 9999);",
-									"const programNameValue = `March24-ApiAlchemist-SDETBug-${serialNumber}`;",
+									"//Function to generate a random string of special characters",
+									"function generateRandomString(length) {",
+									"  const specialCharacters = '!@#$%^&*()_+-=[]{}|;:,.<>?';",
+									"  let result = '';",
+									"  for (let i = 0; i < length; i++) {",
+									"    const randomIndex = Math.floor(Math.random() * specialCharacters.length);",
+									"    result += specialCharacters.charAt(randomIndex);",
+									"  }",
+									"  return result;",
+									"}",
+									"",
+									"// Generate a random string of 10 special characters",
+									"const randomSpecialCharacters = generateRandomString(10);",
+									"",
+									"",
+									"const programNameValue = `A-${randomSpecialCharacters}`;",
 									"",
 									"// Function to generate a random number within a range",
 									"function generateRandomNumber(min, max) {",
@@ -801,7 +814,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"A**************************\",\n  \"programStatus\": \"Active\"\n}",
+							"raw": "{\n    \"programDescription\": \"APIHackathon_Phase1_Bugs\",\n    \"programName\": \"{{programNameValue}}\",\n    \"programStatus\": \"Active\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
