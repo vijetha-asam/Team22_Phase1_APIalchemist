@@ -419,7 +419,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"FIRST_HACKATHON_SDET134\",\r\n    \"batchName\": \"API_HACKATHON_MARCH2024_SDET(134)\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16538\"\r\n}",
+							"raw": "{\r\n    \"batchDescription\": \"FIRST_HACKATHON_SDET134\",\r\n    \"batchName\": \"API_HACKATHON_MARCH2024_SDET(134)\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16940\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -431,40 +431,14 @@
 					"response": []
 				},
 				{
-					"name": "Create New Batch Copy",
+					"name": "Create New Program",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "fb3e33ff-f531-4db0-b8bb-4025e0271306",
 								"exec": [
-									"var schema = \r",
-									"{\"type\": \"object\",\r",
-									"  \"properties\": {\r",
-									"    \"batchDescription\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"batchName\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"batchNoOfClasses\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"batchStatus\": {\r",
-									"      \"type\": \"string\"\r",
-									"    },\r",
-									"    \"programId\": {\r",
-									"      \"type\": \"string\"\r",
-									"    }\r",
-									"  },\r",
-									"  \"required\": [\r",
-									"    \"batchDescription\",\r",
-									"    \"batchName\",\r",
-									"    \"batchNoOfClasses\",\r",
-									"    \"batchStatus\",\r",
-									"    \"programId\"\r",
-									"  ]\r",
-									"}"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -485,14 +459,14 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"batchDescription\": \"FIRST_HACKATHON_SDET134\",\r\n    \"batchName\": \"API_HACKATHON_MARCH2024_SDET(134)\",\r\n    \"batchNoOfClasses\": \"5\",\r\n    \"batchStatus\": \"active\",\r\n    \"programId\":\"16538\"\r\n}",
+							"raw": "{\r\n  \"programDescription\": \"FOR_SDET_134_2024\",\r\n  \"programName\": \"HACKATHON_API\",\r\n  \"programStatus\": \"Active\"\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
 								}
 							}
 						},
-						"url": "{{BaseURL}}/batches"
+						"url": "{{BaseURL}}/saveprogram"
 					},
 					"response": []
 				},
@@ -799,7 +773,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U34"
+									"value": "U298"
 								}
 							]
 						}
@@ -1390,7 +1364,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"programId\": 16208,\r\n  \"roleId\": \"R02\",\r\n  \"userId\": \"U34\",\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8432,\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
+							"raw": "{\r\n  \"programId\": 16208,\r\n  \"roleId\": \"R02\",\r\n  \"userId\": \"U298,\r\n  \"userRoleProgramBatches\": [\r\n    {\r\n      \"batchId\": 8432,\r\n      \"userRoleProgramBatchStatus\": \"Active\"\r\n    }\r\n  ]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1410,7 +1384,7 @@
 							"variable": [
 								{
 									"key": "userid",
-									"value": "U34"
+									"value": "U298"
 								}
 							]
 						}
