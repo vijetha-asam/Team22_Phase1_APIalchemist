@@ -114,7 +114,7 @@
 								},
 								"method": "GET",
 								"header": [],
-								"url": "{{BaseURL}}/programs/{{nonexistingprogramId}}"
+								"url": "{{BaseURL}}/programs/{{Nonexisting_programID_programModule}}"
 							},
 							"response": []
 						}
