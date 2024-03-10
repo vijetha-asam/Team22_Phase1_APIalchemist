@@ -4137,7 +4137,7 @@
 									"var programNAME = resp.programName;",
 									"pm.environment.set(\"DemoprogramModule_programID\",programID);",
 									"//pm.environment.set(\"UserModule_ProgramId\",programID);",
-									"pm.environment.set(\"DemoDelete_programId_programModule\",programID);",
+									"//pm.environment.set(\"DemoDelete_programId_programModule\",programID);",
 									"pm.environment.set(\"DemoDelete_programName_programModule\",programNAME);",
 									"",
 									"// Perform header-content-type validation",
@@ -4221,7 +4221,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo003\",\n  \"programName\": \"Demo_Program003\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Team22\",\n  \"programName\": \"March24_APIAlchemist_Team22_UpdateProgramName001\",\n  \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4478,7 +4478,7 @@
 									"// Log the request body",
 									"console.log(\"Request body:\", requestBody.raw);",
 									"// Define the path parameter value",
-									"var pathParamValue =pm.environment.get(\"Demo_Updated_programName_programModule\");",
+									"var pathParamValue =pm.environment.get(\"DemoDelete_programName_programModule\");",
 									"",
 									"// Validate the path parameter value",
 									"if (!pathParamValue) {",
@@ -4587,7 +4587,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo002\",\n  \"programName\": \"Demo_Program002\",\n  \"programStatus\": \"Inactive\"\n}\n\n",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Demo00\",\n  \"programName\": \"Demo_Program00\",\n  \"programStatus\": \"Inactive\"\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
