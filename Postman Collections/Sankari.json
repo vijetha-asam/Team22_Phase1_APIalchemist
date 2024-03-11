@@ -325,6 +325,34 @@
 					"response": []
 				},
 				{
+					"name": "login Copy",
+					"id": "b5116f09-a9b7-4516-9afd-f5002b4fb289",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{Bearertoken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"{{loginpass}}\",\r\n  \"userLoginEmailId\": \"{{loginemail}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/login"
+					},
+					"response": []
+				},
+				{
 					"name": "Create User RoleStatus without mail ID",
 					"event": [
 						{
