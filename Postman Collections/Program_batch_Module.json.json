@@ -1306,7 +1306,7 @@
 			"id": "945e6c63-87b3-41d4-8344-59ef5701f0d4"
 		},
 		{
-			"name": "3.Positive Scenario for Batch",
+			"name": "3.Positive Scenarios for Batch",
 			"item": [
 				{
 					"name": "Create Batch Module",
@@ -2066,7 +2066,7 @@
 			"id": "6f42f660-989d-475d-bb80-219d864bd72b"
 		},
 		{
-			"name": "4.Negative scenario For Batch Module",
+			"name": "4.Negative scenarios for Batch",
 			"item": [
 				{
 					"name": "Get all Batches invalid end point",
