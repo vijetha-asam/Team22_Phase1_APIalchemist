@@ -1981,6 +1981,7 @@
 													"pm.test(\"response time is less than 700ms\", ()=>{",
 													"    pm.expect(pm.response.responseTime).to.be.below(700);",
 													"});",
+													"if (pm.response.code === 200) {",
 													"// Perform schema validation",
 													"pm.test(\"Validate Response Schema\", function() {",
 													"    const schema = {",
@@ -2019,7 +2020,8 @@
 													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
 													"    pm.expect(resp.programName).to.equal(requestData.programName);",
 													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
-													"});"
+													"});",
+													"}"
 												],
 												"type": "text/javascript"
 											}
@@ -2127,6 +2129,7 @@
 													"pm.test(\"response time is less than 700ms\", ()=>{",
 													"    pm.expect(pm.response.responseTime).to.be.below(700);",
 													"});",
+													"if (pm.response.code === 200) {",
 													"// Perform schema validation",
 													"pm.test(\"Validate Response Schema\", function() {",
 													"    const schema = {",
@@ -2165,7 +2168,8 @@
 													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
 													"    pm.expect(resp.programName).to.equal(requestData.programName);",
 													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
-													"});"
+													"});",
+													"}"
 												],
 												"type": "text/javascript"
 											}
@@ -2261,6 +2265,7 @@
 													"pm.test(\"Status code is 200\",()=>{",
 													"pm.response.to.have.status(200);",
 													"});",
+													"if (pm.response.code === 200) {",
 													"// Perform response json validation",
 													"pm.test(\"Response is valid JSON\", function () {",
 													"    pm.response.to.be.json;",
@@ -2311,7 +2316,8 @@
 													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
 													"    pm.expect(resp.programName).to.equal(requestData.programName);",
 													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
-													"});"
+													"});",
+													"}"
 												],
 												"type": "text/javascript"
 											}
@@ -2395,7 +2401,7 @@
 											"script": {
 												"id": "48c3d66e-4817-49c5-b8b7-5a9eddafbbef",
 												"exec": [
-													"var response = pm.response.json();",
+													"",
 													"// Perform header-content-type validation",
 													"pm.test(\"Content-Type header is present\", ()=> {",
 													"    pm.response.to.have.header(\"Content-Type\");",
@@ -2420,6 +2426,7 @@
 													"pm.test(\"response time is less than 700ms\", ()=>{",
 													"    pm.expect(pm.response.responseTime).to.be.below(700);",
 													"});",
+													"if (pm.response.code === 200) {",
 													"// Perform schema validation",
 													"pm.test(\"Validate Response Schema\", function() {",
 													"    const schema = {",
@@ -2438,7 +2445,7 @@
 													"    pm.response.to.have.jsonSchema(schema);",
 													"});",
 													"pm.test(\"Validate Data Types\", function() {",
-													"    ",
+													"    const response = pm.response.json();",
 													"//pm.expect(pm.response.json().programId).to.not.be.empty;",
 													"    pm.expect(response.programId).to.be.a(\"number\");",
 													"    pm.expect(response.programName).to.be.a(\"string\");",
@@ -2453,12 +2460,13 @@
 													"const requestData = JSON.parse(requestBody);",
 													"// Validate the data entered in the request",
 													"pm.test(\"Response body contains entered data\", function() {",
-													"    ",
-													"    pm.expect(response.programId).to.equal(pm.environment.get(\"ProgramModule_ProgramIDForUpdateProgram_ByID\"));",
+													"    const response = pm.response.json();",
+													"    pm.expect(response.programId).to.be.equal(pm.environment.get(\"ProgramModule_ProgramIDForUpdateProgram_ByID\"));",
 													"    pm.expect(response.programDescription).to.equal(requestData.programDescription);",
 													"    pm.expect(response.programName).to.equal(requestData.programName);",
 													"    pm.expect(response.programStatus).to.equal(requestData.programStatus);",
-													"});"
+													"});",
+													"}"
 												],
 												"type": "text/javascript"
 											}
@@ -2572,11 +2580,12 @@
 													"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
 													"    \"success\": false",
 													"};",
+													"if (pm.response.code === 400) {",
 													"// Validate the response body",
 													"pm.test(\"Response body contains expected error message and success flag\", function() {",
 													"    pm.expect(resp.message).to.equal(expectedData.message);",
 													"    pm.expect(resp.success).to.equal(expectedData.success);",
-													"});",
+													"}); }",
 													"// Perform response time validation",
 													"pm.test(\"response time is less than 700ms\", ()=>{",
 													"    pm.expect(pm.response.responseTime).to.be.below(700);",
@@ -2669,7 +2678,7 @@
 													"pm.test(\"Response is valid JSON\", function () {",
 													"    pm.response.to.be.json;",
 													"});",
-													"// Perform statuc code validation",
+													"// Perform status code validation",
 													"pm.test(\"Status code is 400\",()=>{",
 													"pm.response.to.have.status(400);",
 													"});",
@@ -2682,11 +2691,12 @@
 													"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
 													"    \"success\": false",
 													"};",
+													"if (pm.response.code === 400) {",
 													"// Validate the response body",
 													"pm.test(\"Response body contains expected error message and success flag\", function() {",
 													"    pm.expect(resp.message).to.equal(expectedData.message);",
 													"    pm.expect(resp.success).to.equal(expectedData.success);",
-													"});",
+													"});}",
 													"// Perform response time validation",
 													"pm.test(\"response time is less than 700ms\", ()=>{",
 													"    pm.expect(pm.response.responseTime).to.be.below(700);",
@@ -2792,11 +2802,13 @@
 													"    \"message\": \"cannot create program , since already exists\",",
 													"    \"success\": false",
 													"};",
+													"if (pm.response.code === 400) {",
 													"// Validate the response body",
 													"pm.test(\"Response body contains expected error message and success flag\", function() {",
 													"    pm.expect(resp.message).to.equal(expectedData.message);",
 													"    pm.expect(resp.success).to.equal(expectedData.success);",
 													"});",
+													"}",
 													"// Perform response time validation",
 													"pm.test(\"response time is less than 700ms\", ()=>{",
 													"    pm.expect(pm.response.responseTime).to.be.below(700);",
