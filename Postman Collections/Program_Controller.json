@@ -3214,7 +3214,7 @@
 											"const programID = pm.environment.get(\"programModule_programID\");",
 											"",
 											"// Update the response message with the program ID Define expected Data",
-											"const expectedResponseMessage = \"Message: Program Id-\"+programID+\" is deleted Successfully!\";",
+											"const expectedResponseMessage = \"Program Id-\"+programID+\" is deleted Successfully!\";",
 											"",
 											"// Validate the response body",
 											"pm.test(\"Response body contains expected success message\", function() {",
