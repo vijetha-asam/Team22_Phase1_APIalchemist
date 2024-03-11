@@ -4474,9 +4474,10 @@
 										"exec": [
 											"var resp = pm.response.json();",
 											"var programID = resp.programId;",
+											"var programname = resp.programName;",
 											"pm.environment.set(\"DemoProgramModule_programID\",programID);",
 											"//pm.environment.set(\"UserModule_ProgramId\",programID);",
-											"pm.environment.set(\"DemoUpdate_programName_programModule\",resp.programId)",
+											"pm.environment.set(\"DemoUpdate_programName_programModule\",programname)",
 											"",
 											"// Perform header-content-type validation",
 											"pm.test(\"Content-Type header is present\", ()=> {",
