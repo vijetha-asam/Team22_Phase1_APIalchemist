@@ -810,6 +810,76 @@
 				},
 				{
 					"name": "Update User by UserID without Firstname",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "d1ff29f5-845d-4c87-8aff-375896e07621",
+								"exec": [
+									"const randomNumber = _.random(1000000000,9999999999)\r",
+									"pm.environment.set(\"usermodule_randomNumber\",randomNumber);\r",
+									"\r",
+									"var random = Math.random().toString(36).substring(2);\r",
+									"\r",
+									"var userLoginEmail= \"abc\"+random+\"@gmail.com\";\r",
+									"//var userLastName=\"abc\"+random;\r",
+									"//var userLastName=\"abc\"+random;\r",
+									"\r",
+									"pm.environment.set(\"usermodule_email_env\",userLoginEmail);"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b98973fe-045b-4f86-808f-ae9ff81dcc8d",
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", ()=> {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", ()=> {\r",
+									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"if(jsonData.message===\"User First Name must begin with alphabet and can contain only alphanumeric characters\"){\r",
+									" pm.test(\"User First Name must begin with alphabet and can contain only alphanumeric characters\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"User First Name must begin with alphabet and can contain only alphanumeric characters\");\r",
+									"}) \r",
+									"return  \r",
+									"}\r",
+									"else if (jsonData.message===\"User First Name is cannot be null or empty\") {\r",
+									"\r",
+									"pm.test(\"User First Name is cannot be null or empty\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"User First Name is cannot be null or empty\");\r",
+									"});\r",
+									"pm.test(\"Status code is 400\",()=>{\r",
+									"pm.response.to.have.status(400);\r",
+									"});\r",
+									"return\r",
+									"}\r",
+									"\r",
+									"\r",
+									"pm.test(\"response time is less than 1000ms\", ()=>{\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "d69b3ac1-c35a-4a2c-a51b-73fbcb5fc4a4",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -896,6 +966,60 @@
 				},
 				{
 					"name": "Update User by UserID without Lastname",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7069bb2a-579f-488e-92bd-c467e8aa420a",
+								"exec": [
+									"var jsonData=JSON.parse(responseBody);\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", ()=> {\r",
+									"    pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", ()=> {\r",
+									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response is valid JSON\", function () {\r",
+									"    pm.response.to.be.json;\r",
+									"});\r",
+									"if(jsonData.message===\"userLastName must contain one or more alphabets only\"){\r",
+									" pm.test(\"userLastName must contain one or more alphabets onl\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"userLastName must contain one or more alphabets onl\");\r",
+									"}) \r",
+									"return  \r",
+									"}\r",
+									"else if (jsonData.message===\"User Last Name is cannot be null or empty\") {\r",
+									"\r",
+									"pm.test(\"User Last Name is cannot be null or empty\",function(){\r",
+									"pm.expect(jsonData.message).contains(\"User Last Name is cannot be null or empty\");\r",
+									"});\r",
+									"pm.test(\"Status code is 400\",()=>{\r",
+									"pm.response.to.have.status(400);\r",
+									"});\r",
+									"return\r",
+									"}\r",
+									"else{\r",
+									"    pm.test(\"Status code is 200\",()=>{\r",
+									"pm.response.to.have.status(200);\r",
+									"});\r",
+									"}\r",
+									"\r",
+									"pm.test(\"response time is less than 1000ms\", ()=>{\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"id": "fc52f1e8-cd2f-4517-8985-a53bb335826a",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
