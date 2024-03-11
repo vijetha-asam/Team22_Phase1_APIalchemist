@@ -2190,7 +2190,7 @@
 							"name": "Update by programId",
 							"item": [
 								{
-									"name": "UpdateProgramNameToSpecialCharacters",
+									"name": "UpdateProgramNameToSpecialCharactersByID",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -2300,7 +2300,7 @@
 									"response": []
 								},
 								{
-									"name": "UpdateProgramNameToOnlyNumbers",
+									"name": "UpdateProgramNameToOnlyNumbersByID",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -2410,7 +2410,7 @@
 									"response": []
 								},
 								{
-									"name": "UpdateProgramNameToExistingProgramName",
+									"name": "UpdateProgramNameToExistingProgramNameByID",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -2520,7 +2520,7 @@
 									"response": []
 								},
 								{
-									"name": "UpdateProgramDescriptionWithSpecialChars",
+									"name": "UpdateProgramDescriptionWithSpecialCharsByID",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -2629,7 +2629,7 @@
 									"response": []
 								},
 								{
-									"name": "UpdateProgramDescriptionWithOnlyNumbers",
+									"name": "UpdateProgramDescriptionWithOnlyNumbersByID",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -2738,7 +2738,7 @@
 									"response": []
 								},
 								{
-									"name": "UpdateProgramStatusWithInvalidValue",
+									"name": "UpdateProgramStatusWithInvalidValueByID",
 									"event": [
 										{
 											"listen": "prerequest",
