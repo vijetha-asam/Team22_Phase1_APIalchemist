@@ -1746,6 +1746,152 @@
 										"url": "{{BaseURL}}/program"
 									},
 									"response": []
+								},
+								{
+									"name": "ResetToPreviousValues",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "4cff74f5-d87f-4d64-b3f1-b02e69b21366",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Get the request body",
+													"const requestBody = pm.request.body;",
+													"",
+													"// Validate the presence of the request body",
+													"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
+													"    //throw new Error(\"Request body is missing\");",
+													"    console.log(\"ERROR : Request body is missing\");",
+													"}",
+													"else{",
+													"// Log the request body",
+													"console.log(\"Request body:\", requestBody.raw);",
+													"// Define the path parameter value",
+													"var pathParamValue =pm.environment.get(\"ProgramModule_updateProgram_programName\");",
+													"",
+													"// Validate the path parameter value",
+													"if (!pathParamValue) {",
+													"    //throw new Error(\"Path parameter value is missing\");",
+													"    console.log(\"ERROR : Path parameter value is missing\");",
+													"}",
+													"else{",
+													"// Log the path parameter value",
+													"console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;",
+													"} }"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "d1c5511b-cda1-4bfb-8b7f-4b34befa13ed",
+												"exec": [
+													"// Perform header-content-type validation",
+													"pm.test(\"Content-Type header is present\", ()=> {",
+													"    pm.response.to.have.header(\"Content-Type\");",
+													"});",
+													"",
+													"pm.test(\"Content-Type header is application/json\", ()=> {",
+													" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');",
+													"});",
+													"// Perform statuc code validation",
+													"pm.test(\"Status code is 200\",()=>{",
+													"pm.response.to.have.status(200);",
+													"});",
+													"// Perform response json validation",
+													"pm.test(\"Response is valid JSON\", function () {",
+													"    pm.response.to.be.json;",
+													"});",
+													"// Perform status validation",
+													"pm.test(\"Check Status as OK\",()=>{",
+													"pm.response.to.have.status('OK')",
+													"});",
+													"// Perform response time validation",
+													"pm.test(\"response time is less than 700ms\", ()=>{",
+													"    pm.expect(pm.response.responseTime).to.be.below(700);",
+													"});",
+													"// Perform schema validation",
+													"pm.test(\"Validate Response Schema\", function() {",
+													"    const schema = {",
+													"        \"type\": \"object\",",
+													"        \"properties\": {",
+													"            \"programId\": {\"type\": \"number\"},",
+													"            \"programName\": {\"type\": \"string\"},",
+													"            \"programDescription\": {\"type\": \"string\"},",
+													"            \"programStatus\": {\"type\": \"string\"},",
+													"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},",
+													"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}",
+													"        },",
+													"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]",
+													"    };",
+													"",
+													"    pm.response.to.have.jsonSchema(schema);",
+													"});",
+													"pm.test(\"Validate Data Types\", function() {",
+													"    const response = pm.response.json();",
+													"//pm.expect(pm.response.json().programId).to.not.be.empty;",
+													"    pm.expect(response.programId).to.be.a(\"number\");",
+													"    pm.expect(response.programName).to.be.a(\"string\");",
+													"    pm.expect(response.programDescription).to.be.a(\"string\");",
+													"    pm.expect(response.programStatus).to.be.a(\"string\");",
+													"    pm.expect(response.creationTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
+													"    pm.expect(response.lastModTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
+													"});",
+													"// Get the request body",
+													"const requestBody = pm.request.body.raw;",
+													"// Parse the request body as JSON",
+													"const requestData = JSON.parse(requestBody);",
+													"// Validate the data entered in the request",
+													"pm.test(\"Response body contains entered data\", function() {",
+													"    const resp = pm.response.json();",
+													"    pm.expect(resp.programId).to.equal(pm.environment.get(\"ProgramModule_ProgramIDForUpdateProgram_ByName\"));",
+													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
+													"    pm.expect(resp.programName).to.equal(pm.environment.get(\"ProgramModule_updateProgram_programName\"));",
+													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "12782c3b-6944-4899-8b5b-d1b620ef8962",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"programName\": \"March24-ApiAlchemist-SDET-2565\",\n   \"programDescription\": \"APIHackathon_Phase1\",\n   \"programStatus\": \"Active\"\n}\n\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/program"
+									},
+									"response": []
 								}
 							],
 							"id": "b32a06f5-b23a-4736-90ba-0d54dd329a00"
@@ -2035,6 +2181,152 @@
 										"body": {
 											"mode": "raw",
 											"raw": "{\n    \"programName\": \"March24-ApiAlchemist-SDET-5677\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/putprogram"
+									},
+									"response": []
+								},
+								{
+									"name": "ResetToPreviousValues",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "6e09d942-985b-4c91-a846-b796ad6c2e80",
+												"exec": [
+													"// Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Get the request body",
+													"const requestBody = pm.request.body;",
+													"",
+													"// Validate the presence of the request body",
+													"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
+													"    //throw new Error(\"Request body is missing\");",
+													"    console.log(\"ERROR : Request body is missing\");",
+													"}",
+													"else{",
+													"// Log the request body",
+													"console.log(\"Request body:\", requestBody.raw);",
+													"// Define the path parameter value",
+													"var pathParamValue =pm.environment.get(\"ProgramModule_ProgramIDForUpdateProgram_ByID\");",
+													"",
+													"// Validate the path parameter value",
+													"if (!pathParamValue) {",
+													"    //throw new Error(\"Path parameter value is missing\");",
+													"    console.log(\"ERROR : Path parameter value is missing\");",
+													"}",
+													"else{",
+													"// Log the path parameter value",
+													"console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"// Construct the complete URL with the path parameter",
+													"const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"// Set the request URL",
+													"pm.request.url = url;",
+													"} }"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "b9f5ff96-2b22-486b-8500-7be6079fac6d",
+												"exec": [
+													"// Perform header-content-type validation",
+													"pm.test(\"Content-Type header is present\", ()=> {",
+													"    pm.response.to.have.header(\"Content-Type\");",
+													"});",
+													"",
+													"pm.test(\"Content-Type header is application/json\", ()=> {",
+													" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');",
+													"});",
+													"// Perform statuc code validation",
+													"pm.test(\"Status code is 200\",()=>{",
+													"pm.response.to.have.status(200);",
+													"});",
+													"// Perform response json validation",
+													"pm.test(\"Response is valid JSON\", function () {",
+													"    pm.response.to.be.json;",
+													"});",
+													"// Perform status validation",
+													"pm.test(\"Check Status as OK\",()=>{",
+													"pm.response.to.have.status('OK')",
+													"});",
+													"// Perform response time validation",
+													"pm.test(\"response time is less than 700ms\", ()=>{",
+													"    pm.expect(pm.response.responseTime).to.be.below(700);",
+													"});",
+													"// Perform schema validation",
+													"pm.test(\"Validate Response Schema\", function() {",
+													"    const schema = {",
+													"        \"type\": \"object\",",
+													"        \"properties\": {",
+													"            \"programId\": {\"type\": \"number\"},",
+													"            \"programName\": {\"type\": \"string\"},",
+													"            \"programDescription\": {\"type\": \"string\"},",
+													"            \"programStatus\": {\"type\": \"string\"},",
+													"            \"creationTime\": {\"type\": \"string\", \"format\": \"date-time\"},",
+													"            \"lastModTime\": {\"type\": \"string\", \"format\": \"date-time\"}",
+													"        },",
+													"        \"required\": [\"programId\", \"programName\", \"programDescription\", \"programStatus\", \"creationTime\", \"lastModTime\"]",
+													"    };",
+													"",
+													"    pm.response.to.have.jsonSchema(schema);",
+													"});",
+													"pm.test(\"Validate Data Types\", function() {",
+													"    const response = pm.response.json();",
+													"//pm.expect(pm.response.json().programId).to.not.be.empty;",
+													"    pm.expect(response.programId).to.be.a(\"number\");",
+													"    pm.expect(response.programName).to.be.a(\"string\");",
+													"    pm.expect(response.programDescription).to.be.a(\"string\");",
+													"    pm.expect(response.programStatus).to.be.a(\"string\");",
+													"    pm.expect(response.creationTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
+													"    pm.expect(response.lastModTime).to.match(/^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}\\+\\d{2}:\\d{2}$/);",
+													"});",
+													"// Get the request body",
+													"const requestBody = pm.request.body.raw;",
+													"// Parse the request body as JSON",
+													"const requestData = JSON.parse(requestBody);",
+													"// Validate the data entered in the request",
+													"pm.test(\"Response body contains entered data\", function() {",
+													"    const resp = pm.response.json();",
+													"    pm.expect(resp.programId).to.equal(pm.environment.get(\"ProgramModule_ProgramIDForUpdateProgram_ByID\"));",
+													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
+													"    pm.expect(resp.programName).to.equal(requestData.programName);",
+													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "c1c6ae52-8de6-4558-9838-186199bbeb70",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"March24-ApiAlchemist-SDET-5677\",\n   \"programDescription\": \"APIHackathon_Phase1\",\n   \"programStatus\": \"Active\"\n}\n",
 											"options": {
 												"raw": {
 													"language": "json"
