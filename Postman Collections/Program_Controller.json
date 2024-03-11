@@ -2395,6 +2395,7 @@
 											"script": {
 												"id": "48c3d66e-4817-49c5-b8b7-5a9eddafbbef",
 												"exec": [
+													"var response = pm.response.json();",
 													"// Perform header-content-type validation",
 													"pm.test(\"Content-Type header is present\", ()=> {",
 													"    pm.response.to.have.header(\"Content-Type\");",
@@ -2437,7 +2438,7 @@
 													"    pm.response.to.have.jsonSchema(schema);",
 													"});",
 													"pm.test(\"Validate Data Types\", function() {",
-													"    const response = pm.response.json();",
+													"    ",
 													"//pm.expect(pm.response.json().programId).to.not.be.empty;",
 													"    pm.expect(response.programId).to.be.a(\"number\");",
 													"    pm.expect(response.programName).to.be.a(\"string\");",
@@ -2452,11 +2453,11 @@
 													"const requestData = JSON.parse(requestBody);",
 													"// Validate the data entered in the request",
 													"pm.test(\"Response body contains entered data\", function() {",
-													"    const resp = pm.response.json();",
-													"    pm.expect(resp.programId.toString()).to.equal(pm.environment.get(\"ProgramModule_ProgramIDForUpdateProgram_ByID\"));",
-													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
-													"    pm.expect(resp.programName).to.equal(requestData.programName);",
-													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
+													"    ",
+													"    pm.expect(response.programId).to.equal(pm.environment.get(\"ProgramModule_ProgramIDForUpdateProgram_ByID\"));",
+													"    pm.expect(response.programDescription).to.equal(requestData.programDescription);",
+													"    pm.expect(response.programName).to.equal(requestData.programName);",
+													"    pm.expect(response.programStatus).to.equal(requestData.programStatus);",
 													"});"
 												],
 												"type": "text/javascript"
@@ -2773,7 +2774,7 @@
 											"script": {
 												"id": "b6e1c603-adec-445d-90fb-153389dfeafb",
 												"exec": [
-													"resp = pm.response.json();",
+													"var resp = pm.response.json();",
 													"// Perform response json validation",
 													"pm.test(\"Response is valid JSON\", function () {",
 													"    pm.response.to.be.json;",
