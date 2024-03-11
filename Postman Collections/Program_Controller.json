@@ -4476,7 +4476,7 @@
 											"var programID = resp.programId;",
 											"pm.environment.set(\"DemoProgramModule_programID\",programID);",
 											"//pm.environment.set(\"UserModule_ProgramId\",programID);",
-											"//pm.environment.set(\"Delete_programName_programModule\",resp.programId)",
+											"pm.environment.set(\"DemoUpdate_programName_programModule\",resp.programId)",
 											"",
 											"// Perform header-content-type validation",
 											"pm.test(\"Content-Type header is present\", ()=> {",
@@ -5275,7 +5275,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"programName\": \"March24-ApiAlchemist-SDET-3697\",\n    \"programDescription\": \"Demo_Phase1_update001\",\n    \"programStatus\": \"ACTIVE\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"Demo_Phase1\",\n  \"programName\": \"{{programNameValue}}\",\n  \"programStatus\": \"Active\"\n}\n\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
