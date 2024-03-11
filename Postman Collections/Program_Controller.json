@@ -3254,7 +3254,7 @@
 											"",
 											"// Validate the response body",
 											"pm.test(\"Response body contains expected success message\", function() {",
-											"    pm.expect(response.message).to.equal(expectedResponseMessage);",
+											"    pm.expect(response.Message).to.equal(expectedResponseMessage);",
 											"});",
 											"",
 											"// Perform response time validation",
