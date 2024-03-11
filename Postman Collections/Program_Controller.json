@@ -1137,6 +1137,39 @@
 										],
 										"type": "text/javascript"
 									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "3466e3a7-5b9d-4360-884c-04bdadfb713e",
+										"exec": [
+											"// Get the request URL",
+											"const requestUrl = pm.request.url.toString();",
+											"",
+											"// Extract the base URL from the request URL",
+											"const baseUrl = requestUrl.split(\"?\")[0];",
+											"",
+											"// Define the path parameter value",
+											"var pathParamValue =pm.environment.get(\"programModule_programID\");",
+											"",
+											"// Validate the path parameter value",
+											"if (!pathParamValue) {",
+											"    //throw new Error(\"Path parameter value is missing\");",
+											"    console.log(\"ERROR : Path parameter value is missing\");",
+											"}",
+											"else{",
+											"// Log the path parameter value",
+											"console.log(\"Path parameter value:\", pathParamValue);",
+											"",
+											"// Construct the complete URL with the path parameter",
+											"const url = `${baseUrl}/${pathParamValue}`;",
+											"",
+											"// Set the request URL",
+											"pm.request.url = url;",
+											"} "
+										],
+										"type": "text/javascript"
+									}
 								}
 							],
 							"id": "36a16b16-d733-4518-9e4e-c5f8a3fdf065",
@@ -1152,7 +1185,7 @@
 								},
 								"method": "GET",
 								"header": [],
-								"url": "{{BaseURL}}/programs/{{ProgramModule_Get_ProgramID}}"
+								"url": "{{BaseURL}}/programs"
 							},
 							"response": []
 						},
