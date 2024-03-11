@@ -50,6 +50,47 @@
 					"response": []
 				},
 				{
+					"name": "Usermodule_login Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "23199d6a-ea53-4459-80ef-4efe21905c47",
+								"exec": [
+									"var resp = pm.response.json();",
+									"var token = resp.token;",
+									"pm.environment.set(\"Usermodule_token\",token);",
+									"//pm.globals.set(\"validUserID\",userID);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "69b22f2e-4e09-478c-9c2d-ccbf41e323c8",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"password\": \"{{Password}}\",\n  \"userLoginEmailId\": \"{{userLogin_EmailId}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/login"
+					},
+					"response": []
+				},
+				{
 					"name": "Creat_Program",
 					"event": [
 						{
