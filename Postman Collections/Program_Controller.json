@@ -2180,7 +2180,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"APIHackathon_Phase1\",\n    \"programStatus\": \"Active\"\n}",
+											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
