@@ -5275,7 +5275,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"Demo_Phase1\",\n  \"programName\": \"{{programNameValue}}\",\n  \"programStatus\": \"Active\"\n}\n\n\n",
+							"raw": "{\n  \"programDescription\": \"Demo_Phase1\",\n  \"programName\": \"March24-ApiAlchemist-SDET-3697\",\n  \"programStatus\": \"Active\"\n}\n\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -5384,7 +5384,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"programName\": \"March24-ApiAlchemist-SDET-3697\",\n    \"programDescription\": \"9999999\",\n    \"programStatus\": \"ACTIVE\"\n}\n\n",
+							"raw": "{\n    \"programName\": \"DemoUpdate_programName_programModule\",\n    \"programDescription\": \"9999999\",\n    \"programStatus\": \"ACTIVE\"\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
