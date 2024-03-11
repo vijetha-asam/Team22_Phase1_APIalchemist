@@ -990,6 +990,7 @@
 									"var resp = pm.response.json();",
 									"var programID = resp.programId;",
 									"pm.environment.set(\"Bug_programModule_programID\",programID);",
+									"pm.environment.set(\"BugDelete_programModule_programName\",programNameBug);",
 									"pm.test(\"Response is valid JSON\", function () {",
 									"    pm.response.to.be.json;",
 									"});",
@@ -5267,6 +5268,126 @@
 							}
 						},
 						"url": "{{BaseURL}}/putprogram"
+					},
+					"response": []
+				},
+				{
+					"name": "InvalidCombinationInProgramDescription Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
+								"exec": [
+									"var resp = pm.response.json();",
+									"var programID = resp.programId;",
+									"pm.environment.set(\"Bug_programModule_programID\",programID);",
+									"pm.environment.set(\"BugDelete_programModule_programName\",programNameBug);",
+									"pm.test(\"Response is valid JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"",
+									"// Log the request body",
+									"console.log(\"Request Body:\", pm.request.body.raw);",
+									"",
+									"// Perform status code validation",
+									"pm.test(\"Status code is 400\",()=>{",
+									"pm.response.to.have.status(400);",
+									"});",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Bad Request\",()=>{",
+									"pm.response.to.have.status('Bad Request')",
+									"});",
+									"//Define expected Data",
+									"const expectedData = {",
+									"    \"message\": \"programDescription must begin with alphabet and can contain only alphanumeric characters\",",
+									"    \"success\": false",
+									"};",
+									"// Validate the response body",
+									"pm.test(\"Response body contains expected error message and success flag\", function() {",
+									"    pm.expect(resp.message).to.equal(expectedData.message);",
+									"    pm.expect(resp.success).to.equal(expectedData.success);",
+									"});",
+									"// Perform response time validation",
+									"pm.test(\"response time is less than 700ms\", ()=>{",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "7c9f37cf-1b54-43a6-a317-b5788294bdaa",
+								"exec": [
+									"//Function to generate a random string of special characters",
+									"function generateRandomString(length) {",
+									"  const specialCharacters = '!@#$%^&*()_+-=[]{}|;:,.<>?';",
+									"  let result = '';",
+									"  for (let i = 0; i < length; i++) {",
+									"    const randomIndex = Math.floor(Math.random() * specialCharacters.length);",
+									"    result += specialCharacters.charAt(randomIndex);",
+									"  }",
+									"  return result;",
+									"}",
+									"",
+									"// Generate a random string of 10 special characters",
+									"const randomSpecialCharacters = generateRandomString(10);",
+									"",
+									"",
+									"const programDescriptionValue = `A-${randomSpecialCharacters}`;",
+									"const programNameValue = `APIHackathon_Phase1_Bugs_${randomSpecialCharacters}`;",
+									"// Function to generate a random number within a range",
+									"function generateRandomNumber(min, max) {",
+									"    return Math.floor(Math.random() * (max - min + 1)) + min;",
+									"}",
+									"",
+									"// Get the request body from the request editor",
+									"const requestBody = {",
+									"    programDescription: programDescriptionValue,",
+									"    programName: programNameValue,",
+									"    programStatus: \"Active\"",
+									"};",
+									"",
+									"// Update the request body in the request editor",
+									"pm.request.headers.add({",
+									"    key: 'Content-Type',",
+									"    value: 'application/json'",
+									"});",
+									"",
+									"pm.request.body = {",
+									"    mode: 'raw',",
+									"    raw: JSON.stringify(requestBody)",
+									"};"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "25edc83f-cd35-42c9-a477-9aef0cb24cbd",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"programDescription\": \"{{programDescriptionValue}}\",\n    \"programName\": \"{{programNameValue}}\",\n    \"programStatus\": \"Active\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
 					},
 					"response": []
 				}
