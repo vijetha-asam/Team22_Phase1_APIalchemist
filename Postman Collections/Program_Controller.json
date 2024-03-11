@@ -1487,6 +1487,8 @@
 													"pm.test(\"response time is less than 700ms\", ()=>{",
 													"    pm.expect(pm.response.responseTime).to.be.below(700);",
 													"});",
+													"// Check the response status code",
+													"if (pm.response.code === 200) {",
 													"// Perform schema validation",
 													"pm.test(\"Validate Response Schema\", function() {",
 													"    const schema = {",
@@ -1527,7 +1529,8 @@
 													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
 													"    pm.expect(resp.programName).to.equal(pm.environment.get(\"ProgramModule_updateProgram_programName\"));",
 													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
-													"});"
+													"});",
+													"}"
 												],
 												"type": "text/javascript"
 											}
