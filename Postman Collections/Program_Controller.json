@@ -1888,7 +1888,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"Active\"\n}",
+											"raw": "{\n    \"programName\": \"March24-ApiAlchemist-SDET-5677\",\n   \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n   \"programStatus\": \"Active\"\n}\n\n",
 											"options": {
 												"raw": {
 													"language": "json"
