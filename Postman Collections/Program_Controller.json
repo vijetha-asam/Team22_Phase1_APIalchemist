@@ -1210,6 +1210,30 @@
 						},
 						{
 							"name": "Get program by non existing programId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "25379b5a-d287-48da-ad58-19a7246f8232",
+										"exec": [
+											"// Get the runtime programName from the environment variable",
+											"const programID = pm.environment.get(\"Nonexisting_programID_programModule\");",
+											"",
+											"//Define expected Data",
+											"const expectedData = {",
+											"    \"message\": \"program with this: ${programID}not found\",",
+											"    \"success\": false",
+											"};",
+											"// Validate the response body",
+											"pm.test(\"Response body contains expected error message and success flag\", function() {",
+											"    pm.expect(resp.message).to.equal(expectedData.message);",
+											"    pm.expect(resp.success).to.equal(expectedData.success);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
 							"id": "2686a9ba-d4bc-4e4a-8d38-9aaf3ee4cbb9",
 							"protocolProfileBehavior": {
 								"disableBodyPruning": true
