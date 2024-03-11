@@ -48,6 +48,47 @@
 						"url": "{{BaseURL}}/login"
 					},
 					"response": []
+				},
+				{
+					"name": "Login-Valid User Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "23199d6a-ea53-4459-80ef-4efe21905c47",
+								"exec": [
+									"var resp = pm.response.json();",
+									"var token = resp.token;",
+									"pm.environment.set(\"programModuleToken\",token);",
+									"//pm.globals.set(\"validUserID\",userID);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "2681dda1-f4b9-450e-bc29-77655f094a7a",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"password\": \"Numpyninja@1\",\n  \"userLoginEmailId\": \"sdetorganizers@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/login"
+					},
+					"response": []
 				}
 			],
 			"id": "4385ce69-768c-433d-b758-ec638ce49304"
