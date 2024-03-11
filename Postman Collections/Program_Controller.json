@@ -1018,11 +1018,9 @@
 									"});",
 									"// Check the response status code",
 									"if (pm.response.code === 201) {",
-									"  // Set the next request",
-									"  //postman.setNextRequest(\"DeleteProgram By BugProgramId\");",
-									"  pm.environment.set(\"skip\",false);",
-									"} else{",
-									"    pm.environment.set(\"skip\",true);",
+									"  pm.environment.set(\"skip\", \"false\");",
+									"} else {",
+									"  pm.environment.set(\"skip\", \"true\");",
 									"}"
 								],
 								"type": "text/javascript"
@@ -3230,11 +3228,14 @@
 											"    pm.expect(response).to.include(expectedResponseMessage);",
 											"});",
 											"",
-											"",
 											"// Perform response time validation",
 											"pm.test(\"response time is less than 700ms\", ()=>{",
 											"    pm.expect(pm.response.responseTime).to.be.below(700);",
 											"});",
+											"",
+											"if(pm.environment.get(\"skip\") === \"true\"){",
+											"postman.setNextRequest(\"Delete Nonexisting program by programId\");",
+											"}",
 											""
 										],
 										"type": "text/javascript"
@@ -3511,7 +3512,7 @@
 											"const baseUrl = requestUrl.split(\"?\")[0];",
 											"",
 											"// Define the path parameter value",
-											"var pathParamValue =pm.environment.get(\"Bug_programModule_programID\");",
+											"var pathParamValue =pm.environment.get(\"programModule_programID\");",
 											"",
 											"// Validate the path parameter value",
 											"if (!pathParamValue) {",
@@ -3537,7 +3538,7 @@
 									"script": {
 										"id": "54c43695-e96c-42b7-9260-fd6b206f34aa",
 										"exec": [
-											"var response = pm.response.json();",
+											"var response = pm.response.text();",
 											"",
 											"// Perform statuc code validation",
 											"pm.test(\"Status code is 200\",()=>{",
@@ -3555,7 +3556,7 @@
 											"",
 											"// Validate the response body",
 											"pm.test(\"Response body contains expected success message\", function() {",
-											"    pm.expect(response.message).to.equal(expectedResponseMessage);",
+											"    pm.expect(response).to.include(expectedResponseMessage);",
 											"});",
 											"",
 											"// Perform response time validation",
