@@ -984,6 +984,7 @@
 								"exec": [
 									"var resp = pm.response.json();",
 									"var programID = resp.programId;",
+									"var programNameBug = resp.programName;",
 									"pm.environment.set(\"Bug_programModule_programID\",programID);",
 									"pm.environment.set(\"BugDelete_programModule_programName\",programNameBug);",
 									"pm.test(\"Response is valid JSON\", function () {",
@@ -3213,7 +3214,7 @@
 											"const programID = pm.environment.get(\"programModule_programID\");",
 											"",
 											"// Update the response message with the program ID Define expected Data",
-											"const expectedResponseMessage = \"Program Id-\"+programID+\" is deleted Successfully!\";",
+											"const expectedResponseMessage = \"Message: Program Id-\"+programID+\" is deleted Successfully!\";",
 											"",
 											"// Validate the response body",
 											"pm.test(\"Response body contains expected success message\", function() {",
