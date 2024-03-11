@@ -142,7 +142,7 @@
 								"exec": [
 									"// Generate a random serial number",
 									"const serialNumber = generateRandomNumber(1, 9999);",
-									"const programNameValue = `March24-ApiAlchemist-SDET-${serialNumber}`;",
+									"const programNameValue = `March24-ApiAlchemist-QA-${serialNumber}`;",
 									"",
 									"// Function to generate a random number within a range",
 									"function generateRandomNumber(min, max) {",
@@ -283,7 +283,7 @@
 								"exec": [
 									"// Generate a random serial number",
 									"const serialNumber = generateRandomNumber(1, 9999);",
-									"const programNameValue = `March24-ApiAlchemist-DA-${serialNumber}`;",
+									"const programNameValue = `March24-ApiAlchemist-DAA-${serialNumber}`;",
 									"",
 									"// Function to generate a random number within a range",
 									"function generateRandomNumber(min, max) {",
