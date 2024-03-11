@@ -860,7 +860,7 @@
 						"auth": {
 							"type": "bearer",
 							"bearer": {
-								"token": "{{programbatchmodule_tokenaccessToken}}"
+								"token": ""
 							}
 						},
 						"method": "POST",
