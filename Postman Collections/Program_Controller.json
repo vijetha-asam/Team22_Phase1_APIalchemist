@@ -1522,7 +1522,7 @@
 													"const currentProgramID = pm.environment.get(\"ProgramModule_ProgramIDForUpdateProgram_ByName\");",
 													"pm.test(\"Response body contains entered data\", function() {",
 													"    const resp = pm.response.json();",
-													"    pm.expect(resp.programId.toString()).to.have(currentProgramID);",
+													"    pm.expect(resp.programId).to.have(currentProgramID);",
 													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
 													"    pm.expect(resp.programName).to.equal(pm.environment.get(\"ProgramModule_updateProgram_programName\"));",
 													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
