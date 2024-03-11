@@ -4604,6 +4604,127 @@
 								"url": "{{BaseURL}}/saveprogram"
 							},
 							"response": []
+						},
+						{
+							"name": "DemoInvalidCombinationInProgramDescription",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
+										"exec": [
+											"var resp = pm.response.json();",
+											"var programID = resp.programId;",
+											"var programNameBug = resp.programName;",
+											"pm.environment.set(\"DemoBug_programModule_programID\",programID);",
+											"pm.environment.set(\"DemoBugDelete_programModule_programName\",programNameBug);",
+											"pm.test(\"Response is valid JSON\", function () {",
+											"    pm.response.to.be.json;",
+											"});",
+											"",
+											"// Log the request body",
+											"console.log(\"Request Body:\", pm.request.body.raw);",
+											"",
+											"// Perform status code validation",
+											"pm.test(\"Status code is 400\",()=>{",
+											"pm.response.to.have.status(400);",
+											"});",
+											"// Perform status validation",
+											"pm.test(\"Check Status as Bad Request\",()=>{",
+											"pm.response.to.have.status('Bad Request')",
+											"});",
+											"//Define expected Data",
+											"const expectedData = {",
+											"    \"message\": \"programDescription must begin with alphabet and can contain only alphanumeric characters\",",
+											"    \"success\": false",
+											"};",
+											"// Validate the response body",
+											"pm.test(\"Response body contains expected error message and success flag\", function() {",
+											"    pm.expect(resp.message).to.equal(expectedData.message);",
+											"    pm.expect(resp.success).to.equal(expectedData.success);",
+											"});",
+											"// Perform response time validation",
+											"pm.test(\"response time is less than 700ms\", ()=>{",
+											"    pm.expect(pm.response.responseTime).to.be.below(700);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7c9f37cf-1b54-43a6-a317-b5788294bdaa",
+										"exec": [
+											"//Function to generate a random string of special characters",
+											"function generateRandomString(length) {",
+											"  const specialCharacters = '!@#$%^&*()_+-=[]{}|;:,.<>?';",
+											"  let result = '';",
+											"  for (let i = 0; i < length; i++) {",
+											"    const randomIndex = Math.floor(Math.random() * specialCharacters.length);",
+											"    result += specialCharacters.charAt(randomIndex);",
+											"  }",
+											"  return result;",
+											"}",
+											"",
+											"// Generate a random string of 10 special characters",
+											"const randomSpecialCharacters = generateRandomString(10);",
+											"",
+											"",
+											"const programDescriptionValue = `A-${randomSpecialCharacters}`;",
+											"const programNameValue = `Bugs_${randomSpecialCharacters}`;",
+											"// Function to generate a random number within a range",
+											"function generateRandomNumber(min, max) {",
+											"    return Math.floor(Math.random() * (max - min + 1)) + min;",
+											"}",
+											"",
+											"// Get the request body from the request editor",
+											"const requestBody = {",
+											"    programDescription: programDescriptionValue,",
+											"    programName: programNameValue,",
+											"    programStatus: \"Active\"",
+											"};",
+											"",
+											"// Update the request body in the request editor",
+											"pm.request.headers.add({",
+											"    key: 'Content-Type',",
+											"    value: 'application/json'",
+											"});",
+											"",
+											"pm.request.body = {",
+											"    mode: 'raw',",
+											"    raw: JSON.stringify(requestBody)",
+											"};"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"id": "25edc83f-cd35-42c9-a477-9aef0cb24cbd",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": {
+										"token": "{{programModuleToken}}"
+									}
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"programDescription\": \"{{programDescriptionValue}}\",\n    \"programName\": \"{{programNameValue}}\",\n    \"programStatus\": \"Active\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{BaseURL}}/saveprogram"
+							},
+							"response": []
 						}
 					],
 					"id": "9ddf14dc-a3e2-4b54-a249-355fc6ecae24"
@@ -5272,41 +5393,133 @@
 					"response": []
 				},
 				{
-					"name": "InvalidCombinationInProgramDescription Copy",
+					"name": "DeleteProgram By BugProgramId Copy",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "ab582363-89c5-43d9-b6a0-7f0e79cff09f",
+								"exec": [
+									"// Get the request URL",
+									"const requestUrl = pm.request.url.toString();",
+									"",
+									"// Extract the base URL from the request URL",
+									"const baseUrl = requestUrl.split(\"?\")[0];",
+									"",
+									"// Define the path parameter value",
+									"var pathParamValue =pm.environment.get(\"DemoBug_programModule_programID\");",
+									"",
+									"// Validate the path parameter value",
+									"if (!pathParamValue) {",
+									"    //throw new Error(\"Path parameter value is missing\");",
+									"    console.log(\"ERROR : Path parameter value is missing\");",
+									"}",
+									"else{",
+									"// Log the path parameter value",
+									"console.log(\"Path parameter value:\", pathParamValue);",
+									"",
+									"// Construct the complete URL with the path parameter",
+									"const url = `${baseUrl}/${pathParamValue}`;",
+									"",
+									"// Set the request URL",
+									"pm.request.url = url;",
+									"} "
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b682ad50-5f73-4809-a9a5-bcd70f7e6b6f",
+								"exec": [
+									"var response = pm.response.json();",
+									"",
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 200\",()=>{",
+									"pm.response.to.have.status(200);",
+									"});",
+									"// Perform status validation",
+									"pm.test(\"Check Status as OK\",()=>{",
+									"pm.response.to.have.status('OK')",
+									"});",
+									"// Get the runtime programId from the environment variable",
+									"const programID = pm.environment.get(\"DemoBug_programModule_programID\");",
+									"",
+									"// Update the response message with the programId Define expected Data",
+									"const expectedResponseMessage = \"Program Id-\"+programID+\" is deleted Successfully!\";",
+									"",
+									"// Validate the response body",
+									"pm.test(\"Response body contains expected success message\", function() {",
+									"    pm.expect(response.Message).to.equal(expectedResponseMessage);",
+									"});",
+									"",
+									"// Perform response time validation",
+									"pm.test(\"response time is less than 700ms\", ()=>{",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "5b00ea35-6d70-4633-b937-e92c66d9a9ec",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/deletebyprogid"
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteExistingProgramByBugProgramName Copy",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
-								"id": "5f784d1a-a9e1-4f3f-b5c1-aa9d1d4a9456",
+								"id": "2cd60f43-e210-4d07-a2df-47453130cd98",
 								"exec": [
 									"var resp = pm.response.json();",
-									"var programID = resp.programId;",
-									"pm.environment.set(\"Bug_programModule_programID\",programID);",
-									"pm.environment.set(\"BugDelete_programModule_programName\",programNameBug);",
 									"pm.test(\"Response is valid JSON\", function () {",
 									"    pm.response.to.be.json;",
 									"});",
-									"",
-									"// Log the request body",
-									"console.log(\"Request Body:\", pm.request.body.raw);",
-									"",
-									"// Perform status code validation",
-									"pm.test(\"Status code is 400\",()=>{",
-									"pm.response.to.have.status(400);",
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 200\",()=>{",
+									"pm.response.to.have.status(200);",
 									"});",
 									"// Perform status validation",
-									"pm.test(\"Check Status as Bad Request\",()=>{",
-									"pm.response.to.have.status('Bad Request')",
+									"pm.test(\"Check Status as OK\",()=>{",
+									"pm.response.to.have.status('OK')",
 									"});",
-									"//Define expected Data",
-									"const expectedData = {",
-									"    \"message\": \"programDescription must begin with alphabet and can contain only alphanumeric characters\",",
-									"    \"success\": false",
-									"};",
+									"// Get the runtime programName from the environment variable",
+									"const programName = pm.environment.get(\"DemoBugDelete_programModule_programName\");",
+									"",
+									"",
+									"// Update the response message with the program Name Define expected Data",
+									"const expectedResponseMessage = \"Program Name-\"+programName+\" is deleted Successfully!\";",
+									"",
 									"// Validate the response body",
-									"pm.test(\"Response body contains expected error message and success flag\", function() {",
-									"    pm.expect(resp.message).to.equal(expectedData.message);",
-									"    pm.expect(resp.success).to.equal(expectedData.success);",
+									"pm.test(\"Response body contains expected message\", function() {",
+									"    pm.expect(resp.message).to.equal(expectedResponseMessage);",
 									"});",
 									"// Perform response time validation",
 									"pm.test(\"response time is less than 700ms\", ()=>{",
@@ -5319,53 +5532,38 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "7c9f37cf-1b54-43a6-a317-b5788294bdaa",
+								"id": "6982ada3-16a5-41e7-a807-d5c4371a3274",
 								"exec": [
-									"//Function to generate a random string of special characters",
-									"function generateRandomString(length) {",
-									"  const specialCharacters = '!@#$%^&*()_+-=[]{}|;:,.<>?';",
-									"  let result = '';",
-									"  for (let i = 0; i < length; i++) {",
-									"    const randomIndex = Math.floor(Math.random() * specialCharacters.length);",
-									"    result += specialCharacters.charAt(randomIndex);",
-									"  }",
-									"  return result;",
+									"// Get the request URL",
+									"const requestUrl = pm.request.url.toString();",
+									"",
+									"// Extract the base URL from the request URL",
+									"const baseUrl = requestUrl.split(\"?\")[0];",
+									"",
+									"// Define the path parameter value",
+									"var pathParamValue =pm.environment.get(\"DemoBugDelete_programModule_programName\");",
+									"",
+									"// Validate the path parameter value",
+									"if (!pathParamValue) {",
+									"    //throw new Error(\"Path parameter value is missing\");",
+									"    console.log(\"ERROR : Path parameter value is missing\");",
 									"}",
+									"else{",
+									"// Log the path parameter value",
+									"console.log(\"Path parameter value:\", pathParamValue);",
 									"",
-									"// Generate a random string of 10 special characters",
-									"const randomSpecialCharacters = generateRandomString(10);",
+									"// Construct the complete URL with the path parameter",
+									"const url = `${baseUrl}/${pathParamValue}`;",
 									"",
-									"",
-									"const programDescriptionValue = `A-${randomSpecialCharacters}`;",
-									"const programNameValue = `APIHackathon_Phase1_Bugs_${randomSpecialCharacters}`;",
-									"// Function to generate a random number within a range",
-									"function generateRandomNumber(min, max) {",
-									"    return Math.floor(Math.random() * (max - min + 1)) + min;",
-									"}",
-									"",
-									"// Get the request body from the request editor",
-									"const requestBody = {",
-									"    programDescription: programDescriptionValue,",
-									"    programName: programNameValue,",
-									"    programStatus: \"Active\"",
-									"};",
-									"",
-									"// Update the request body in the request editor",
-									"pm.request.headers.add({",
-									"    key: 'Content-Type',",
-									"    value: 'application/json'",
-									"});",
-									"",
-									"pm.request.body = {",
-									"    mode: 'raw',",
-									"    raw: JSON.stringify(requestBody)",
-									"};"
+									"// Set the request URL",
+									"pm.request.url = url;",
+									"} "
 								],
 								"type": "text/javascript"
 							}
 						}
 					],
-					"id": "25edc83f-cd35-42c9-a477-9aef0cb24cbd",
+					"id": "cc8265d4-33e3-46b1-944a-12e4d368232d",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -5376,18 +5574,9 @@
 								"token": "{{programModuleToken}}"
 							}
 						},
-						"method": "POST",
+						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"programDescription\": \"{{programDescriptionValue}}\",\n    \"programName\": \"{{programNameValue}}\",\n    \"programStatus\": \"Active\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "{{BaseURL}}/saveprogram"
+						"url": "{{BaseURL}}/deletebyprogname"
 					},
 					"response": []
 				}
