@@ -473,7 +473,7 @@
 									"var programID = resp.programId;",
 									"var programNameBug = resp.programName;",
 									"pm.environment.set(\"BugDelete_programModule_programName\",programNameBug);",
-									"",
+									"console.log(\"Bug ProgramName \", pm.environment.get(BugDelete_programModule_programName));",
 									"// Perform response json validation",
 									"pm.test(\"Response is valid JSON\", function () {",
 									"    pm.response.to.be.json;",
