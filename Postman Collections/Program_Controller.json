@@ -1015,7 +1015,12 @@
 									"// Perform response time validation",
 									"pm.test(\"response time is less than 700ms\", ()=>{",
 									"    pm.expect(pm.response.responseTime).to.be.below(700);",
-									"});"
+									"});",
+									"// Check the response status code",
+									"if (pm.response.code === 201) {",
+									"  // Set the next request",
+									"  postman.setNextRequest(\"DeleteProgram By BugProgramId\");",
+									"}"
 								],
 								"type": "text/javascript"
 							}
