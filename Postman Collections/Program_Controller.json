@@ -5009,6 +5009,225 @@
 						}
 					],
 					"id": "feb1a0fb-a4ad-41e3-850f-559a8b777196"
+				},
+				{
+					"name": "DemoUpdateProgramNameToExistingProgramNameByID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
+								"exec": [
+									"// Get the request URL",
+									"const requestUrl = pm.request.url.toString();",
+									"",
+									"// Extract the base URL from the request URL",
+									"const baseUrl = requestUrl.split(\"?\")[0];",
+									"",
+									"// Get the request body",
+									"const requestBody = pm.request.body;",
+									"",
+									"// Validate the presence of the request body",
+									"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
+									"    //throw new Error(\"Request body is missing\");",
+									"    console.log(\"ERROR : Request body is missing\");",
+									"}",
+									"else{",
+									"// Log the request body",
+									"console.log(\"Request body:\", requestBody.raw);",
+									"// Define the path parameter value",
+									"var pathParamValue =pm.environment.get(\"DemoProgramModule_programID\");",
+									"",
+									"// Validate the path parameter value",
+									"if (!pathParamValue) {",
+									"    //throw new Error(\"Path parameter value is missing\");",
+									"    console.log(\"ERROR : Path parameter value is missing\");",
+									"}",
+									"else{",
+									"// Log the path parameter value",
+									"console.log(\"Path parameter value:\", pathParamValue);",
+									"",
+									"// Construct the complete URL with the path parameter",
+									"const url = `${baseUrl}/${pathParamValue}`;",
+									"",
+									"// Set the request URL",
+									"pm.request.url = url;",
+									"} }"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "b6e1c603-adec-445d-90fb-153389dfeafb",
+								"exec": [
+									"resp = pm.response.json();",
+									"// Perform response json validation",
+									"pm.test(\"Response is valid JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 400\",()=>{",
+									"pm.response.to.have.status(400);",
+									"});",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Bad Request\",()=>{",
+									"pm.response.to.have.status('Bad Request')",
+									"});",
+									"//Define expected Data",
+									"const expectedData = {",
+									"    \"message\": \"cannot create program , since already exists\",",
+									"    \"success\": false",
+									"};",
+									"// Validate the response body",
+									"pm.test(\"Response body contains expected error message and success flag\", function() {",
+									"    pm.expect(resp.message).to.equal(expectedData.message);",
+									"    pm.expect(resp.success).to.equal(expectedData.success);",
+									"});",
+									"// Perform response time validation",
+									"pm.test(\"response time is less than 700ms\", ()=>{",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "0cdb737e-18e7-4f22-9e48-9de14ac91fdb",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"programName\": \"{{ExistingProgramName}}\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/putprogram"
+					},
+					"response": []
+				},
+				{
+					"name": "DemoUpdateProgramDescriptionWithOnlyNumbersByID",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "07fa9362-7c3e-4bf3-8230-84a6d917c2ce",
+								"exec": [
+									"// Get the request URL",
+									"const requestUrl = pm.request.url.toString();",
+									"",
+									"// Extract the base URL from the request URL",
+									"const baseUrl = requestUrl.split(\"?\")[0];",
+									"",
+									"// Get the request body",
+									"const requestBody = pm.request.body;",
+									"",
+									"// Validate the presence of the request body",
+									"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
+									"    //throw new Error(\"Request body is missing\");",
+									"    console.log(\"ERROR : Request body is missing\");",
+									"}",
+									"else{",
+									"// Log the request body",
+									"console.log(\"Request body:\", requestBody.raw);",
+									"// Define the path parameter value",
+									"var pathParamValue =pm.environment.get(\"DemoProgramModule_programID\");",
+									"",
+									"// Validate the path parameter value",
+									"if (!pathParamValue) {",
+									"    //throw new Error(\"Path parameter value is missing\");",
+									"    console.log(\"ERROR : Path parameter value is missing\");",
+									"}",
+									"else{",
+									"// Log the path parameter value",
+									"console.log(\"Path parameter value:\", pathParamValue);",
+									"",
+									"// Construct the complete URL with the path parameter",
+									"const url = `${baseUrl}/${pathParamValue}`;",
+									"",
+									"// Set the request URL",
+									"pm.request.url = url;",
+									"} }"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e681bf54-c50d-4e49-ba56-a5eb6fcfdb54",
+								"exec": [
+									"resp = pm.response.json();",
+									"pm.test(\"Response is valid JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 400\",()=>{",
+									"pm.response.to.have.status(400);",
+									"});",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Bad Request\",()=>{",
+									"pm.response.to.have.status('Bad Request')",
+									"});",
+									"//Define expected Data",
+									"const expectedData = {",
+									"    \"message\": \"programDescription must begin with alphabet and can contain only alphanumeric characters\",",
+									"    \"success\": false",
+									"};",
+									"// Validate the response body",
+									"pm.test(\"Response body contains expected error message and success flag\", function() {",
+									"    pm.expect(resp.message).to.equal(expectedData.message);",
+									"    pm.expect(resp.success).to.equal(expectedData.success);",
+									"});",
+									"// Perform response time validation",
+									"pm.test(\"response time is less than 700ms\", ()=>{",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "06c8ae36-b348-4609-b423-68bbdde6c0fa",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"programName\": \"{{UpdateToOnlyNumbers}}\",\n    \"programDescription\": \"{{UpdateToOnlyNumbers}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/putprogram"
+					},
+					"response": []
 				}
 			],
 			"id": "628f6d63-ea7e-454e-82f2-9b85df729414"
