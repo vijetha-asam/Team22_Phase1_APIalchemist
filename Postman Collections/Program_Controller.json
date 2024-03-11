@@ -2617,7 +2617,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"{{UpdateToOnlyNumbers}}\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}\n",
+											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"{{UpdateToSpecialChar}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}\n",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2726,7 +2726,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"{{UpdateToOnlyNumbers}}\",\n    \"programDescription\": \"{{UpdateToOnlyNumbers}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}\n\n",
+											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"{{UpdateToOnlyNumbers}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}\n\n",
 											"options": {
 												"raw": {
 													"language": "json"
