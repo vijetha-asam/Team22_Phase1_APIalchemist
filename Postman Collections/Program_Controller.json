@@ -404,7 +404,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"Marchhackathon\",\n  \"programName\": \"\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"\",\n  \"programStatus\": \"Active\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -470,7 +470,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"{{UpdateToOnlyNumbers}}\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"{{UpdateToOnlyNumbers}}\",\n  \"programStatus\": \"Active\"\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -662,7 +662,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"{{UpdateToSpecialChar}}\",\n  \"programStatus\": \"Active\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"{{UpdateToSpecialChar}}\",\n  \"programStatus\": \"Active\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -728,7 +728,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"{{ExistingProgramName}}\",\n  \"programStatus\": \"Inactive\"\n}\n\n\n",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"{{ExistingProgramName}}\",\n  \"programStatus\": \"Active\"\n}\n\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
