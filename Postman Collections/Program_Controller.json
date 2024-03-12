@@ -1079,7 +1079,7 @@
 									"var programID = resp.programId;",
 									"var programNameBug = resp.programName;",
 									"pm.environment.set(\"Bug_programModule_programID\",programID);",
-									"pm.environment.set(\"BugDelete_programModule_programName\",programNameBug);",
+									"//pm.environment.set(\"BugDelete_programModule_programName\",programNameBug);",
 									"pm.test(\"Response is valid JSON\", function () {",
 									"    pm.response.to.be.json;",
 									"});",
