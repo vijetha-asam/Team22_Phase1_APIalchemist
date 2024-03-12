@@ -1533,7 +1533,8 @@
 					"id": "f662d5b1-378d-42da-8b34-b8acdaa57ae1"
 				}
 			],
-			"id": "c1526b18-b41e-4a4b-8bc0-8804741b2701"
+			"id": "c1526b18-b41e-4a4b-8bc0-8804741b2701",
+			"description": "This folder contains positive and negative scenarios of Get Program : Get Operation using given endpoints."
 		},
 		{
 			"name": "Update Programs",
@@ -2618,10 +2619,12 @@
 									"response": []
 								}
 							],
-							"id": "b32a06f5-b23a-4736-90ba-0d54dd329a00"
+							"id": "b32a06f5-b23a-4736-90ba-0d54dd329a00",
+							"description": "This folder contains positive scenarios of Update Program By ProgramName : Put Operation. Few values are passed through CSV for data driven testing."
 						}
 					],
-					"id": "7acd100a-5d02-45e9-944c-c64e05965dee"
+					"id": "7acd100a-5d02-45e9-944c-c64e05965dee",
+					"description": "This folder contains positive scenarios of Update Program By ProgramId : Put Operation. Few values are passed through CSV for data driven testing."
 				},
 				{
 					"name": "Negative",
@@ -3443,7 +3446,8 @@
 									"response": []
 								}
 							],
-							"id": "09991d51-b5eb-4deb-97f4-61dfa9162d55"
+							"id": "09991d51-b5eb-4deb-97f4-61dfa9162d55",
+							"description": "This folder contains negative scenarios of Update Program By ProgramId : Put Operation. Few values are passed through CSV for data driven testing."
 						},
 						{
 							"name": "Update by programName",
@@ -3910,13 +3914,16 @@
 									"response": []
 								}
 							],
-							"id": "6b49ef67-2f59-4595-a1e2-780b7edc3974"
+							"id": "6b49ef67-2f59-4595-a1e2-780b7edc3974",
+							"description": "This folder contains positive scenarios of Update Program By ProgramName : Put Operation. Few values are passed through CSV for data driven testing."
 						}
 					],
-					"id": "3c75130b-efc7-435c-97ad-cbe82263d60e"
+					"id": "3c75130b-efc7-435c-97ad-cbe82263d60e",
+					"description": "This folder contains negative scenarios of Update Program : Put Operation. Few values are passed through CSV for data driven testing."
 				}
 			],
-			"id": "39d7f45d-8ffa-43cb-9dd7-dc82b386faa6"
+			"id": "39d7f45d-8ffa-43cb-9dd7-dc82b386faa6",
+			"description": "This folder contains positive and negative scenarios of Update Program : Put Operation. Few values are passed through CSV for data driven testing."
 		},
 		{
 			"name": "Delete Programs",
@@ -4322,7 +4329,8 @@
 							"response": []
 						}
 					],
-					"id": "9779f885-7de0-433d-9926-3d697e6a7298"
+					"id": "9779f885-7de0-433d-9926-3d697e6a7298",
+					"description": "This folder contains positive and negative scenarios of Delete Program By ProgramId : Delete Operation."
 				},
 				{
 					"name": "Delete by programName",
@@ -4693,10 +4701,12 @@
 							"response": []
 						}
 					],
-					"id": "ee9e8ba4-d008-4893-a46a-debac9624d5c"
+					"id": "ee9e8ba4-d008-4893-a46a-debac9624d5c",
+					"description": "This folder contains positive and negative scenarios of Delete Program By ProgramName : Delete Operation."
 				}
 			],
-			"id": "2e0c6dd7-c751-4727-a19c-0488e51cc42e"
+			"id": "2e0c6dd7-c751-4727-a19c-0488e51cc42e",
+			"description": "This folder contains positive and negative scenarios of Delete Program : Delete Operation."
 		},
 		{
 			"name": "UnAuthorized Requests",
