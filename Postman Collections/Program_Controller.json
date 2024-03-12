@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "6e17e152-fa7b-4996-b48e-93b9561b1421",
-		"name": "Program_controller-bhagyashri",
+		"name": "Team22_APIAlchemist_ProgramModule",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -33,7 +33,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"password\": \"Numpyninja@1\",\n  \"userLoginEmailId\": \"sdetorganizers@gmail.com\"\n}",
+							"raw": "{\n  \"password\": \"{{Password}}\",\n  \"userLoginEmailId\": \"{{UserLoginEmail}}\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
