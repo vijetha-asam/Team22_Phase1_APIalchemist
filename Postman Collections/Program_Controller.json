@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "6e17e152-fa7b-4996-b48e-93b9561b1421",
 		"name": "Team22_APIAlchemist_ProgramModule",
+		"description": "This folder contains testing artifacts of Program module of Team22_APIAlchemist. Testing artifacts contains Scenariowise requests along with body, required endpoints, path parameters, pre and post request validations.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
@@ -4925,7 +4926,8 @@
 					"response": []
 				}
 			],
-			"id": "9ce61a7d-e8c3-4817-bf54-ca617f9881eb"
+			"id": "9ce61a7d-e8c3-4817-bf54-ca617f9881eb",
+			"description": "This folder contains all unauthorized requests for negative testing."
 		},
 		{
 			"name": "ErrorHandling-InvalidEndpoints",
@@ -5153,7 +5155,8 @@
 					"response": []
 				}
 			],
-			"id": "6cc80cf3-6836-4ce9-8b08-c473d2271c81"
+			"id": "6cc80cf3-6836-4ce9-8b08-c473d2271c81",
+			"description": "This folder contains all requests with incorrect endpoints to perform negative testing and check error handling mechanism of given APIs."
 		}
 	],
 	"variable": [
