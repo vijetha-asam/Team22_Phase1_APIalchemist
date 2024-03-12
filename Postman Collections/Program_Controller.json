@@ -2078,7 +2078,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"March24-ApiAlchemist-SDET-5677\",\n   \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n   \"programStatus\": \"Active\"\n}\n\n",
+											"raw": "{\n    \"programName\": \"{{ProgramName}}\",\n    \"programDescription\": \"{{updatedProgramDescription}}\",\n    \"programStatus\": \"Active\"\n}\n",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2258,7 +2258,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"March24-ApiAlchemist-SDET-5677\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}",
+											"raw": "{\n    \"programName\": \"{{ProgramName}}\",\n    \"programDescription\": \"{{ProgramDescription}}\",\n    \"programStatus\": \"ACTIVE\"\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -2277,41 +2277,69 @@
 											"script": {
 												"id": "4bb42460-35f2-4984-b0b2-369d41c05860",
 												"exec": [
-													"// Get the request URL",
+													"//Get the request URL",
 													"const requestUrl = pm.request.url.toString();",
 													"",
 													"// Extract the base URL from the request URL",
 													"const baseUrl = requestUrl.split(\"?\")[0];",
 													"",
-													"// Get the request body",
-													"const requestBody = pm.request.body;",
+													"// Extract request values from environment var",
+													"const ProgramName = pm.environment.get(\"Program1_ProgramName\");",
+													"const ProgramStatus = pm.environment.get(\"Program1_programStatus\");",
+													"const ProgramDescription = pm.environment.get(\"Program1_ProgramDescription\");",
+													"const updatedProgramName= ProgramName+\"_Updated\";",
+													"// Create the request body object",
+													"const requestBody = {",
+													"    programName: updatedProgramName,",
+													"    programDescription: ProgramDescription,",
+													"    programStatus: \"ACTIVE\"",
+													"};",
+													"// Set the request body",
+													"pm.request.body.update(JSON.stringify(requestBody));",
 													"",
-													"// Validate the presence of the request body",
-													"if (!requestBody || !requestBody.raw || requestBody.raw.length === 0) {",
-													"    //throw new Error(\"Request body is missing\");",
-													"    console.log(\"ERROR : Request body is missing\");",
-													"}",
-													"else{",
+													"// Set the \"Content-Type\" header",
+													"pm.request.headers.add({",
+													"    key: \"Content-Type\",",
+													"    value: \"application/json\"",
+													"});",
+													"",
 													"// Log the request body",
-													"console.log(\"Request body:\", requestBody.raw);",
-													"// Define the path parameter value",
-													"var pathParamValue =pm.environment.get(\"ProgramModule_ProgramIDForUpdateProgram_ByID\");",
+													"console.log(\"Request body:\", pm.request.body.toString());",
+													"// Validate the presence of the request body",
+													"if (!pm.request.body.toString() || Object.keys(requestBody).length === 0) {",
+													"    console.log(\"ERROR: Request body is missing\");",
+													"} else {",
+													"    // // Parse the request body as JSON",
+													"    // const requestData = JSON.parse(requestBody);",
 													"",
-													"// Validate the path parameter value",
-													"if (!pathParamValue) {",
-													"    //throw new Error(\"Path parameter value is missing\");",
-													"    console.log(\"ERROR : Path parameter value is missing\");",
-													"}",
-													"else{",
-													"// Log the path parameter value",
-													"console.log(\"Path parameter value:\", pathParamValue);",
+													"    // // Replace variables in the request body",
+													"    // requestData.programName = pm.variables.replaceIn(requestData.programName);",
+													"    // requestData.programDescription = pm.variables.replaceIn(requestData.programDescription);",
 													"",
-													"// Construct the complete URL with the path parameter",
-													"const url = `${baseUrl}/${pathParamValue}`;",
+													"    // // Set the updated request body",
+													"    // pm.request.body.raw = JSON.stringify(requestData);",
 													"",
-													"// Set the request URL",
-													"pm.request.url = url;",
-													"} }"
+													"    // Log the request body",
+													"    console.log(\"Request body:\", pm.request.body.raw);",
+													"",
+													"    // Define the path parameter value",
+													"    var pathParamValue = pm.environment.get(\"Program1_programID\");",
+													"    console.log(\"PathParam value:\", pathParamValue);",
+													"",
+													"    // Validate the path parameter value",
+													"    if (!pathParamValue) {",
+													"        console.log(\"ERROR: Path parameter value is missing\");",
+													"    } else {",
+													"        // Log the path parameter value",
+													"        console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"        // Construct the complete URL with the path parameter",
+													"        const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"        // Set the request URL",
+													"        pm.request.url = url;",
+													"    }",
+													"}"
 												],
 												"type": "text/javascript"
 											}
@@ -2321,7 +2349,6 @@
 											"script": {
 												"id": "48c3d66e-4817-49c5-b8b7-5a9eddafbbef",
 												"exec": [
-													"",
 													"// Perform header-content-type validation",
 													"pm.test(\"Content-Type header is present\", ()=> {",
 													"    pm.response.to.have.header(\"Content-Type\");",
@@ -2346,7 +2373,6 @@
 													"pm.test(\"response time is less than 700ms\", ()=>{",
 													"    pm.expect(pm.response.responseTime).to.be.below(700);",
 													"});",
-													"if (pm.response.code === 200) {",
 													"// Perform schema validation",
 													"pm.test(\"Validate Response Schema\", function() {",
 													"    const schema = {",
@@ -2380,13 +2406,12 @@
 													"const requestData = JSON.parse(requestBody);",
 													"// Validate the data entered in the request",
 													"pm.test(\"Response body contains entered data\", function() {",
-													"    const response = pm.response.json();",
-													"    pm.expect(response.programId).to.be.equal(pm.environment.get(\"ProgramModule_ProgramIDForUpdateProgram_ByID\"));",
-													"    pm.expect(response.programDescription).to.equal(requestData.programDescription);",
-													"    pm.expect(response.programName).to.equal(requestData.programName);",
-													"    pm.expect(response.programStatus).to.equal(requestData.programStatus);",
-													"});",
-													"}"
+													"    const resp = pm.response.json();",
+													"    pm.expect(resp.programId).to.equal(Number(pm.environment.get(\"Program1_programID\")));",
+													"    pm.expect(resp.programDescription).to.equal(requestData.programDescription);",
+													"    pm.expect(resp.programName).to.equal(requestData.programName);",
+													"    pm.expect(resp.programStatus).to.equal(requestData.programStatus);",
+													"});"
 												],
 												"type": "text/javascript"
 											}
@@ -2407,7 +2432,7 @@
 										"header": [],
 										"body": {
 											"mode": "raw",
-											"raw": "{\n    \"programName\": \"{{UpdateProgramNameValid_ID}}\",\n    \"programDescription\": \"{{UpdateProgramDescription_ID}}\",\n    \"programStatus\": \"{{UpdateProgramStatus_ID}}\"\n}",
+											"raw": "{\n    \"programName\": \"{{updatedProgramName}}\",\n    \"programDescription\": \"{{ProgramDescription}}\",\n    \"programStatus\": \"ACTIVE\"\n}\n",
 											"options": {
 												"raw": {
 													"language": "json"
