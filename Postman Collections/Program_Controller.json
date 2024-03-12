@@ -2349,6 +2349,9 @@
 											"script": {
 												"id": "48c3d66e-4817-49c5-b8b7-5a9eddafbbef",
 												"exec": [
+													"var newResp = pm.response.json();",
+													"var programname = newResp.programName;",
+													"pm.environment.set(\"Program1_ProgramName\",programname);",
 													"// Perform header-content-type validation",
 													"pm.test(\"Content-Type header is present\", ()=> {",
 													"    pm.response.to.have.header(\"Content-Type\");",
