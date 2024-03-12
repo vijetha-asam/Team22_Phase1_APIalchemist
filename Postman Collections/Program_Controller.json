@@ -40,12 +40,14 @@
 								}
 							}
 						},
-						"url": "{{BaseURL}}/login"
+						"url": "{{BaseURL}}/login",
+						"description": "Password and UserLoginEmails are passed through CSV. It will generate token which will be used in all request for authorization."
 					},
 					"response": []
 				}
 			],
-			"id": "4385ce69-768c-433d-b758-ec638ce49304"
+			"id": "4385ce69-768c-433d-b758-ec638ce49304",
+			"description": "This folder contains post request for login to authorize and generate token."
 		},
 		{
 			"name": "Post Program",
@@ -1199,7 +1201,8 @@
 					"response": []
 				}
 			],
-			"id": "d1ce667b-08cb-437b-a02f-b96b9a685822"
+			"id": "d1ce667b-08cb-437b-a02f-b96b9a685822",
+			"description": "This folder contains positive and negative scenarios of Create Program : Post Operation.Few values are passed through CSV for data driven testing."
 		},
 		{
 			"name": "Get Programs",
