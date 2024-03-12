@@ -367,7 +367,7 @@
 									"pm.test(\"Content-Type header is application/json\", ()=> {",
 									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');",
 									"});",
-									"// Perform statuc code validation",
+									"// Perform status code validation",
 									"pm.test(\"Status code is 400\",()=>{",
 									"pm.response.to.have.status(400);",
 									"});",
