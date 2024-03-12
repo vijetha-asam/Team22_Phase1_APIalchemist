@@ -2499,10 +2499,8 @@
 												"id": "d1c5511b-cda1-4bfb-8b7f-4b34befa13ed",
 												"exec": [
 													"var newResp = pm.response.json();",
-													"var programDesc = newResp.programDescription;",
-													"pm.environment.set(\"Program1_ProgramDescription\",programDesc);",
-													"",
-													"",
+													"var programname = newResp.programName;",
+													"pm.environment.set(\"Program1_ProgramName\",programname);",
 													"// Perform header-content-type validation",
 													"pm.test(\"Content-Type header is present\", ()=> {",
 													"    pm.response.to.have.header(\"Content-Type\");",
