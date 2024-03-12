@@ -3870,7 +3870,7 @@
 													"pm.response.to.have.status('Not Found')",
 													"});",
 													"//Define expected Data",
-													"var ProgramName = Number(pm.environment.get(\"InvalidProgramNAME\"));",
+													"var ProgramName = pm.environment.get(\"InvalidProgramNAME\");",
 													"const expectedData = {",
 													"    \"message\": \"no list with such program name \"+ProgramName+\"\",",
 													"    \"success\": false",
