@@ -114,7 +114,6 @@
 									"});",
 									"pm.test(\"Validate Data Types\", function() {",
 									"    const response = pm.response.json();",
-									"//pm.expect(pm.response.json().programId).to.not.be.empty;",
 									"    pm.expect(response.programId).to.be.a(\"number\");",
 									"    pm.expect(response.programName).to.be.a(\"string\");",
 									"    pm.expect(response.programDescription).to.be.a(\"string\");",
@@ -794,6 +793,71 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"March24_APIAlchemist_SDET132\",\n  \"programStatus\": \"{{InvalidProgramStatus}}\"\n}\n\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
+				},
+				{
+					"name": "NullProgramStatus",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "aa7a42ac-6cdf-4f23-9032-721c962db3ae",
+								"exec": [
+									"resp = pm.response.json();",
+									"pm.test(\"Response is valid JSON\", function () {",
+									"    pm.response.to.be.json;",
+									"});",
+									"// Perform statuc code validation",
+									"pm.test(\"Status code is 400\",()=>{",
+									"pm.response.to.have.status(400);",
+									"});",
+									"// Perform status validation",
+									"pm.test(\"Check Status as Bad Request\",()=>{",
+									"pm.response.to.have.status('Bad Request')",
+									"});",
+									"//Define expected Data",
+									"const expectedData = {",
+									"    \"message\": \"Invalid Status: must be Active or Inactive\",",
+									"    \"success\": false",
+									"};",
+									"// Validate the response body",
+									"pm.test(\"Response body contains expected error message and success flag\", function() {",
+									"    pm.expect(resp.message).to.equal(expectedData.message);",
+									"    pm.expect(resp.success).to.equal(expectedData.success);",
+									"});",
+									"// Perform response time validation",
+									"pm.test(\"response time is less than 700ms\", ()=>{",
+									"    pm.expect(pm.response.responseTime).to.be.below(700);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "8fb27f97-da9d-4a15-b3b8-0b0e3e394e9e",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"March24_APIAlchemist_SDET132\",\n  \"programStatus\": \"null\"\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
