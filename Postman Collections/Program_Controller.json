@@ -3590,6 +3590,133 @@
 										"url": "{{BaseURL}}/program"
 									},
 									"response": []
+								},
+								{
+									"name": "InvalidProgramName",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"id": "8e138ebe-e0e6-41b3-a68c-a4647033c6ee",
+												"exec": [
+													"//Get the request URL",
+													"const requestUrl = pm.request.url.toString();",
+													"",
+													"// Extract the base URL from the request URL",
+													"const baseUrl = requestUrl.split(\"?\")[0];",
+													"",
+													"// Extract request values from environment var",
+													"const ProgramName = pm.environment.get(\"Program1_ProgramName\");",
+													"const ProgramStatus = pm.environment.get(\"Program1_programStatus\");",
+													"const ProgramDescription = pm.environment.get(\"Program1_ProgramDescription\");",
+													"//const updatedProgramDescription = ProgramDescription + \"_Updated\";",
+													"",
+													"// Create the request body object",
+													"const requestBody = {",
+													"    programName: ProgramName,",
+													"    programDescription: ProgramDescription,",
+													"    programStatus: \"InACTIVE\"",
+													"};",
+													"// Set the request body",
+													"pm.request.body.update(JSON.stringify(requestBody));",
+													"",
+													"// Set the \"Content-Type\" header",
+													"pm.request.headers.add({",
+													"    key: \"Content-Type\",",
+													"    value: \"application/json\"",
+													"});",
+													"",
+													"// Log the request body",
+													"console.log(\"Request body:\", pm.request.body.toString());",
+													"// Validate the presence of the request body",
+													"if (!pm.request.body.toString() || Object.keys(requestBody).length === 0) {",
+													"    console.log(\"ERROR: Request body is missing\");",
+													"} else {",
+													"    // Log the request body",
+													"    console.log(\"Request body:\", pm.request.body.raw);",
+													"",
+													"    // Define the path parameter value",
+													"    var pathParamValue = pm.environment.get(\"InvalidProgramNAME\");",
+													"    console.log(\"PathParam value:\", pathParamValue);",
+													"",
+													"    // Validate the path parameter value",
+													"    if (!pathParamValue) {",
+													"        console.log(\"ERROR: Path parameter value is missing\");",
+													"    } else {",
+													"        // Log the path parameter value",
+													"        console.log(\"Path parameter value:\", pathParamValue);",
+													"",
+													"        // Construct the complete URL with the path parameter",
+													"        const url = `${baseUrl}/${pathParamValue}`;",
+													"",
+													"        // Set the request URL",
+													"        pm.request.url = url;",
+													"    }",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"id": "67655810-7b82-461a-8701-fed91f1f8e66",
+												"exec": [
+													"var resp = pm.response.json();",
+													"",
+													"// Perform statuc code validation",
+													"pm.test(\"Status code is 404\",()=>{",
+													"pm.response.to.have.status(404);",
+													"});",
+													"// Perform status validation",
+													"pm.test(\"Check Status as Not Found\",()=>{",
+													"pm.response.to.have.status('Not Found')",
+													"});",
+													"//Define expected Data",
+													"var ProgramName = Number(pm.environment.get(\"InvalidProgramNAME\"));",
+													"const expectedData = {",
+													"    \"message\": \"no list with such program name \"+ProgramName+\"\",",
+													"    \"success\": false",
+													"};",
+													"// Validate the response body",
+													"pm.test(\"Response body contains expected error message and success flag\", function() {",
+													"    pm.expect(resp.message).to.equal(expectedData.message);",
+													"    pm.expect(resp.success).to.equal(expectedData.success);",
+													"});",
+													"// Perform response time validation",
+													"pm.test(\"response time is less than 700ms\", ()=>{",
+													"    pm.expect(pm.response.responseTime).to.be.below(700);",
+													"});"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"id": "5821bdd7-7b59-4cf7-8b55-887bb381fa1e",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": {
+												"token": "{{programModuleToken}}"
+											}
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"programName\": \"{{ProgramName}}\",\n    \"programDescription\": \"{{ProgramDescription}}\",\n    \"programStatus\": \"InACTIVE\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{BaseURL}}/program"
+									},
+									"response": []
 								}
 							],
 							"id": "6b49ef67-2f59-4595-a1e2-780b7edc3974"
