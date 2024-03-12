@@ -2075,7 +2075,8 @@
 									"response": []
 								}
 							],
-							"id": "db789302-362f-41f8-9ef8-ae1edcca4a24"
+							"id": "db789302-362f-41f8-9ef8-ae1edcca4a24",
+							"description": "This folder contains positive scenarios of Update Program By ProgramId : Put Operation. Few values are passed through CSV for data driven testing.Path parameters are verified and added in prerequisites script."
 						},
 						{
 							"name": "Update by programName",
@@ -2621,11 +2622,11 @@
 								}
 							],
 							"id": "b32a06f5-b23a-4736-90ba-0d54dd329a00",
-							"description": "This folder contains positive scenarios of Update Program By ProgramName : Put Operation. Few values are passed through CSV for data driven testing."
+							"description": "This folder contains positive scenarios of Update Program By ProgramName : Put Operation. Few values are passed through CSV for data driven testing. Path parameters are verified and added in prerequisites script."
 						}
 					],
 					"id": "7acd100a-5d02-45e9-944c-c64e05965dee",
-					"description": "This folder contains positive scenarios of Update Program By ProgramId : Put Operation. Few values are passed through CSV for data driven testing."
+					"description": "This folder contains positive scenarios of Update Program: Put Operation. Few values are passed through CSV for data driven testing. Path parameters are verified and added in prerequisites script."
 				},
 				{
 					"name": "Negative",
@@ -3916,7 +3917,7 @@
 								}
 							],
 							"id": "6b49ef67-2f59-4595-a1e2-780b7edc3974",
-							"description": "This folder contains positive scenarios of Update Program By ProgramName : Put Operation. Few values are passed through CSV for data driven testing."
+							"description": "This folder contains positive scenarios of Update Program By ProgramName : Put Operation. Few values are passed through CSV for data driven testing. Path parameters are verified and added in prerequisites script."
 						}
 					],
 					"id": "3c75130b-efc7-435c-97ad-cbe82263d60e",
@@ -4707,7 +4708,7 @@
 				}
 			],
 			"id": "2e0c6dd7-c751-4727-a19c-0488e51cc42e",
-			"description": "This folder contains positive and negative scenarios of Delete Program : Delete Operation."
+			"description": "This folder contains positive and negative scenarios of Delete Program : Delete Operation.\n\nPath parameters are verified and added in prerequisites script."
 		},
 		{
 			"name": "UnAuthorized Requests",
