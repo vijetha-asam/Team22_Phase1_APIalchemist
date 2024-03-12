@@ -793,7 +793,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"MarchHackathon\",\n  \"programName\": \"March24_APIAlchemist_SDET132\",\n  \"programStatus\": \"{{InvalidProgramStatus}}\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"March24_APIAlchemist_SDET132\",\n  \"programStatus\": \"{{InvalidProgramStatus}}\"\n}\n\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -858,7 +858,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"programDescription\": \"Marchhackathon\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"\"\n}\n",
+							"raw": "{\n  \"programDescription\": \"APIHackathon_Phase1\",\n  \"programName\": \"March24_APIalchemist_SDET_132\",\n  \"programStatus\": \"\"\n}\n",
 							"options": {
 								"raw": {
 									"language": "json"
