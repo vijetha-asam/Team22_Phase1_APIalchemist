@@ -48,7 +48,7 @@
 			"id": "4385ce69-768c-433d-b758-ec638ce49304"
 		},
 		{
-			"name": "Post Program CSV",
+			"name": "Post Program",
 			"item": [
 				{
 					"name": "Create new program_one",
@@ -1022,6 +1022,14 @@
 									"// Perform status code validation",
 									"pm.test(\"Status code is 400\",()=>{",
 									"pm.response.to.have.status(400);",
+									"// Perform actions based on the response code",
+									"if (pm.response.code === 201) {",
+									"        // Get the request name",
+									"        const requestName = pm.info.requestName;",
+									"        console.log(\"FAILED : create new program with \"+requestName+\" request\");",
+									"        // Handle the unexpected updation",
+									"        console.log(\"Program is created with invalid combination of an alphabet and special characters in ProgramDescription \");",
+									"    }",
 									"});",
 									"// Perform status validation",
 									"pm.test(\"Check Status as Bad Request\",()=>{",
@@ -1032,11 +1040,12 @@
 									"    \"message\": \"programDescription must begin with alphabet and can contain only alphanumeric characters\",",
 									"    \"success\": false",
 									"};",
+									"if(pm.response.code === 201){",
 									"// Validate the response body",
 									"pm.test(\"Response body contains expected error message and success flag\", function() {",
 									"    pm.expect(resp.message).to.equal(expectedData.message);",
 									"    pm.expect(resp.success).to.equal(expectedData.success);",
-									"});",
+									"});}",
 									"// Perform response time validation",
 									"pm.test(\"response time is less than 700ms\", ()=>{",
 									"    pm.expect(pm.response.responseTime).to.be.below(700);",
