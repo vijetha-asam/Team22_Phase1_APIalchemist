@@ -1201,6 +1201,141 @@
 						"url": "{{BaseURL}}/saveprogram"
 					},
 					"response": []
+				},
+				{
+					"name": "All Invalid Values",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d97699d9-5483-410d-9c16-2ddf6c4a6fe9",
+								"exec": [
+									"",
+									"// Define expected data for response validation",
+									"const expectedData_Status = {",
+									"    \"message\": \"Invalid Status: must be Active or Inactive\",",
+									"    \"success\": false",
+									"};",
+									"const expectedData_Description = {",
+									"    \"message\": \"programDescription must begin with alphabet and can contain only alphanumeric characters\",",
+									"    \"success\": false",
+									"};",
+									"const expectedData_ProgramName = {",
+									"    \"message\": \"programName must begin with alphabet and can contain only alphanumeric characters\",",
+									"    \"success\": false",
+									"};",
+									"",
+									"// Define the maximum number of retries",
+									"const maxRetries = 6;",
+									"",
+									"// Execute the request and validate the response",
+									"function executeRequestAndValidateResponse(i) {",
+									"    baseURL = pm.environment.get(\"BaseURL\")+\"/saveprogram\";",
+									"    const request = {",
+									"        url: baseURL,",
+									"        method: 'POST',",
+									"        headers: {",
+									"            \"Content-Type\": \"application/json\"",
+									"        },",
+									"        body: pm.request.body.raw",
+									"    };",
+									"",
+									"    console.log(`Executing request (${i + 1}/${maxRetries})...`);",
+									"",
+									"    pm.sendRequest(request, (err, response) => {",
+									"        if (err) {",
+									"            console.log(`Error: ${err}`);",
+									"            return;",
+									"        }",
+									"",
+									"        var resp = pm.response.json();",
+									"",
+									"        // Perform header-content-type validation",
+									"        pm.test(\"Content-Type header is present\", () => {",
+									"            pm.response.to.have.header(\"Content-Type\")",
+									"        });",
+									"",
+									"        pm.test(\"Content-Type header is application/json\", () => {",
+									"            pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');",
+									"        });",
+									"",
+									"        // Perform status code validation",
+									"        pm.test(\"Status code is 400\", () => {",
+									"            pm.response.to.have.status(400);",
+									"        });",
+									"",
+									"        // Perform response json validation",
+									"        pm.test(\"Response is valid JSON\", function () {",
+									"            pm.response.to.be.json;",
+									"        });",
+									"",
+									"        // Perform status validation",
+									"        pm.test(\"Check Status as Bad Request\", () => {",
+									"            pm.response.to.have.status('Bad Request');",
+									"        });",
+									"",
+									"        // Perform response time validation",
+									"        pm.test(\"Response time is less than 700ms\", () => {",
+									"            pm.expect(pm.response.responseTime).to.be.below(700);",
+									"        });",
+									"",
+									"        //Validate the response body",
+									"        pm.test(\"Response body contains expected error message and success flag\", function() {",
+									"            console.log(\"Validating response body...\");",
+									"        if (resp.message === expectedData_Status.message && resp.success === expectedData_Status.success) {",
+									"            console.log(\"Response body validation successful for expectedData_Status\");",
+									"        } else if (resp.message === expectedData_Description.message && resp.success === expectedData_Description.success) {",
+									"            console.log(\"Response body validation successful for expectedData_Description\");",
+									"        } else if (resp.message === expectedData_ProgramName.message && resp.success === expectedData_ProgramName.success) {",
+									"            console.log(\"Response body validation successful for expectedData_ProgramName\");",
+									"        } else {",
+									"            console.log(\"Response body validation failed\");",
+									"        }",
+									"        ",
+									"    });",
+									"",
+									"        ",
+									"    });",
+									"}",
+									"",
+									"// Execute the request and validate the response multiple times",
+									"for (let i = 0; i < maxRetries; i++) {",
+									"    console.log(`Executing request (${i + 1}/${maxRetries})...`);",
+									"    executeRequestAndValidateResponse(i);",
+									"    ",
+									"}",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "dce6ad57-a019-4de0-b207-be7c976b45e1",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"programName\": \"**********\",\n    \"programDescription\": \"**********\",\n    \"programStatus\": \"**********\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseURL}}/saveprogram"
+					},
+					"response": []
 				}
 			],
 			"id": "d1ce667b-08cb-437b-a02f-b96b9a685822",
