@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "8d845570-3a9d-4393-a545-8cdb11adaffd",
-		"name": "User Login Controller- Kamalika",
+		"name": "User Login Controller",
 		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
