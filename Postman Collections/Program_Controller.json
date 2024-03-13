@@ -5239,7 +5239,7 @@
 			"name": "Log_Out",
 			"item": [
 				{
-					"name": "GET REQUEST - User log out (200) Positive scenario",
+					"name": "GET REQUEST - User log out Positive",
 					"event": [
 						{
 							"listen": "test",
