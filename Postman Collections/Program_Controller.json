@@ -1210,9 +1210,6 @@
 							"script": {
 								"id": "d97699d9-5483-410d-9c16-2ddf6c4a6fe9",
 								"exec": [
-									"",
-									"",
-									"",
 									"// Define the maximum number of retries",
 									"const maxRetries = 6;",
 									"",
@@ -1275,8 +1272,8 @@
 									"        });",
 									"",
 									"        // Perform response time validation",
-									"        pm.test(\"Response time is less than 1200ms\", () => {",
-									"            pm.expect(pm.response.responseTime).to.be.below(1200);",
+									"        pm.test(\"Response time is less than 700ms\", () => {",
+									"            pm.expect(pm.response.responseTime).to.be.below(700);",
 									"        });",
 									"",
 									"        //Validate the response body",
@@ -1295,7 +1292,6 @@
 									"    });     ",
 									"    });",
 									"}",
-									"",
 									"// Execute the request and validate the response multiple times",
 									"for (let i = 1; i <= 6; i++) {",
 									"    //console.log(`Executing request (${i}/6)...`);",
