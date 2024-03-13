@@ -5234,6 +5234,93 @@
 			],
 			"id": "6cc80cf3-6836-4ce9-8b08-c473d2271c81",
 			"description": "This folder contains all requests with incorrect endpoints to perform negative testing and check error handling mechanism of given APIs."
+		},
+		{
+			"name": "Log_Out",
+			"item": [
+				{
+					"name": "GET REQUEST - User log out (200) Positive scenario",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa7a1fd8-eba7-42f4-a11e-2e45a1cb864a",
+								"exec": [
+									"",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"//Check Response Time",
+									"pm.test(\"Response Time is less than 500ms\", () => {",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);",
+									"});",
+									"",
+									"//Header validation",
+									"pm.test(\"Content-Type Header is present\", () => {",
+									"  pm.response.to.have.header(\"Content-Type\");",
+									"});",
+									"",
+									"",
+									"pm.test(\"Content-Type header is application/json\", ()=> {",
+									" pm.expect(pm.response.headers.get(\"Content-Type\")).to.eql('application/json');",
+									"});",
+									"",
+									"",
+									"//verify if test achieved results",
+									"pm.test(\"Logout was successful\", function () {",
+									"   pm.expect(pm.response.text()).to.include(\"Logout successful\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"id": "894a5bb0-615f-4422-93af-809f876a2482",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "{{programModuleToken}}"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BaseURL}}/logoutlms",
+							"host": [
+								"{{BaseURL}}"
+							],
+							"path": [
+								"logoutlms"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"description": "application/json",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"id": "405e7036-1c9f-4e6f-99c3-145b57d57b71"
 		}
 	],
 	"variable": [
